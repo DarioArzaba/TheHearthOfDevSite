@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>Matematicas</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ 
+				MathMenu: { showFontMenu: true },
+				TeX: { equationNumbers: {autoNumber: "AMS"} } 
+			});
+		</script>
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.5/jsxgraphcore.js"></script>
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<h1>Matemáticas</h1>
+
+<h2 class="HoverTitle" id="Algebra"><a href="#Algebra"># </a><a href="#Algebra">Algebra</a></h2>
+
+<h3 class="HoverTitle" id="ProductosEspecial"><a href="#ProductosEspecial"># </a><a href="#ProductosEspecial">Productos Especiales</a></h3>
+
+<p>Algunos productos se pueden simplificar con las siguientes formulas fundamentales:</p>
+
+\begin{align*}
+	\text{Monomio por Binomio} &\implies (a)(b + c) =  (a)(c) + (a)(d)\\
+	\text{Suma por Resta de Dos Terminos} &\implies (a + b)(a - b) =  a^2 + b^2\\
+	\text{Cuadrado de Binomio} &\implies (a + b)^2 =  a^2+2ab+b^2  \land (a - b)^2 =  a^2-2ab+b^2\\
+	\text{Cubo de Binomio} &\implies (a + b)^3 =  a^3+3a^2b+3ab^2+b^3  \land (a - b)^3 =  a^3-3a^2b+3ab^2-b^3\\
+	\text{Binomio por Binomio} &\implies (a + b)(c + d) = ac+bc+ad+bd  \land (a + x)(b + x) =  x^2+(a+b)x + ab\\
+	\text{Cuadrado Trinomio} &\implies (a+b+c)^2 = a^2+b^2+c^2+2ab+2ac+2bc
+\end{align*}
+
+<p>En el caso de que queramos continuar la multiplicacion de un binomio a la enesima potencia podemos utilizar el Triangulo de Pascal para encontrar los coeficientes numericos:</p>
+
+\begin{gather*}
+	(a - b)^2 =  a^2-2ab+b^2\\
+	(a + b)^3 =  a^3+3a^2b+3ab^2+b^3\\
+	(a + b)^4 =  a^4+4a^3b+6a^2b^2+4ab^3+b^4\\
+	(a + b)^5 =  a^5+5a^4b+10a^3b^2+10a^2b^3+5ab^4+b^5\\
+	(a + b)^6 =  a^6+6a^5b+15a^4b^2+20a^3b^3+15a^2b^4+6ab5+b^6\\
+\end{gather*}
+
+<p>Note que los exponentes de (b) aumentan de uno en uno hasta llegar a (n) mientras que los de (a) disminuyen. Si el binomio es una resta entonces utilizamos un signo negativo en todo termino donde (b) este elevada a una potencia impar.</p>
+
+</main>
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+
+<script>
+	var Board = JXG.JSXGraph.initBoard('LineaNumerica', {showCopyright: false, showNavigation:false, boundingbox: [-5.2, 2, 5.2, -2]});
+	var EjeX = Board.create('axis', [[0, 0], [1, 0]], 
+	{
+	  	firstArrow: true,
+	  	lastArrow: true,
+	  	ticks: {
+	  		drawZero: true,
+	  		ticksDistance: 1,
+	  		majorHeight: 30,
+	  		tickEndings: [0, 1],
+	  		minorTicks: 0
+	  	}
+	});
+	var Point = Board.create('glider', [1, 0, EjeX], {});
+	Point.setName("Num.Real");
+
+
+	JXG.joinCurves = function (board, parents, attributes) {
+		var cu1 = parents[0],
+		cu2 = parents[1],
+		attr = JXG.copyAttributes(attributes, board.options, 'curve'),
+		c = board.create('curve', [[0], [0]], attr);
+		c.updateDataArray = function () {
+			this.dataX = cu1.dataX.slice(0, -1).concat(cu2.dataX);
+			this.dataY = cu1.dataY.slice(0, -1).concat(cu2.dataY);
+			if (this.dataX.length < 4) {
+				this.bezierDegree = 1;
+			} else {
+				this.bezierDegree = cu1.bezierDegree;
+			}
+		};
+		c.prepareUpdate().update().updateRenderer();
+		return c;
+	};
+
+	
+	var BoardTwo = JXG.JSXGraph.initBoard('InterseccionSet', { showCopyright: false, showNavigation: false, boundingbox: [0, 5, 5, 0], axis: false });
+	BoardTwo.removeGrids();
+	var p1 = BoardTwo.create('point', [2, 2], {fillColor: 'blue', strokeColor: 'gray', setName: ""});
+	var p2 = BoardTwo.create('point', [3.3, 3.3], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p3 = BoardTwo.create('point', [3.5, 3.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p4 = BoardTwo.create('point', [2.5, 2.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var a1 = BoardTwo.create('circle', [p1, p2], {strokeColor: 'lightgray'});
+	var a2 = BoardTwo.create('circle', [p3, p4], {strokeColor: 'lightgray'});
+	var i1 = BoardTwo.create('intersection', [a1, a2, 0], { visible: false });
+	var i2 = BoardTwo.create('intersection', [a1, a2, 1], { visible: false });
+	var c1 = BoardTwo.create('arc', [p1, i1, i2], { visible: false });
+	var c2 = BoardTwo.create('arc', [p3, i2, i1], { visible: false });
+	var c3 = JXG.joinCurves(BoardTwo, [c1, c2], { strokeColor: 'black', strokeWidth: 3, fillColor: 'green', fillOpacity: 0.2 });
+
+</script>
+
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

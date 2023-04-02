@@ -1,0 +1,87 @@
+@font-face {
+	font-family: FontAwesome;
+	src: url('/Plantilla/Fonts/Ubuntu-R.ttf');
+}
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+
+/* To Do: Me gustaria incorporar un canvas y así poner una animacion detras del titulo. */
+
+/*Cuerpo, Fondo Blanco y Fuente*/
+body{margin:0;padding:0;border:0;background:url(/NewPage/assets/asanoha.png);font-family:'Anonymous Pro',monospace;vertical-align:baseline;}
+
+/*Encabezado Fondo Negro y 100hv de altura.*/
+.encabezado {background-image:url("/NewPage/assets/blacktile.png");position:relative;background-attachment:fixed;height:100vh;color:#fff;text-align:center; user-select:none;}
+
+/*Alinear un bloque en el centro del encabezado para poner nuestro titulo*/
+.encabezado:before {content:'';display:inline-block;vertical-align:middle;height:100%;}
+
+/*Alinea el contenido al bloque anterior.*/
+.titulo {display:inline-block;}
+
+/*Fortmato del titulo principal, animacion del texto y del cursor*/
+.titulo_texto_animacion{white-space:nowrap;overflow:hidden;animation:typing 4.8s steps(18,end),blink-caret 1s step-end infinite}
+.titulo_texto{font-size:2em;font-weight:400;text-decoration:none;color:#fff}
+.titulo_texto_cursor{font-size:56px;animation:blink 1s infinite}
+@keyframes typing{0%{width:0}100%{width:100%}} @-moz-keyframes typing{0%{width:0}100%{width:100%}} @-webkit-keyframes typing{0%{width:0}100%{width:100%}}
+@keyframes blink{to{opacity:0}} @-moz-keyframes blink{to{opacity:0}} @-webkit-keyframes blink{to{opacity:0}}
+
+/*Crea la pestaña que separa al titulo y al subtitulo.*/
+hr {top:0.5em;border-top: solid 1px rgba(200,200,200,0.7);border-bottom: solid 1px rgba(192,192,192,0.35);box-shadow: inset 0 3px 0 0 rgba(192,192,192,0.35);position:relative;border-right-width:0;border-left-width:0;border-style:inset;height:5px;}
+
+/*Controla las pestañas (Before=Izquierda y After=Derecha) del separador. */
+hr:before{content:'';position:absolute;top:-15px;display:block;width:1px;height:30px;background:rgba(192, 192, 192, 0.35);left:-1px;}
+hr:after {content:'';position:absolute;top:-15px;display:block;width:1px;height:30px;background:rgba(192, 192, 192, 0.35);right:-1px;}
+
+/*Formato del Subtitulo*/
+header > p {font-size:1em;margin: 2em 0 0 0;opacity:0.6;cursor:default; font-family:FontAwesome}
+
+/*Boton para ir abajo*/
+.boton_scroll a {position: absolute;bottom: 7%;left: 49%;display: inline-block;transform: translate(0, -50%);transition: opacity .3s; text-decoration:none;}
+#boton_flecha:hover {opacity: .8;}
+#boton_flecha {position: absolute;width: 24px;height: 24px;border-left: 1px solid #fff;border-bottom: 1px solid #fff;transform: rotate(-45deg);}
+#boton_mensaje {position:relative;right:43%;top:15px;transform: rotate(0deg);border-left: none; border-bottom: none; opacity:0;cursor: default; color:#fff}
+
+/*Carrusel*/
+.carousel {position: relative; overflow: hidden; height:100vh; margin-bottom: 0;}
+.carousel .reel {white-space: nowrap;position: relative;-webkit-overflow-scrolling: touch;padding: 15vh 5em 0 5em;}
+
+/*Botones del Carousel*/
+.carousel .forward, .carousel .backward {position: absolute;top: 50%;width: 6em;height: 12em;margin-top: -6em;cursor: pointer;}
+.carousel .forward:before, .carousel .backward:before {content: '';display: block;width: 6em;height: 6em;border-radius: 100%;background-color: rgba(72, 57, 73, 0.5);position: absolute;top: 50%;margin-top: -3em;transition: background-color 0.35s ease-in-out;}
+.carousel .forward:after, .carousel .backward:after {content: '';width: 3em;height: 3em;position: absolute;top: 50%;margin: -1.5em 0 0 0;background: url("/Plantilla/NewPage/assets/arrow.svg") no-repeat center center;}
+.carousel .forward { right: 0; }
+.carousel .forward:before { right: -3em; }
+.carousel .forward:after { right: -0.25em; }
+.carousel .backward { left: 0; }
+.carousel .backward:before { left: -3em; }
+.carousel .backward:after { left: -0.25em; transform: scaleX(-1); }
+.carousel .forward:hover:before, .carousel .backward:hover:before { background-color: #555555; }
+
+/*Articulos del carousel*/
+.carousel article {display: inline-block;width: 18em;background: url(/Plantilla/NewPage/assets/brown.png);text-align: center;padding: 0 1em .3em 1em;margin: 0 3em 0 0;white-space: normal;opacity: 1.0;transition: opacity 0.60s ease-in-out;}
+.carousel article .image {position: relative;left: -1em;top: 0;width: auto;margin-right: -2em;margin-bottom: 1em; display: inline-block; border: 0; outline: 0;}
+.carousel article.loading { opacity: 0; }
+.carousel article h3 a{ text-decoration:none; color:black }
+.carousel article p { text-align: center;  color:black}
+.image img {display: block; width: 100%;}
+
+/*Footer*/
+#footer {position: relative;overflow: hidden;padding: 4em 0 2em 0;background: #222222;}
+#footer .contact { text-align: center; word-spacing:4em;}
+#footer .copyright {text-align: center;color: rgba(128, 128, 128, 0.75);}
+#footer .copyright a { color: rgba(128, 128, 128, 0.75); }
+#footer .copyright a:hover { color: rgba(212, 212, 212, 0.85); }
+
+@media screen and (max-width: 736px) {
+    .encabezado {height:inherit;}
+    .encabezado:before {display:none;}
+    .titulo_texto_animacion{animation:none}
+    hr{display:none;}
+    header > p {display:none}
+    #boton_flecha {display:none;}
+    #boton_mensaje {display:none;}
+    .carousel{height:inherit; padding: 0.5em 0 0.5em 0;}
+    .carousel .reel {padding: 0 0.5em 0 0.5em;}
+    .carousel article {width: 14em;padding-bottom: 2em;margin: 0 0.5em 0 0; }
+    #footer {padding:1em;}
+}

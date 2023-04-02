@@ -1,0 +1,187 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Google Earth es un globo virtual de la superficie terrestre con informacion geografica, construido con la superimposicion de imagenes satelitales y sistemas de informacion geografica (GIS)." />
+	<meta name="author" content="Dario Arzaba"/>
+	<title>The Hearth of Dev: Google Earth</title>
+	<link rel="stylesheet" type="text/css" href="../NewPage/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../Plantilla/Prism/prism_web.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="language-html">
+<nav id="MySideNav"></nav>
+<div id="ShowSideNav">&#9776;</div>
+<main><section>
+<header>
+	<div class="flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div><hr />
+	<h1>Google Earth</h1><hr />
+</header>
+<article>
+<p>Globo terraqueo virtual generado con una superposicion de imagenes satelitales y <span class="tooltip" data-title="Geographic Information System">GIS</span>, originalmente creado por <a href="https://en.wikipedia.org/wiki/Keyhole,_Inc" target="_blank">Keyhole</a> hasta que en 2004 la compañia fue adquirida por Google. Para calcular la altura del terreno utiliza un <span class="tooltip" data-title="Digital Elevation Model">DEM</span> proporcionado por el <span class="tooltip" data-title="Shuttle Radar Topography Mission">SRTM</span> de la NASA.</p>
+<p>Google Earth cuenta con un simulador de vuelo, <span class="tooltip" data-title="Imagenes Panomaricas a Nivel de Calle">Street View</span>, mapas historicos, mapas del oceano, cielo, marte y la luna. <a href="http://www.sketchup.com/" target="_blank">SketchUp</a> es una utilidad que fue utilizada para crear publicamente modelos 3D sobre las imagenes satelitales, en 2012 Google remplaza estos modelos por un Mesh 3D Automatico.</p>
+<p>Una variedad de <span class="tooltip" data-title="Integracion GPS, KML, KMZ, HD Print, CSV, Movie Making, Mediadas de Area">utilidades</span> eran de uso exclusivo de la version Plus hasta que en 2008 fue descontinuada pasando a ser gratuitas. Muchos creen que parte de la inspiracion para la creacion de Google Earth proviene en parte del video educativo "<a href="https://www.youtube.com/watch?v=0fKBhvDjuy0" target="_blank">Powers of Ten</a>". Notese que la informacion de Google Earth, a diferencia de informacion proveniente de la NASA, no esta en el dominio publico.</p>
+<hr />
+
+<h3>Caracteristicas</h3>
+<a class="showdown">&nbsp; Buscar</a>
+<div class="hidedown">
+<p>El buscador incorporado admite los siguientes formatos:</p>
+<ol>
+<li><p>Países, Estados y Ciudades (Metepec, Mexico)</p></li>
+<li><p>Nombres completos de Calles (Hollywood Blvd, Hollywood, CA)</p></li>
+<li><p>Claves Postales (50149)</p></li>
+<li><p>Servicios en una ciudad (Café en Toluca)</p></li>
+<li><p>Degrees, minutes, and seconds (DMS): 41°24'12.2"N 2°10'26.5"E</p></li>
+<li><p>Degrees and decimal minutes (DMM): 41 24.2028, 2 10.4418</p></li>
+<li><p>Decimal degrees (DD): 41.40338, 2.17403</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Marcadores</a>
+<div class="hidedown">
+<p>Los marcadores, tecnicamente denominados <b>"Puntos de Interes"</b> (POI's), nos permiten encontrar un lugar rapidamente usando una figura. Al insertar un marcador en Google Earth podemos modificar su nombre, su icono y agregar informacion extra como descripcion, color, altitud, coordenadas exactas y una vista predeterminada (Snapshot). Por default el snapshot de cada marcador corresponde a la vista que tiene el navegador en el momento de crearla.</p>
+<p>Podemos utilizar figuras geometricas como marcadores, por ejemplo <i>Lineas, Circunferencias o Poligonos Libre</i>. Las medidas aproximadas de estas figuras en el terreno son calculadas automaticamente con la funcion de <b>Regla</b>. Una herramienta similar denominada <b>Perfil de Elevacion</b> nos permite medir las diferencias en la elevacion de dos puntos en la superficie.</p>
+<p>Un <b>Overlay</b> es un tipo de marcador especial que utiliza una imagen, un orden (Draw Order) y un grado de opacidad para sobreponerla en la superficie, esta superposision nos puede ayudar a identificar propiedades geograficas o mapas antiguos.</p>
+</div>
+<a class="showdown">&nbsp; Simulador de Vuelo</a>
+<div class="hidedown">
+<p>Al activar el <a href="https://www.youtube.com/watch?v=RnX8DLmjkCA" target="_blank">simulador de vuelo</a> con el shortcuto o en el menu <i>"Herramientas - Simulador de Vuelo"</i>, luego se pide seleccionar el tipo de avion (SR22 o F16) y finalmente un aereopuerto desde el cual despegar.</p>
+<p>Google ha dispuesto de una descripcion del <a href="https://support.google.com/earth/answer/148091?hl=en" target="_blank">HUD</a> y de los <a href="https://support.google.com/earth/answer/148092?topic=2376993&ctx=topic" target="_blank">controles</a> oficiales del simulador.</p>
+<p>Podemos obtener una captura de pantalla en distintas resoluciones y formatos con la opcion <i>"Archivo - Guardar - Guardar Imagen"</i> o seleccionado <i>"Guardar Imagen"</i> junto al icono de Impresion.</p>
+</div>
+<a class="showdown">&nbsp; Tours</a>
+<div class="hidedown">
+<p>Para crear un Tour activamos la opcion de Grabar y vamos seleccionando los POIs guardados desde el menu de Lugares. El menu <i>"Herramientas - Opciones - Tours" nos permite modificar una serie de opciones en torno al recorrido virtual:</i></p>
+<ol>
+<li><p>Tiempo entre lugares: Controla que tan rápido se vuela de lugar en lugar.</p></li>
+<li><p>Tiempo de espera en lugares: Controla que tanto tiempo se detiene en cada lugar.</p></li>
+<li><p>Vuelo en un Camino: Hace que el tour siga forzosamente una trayectoria que tu defines.</p></li>
+<li><p>Mostrar marcadores: Muestra los marcadores de los lugares al esperar en ellos.</p></li>
+<li><p>Angulo de Inclinación: Controla la cantidad de inclinación con la que te gustaría volar.</p></li>
+<li><p>Rango de la cámara: Restringe que tanto del lugar muestra la cámara.</p></li>
+<li><p>Velocidad: Controla la velocidad global del Tour.</p></li>
+<li><p>Segundos entre imágenes: Decide cuando se espera al visualizar una imagen.</p></li>
+<li><p>Calidad: Decide en que definición se graba el tour.</p></li>
+</ol>
+<p>Utilizando un GPS uno puede generar un camino y realizar un tour virtual de dicho camino en Google Earth. Un GPS o Global Positioning System es un aparato que se conecta con los satelites circundantes para triangular la posicion exacta de un objeto.</p>
+<p>Garmin o Magellan son marcas reconocidas en la fabricacion de dichos dispositivos, los cuales generan un archivo con extencion Loc o Gpx a partir de los cuales Google Earth puede generar automaticamente un camino.</p>
+</div>
+<a class="showdown">&nbsp; Geocodificar</a>
+<div class="hidedown">
+<p>Geocodificar es el proceso de convertir una direccion o lugar en coordenadas, su forma inversa consiste en introducir las coordenadas en un GIS para localizar esa direccion o lugar. Las especificaciones ISO 6709 e ISO 3166 regulan este tema.</p>
+<p>Existen multiples metodos de geocodificacion, el más utilizado en la actualidad es la <i>Interpolacion</i> debido a su bajo costo y el cual consiste en primero asignarle a cada lugar un numero en base a la serie de numeros de su calle, USA los Tiger Datasets proporcionan de manera publica tablas con dichas series numericas, finalmente dicho numero se utiliza para obtener las coordenadas geograficas.</p>
+<p>Algunos servicios que requieren de mayor exactitud, en vez de usar interpolacion utilizan Address Point Data, Point Leven Geocoding y GPS. Para geocodificar un lugar se recomienda obtener el nombre de la calle, el codigo postal, el nombre del area politica y añadir estos datos a las coordenadas con un layer de referencia (SNF, PCCF, FSA etc).</p>
+<p><b>Geocodificar por Direccion: </b> El mapa de referencia le asigna un ranfo de numeros a cada calle, nuestra tabla relaciona el nombre del lugar con el de su direccion y el software interpola la direcccion dentro del rango.</p>
+<p><b>Geocodificar por Codigo Postal: </b>El layer de referencia de codigos postales es geocodificado marcando su punto central y la extencion del area (FSA), finalmente se relaciona este punto central con el lugar. Este metodo es menos preciso pero a falta de datos es la mejor aproximacion en zonas subdesarrolladas.</p>
+<p>Una alternativa popular al uso de GPS para geocodificar es usando el NAC (Natural Area Coding) tambien denominado Universal Address.</p>
+<p> Otras opciones incluyen:</p>
+<ol>
+<li><p><b>QDGC (Qarter Degree Grid Cells): </b>Divide el sistema de coordenadas en cuadrados mas pequeños. Usado principalmente en Africa.</p></li>
+<li><p><b>GEOREF (Geographic Reference System): </b>Basado en el sistema de coordenadas, únicamente simplifica su notación. Descontinuado.</p></li>
+<li><p><b>NTUS (Nomenclature of Territorial Units for Statistics): </b>Es un sistema de códigos regionales establecido por la unión europea.</p></li>
+<li><p><b>Mersden Square: </b>Sistema basado en el de coordenadas, utiliza una base de 10 y su uso se restringe a investigaciones meteorológicas.</p></li>
+<li><p><b>C-Squares: </b>Complementa al Mersden Square usando bases mas pequeñas, su uso se restringe a investigaciones meteorológicas.</p></li>
+<li><p><b>FIPS  codes: </b>Sistema de códigos regionales establecido por el gobierno de USA, lo usa por ejemplo la CIA en muchos de sus reportes.</p></li>
+<li><p><b>Geohash: </b>Sistema diseñado para designar una URL a cada coordenada. Su propósito es facilitar el envió de coordenadas.</p></li>
+<li><p><b>Plus+Codes: </b>Sistema de Google basado en códigos postales, trata de proporcional un sistema de códigos postales universal.</p></li>
+<li><p><b>What3Words: </b>Sistema basado en el NAC con un grid de 3x3 m. La peculiaridad es que sustituye el código alfanumerico por tres palabras.</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; KML</a>
+<div class="hidedown">
+<p>KML o Keyhole Markuo Language es el lenguaje nativo de la aplicacion. Similar a otros lenguajes de marcacion como HTML, este lenguaje se estructura con el uso de Tags.</p>
+<p>Por ejemplo para insertar un marcador lo unico que necesitamos es utilizar su Tag "Placemark":</p>
+<pre><code class="Codigo">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;
+&lt;kml xmlns=”http://earth.google.com/kml/2.1"&gt;
+&lt;Document&gt;
+
+&lt;Style id=”StyleOne”&gt;
+	&lt;LabelStyle&gt;
+	&lt;color&gt;cc808000&lt;/color&gt;&lt;scale&gt;2.0&lt;/scale&gt;&lt;colorMode&gt;random&lt;/colorMode&gt;
+	&lt;/LabelStyle&gt;
+&lt;/Style&gt;
+&lt;Style id=”StyleTwo”&gt;
+	&lt;IconStyle&gt;
+	&lt;color&gt;cc808000&lt;/color&gt;&lt;scale&gt;2.0&lt;/scale&gt;&lt;colorMode&gt;random&lt;/colorMode&gt;
+	&lt;Icon&gt;&lt;href&gt;c:/GoogleEarthIcons/MyOwnIcon002.jpg&lt;/href&gt;&lt;/Icon&gt;
+	&lt;heading&gt;90&lt;/heading&gt;
+	&lt;/IconStyle&gt;
+&lt;/Style&gt;
+&lt;Style id=”buttonsNotBoxes”&gt;
+	&lt;ListStyle&gt;
+	&lt;listItemType&gt;radioFolder&lt;/listItemType&gt;
+	&lt;/ListStyle&gt;
+&lt;/Style&gt;
+
+&lt;Folder&gt;
+&lt;styleUrl&gt;#buttonsNotBoxes&lt;/styleUrl&gt;&lt;name&gt;StyleExample&lt;/name&gt;
+&lt;description&gt;Shows different styles being applied&lt;/description&gt;&lt;open&gt;1&lt;/open&gt;
+&lt;Placemark&gt;
+	&lt;styleUrl&gt;#StyleOne&lt;/styleUrl&gt;&lt;name&gt;Hollywood Bowl with Snippet&lt;/name&gt;
+	&lt;description&gt;The Los Angeles Philharmonic’s amphitheater&lt;/description&gt;
+	&lt;Snippet&gt;A natural formation with seats added&lt;/Snippet&gt;
+	&lt;visibility&gt;0&lt;/visibility&gt;
+	&lt;LookAt&gt;&lt;longitude&gt;-118.3390383230917&lt;/longitude&gt;
+	&lt;latitude&gt;34.11230602728949&lt;/latitude&gt;&lt;altitude&gt;0&lt;/altitude&gt;
+	&lt;range&gt;272.1817526117454&lt;/range&gt;&lt;tilt&gt;1.485907294467841e-010&lt;/tilt&gt;
+	&lt;heading&gt;-0.004589114879398169&lt;/heading&gt;&lt;/LookAt&gt;
+	&lt;Point&gt;&lt;coordinates&gt;-118.3390383230917,34.11230602728949,0&lt;/coordinates&gt;&lt;/Point&gt;
+&lt;/Placemark&gt;
+&lt;Placemark&gt;
+	&lt;styleUrl&gt;#StyleTwo&lt;/styleUrl&gt;&lt;name&gt;Port of Miami&lt;/name&gt;
+	&lt;description&gt;Where the ships dock.&lt;/description&gt;
+	&lt;visibility&gt;1&lt;/visibility&gt;
+	&lt;LookAt&gt;&lt;longitude&gt;-80.16927921121973&lt;/longitude&gt;
+	&lt;latitude&gt;25.77781453124814&lt;/latitude&gt;&lt;altitude&gt;0&lt;/altitude&gt;
+	&lt;range&gt;1416.675283716215&lt;/range&gt;&lt;tilt&gt;37.92222918159425&lt;/tilt&gt;
+	&lt;heading&gt;34.4116436411719&lt;/heading&gt;&lt;/LookAt&gt;
+	&lt;Point&gt;&lt;coordinates&gt;-80.16927921121975,25.77781453124814,0&lt;/coordinates&gt;&lt;/Point&gt;
+&lt;/Placemark&gt;
+&lt;/Folder&gt;
+
+&lt;/Document&gt;
+&lt;/kml&gt;</code></pre>
+</div>
+<a class="showdown">&nbsp; Shortcuts</a>
+<div class="hidedown">
+<p>Para ver la lista completa visita: <a href="https://shortcutworld.com/en/Google-Earth/5/win/all" target="_blank"></a>Google Earth Shortcuts. Notese que la mayoria de las acciones se puede obtener usando la <span class="tooltip" data-title="Vista - Mostrar Navegacion">Rueda de Navegación</span>. Otras herramientas utiles son el <span class="tooltip" data-title="Vista - Compas">Compas</span> y la <span class="tooltip" data-title="Vista - Escale Legend">Escala</span>.</p>
+<table>
+  <tr><th>Accion</th><th>Shortcut</th></tr>
+  <tr><td>Moverse</td><td>Click + Mouse</td></tr>
+  <tr><td>Parar</td><td>Barra Espaciadora</td></tr>
+  <tr><td>Zoom In</td><td>Doble Click Izquierdo o Avpag</td></tr>
+  <tr><td>Zoom Out</td><td>Doble Click Derecho o Repag</td></tr>
+  <tr><td>Rotacion</td><td>Shift + Flechas</td></tr>
+  <tr><td>Inclinacion</td><td>Shift + Click</td></tr>
+  <tr><td>Orientacion Default</td><td>N</td></tr>
+  <tr><td>Inclinacion Default</td><td>U</td></tr>
+  <tr><td>Orientacion + Inclinacion</td><td>R</td></tr>
+  <tr><td>Grid de Coordenadas</td><td>Ctrl + L</td></tr>
+  <tr><td>Minimapa (Overview)</td><td>Ctrl + M</td></tr>
+  <tr><td>Simulador de Vuelo</td><td>Ctrl + Alt + A</td></tr>
+</table>
+</div>
+<hr />
+
+<h3>Sitios</h3>
+<p>
+<b>Blogs:</b><span data-title="Sitio Oficial de Google Earth" class="tooltip2"><a href="https://www.google.com/earth/" target="_blank">&nbsp;&bull;&nbsp; Google Earth</a></span><span data-title="Base de datos de una comunidad de geografía online." class="tooltip2"><a href="http://data.geocomm.com/catalog/" target="_blank">&nbsp;&bull;&nbsp; Geo Community</a></span><span data-title="Sitio Oficial de USGS con mapas gratuitos y otra informacion GIS." class="tooltip2"><a href="https://www.usgs.gov/products/maps/overview" target="_blank">&nbsp;&bull;&nbsp; USGS Maps</a></span><span data-title="Blog con tutoriales y trucos para la visualizacion de archivos GPS" class="tooltip2"><a href="http://www.gpsvisualizer.com/" target="_blank">&nbsp;&bull;&nbsp; GPS Visualizer</a></span><span data-title="Trucos para utilizar con Google Earth" class="tooltip2"><a href="http://www.gearthhacks.com/" target="_blank">&nbsp;&bull;&nbsp; GEarth Hacks</a></span><span data-title="Google Earth Community Forums" class="tooltip2"><a href="http://googleearthcommunity.proboards.com/" target="_blank">&nbsp;&bull;&nbsp; Google Earth ProBoards</a></span><span data-title="Blog Personal acerca de Google Earth y Geografia general." class="tooltip2"><a href="http://ogleearth.com/ " target="_blank">&nbsp;&bull;&nbsp; Ogle Earth</a></span><span data-title="Blog Oficial sobre Google Earth y sus descubrimientos." class="tooltip2"><a href="http://www.gearthblog.com " target="_blank">&nbsp;&bull;&nbsp; GEarth Blog</a></span><span data-title="Revista informativa sobre el mundo de los GIS" class="tooltip2"><a href="http://www.directionsmag.com/ " target="_blank">&nbsp;&bull;&nbsp; Directions Mag</a></span><span data-title="Todo lo que necesitas saber sobre Atlas y Mapas del mundo." class="tooltip2"><a href="http://www.earthslot.org " target="_blank">&nbsp;&bull;&nbsp; Earth Slot</a></span><span data-title="Blog sobre Aplicaciones y el uso de distintos GIS" class="tooltip2"><a href="http://www.geoblogspot.com " target="_blank">&nbsp;&bull;&nbsp; Geo Blogspot</a></span><span data-title="Simposium Brasileño Internacional de GIS." class="tooltip2"><a href="http://www.geoinfo.info" target="_blank">&nbsp;&bull;&nbsp; Geo Info</a></span><span data-title="Sitio de Sightseen en Mexico y el Mundo" class="tooltip2"><a href="http://www.satellite-sightseer.com/country/Mexico " target="_blank">&nbsp;&bull;&nbsp; Satellite Sightseer</a></span><span data-title="Sightseen de todo el mundo." class="tooltip2"><a href="http://googlesightseeing.com " target="_blank">&nbsp;&bull;&nbsp; Google Sightseen</a></span>
+</p>
+<p>
+<b>Herramientas:</b><span data-title="Busca tesoros reales utilizando GPS" class="tooltip2"><a href="https://www.geocaching.com/play" target="_blank">&nbsp;&bull;&nbsp; Geo Caching</a></span><span data-title="Alternativa a Google Earth" class="tooltip2"><a href="https://www.arcgis.com/features/index.html" target="_blank">&nbsp;&bull;&nbsp; ArcGIS</a></span><span data-title="GIS Publico Online Generado por Usuarios" class="tooltip2"><a href="http://wikimapia.org/" target="_blank">&nbsp;&bull;&nbsp; Wikimapia</a></span><span data-title="GIS Publico Online Enfocado a Calles" class="tooltip2"><a href="https://www.openstreetmap.org/" target="_blank">&nbsp;&bull;&nbsp; Open Street Map</a></span><span data-title="Similar a panoramio, fotos superpuestas en un mapa de la tierra" class="tooltip2"><a href="http://www.mypicsmap.com/explore" target="_blank">&nbsp;&bull;&nbsp; My Pics Map</a></span><span data-title="Seleccion de Imagenes HD tomadas con Google Earth" class="tooltip2"><a href="https://earthview.withgoogle.com" target="_blank">&nbsp;&bull;&nbsp; Earthview With Google</a></span><span data-title="Informacion Seleccionada por las investigaciones de la NASA" class="tooltip2"><a href="https://earthdata.nasa.gov" target="_blank">&nbsp;&bull;&nbsp; NASA Earth Data</a></span><span data-title="Proyecto de Review de lugares contruida por el publico." class="tooltip2"><a href="https://www.google.com/local/guides/" target="_blank">&nbsp;&bull;&nbsp; Google Local Guides</a></span><span data-title="Mapa que genera rutas turisticas." class="tooltip2"><a href="https://roadtrippers.com/" target="_blank">&nbsp;&bull;&nbsp; Road Trippers</a></span><span data-title="Otra Alternativa a Google Earth" class="tooltip2"><a href="https://marble.kde.org/index.php" target="_blank">&nbsp;&bull;&nbsp; Marble</a></span><span data-title="Catalogo de imagenes de la NASA" class="tooltip2"><a href="http://visibleearth.nasa.gov/" target="_blank">&nbsp;&bull;&nbsp; Visible Earth</a></span><span data-title="Mapa explorable 2D de la NASA" class="tooltip2"><a href="http://www.blue-marble.de/" target="_blank">&nbsp;&bull;&nbsp; Blue Marble</a></span><span data-title="NASA World Wind" class="tooltip2"><a href="https://goworldwind.org/" target="_blank">&nbsp;&bull;&nbsp; World Wind</a></span>
+</p>
+<p>
+<b>Layers y Overlays:</b><span data-title="Bases de datos (Tablas GIS) seleccionadas por Google." class="tooltip2"><a href="https://earthengine.google.com/datasets/" target="_blank">&nbsp;&bull;&nbsp; Earth Engine Dataset</a></span><span data-title="Base de datos seleccionadas por profesionales en GIS." class="tooltip2"><a href="http://www.webgis.com" target="_blank">&nbsp;&bull;&nbsp; WebGIS</a></span><span data-title="Open Data for International Development" class="tooltip2"><a href="http://aiddata.org" target="_blank">&nbsp;&bull;&nbsp; Aid Data</a></span><span data-title="Seleccion de layers topograficos para Google Earth" class="tooltip2"><a href="http://www.gelib.com" target="_blank">&nbsp;&bull;&nbsp; Google Earth Library</a></span><span data-title="Mapas del mundo ,algunos se ofrecen para descargar en layers gratuitos." class="tooltip2"><a href="http://www.mapsofworld.com/" target="_blank">&nbsp;&bull;&nbsp; Maps Of World</a></span><span data-title="Base de datos gratis de cosas relacionadas con GIS." class="tooltip2"><a href="http://freegis.org/database" target="_blank">&nbsp;&bull;&nbsp; FreeGIS</a></span><span data-title="Bases de Datos con Layers generadas por usuarios." class="tooltip2"><a href="http://www.mapcruzin.com/" target="_blank">&nbsp;&bull;&nbsp; Map Cruzin</a></span><span data-title="Coleccion de Mapas de la Universidad de Texas" class="tooltip2"><a href="https://www.lib.utexas.edu/maps/" target="_blank">&nbsp;&bull;&nbsp; UTexas Maps</a></span><span data-title="Curso de Google Earth por la Universidad de Duke" class="tooltip2"><a href="http://guides.library.duke.edu/c.php?g=289381&p=1929708" target="_blank">&nbsp;&bull;&nbsp; UDuke Guide</a></span><span data-title="Administracion Nacional de Oceanografia y Atmosfera de USA" class="tooltip2"><a href="http://www.noaa.gov/" target="_blank">&nbsp;&bull;&nbsp; USA NOAA</a></span><span data-title="Centro Nacional de Informacion Ambiental de USA" class="tooltip2"><a href="https://www.ncei.noaa.gov/" target="_blank">&nbsp;&bull;&nbsp; USA NCEI</a></span><span data-title="Comicion Nacional de Nombres Geograficos de USA" class="tooltip2"><a href="https://geonames.usgs.gov/index.html" target="_blank">&nbsp;&bull;&nbsp; USGS GeoNames</a></span><span data-title="Agencia Nacional de Inteligencia Geoespacial de USA" class="tooltip2"><a href="https://www.nga.mil/Pages/Default.aspx" target="_blank">&nbsp;&bull;&nbsp; NGA</a></span>
+</p>
+<p>
+<b>Programacion:</b><span data-title="Recursos relacionados al Engine que genera la informacion de Google Earth" class="tooltip2"><a href="https://earthengine.google.com" target="_blank">&nbsp;&bull;&nbsp; Google Earth Engine</a></span><span data-title="Primer GIS Open Source" class="tooltip2"><a href="https://grass.osgeo.org/" target="_blank">&nbsp;&bull;&nbsp; GRASS</a></span><span data-title="Segundo GIS Open Source utilizando R" class="tooltip2"><a href="http://r-gis.net/" target="_blank">&nbsp;&bull;&nbsp; R-GIS</a></span><span data-title="Tercer GIS Open Source" class="tooltip2"><a href="http://www.qgis.org/" target="_blank">&nbsp;&bull;&nbsp; Q-GIS</a></span><span data-title="Cuarto GIS Open Source" class="tooltip2"><a href="http://www.openjump.org" target="_blank">&nbsp;&bull;&nbsp; Open Jump</a></span><span data-title="Sitio Que Explora el lenguaje KML" class="tooltip2"><a href="https://kml4earth.appspot.com/index.html" target="_blank">&nbsp;&bull;&nbsp; KML4Earth</a></span><span data-title="Documentacion Oficial de KML por Google" class="tooltip2"><a href="https://developers.google.com/kml/" target="_blank">&nbsp;&bull;&nbsp; Google KML</a></span><span data-title="Documentacion Oficial Maps API" class="tooltip2"><a href="https://developers.google.com/maps/" target="_blank">&nbsp;&bull;&nbsp; Maps API</a></span><span data-title="Documentacion Oficial Places API" class="tooltip2"><a href="https://developers.google.com/places/" target="_blank">&nbsp;&bull;&nbsp; Places API</a></span><span data-title="Geocodificador de Tablas" class="tooltip2"><a href="https://es.batchgeo.com" target="_blank">&nbsp;&bull;&nbsp; Batch Geo</a></span><span data-title="Geocodificador de NAC" class="tooltip2"><a href="http://www.nactag.info/map.asp#about" target="_blank">&nbsp;&bull;&nbsp; Nac Tag</a></span><span data-title="Java Applet Demos for World Wind and OpenGL" class="tooltip2"><a href="http://jogamp.org/jogl-demos/www/" target="_blank">&nbsp;&bull;&nbsp; JoGL Tests</a></span>
+</p>
+
+</article>
+</section></main>
+<footer><p id="LastUpdatedDate"></p></footer>
+<script src="../Plantilla/JQuery/jquery.js"></script>
+<script>$("#MySideNav").load("/NewPage/html/sidebar.html");</script>
+<script src="../NewPage/js/main.js"></script>
+<script src="../Plantilla/Prism/prism_web.js"></script>
+</body></html>

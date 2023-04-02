@@ -1,0 +1,195 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>OpenSUSE</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+
+<main>
+
+<h1>OpenSUSE</h1>
+
+<nav>
+	<ol>
+		<li>
+			<a href="#Inicio">Inicio</a>
+			<ol>
+				<li><a href="#Instalacion">Instalacion</a></li>
+				<li><a href="#YaST">YaST</a></li>
+			</ol>
+		</li>
+		<li>
+			<a href="OpenSuseDos.html#Shell">Shell</a>
+			<ol>
+				<li><a href="OpenSuseDos.html#ShellBasics">ShellBasics</a></li>
+			</ol>
+		</li>
+		<li>
+			<a href="OpenSuseDos.html#Otros">Otros</a>
+			<ol>
+				<li><a href="OpenSuseDos.html#GettingThingsGnome">GettingThingsGnome</a></li>
+				<li><a href="OpenSuseDos.html#BuildService">BuildService</a></li>
+			</ol>
+		</li>
+	</ol>
+</nav>
+	
+
+<h2 class="HoverTitle" id="Inicio"><a href="#Inicio"># </a><a href="#Inicio">Inicio</a></h2>
+
+<h3 class="HoverTitle" id="Instalacion"><a href="#Instalacion"># </a><a href="#Instalacion">Instalacion</a></h3>
+
+<p>Se necesitan como requerimientos minimos: Procesador de 64-bits con 2GHz, 2GB RAM y 4GB de Disco Duro. Se recomienda tener un USB o DVD y una coneccion estable a Internet.</p>
+		
+<blockquote>“<i>«La Respuesta a la Gran Pregunta de la vida, del universo y de todo es... Cuarenta y dos. » -dijo Pensamiento Profundo con infinita majestuosidad y calma.</i>"- Douglas Adams <i>(The Hitchhiker's Guide to the Galaxy 1979)</i></blockquote>
+
+<p>Pasos para iniciar el instalador en Windows:</p>
+
+<ol>
+	<li>Realizar un <a href="https://support.microsoft.com/en-us/help/17127/windows-back-up-restore" target="_blank">Backup</a> de tu Informacion.</li>
+	<li>Desfragementar el disco duro y realizar operaciones de limpieza.</li>
+	<li>Quemar el ISO de la distribucion en un USB con <a href="http://www.osforensics.com/tools/write-usb-images.html" target="_blank">ImageUSB</a>.</li>
+	<li>Si ImageUSB no funciona utilizar <a href="https://rufus.akeo.ie/" target="_blank">Rufus</a>. GPT for UEFI, FAT32, DD Option.</li>
+	<li>En linux seria <i>dd if=(iso) of=(USB) bs=4M</i></li>
+	<li>Acceder al Boot apretando la tecla F9 al iniciar el sistema.</li>
+	<li>Desactivar las opciones de Secure Boot y Legacy Boot. Poner al USB como primer dispositivo Boot.</li>
+	<li>Reiniciar con el USB insertado, iniciando desde el USB con el instalador de OpenSUSE.</li>
+</ol>
+
+<p>Los ultimos sucesos relacionados con openSUSE son publicadas en el portal de <a href="https://news.opensuse.org/" target="_blank">Noticias</a> y en sus redes sociales de <a href="https://www.youtube.com/user/opensusetv" target="_blank">YouTube</a> y <a href="https://twitter.com/opensuse" target="_blank">Twitter</a>.</p>
+
+<p>El sitio principal cuenta con un <a href="https://software.opensuse.org/search" target="_blank">Buscador de Software</a>, un <a href="https://lizards.opensuse.org/" target="_blank">Feed de Articulos</a>, un <a href="https://forums.opensuse.org/forum.php" target="_blank">Foro General</a> Si existe alguna duda, tambien esta disponible la <a href="https://doc.opensuse.org/" target="_blank">Documentacion Oficial</a>, las <a href="https://en.opensuse.org/Portal:Documentation" target="_blank">Guias Wiki</a> y la <a href="http://opensuse-guide.org/" target="_blank">Guia General</a>.</p>
+
+<h3 class="HoverTitle" id="Instalador"><a href="#Instalador"># </a><a href="#Instalador">Instalador</a></h3>
+
+<p>Una vez que se inicio el instalador YaST podemos comenzar con los pasos para <a href="https://doc.opensuse.org/documentation/leap/startup/html/book.opensuse.startup/art.opensuse.installquick.html" target="_blank">instalar el sistema operativo</a>. Al inicio se nos presentan una serie de opciones principales y una serie de opciones secundarias (<code class="inline">F1-F9</code>).</p>
+
+<p>Opciones Principales:</p>
+
+<ol>
+	<li><b>Live Boot:</b> Boot openSUSE desde el dispositivo, para realizar un preview.</li>
+	<li><b>Install:</b> Instalacion de openSUSE. Cambiar opciones F5 si el kernel no es compatible.</li>
+	<li><b>Upgrade:</b> Actualiza los componentes en el caso de que ya este instalado openSUSE.</li>
+	<li><b>Rescue:</b> Interfaz minima necesaria para realizar cambios en el sistema operativo.</li>
+	<li><b>Check Media:</b> Revisa la integridad delos componentes, realizar antes de una nueva instalacion.</li>
+	<li><b>Memory Test:</b> Prueba de RAM para ver si no hace falta memoria o existe memoria corrupta.</li>
+</ol>
+
+<p>Opciones Secundarias:</p>
+
+<ol>
+	<li><b>Ayuda:</b> Muestra informacion adicional de las opciones basicas.</li>
+	<li><b>Lenguaje:</b> Lenguaje de la interfaz del instalador.</li>
+	<li><b>Modo de Video:</b> Al iniciar generalmente <span data-title="Kernel Mode Settings" class="tooltip">KMS</span> detecta la resolucion, si la resolucion es incorrecta esta opcion nos permite elegirla manualmente. Seleccionamos (No-KMS) y (vga=ask). En casos exepcionales podemos desactivar la interfaz grafica del instalador con la opcion (vga=no), esto activa el modo de texto.</li>
+	<li><b>Dispositivo</b> Desde aquí se selecciona el medio de instalacion ya sea DVD, USB, FTP, NFS, SLP etc.</li>
+	<li><b>Kernel:</b> Con esta opcion podemos configurar algunas opciones del Kernel que pueden ser la causa de errores en la instalacion. Por ejemplo <span data-title="Advanced Programmable Interrupt Controllers" class="tooltip">ACPI</span> podemos desactivarlo con (NO ACPI). Tambien podemos activar la opcion (Safe Settings) que realiza la instalacion en modo <span data-title="Direct Memory Access" class="tooltip">DMA</span> (Solucionando problemas con la lectura de CD/DVD) y desactiva las funciones del <a href="https://es.wikipedia.org/wiki/Power_Management" target="_blank">Power Managment</a>. Por ultimo se puede intentar desactivar el <span data-title="Advanced Programmable Interrupt Controllers" class="tooltip">APIC</span> de la computadora con la opcion (NO APIC).</li>
+	<li><b>Drivers:</b> Permite descargar drivers adicionales proporcionando un URL para que descarge los drivers y los integre al proceso de instalacion.</li>
+	<li><b>Arch:</b> Permite seleccionar la <span data-title="32bit o 64bit" class="tooltip">arquitectura</span> del sistema operativo. Las ultimas versiones unicamente soportan arquitecturas de 64bit.</li>
+</ol>
+
+<p>Al iniciar el instalador se sigue una serie de pasos que nos permite modificar el estado inicial del nuevo sistema:</p>
+
+<ol>
+	<li><b>Lenguaje y Contrato:</b> Selecciona el lenguaje del sistema operativo y muestra licencia GNU.</li>
+	<li><b>Configurar Red:</b> Configura opcionalmente la red de internet para instalar los ultimos paquetes de seguridad.</li>
+	<li><b>Repositorios:</b> Si se configuro una red de internet en el paso anterior, aqui se podran seleccionar opcionalmente los repositorios que agregar por defecto.
+		<ul>
+			<li>Main OSS: Packetes fundamentales y software Open Source del sistema Operativo.</li>
+			<li>Main NON OSS: Paquetes propietarios adicionales.</li>
+			<li>Update OSS: Contiene las ultimas actualizaciones de los paquetes OSS.</li>
+			<li>Update NON OSS: Contiene las ultimas actualizaciones de los paquetes NON OSS.</li>
+			<li>Main Sources: Contiene el codigo fuente y Spec Files de los paquetes OSS.</li>
+			<li>Main DEBUG: Contiene paquetes opcionales para probar y corregir el sistema.</li>
+			<li>Update DEBUG: Actualiza el repositorio DEBUG.</li>
+			<li>Untested: Paquetes experimentales que estan siendo probados por los beta testers.</li>
+		</ul>
+	</li>
+	<li><b>Particion:</b> Selecciona la particion donde se desea usar para instalar el sistema operativo. OpenSUSE, como muchos sistemas operativos Linux, utiliza generalmente cuatro subparticiones: Particion de Montaje EFI (/boot/efi), SWAP (1-2GB), Home BtrFS (30 - ? GB) y Root Ext4 (20 - 100GB). El bootloader GRUB sobreescribe automaticamente el MBR.</li>
+	<li><b>Zona horaria:</b> Selecciona la hora del sistema operativo. UTF por defecto.</li>
+	<li><b>Paquetes:</b> Este paso solo aparece si se selecciono en el tercero la instalacion de algunos paquetes adicionales.
+	<li><b>Entorno del Escritorio:</b> En este paso se selecciona el entorno del escritorio a utilizar. <span data-title="Gnu Network Object Model Environment" class="tooltip"><b>GNOME</b></span> se parece más a otras distribuciones de linux. <span data-title="K Desktop Environment" class="tooltip"><b>KDE</b></span> es preferido por muchos por su similitud en apariencia a Windows y Mac. Si buscas una interfaz minimalista se recomienda <span data-title="Lightweight X11 Desktop Environment" class="tooltip"><b>LXDE</b></span> o <span data-title="X Freakin Cool Environment" class="tooltip"><b>XFCE</b></span>. Por ultimo la opcion de <b>MinimalXWindow</b> es la interfaz más simple recomendada unicamente para servidores, utiliza comandos de texto para la mayoria de sus acciones. Si no se desea ningun entorno se puede seleccionar el modo <b>Minimal Server Selection</b>, en este modo solo se dispone de la terminal.</li>
+	<li><b>Usuario y Root:</b> En este paso se crea el usuario local con su contraseña. Tambien se establece la contraseña del usuario maestro "Root". Se recomienda ampliamente que la contraseña de usuario y de root sean diferentes.</li>
+	<li><b>Review:</b> Muestra todo lo que va a realizar el instalador, permite regresarse y hacer modificaciones de ultimo momento. ALgunas opciones solo se pueden modificar aqui como <span data-title="Escojer los paquetes individualmente" class="tooltip">Software</span>, <span data-title="Opciones del GRUB" class="tooltip">Booting</span>, <span data-title="Activar o Desactivar Funciones" class="tooltip">Firewall</span> y <span data-title="Nivel Grafico Inicial" class="tooltip">System Target</span>, el cual es por defecto el entorno de escritorio seleccionado anteriormente.</li>
+</ol>
+	
+<h3 class="HoverTitle" id="YaST"><a href="#YaST"># </a><a href="#YaST">YaST</a></h3>
+
+<p>Linux es un sistema multi-usuario. Varios usuarios pueden estar activos a la vez, por lo que se le asigna a cada uno un UID Unico. El UID establece los permisos de cada usuario.</p>
+
+<p>Para administrar a los usuarios de una computadora utilizamos el comando <code class="inline">sudo yast2 users &amp;</code>. Dentro de esta aplicacion podemos modificar, eliminar, crear o desactivar cuentas de usuario.</p>
+
+<p>Tambien podemos mapear el ID local con el de la red, activar login automatico, encriptar directorios Home, establecer limites de recursos y expiracion de contraseñas. </p>
+
+<p>Entre los metodos de autenticacion se encuentran NIS, LDAP, Kerberos y Samba. Incluso despues de la instalacion podemos modificar facilmente el idioma y zona horaria del sistema.</p>
+
+<pre><code class="language-bash">
+#Modificar el lenguaje del sistema
+sudo yast2 language &amp;
+#Una vez instalados los idiomas iniciar una aplicacion con otro idioma como:
+LANG=de_DE Chrome
+#Para obtener los codigos de los idiomas utilizamos:
+locale -av
+#Para dual boot a veces es necesario desactivar el reloj del Hardware
+sudo yast2 timezone &amp;
+#Cambiar configuracion del teclado o del sonido
+sudo yast2 keyboard &
+sudo yast2 sound &
+#Si existen problemas con los drivers de sonido se recomiendan:
+zypper in pavucontrol
+zypper install alsa-firmware
+#Para ver las fuentes instaladas en el sistema
+fc-list ':' family
+#En donde fc-list es un wrapper de Fontconfig
+#Para activar el visor de fuentes utilizamos el sig comando
+ftview 14 /usr/share/fonts/truetype/FreeMono.ttf
+#Ver las particiones disponibles
+/sbin /fdisk -l
+#Montar la particion NTFS
+ntfs-3g /dev/(nombre particion)
+#Montar en solo lectura y desmontar
+ntfs-3g /dev/(nombre particion) -o -ro
+fusermount -u (nombre particion)
+#Para montar archivos iso
+fuseiso (Archivo) (Particion)
+#Para checar las actualizaciones del sistema
+sudo yast2 online update
+
+</code></pre>
+
+<p>Al utilizar openSUSE se pueden presentar una serie de problemas comunes. Para encontrar informacion sobre un problema del sistema operativo se recopila informacion en archivos de texto, localizados en <code class="inline">/Var/log/</code> y en <code class="inline">/Proc/</code> </p>
+
+
+	https://en.opensuse.org/openSUSE:Category_browse
+	https://en.opensuse.org/openSUSE:Browse
+	https://en.opensuse.org/Category:Portals
+	http://opensuse-guide.org/
+
+
+</main>
+		<footer>
+			<div class="footer">
+				<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+			</div>
+		</footer>
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+	</body>
+</html>

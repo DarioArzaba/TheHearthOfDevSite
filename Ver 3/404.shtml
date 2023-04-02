@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <meta name="author" content="Dario Arzaba">
+    <meta name="description" content="">
+    <title>Dario Arzaba</title>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="canonical" href="http://localhost:4000/404.shtml">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://darioarzaba.github.io/feed.xml">
+</head>
+
+<body>
+    <div id="particles-js" class="header">
+        <div class="wrapper">
+            <h1><a href="http://darioarzaba.github.io">Dario Arzaba</a></h1> <a class="header-btn" href="http://darioarzaba.github.io/feed.xml"> <span class="rss icon" aria-hidden="true"></span> <span class="btn-description">Subscribete</span> </a>
+        </div>
+    </div>
+    <div class="wrapper">
+        <h1 class="post-title">404</h1>
+        <div class="content" itemprop="articleBody">
+            <p>No encuentro la pagina:
+                <!--#echo var="REQUEST_URI" --> . Lo siento, te he fallado.
+            </p>
+            <p>Tendras que regresar a la pagina principal con las manos vacias...</p>
+            <ul>
+                <li><a href="http://localhost:4000">LLevame de Regreso</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="wrapper">
+            <p class="copyright">&copy; 2017 Dario Arzaba - <a href="http://thehearthofdev.x10.mx" target="_blank">Website</a></p>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="js/particles.js"></script>
+</body>
+
+</html>

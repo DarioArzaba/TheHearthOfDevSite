@@ -1,0 +1,295 @@
+/*
+    Simple Gif Flex Pannel Layout.
+    By @DarioArzaba
+*/
+
+/*Reset Document Body*/
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/*Main Title - Centering and Background*/
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+    background-image: url(Images/blacktile.png);
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/*Main Title - Font*/
+.maintitle {
+    margin: 25vh;
+    font-size: 8vw;
+    font-family: 'Roboto Mono', sans-serif;
+    color: whitesmoke;
+    user-select: none;
+    cursor: default;
+}
+
+/*Pannel Category Titles*/
+.title {
+    width: 70%;
+    padding: 2vh;
+    margin: 5vh auto;
+    font-size: 2.4em;
+    font-family: 'Roboto Mono', sans-serif;
+    color: black;
+    text-align: center;
+    user-select: none;
+    background-color: whitesmoke;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*Flex Container*/
+.container {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/*Flex Item*/
+.item {
+    width: 35vh;
+    padding: 7vw;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 275%;
+    text-align: center;
+    background-color: gray;
+    user-select: none;
+}
+.item:hover{
+    filter: brightness(50%);
+}
+
+
+/*Link and Span for Flex Items*/
+
+a {
+    text-decoration: none;
+}
+span {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*Footer*/
+#mainfooter {
+    width: 100%;
+    margin-top: 10vw;
+    padding: 3vh 0;
+    text-align: center;
+    background-color: #2d2d2d;
+}
+#mainfooter a{
+    color: #bdbdbd;
+    text-decoration: none;
+    background-color: transparent;
+}
+#mainfooter a:hover{
+    opacity: 0.9;
+}
+
+/*Items Gif Background*/
+
+#Matematicas{
+    display: block;
+    background-image: url(Images/matematicas.gif);
+    background-size: cover;
+}
+#HTML{
+    display: block;
+    background-image: url(Images/HTML.gif);
+    background-size: cover;
+}
+#JavaScript{
+    display: block;
+    background-image: url(Images/JavaScript.gif);
+    background-size: cover;
+}
+#CSS{
+    display: block;
+    background-image: url(Images/CSS.gif);
+    background-size: cover;
+}
+#Java {
+    display: block;
+    background-image: url(Images/Java.gif);
+    background-size: cover;
+}
+#Python {
+    display: block;
+    background-image: url(Images/Python.gif);
+    background-size: cover;
+}
+#SZip{
+    display: block;
+    background-image: url(Images/7zip.gif);
+    background-size: cover;
+}
+#Acrobat{
+    display: block;
+    background-image: url(Images/Acrobat.gif);
+    background-size: cover;
+}
+#GoogleEarth {
+    display: block;
+    background-image: url(Images/GoogleEarth.gif);
+    background-size: cover;
+}
+#Bubbles{
+    display: block;
+    background-image: url(Images/bubbles.gif);
+    background-size: cover;
+}
+#Thimble{
+    display: block;
+    background-image: url(Images/thimble.gif);
+    background-size: cover;
+}
+#UnknownP{
+    display: block;
+    background-image: url(Images/UnknownP.gif);
+    background-size: cover;
+}
+#Ajedrez{
+    display: block;
+    background-image: url(Images/chess.gif);
+    background-size: cover;
+}
+#Piano {
+    display: block;
+    background-image: url(Images/Piano.gif);
+    background-size: cover;
+}
+#OpenSuse {
+    display: block;
+    background-image: url(Images/OpenSuse.gif);
+    background-size: cover;
+}
+
+
+/*Item Span Changes*/
+
+#Bubbles span {
+    color: transparent;
+}
+#Thimble span {
+    color: transparent;
+}
+#UnknownP span {
+    color: transparent;
+}
+#SZip span {
+    color: black;
+}
+#Acrobat span {
+    color: black;
+}
+
+/*Resposive Changes*/
+
+@media (max-width: 1100px){
+    .item {
+        font-size: 220%;
+        padding: 10vw;
+        width: 30vh;
+    }
+}
+
+@media (max-width: 700px) {
+    .item, .title { font-size: 130%; }
+
+    #Matematicas{
+        background-image: none;
+        background-color: #dcc27c;
+    }
+    #Piano {
+        background-image: none;
+        background-color: #dcc27c;
+    }
+
+    #OpenSuse {
+        background-image: none;
+        background-color: #e29163;
+    }
+    #GoogleEarth {
+        background-image: none;
+        background-color: #a875c3;
+    }
+
+    #HTML{
+        background-image: none;
+        background-color: #e29163;
+    }
+    #JavaScript{
+        background-image: none;
+        background-color: #97ce6c;
+    }
+    #CSS{
+        background-image: none;
+        background-color: #7587c3;
+    }
+    #Java {
+        background-image: none;
+        background-color: #c1749c;
+    }
+    #Python {
+        background-image: none;
+        background-color: #7587c3;
+    }
+    #SZip{
+        background-image: none;
+        background-color: #70d0b8;
+    }
+    #Acrobat{
+        background-image: none;
+        background-color: #c1749c;
+    }
+    #Bubbles{
+        background-image: none;
+        background-color: #6cb9ce;
+    }
+    #Thimble{
+        background-image: none;
+        background-color: #8ece6c;
+    }
+    #UnknownP{
+        background-image: none;
+        background-color: #a875c3;
+    }
+    #Ajedrez{
+        background-image: none;
+        background-color: #bfaf84;
+    }
+    #Bubbles span{
+        color: white;
+    }
+    #Thimble span{
+        color: white;
+    }
+    #UnknownP span{
+        color: white;
+    }
+    #SZip span {
+        color: white;
+    }
+    #Acrobat span{
+        color: white;
+    }
+}
+
+@media (max-width: 250px) {
+    .title { font-size: 5vw; }
+    .item { font-size: 4vw; }
+}

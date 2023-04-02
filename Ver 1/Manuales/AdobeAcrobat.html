@@ -1,0 +1,932 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Software propietario diseñado para la creación y manupulación de archivos en formato pdf." />
+	<meta name="author" content="Dario Arzaba"/>
+	<title>The Hearth of Dev: Adobe Acrobat</title>
+	<link rel="stylesheet" type="text/css" href="../NewPage/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../Plantilla/Prism/prism_web.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="language-javascript">
+<nav id="MySideNav"></nav>
+<div id="ShowSideNav">&#9776;</div>
+<main><section>
+<header>
+	<div class="flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div><hr />
+	<h1>Adobe Acrobat</h1><hr />
+</header>
+<article>
+<blockquote> <i>"Imagine que es capaz de enviar documentos de texto y gráficos a través de redes de distribución de correo electrónico. Estos documentos podrían ser luego vistos en cualquier máquina e impresos localmente. Esta capacidad cambiaría verdaderamente la manera en la que intercambiamos la información."</i> <br> - John Warnock <i>(The Camelot Project 1991)</i></blockquote>
+<p>Lograr una "<a href="https://es.wikipedia.org/wiki/Oficina_sin_papel" target="_blank">Oficina sin Papel</a>" era la visión detrás de John Warnock, cofundador de Adobe, cuando en 1991 publicó <a href="https://blogs.adobe.com/acrobat/files/2013/09/Camelot.pdf" target="_blank">un articulo</a>  describiendo la posibilidad de crear un formato digital univerzal. La creación del formato <span data-title="Portable Document Format" class="tooltip" > PDF</span> basado en <span data-title="Lenguaje de Programacion" class="tooltip">PostScript</span> sería la propuesta de Adobe para solucionar este problema.</p>
+<p>PDF es un archivo gráfico que representa el diseño de un documento en varios dispositivos, manteniendo la calidad y apariencia original. Hoy en dia existen <a href="https://en.wikipedia.org/wiki/List_of_PDF_software" target="_blank">varias herramientas</a> gratuitas para visualizar y editar documentos en formato PDF como <a href="https://www.foxitsoftware.com/products/pdf-reader/" target="_blank">Foxit</a>, <a href="https://www.gonitro.com/pdf-reader">Nitro PDF</a>, <a href="http://www.investintech.com/resources/freetools/slimpdfreader/" target="_blank">SlimPDF</a>, <a href="http://icecreamapps.com/Ebook-Reader/" target="_blank">Icecream Ebook</a> o <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html" target="_blank">Sumatra PDF</a>. Sin embargo la mayoría de las personas prefieren utilizar <a href="https://get.adobe.com/reader/" target="_blank">Adobe Reader</a> para visualizar o <a href="https://acrobat.adobe.com/us/en/acrobat/pricing.html" target="_blank">Adobe Acrobat</a> para editar los documentos.</p>
+<p>Adobe Acrobat viene acompañado de <a href="http://www.ehowenespanol.com/adobe-acrobat-distiller-hechos_10932/" target="_blank">Acrobat Distiller</a> el cual nos permite convertir archivos en formato PostScript a PDF y viceversa. Distiller logra esto generando un <span data-title="Grafico Construido Matematicamente" class="tooltip">grafico vectorial</span> con la descripcion del archivo PostScript, este grafico vectorial termina por constituir el documento PDF. Las impresoras que cuentan con un <span data-title="Raster Image Procesor" class="tooltip">RIP</span> pueden traducir el patron vectorial de un archivo PostScript o PDF y porder imprimirlo.</p>
+<p>La ventaja de utilizar un grafico vectorial a un <span data-title="Grafico Contruido por Pixeles" class="tooltip">grafico rasterizado</span> es que no pierde calidad al ser ampliado o modificado, convirtiendolo en un buen candidato para la impresion profesional. Anteriormente si un programador quiere utilizar las funciones de Distiller en su programa añadia la libreria de <a href="http://www.datalogics.com/products/pdf/normalizer/" target="_blank">Adobe Normalizer</a>, hoy en dia se prefiere el uso de <a href="https://www.adobe.com/devnet/acrobat/overview.html">Acrobat SDK</a>.</p>
+<hr />
+
+<a class="showdown">&nbsp; Formato</a>
+<div class="hidedown">
+<p>A continuacion se describe la estructura basica de un PDF (<i>Header, Body, Cross-Reference Table y Trailer</i>), así como los tipos de <span data-title="Codificacion de Caracteres" class="tooltip">encoding</span>, espacios de color, tipos de imagenes y fuentes soportadas.</p>
+<ol>
+<li><p><b>Estructura:</b></p><ol>
+<li><p><b>Header:</b> Metadatos y propiedades del documento, como la versión del PDF.</p></li>
+<li><p><b>Body:</b> Cuerpo del documento, contiene los elementos que se muestran al usuario. Los objetos se denominan "Marcas" y la superficie se denomina "Lienzo". Toda marca puede tener varios <span data-title="Color, Borde, Relleno, Opacidad..." class="tooltip">parametros</span>. El origen del lienzo o espacio del usuario esta en la parte inferior izquierda del documento, tanto las unidades como el origen se pueden modificar. El RIP de una impresora puede recalcular el espacio del usuario.</p></li>
+<li><p><b> Cross Reference Table:</b> Contiene la posicion y nombre (ID) de todos los objetos en el documento.</p></li>
+<li><p><b> Trailer:</b> Contiene informacion de la anterior <i>base de datos relacionados</i> incluyendo tamaño de la tabla, numero de objetos, encriptacion utilizada, <a href="https://es.wikipedia.org/wiki/Offset_(informática)" target="_blank">posicion offset</a> etc.</p></li>
+</ol></li>
+<li><p><b>Soporte:</b></p><ol>
+<li><p><b>Encoding:</b> StandardEncoding, WinAnsiEncoding, MacRomanEncoding y MacExpertEncoding. Un encoding personalizado se puede añadir utilizando un "Array de diferencias (Differences Array)".</p></li>
+<li><p><b>Espacios de Color:</b> Dependientes del Dispotivo: DeviceGray, DeviceRGB, DeviceCMYK. Independientes del Dispotivo: CalGray, CalRGB, Lab, ICCBased, Special, Indexed, Pattern, Separation, DeviceN (SpotColors).</p></li>
+<li><p><b>Tipos de Imagenes:</b> Black and White Images (Line Art). Grayscale Images (2,4,8.16 Bits). Multitone: Duotone, Tritone, Hexachrome etc. Color images: (1,2,4,8,16 bits). Notese que los grayscale son usualmente de 8 Bits, es decir de 256 tonos de gris. Pdf introdujo el espacio de color DeviceN para poder manejar imagenes con algunos tipos de Multitone (Hexachrome, CMYK+2SpotColors, Black+1SpotColor). </p></li>
+<li><p><b>Fuentes soportadas:</b>TrueType (CIDFontType2), Type 0 (Composite Font), Type 1 (CIDFontType0), Type 3 y OpenType. </p></li>
+</ol></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Versiones</a>
+<div class="hidedown">
+<ol>
+<li><p><b>PDF 1 y Acrobat 1 (Carousel):</b> Junio de 1993. Adobe lanza a la venta sus inovadoras herramientas: Distiller ($700) licencia individual y ($2500) para empresas. Los altos costos iniciales dificultan el uso generalizado del software, eventualemtne el precio bajaria hasta la adopción de una modalidad gratuita (Reader).</p></li>
+<li><p><b>PDF 1.1 y Acrobat 2 (S/N):</b> Soporte para la inclusión de varios elementos: links, article threads, passwords, device independent color (PDF 1 soportaba unicamente RGB), archivos multimedia (Video y Audio) y un buscador de texto.</p></li>
+<li><p><b>PDF 1.2 y Acrobat 3 (Amber):</b> Adobe se enfocó en añadir las herramientas que necesita un ambiente de trabajo para oficina, incluyendo: CMYK color space, OPI Images, Spot Colors, formularios, Unicode, Mouse Events y halftone color. Su popularidad crece en gran medida con su Plug In gratuito para el navegador Netscape.</p></li>
+<li><p><b>PDF 1.3 y Acrobat 4 (Stout):</b> Soporte para 2-byte CID dots, OPI 2 y espacios de colores DeviceN, Spot Colors, ICC Colors, Smooth Shading, anotaciones, firmas digitales, javascript y encriptación de 56-bits.</p></li>
+<li><p><b>PDF 1.4 e Illustrator 9: </b>En 2000 Adobe reestructura sus productos y promociona a Illustrator 9 como el nuevo editor oficial de PDF's añadiento en el programa soporte para transparencia. Viendo que este cambio de software no era necesario continuarian más adelante con el desarrollo de Acrobat.</p></li>
+<li><p><b>PDF 1.4 y Acrobat 5 (Brazil):</b> Soporte para transparencia, scripts, tags estructurales (Accesibilidad), Compresion JBIG2 y encriptacion 128-bit. Incorporacion del Color Managment Engine conocido ocmo Ace. Mayor interactividad en los formularios.</p></li>
+<li><p><b>PDF 1.5 y Acrobat 6: (Newport) </b> Versión criticada por su falta de compatibilidad. Soporte para compresion JPEG 2000, Tabla XRef, Layers y XML Forms Architecture ó XFA para los formulatios.</p></li>
+<li><p><b>PDF 1.6 y Acrobat 7 (Vegas):</b> Mejor encriptación y anotaciones, soporte para OpenType Fonts, incrustación de archivos externos, encriptación AES y objetos 3D.</p></li>
+<li><p><b>PDF 1.7 y Acrobat 8 (Atlas):</b> PDF se vuelve el documento electronico internacional segun ISO, se añaden más funciones de seguridad y comentarios y manipulación 3D. </p></li>
+<li><p><b>PDF 1.7 y Acrobat 9 (Nova):</b> La integración del estandar ISO, impide que Adobe pueda generar un nuevo formato, es ahora ISO quien controla la genración e implementacion de las nuevas versiones de PDF's.</p></li>
+<li><p><b>PDF/VT y Acrobat X:</b>Rediseño minimalista de la interfaz del programa, añadiendo portafolios. comparación de documentos y la implementacion de PDF/VT que despues seria retirada en Acrobat DC.</p></li>
+<li><p><b>Acrobat XI:</b> Más opciones de edición e integración con herramientas cloud.</p></li>
+<li><p><b>Acrobat DC:</b> Se perfeccionan las herramientas cloud, soporte para dispositivos moviles y actualizaciones continuas por medio de una subscripción mensual. El comite ISO esta trabajando hoy en dia en las especificaciones de PDF 2.0, pero el proyecto se ha retrazado en multiples ocaciones.</p></li>
+</ol>
+</div>
+<a class="showdown" id="Preferencias">&nbsp; Preferencias</a>
+<div class="hidedown">
+<p>Las preferencias de Adobe se pueden accesar desde <kbd>Edit - Preferences</kbd> o con el shortcut <kbd>Ctrl+K</kbd>.</p>
+<ol>
+	<li><p><b>Comentarios:</b></p>
+		<ol>
+			<li><p>Modificar la fuente, el tamaño y la opacidad de los comentarios.</p></li>
+			<li><p>Activar o desactivar los tooltip, es decir las vistas previas del comentario que aparecen al pasar el cursor por encima pero sin abrir el comentario.</p></li>
+			<li><p>Activar o desactivar la impresion de los comentarios en la impresion del documento.</p></li>
+			<li><p>Abrir los comentarios automaticamente al navegar el documento.</p></li>
+			<li><p>Cerrar los comentarios automaticamente al abrir el panel de comentarios.</p></li>
+			<li><p>Abrir los comentarios automaticamente el pasar el cursor por encima.</p></li>
+			<li><p>Incluir en los comentario la cuenta de Adobe del autor.</p></li>
+			<li><p>Al crear comentarios posicionarlos en la esquina inferior derecha.</p></li>
+			<li><p>Activar la habilidad de responder un comentario con fines de revisión.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Documentos:</b></p>
+		<ol>
+			<li><p>Al iniciar Acrobat restaurar la ultima configuracion de vista de la ventana.</p></li>
+			<li><p>Al iniciar Acrobat abrir los links que se dirigan a documentos locales.</p></li>
+			<li><p>Permitir la importacion y configuracion de "Capas" si el usuario importa un dibujo diseñado en AutoCad o InDesign o Visio.</p></li>
+			<li><p>Permitir que el usuario pueda esconder los menus y las barras de herramientas utilizando pestañas plegables.</p></li>
+			<li><p>Guardar el documento automaticamente segun un intervalo de tiempo.</p></li>
+			<li><p>Activar o desactivar la eliminacion de toda informacion metadata adicional cuando se cierre el documento o cuando se envie por correo.</p></li>
+			<li><p>Cambiar automaticamente el nombre del documento a (Revisado) cuando se realicen correcciones.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Pantalla Completa:</b></p>
+		<ol>
+			<li><p>Decidir si activar el modo de pantalla completa unicamente el documento activo o a todos los documentos abiertos.</p></li>
+			<li><p>Al activar la pantalla completa ajustar para que se pueda ver una sola pagina completa.</p></li>
+			<li><p>Activar la alerta para cuando un documento requiera ser visto en pantalla completa.</p></li>
+			<li><p>Especificar un monitor distinto en el cual abrir el documento en pantalla completa.</p></li>
+			<li><p>Activar el uso de la tecla <kbd>Esc</kbd> para salir.</p></li>
+			<li><p>Activar o desactivar la barra de navegacion.</p></li>
+			<li><p>Activar o desactivar la navegacion con el click izquierdo y derecho del mouse.</p></li>
+			<li><p>Activar el reinicio de la presentacion al llegar a la ultima pagina.</p></li>
+			<li><p>Activar el cambio de pagina automatico despues de un intervalo de tiempo.</p></li>
+			<li><p>Cambiar el fondo de Acrobat, por defecto en negro.</p></li>
+			<li><p>Esconder el cursor despues de cierto tiempo.</p></li>
+			<li><p>Elegir un efecto de transicion por defecto.</p></li>
+		</ol>
+	</li>
+	<li><p><b>General:</b></p>
+		<ol>
+			<li><p>Activar o desactivar el acceso rapido a las herramientas de acrobat por medio de Shortcuts.</p></li>
+			<li><p>Activar o desactivar la deteccion automatica de links.</p></li>
+			<li><p>Activar o desactivar la habilidad del cursor de mano de seleccionar texto, imagenes, articulos o hacer zoom.</p></li>
+			<li><p>Al iniciar Acrobat abrir los servicios de hosting externos como DropBox o OneDrive.</p></li>
+			<li><p>Abrir nuevos documentos en pestañas o en ventanas.</p></li>
+			<li><p>Establecer una resolucion para las imagenes que se obtienen con la herramienta <i>Snapshot</i>.</p></li>
+			<li><p>Activar o desactivar el modo para dispositivos tactiles.</p></li>
+			<li><p>Activar o desactivar los mensajes de bienvenida de Adobe o los de advertencia cuando hago una modificacion en el documento sin guardarlo.</p></li>
+			<li><p>Establecer a Acrobat como el lector predefinido de archivos en formato PDF.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Paginas:</b></p>
+		<ol>
+			<li><p>Al abrir un documento establece el <span data-title="Automatico, Una Pagina, Una Pagina Continuo, Dos Paginas, Dos Paginas Continuo" class="tooltip">modo</span> y el <span data-title="Automatico, Ajustar Toda la Pagina, al Largo, al Ancho, al Contenido, Porcentaje" class="tooltip">acercamiento</span> con el que inicia por defecto. </p></li>
+			<li><p>Establecer la resolucion de Acrobat, normalmente se sugiere que este corresponda o sea ligeramente menor al de la pantalla.</p></li>
+			<li><p>Establece opciones para mejorar la apariencia de Acrobat como el suavizar bordes, fuentes, usar cache, y aceleracion grafica.</p></li>
+			<li><p>Muestra o esconde varios elementos y detalles del documento como Imagenes Grandes, Cajas del documento, <span data-title="Activa la numeracion impuesta por los marcapaginas y la numeracion real o logica" class="tooltip">numeracion logica</span>, cuadricula de transparencia y tamaño de la pagina activa.</p></li>
+			<li><p>Suaviza la transicion del aceramiento.</p></li>
+			<li><p>Para la combinacion de colores en imagenes con transaprencia establece el espacio de color a utiliza (RGB o CMYK).</p></li>
+		</ol>
+	</li>
+	<li><p><b>Multimedia:</b></p>
+		<ol>
+			<li><p>Activar la reproduccion de contenido en tercera dimension.</p></li>
+			<li><p>Escojer el <span data-title="Renderizador" class="tooltip">Render</span>, con el que se crean los graficos en tercera dimension.</p></li>
+			<li><p>Activar el renderizado por hardware.</p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+		</ol>
+	</li>
+	<li><p><b>Accesibilidad:</b></p>
+		<ol>
+			<li><p>Establecer un color de e. Permite establecer </p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+			<li><p></p></li>
+		</ol>
+	</li>
+	<li><p><b>Acciones:</b></p></li>
+	<li><p><b>Catalogo:</b></p></li>
+	<li><p><b>Manejo del Color:</b></p></li>
+	<li><p><b>Edicion:</b></p></li>
+	<li><p><b>Exportar:</b></p></li>
+	<li><p><b>Importar:</b></p></li>
+	<li><p><b>Correo Electronico:</b></p></li>
+	<li><p><b>Formas:</b></p></li>
+	<li><p><b>Identidad:</b></p></li>
+	<li><p><b>Internet:</b></p></li>
+	<li><p><b>JavaScript:</b></p></li>
+	<li><p><b>Lenguaje:</b></p></li>
+	<li><p><b>Modelos:</b></p></li>
+	<li><p><b>Multimedia (Antiguo):</b></p></li>
+	<li><p><b>Lectura:</b></p></li>
+	<li><p><b>Revisión:</b></p></li>
+	<li><p><b>Busqueda:</b></p></li>
+	<li><p><b>Seguridad:</b> Permite configurar los servidores de seguridad como el estampado de tiempo, directorios seguros y los servidores de administracion de formas de Adobe (Adobe Experience Manager). Se pueden importar y exportar la configuracion de seguridad o cargarlas automaticamente desde un servidor seguro. En la parte de seguridad avanzada podemos activar el modo <b>"SandBox"</b> que aisla temporalmente un documento para evitar que infecte el sistema o añadir archivos, directorios o sitios web de confianza.</p></li>
+	<li><p><b>Firmas Digitales:</b></p>
+	<ol>
+	<li><p><b>Creacion:</b> Podemos crear una nueva firma digital con la seguridad estandar de adobe. El formato puede ser <span data-title="Public-Key Cryptography Standards" class="tooltip">PKCS#7</span>  (<a href="https://es.wikipedia.org/wiki/PKCS" target="_blank">Wiki</a>) o <span data-title="CMS Advanced Electronic Signatures" class="tooltip">CAdES</span> (<a href="https://en.wikipedia.org/wiki/CAdES_(computing)" target="_blank">Wiki</a>). Podemos añadir a la firma comentarios, localizacion, informacion de contacto, estatus de revocacion, logo, fecha, version de Adobe etc. Cuando se certifica un documento se activa una alerta que pide la revisión, incluso se puede especificar que el documento no se pueda firmar hasta que sea validado con su certificado.</p></li>
+	<li><p><b>Verificacion:</b> Verificar firmas automaticamente al abrir el documento. Para verificar las firmas se utilzia el metodo de seguridad estandar de Adobe. </p></li>
+	<li><p><b>Certificados:</b> Podemos editar, importar, exportar y revisar los certificados validos y no validos. Por defecto Acrobat incluye los certificados de la tienda de Microsoft y de Adobe.</p></li>
+	<li><p><b>Estampar Fecha:</b> Permite configurar un servidor que revise y administre el estampado de fecha de los documentos. </p></li>
+	</ol>
+	</li>
+	<li><p><b>Ortografia:</b> Permite activar el corrector ortografico; seleccionar el diccionario del corrector y el color que utiliza. </p></li>
+	<li><p><b>Rastreador:</b> El rastreador o tracker revisa automaticamente si se han actualizado las formas o revisiones que fueron enviadas a un servidor cada intervalo de tiempo. Si encuentra una actualizacion puede enviar una notificacion en el sistema o en la aplicacion. Si se prefiere puede enviar la notificacion por RSS. </p></li>
+	<li><p><b>Advertencias:</b> Permitir el abrir documentos <span data-title="Attachments" class="tooltip">incluidos</span> con el PDF. Permisos de internet para los hipervinculos, aqui tenemos la lista negra de los sitios que no tienen permiso de abrirse y tambien podemos activar o desactivar la advertencia de que se va a abrir un link. Las ultimas opciones nos permiten descargar listas blancas de sitios con certificado revisado por Adobe (<span data-title="Automatic Adobe Approved Trust List" class="tooltip">AATL</span> y <span data-title="Automatic European Union Trusted Lists" class="tooltip">EUTL</span>)</p></li>
+	<li><p><b>Unidades:</b> Unidades en milimetros, centimetros, pulgadas picas o puntos. Dimensiones y color de la <span data-title="Rejilla-Cuadricula">Grid</span>. Color de las guias. Las guias se pueden crear activando las reglas de guia <kbd>Ctrl+R</kbd> y despues arrastrandolas al documento.</p></li>
+	<li><p><b>Updater:</b> Activa o desactiva la actualizacion automatica.</p></li>
+</ol>
+</div>
+<a class="showdown" id="Distiller">&nbsp; Distiller</a>
+<div class="hidedown">
+<p>
+Al iniciar se carga la libreria de soporte CID (QUE??) con todas las fuentes correpsondientes.
+
+File:
+Open: PostScript or EPS files.
+Preferencias: Notificarme cuando los folders revisados (Whatched Folders) no esten disponibles. Notificarme cuando el folder temporal de windows este cais lleno.
+Preguntar el lugar del PDF creado
+Preguntar para remplazar PDF
+Ver PDF resultando usando distiller
+Borrar Logs despues de que el trabajo se haya completado.
+
+PDF:
+Estandar: Para documentos que se puedan ver e imprimir correctamente.
+Tamaño Pequelo: Documentos para enviar por correo electronico y para internet, se pierda la calidad pero se reduce el espacio.
+Calidad de Prensa: Para documentos de impresion profesional
+PDF/X-1a y PDF/X-3: Crea documentos para el itnercambio de graficos.
+PDF/A-1B (RGB) y (CMYK): Par documentos de archivamiento dependiendo del espacio de color necesario.
+Ampliaciones (Oversized Pages): Para documentos ampliados generalmente de ingenieria de mas de 200 pulgadas cuadradas.
+Gran Calida de Impresion: Para obtener una gran calidad de impresion tanto en grandes como pequeñas impresoras. Esta es la calidad por defecto. Downsable las imagenes a 300ppi y monochrome a 1200 y crea los subsets de las fuentes. 
+
+
+Fuentes: Podemos editar los directorios de las fuentes.
+
+Directorios revisados. Podemos asignar un directiorio para que cuando se detexten documentos en PS o EPS distiller los convierta automaticamente. Se puede escojer la frecuencia de revisión y si el archivo original PostScript se elimina.
+Tambien se puede establecer la eliminacion de PDFs creados despues de un tiempo determinado.
+
+Distiller puede avisar el estado del archivo como: Correcto, directorio no encontrado. Se pueden establecer las preferencias de seguridad y de pdfs para esa carpeta unicamente y toman precedencia a las de destiller.
+
+
+Seguridad:
+Podemos encriptar los documentos con 128bit RC4, esto encripta tanto los datos del documento como el metadata. Se requiere una contraseña para activar la encriptacion.
+Tambien en vez de encriptar el documento se pueden encripyar las herramientas de edicion o de impresion. Se puede tambien restringir la capacidad de compiar contenido o de que los visores de texto tengan accesso al texto.
+
+
+Podemos añadir preferencias del PDF con: extencion.joboptions Sino tenemos que editarlas:
+
+Opciones de Distiller: 
+General: 
+Compatibilidad: Version de pdf minima
+Compresion de Objetos a Nivel: Compresion de la informacion estructural (Marcapaginas, accesibilidad, tags, metadatos estructurales).
+Rotar paginas: Si es necesario se rota Cada una, todas las paginas del documento o todos los documentos.
+Binding: Estaclece si cuando se activa el modo a doble pagina si las paginas se unen por la izquiera o por la derecha.
+Resolucion: Establece una resolucion a la que el poscript intentara llegar para satisfacer las necesidades de una impresora, por defecto el valor es igual al maximo posible de la impresora detectada, cambiar unicamente cuando lo pida la impresora.
+ Tamaño del papel.
+
+Imagenes:
+Establece las opciones de compresion para imagenes. Mas Informacion.
+Fuentes: Establece si se incrustan y subseccionan las fuentes, avisar de errores y cuales siempre incrustar y cuales no.
+Color: Establece las propiedades del espacio de color, por default no se hace ningun cambio en destiller (Se hace en la impresora) sin embargo se puede realizar manualmente para todo el documento o solo para las imagenes. Tambien se puede convertir todo a sRGB y CMYK.
+Document Rendering Intent: Preservar, Perceptual, Saturacion, Colorimetrico Absoluto y Colorimetrico relativo.
+Preservar "Under Color Removeal" y "Black Generation"
+Cuando funciones de tansferencia se encuentrn se aplican inmediatamente. Y si se preserva la informacion halftone
+
+Avanzado:
+Permitir que la informacion del poscritp tenga presedencia a los ajustes.
+Permitir el uso de XOjetcts en el poscript
+Convertir gradientes a smooth shades.
+Convertir shmooth liness curvas.
+Preservar semantica de nivel 2
+reservar los ajustes de "Overprint"., cuyo defecto es nonzero overprint.
+Salvar los ajustes de distiller en el archivo pdf.
+Salvar las imagenes originales en el pdf.
+Guardar un Portable Job Ticket dentro del documento.
+Utilizar Prologue.ps y Epilogue.ps
+
+Document Structuring Convention (DSC)
+Procesar los comentarios DSC:
+Logear los errores
+Preservar la informacion de EPS desde el DSC
+Preservar OPI (Mantener desactivado!!!)
+Preservar la informacion del DSC en el documento
+Preservar el tamaño del grafico en los archivos EPS.
+
+Color panel options
+
+Whether you’re using color management information in the PostScript file, using Distiller CSFs, or defining custom settings, you set all color management information for Distiller on the Color panel of the Adobe PDF Settings dialog box.
+
+Settings File
+Lists color settings, including those used in graphics applications. The None setting lets you edit the Color Management Policies and Working Spaces settings.
+Color Management Policies
+Specifies how Distiller converts unmanaged color in a PostScript file when you don’t use a Distiller color settings file. This menu is available when None is selected in the Settings File menu.
+Note: Color Management Policies values may affect a PDF differently depending on the compatibility setting you choose in the General panel.
+Leave Color Unchanged
+Leaves device-dependent colors unchanged and preserves device-independent colors as the nearest possible equivalent. This is a useful option for print shops that have calibrated their devices, have used that information to specify color in the file, and are only outputting to those devices.
+Tag (Or Convert) Everything For Color Management
+Tags color objects with an ICC profile and calibrates colors, making them device-independent in PDFs compatible with Acrobat 4.0 (PDF 1.3) and later. Converts device-dependent color spaces in images (RGB, Grayscale, and CMYK) to device-independent color spaces (CalRGB, CalGray, and Cie L*a*b) in Acrobat 3.0 (PDF 1.2) compatible PDFs.
+Tag (Or Convert) Only Images For Color Management
+Tags ICC profiles in images only (not text or vector objects), which prevents black text from undergoing any color shift when distilling Acrobat 4.0 (PDF 1.3) compatible PDFs. Converts device-dependent color spaces in images (RGB, Grayscale, and CMYK) to device-independent color spaces (CalRGB, CalGray, and Lab) in Acrobat 3.0 (PDF 1.2) compatible PDFs.
+Convert All Colors To sRGB (or Convert Everything To CalRGB)
+Calibrates color, making it device-independent. Converts CMYK and RGB images to sRGB in PDFs compatible with Acrobat 4.0 (PDF 1.3) or later. Converts CMYK and RGB images to calibrated RGB (CalRGB) in Acrobat 3.0 (PDF 1.2) compatible PDFs. Recommended for PDFs that will be used onscreen or with low-resolution printers.
+Convert All Colors To CMYK
+Converts color spaces to DeviceGray or DeviceCMYK according to the options specified in the Working Spaces menu. All Working Spaces must be specified.
+Document Rendering Intent
+Choose a method to map colors between color spaces. The result of any particular method depends on the profiles of the color spaces. For example, some profiles produce identical results with different methods. Acrobat shares four rendering intents (Perceptual, Saturation, Relative Colorimetric, and Absolute Colorimetric) with other Creative Suite applications. Acrobat also includes a rendering intent called Preserve, which indicates that the intent is specified in the output device rather than in the PDF. In many output devices, Relative Colorimetric is the default intent.
+Note: In all cases, intents may be ignored or overridden by color management operations that occur subsequent to the creation of the PDF file.
+Working Spaces
+For all Color Management Policies values other than Leave Color Unchanged, choose a working space to specify which ICC profiles are used for defining and calibrating the grayscale, RGB, and CMYK color spaces in distilled PDFs.
+Gray
+Choose a profile to define the color space of all grayscale images in files. The default ICC profile for gray images is Adobe Gray - 20% Dot Gain. Choose None to prevent grayscale images from being converted.
+RGB
+Choose a profile to define the color space of all RGB images in files. The default, sRGB IEC61966-2.1, is recognized by many output devices. Choose None to prevent RGB images from being converted.
+CMYK
+Choose a profile to define the color space of all CMYK images in files. The default is U.S. Web Coated (SWOP) v2. Choose None to prevent CMYK images from being converted.
+Note: Choosing None for all three working spaces has the same effect as selecting the option Leave Color Unchanged.
+Note: You can add ICC profiles (such as ones provided by your print service bureau) by placing them in the ICCProfiles folder in the Common folder, the Windows\System\Color folder (Windows), or the System Folder/ColorSync folder (Mac OS).
+Preserve CMYK Values For Calibrated CMYK Color Spaces
+When selected, device-independent CMYK values are treated as device-dependent (DeviceCMYK) values, device-independent color spaces are discarded, and PDF/X-1a files use the Convert All Colors To CMYK value. When deselected, device-independent color spaces convert to CMYK, provided that Color Management Policies is set to Convert All Colors To CMYK.
+Preserve Under Color Removal And Black Generation
+Retains these settings if they exist in the PostScript file. Black generation calculates the amount of black to use when reproducing a color. Undercolor removal (UCR) reduces cyan, magenta, and yellow to compensate for black generation. Because UCR uses less ink, it’s suitable for uncoated stock.
+When Transfer Functions Are Found
+Specifies how to handle transfer functions in PDFs. Transfer functions are used for artistic effect and to correct for the characteristics of a specific output device.
+Remove
+Deletes any applied transfer functions. Applied transfer functions should be removed, unless the PDF is to be output to the same device that the source PostScript file was created for.
+Preserve
+Retains the transfer functions traditionally used to compensate for dot gain or dot loss that may occur when an image is transferred to film. Dot gain or loss occurs when the ink dots that make up a printed image are larger or smaller than in the halftone screen.
+Apply
+Applies the transfer function, changing the colors in the file but doesn’t keep it. This method is useful for creating color effects in a file.
+Preserve Halftone Information
+Retains any halftone information in files. Halftone information is intended for use with a particular output device.
+Advanced panel options
+
+Advanced options specify which Document Structuring Conventions (DSC) comments to keep in a PDF and how to set other options that affect the conversion from PostScript. In a PostScript file, DSC comments contain information about the file (such as the originating application, the creation date, and the page orientation) and provide structure for page descriptions in the file (such as beginning and ending statements for a prologue section). DSC comments can be useful when your document is going to print or press.
+
+For more information, see the documents on the Adobe PDF Technology Center at www.adobe.com/go/learn_acr_pdftechnology_en (PDF, English only).
+
+Note: The ASCII Format option has been removed from Distiller, but is still available as a Distiller parameter.
+Allow PostScript File To Override Adobe PDF Settings
+Uses settings stored in a PostScript file rather than the current PDF settings file. For more information about customizing PDF settings, see the SDK information on the Acrobat Developer Center at www.adobe.com/go/learn_acr_devcenter_en (PDF, English only).
+Allow PostScript XObjects
+PostScript XObjects store fragments of PostScript code to be used when a PDF is printed on a PostScript printer. Use only in controlled workflows where there is no other option. Available when the Standard or Smallest File Size is selected from the Default Settings menu.
+Convert Gradients To Smooth Shades
+Converts blends to smooth shades for Acrobat 4.0 and later, improving quality and reducing file size of PDFs. Distiller converts gradients from Adobe Illustrator, Adobe InDesign, Adobe FreeHand®, CorelDraw, QuarkXPress, and Microsoft PowerPoint.
+Convert Smooth Lines To Curves
+Reduces the amount of control points used to build curves in CAD drawings, which results in smaller PDFs and faster onscreen rendering.
+Preserve Level 2 Copypage Semantics
+Uses the copypage operator defined in PostScript Level 2 rather than in Language Level 3 PostScript. If you have a PostScript file and select this option, a copypage operator copies the page. If this option is not selected, the equivalent of a showpage operation is executed, except that the graphics state is not reinitialized.
+Preserve Overprint Settings
+Retains any overprint settings in files being converted to PDF. Overprint settings create color by printing one ink on top of another ink.
+Overprinting Default Is Nonzero Overprinting
+Prevents overprinted objects with zero CMYK values from knocking out CMYK objects beneath them.
+Save Adobe PDF Settings Inside PDF File
+Embeds the settings file (.joboptions) used to create the PDF as an attachment. (To view the settings file, choose View > Show/Hide > Navigation Panes > Attachments in Acrobat.)
+Save Original JPEG Image In PDF If Possible
+Processes compressed JPEG images (images that are already compressed using DCT encoding) without recompressing them. When deselected, performance improves because only decompression, not recompression, occurs.
+Save Portable Job Ticket Inside PDF File
+Preserves a PostScript job ticket in a PDF. Job tickets describe the PostScript file and can be used later in a workflow or for printing the PDF.
+Use Prologue.ps and Epilogue.ps
+Sends a prologue and epilogue file with each job. These files can be used to add custom PostScript code that you want to have executed at the beginning or end of every PostScript job being converted. Sample Prologue.ps and Epilogue.ps files are located in (Windows) /Documents and Settings/All Users/Application Data/Adobe/Adobe PDF/Distiller/Data, (Vista) /Users/All Users/Adobe/Adobe PDF/Distiller/Data, (Windows 7/8/Vista) /Users/[Username]/AppData/Roaming/Adobe/Adobe PDF/Distiller/Data or (Mac OS)/Library/Application Support/Adobe/Adobe PDF/Distiller/Data. In Windows Explorer, the Application Data folder is typically hidden; to make it visible, choose Tools > Folder Options, click the View tab, and select Show Hidden Files And Folders. For Windows 7, Start > Control Panel > Folder Options > View > Show Hidden Files, Folders, and Drives. Or, you can type the path into the Address text box.
+Note: In Acrobat Standard, Distiller processes prologue and epilogue files only if both files are present and located properly. The two files must be used together.
+Note: In Acrobat Pro, Distiller processes prologue and epilogue files only if both files are present and located properly. The two files must be used together. If the prologue and epilogue files are at the same level as the In and Out folders of a watched folder, they are used instead of the ones in the Distiller folder.
+Process DSC Comments
+Maintains DSC information from a PostScript file.
+Log DSC Warnings
+Displays warning messages about problematic DSC comments during processing and adds them to a log file.
+Preserve EPS Information From DSC
+Retains information for an EPS file, such as the originating application and creation date.
+Preserve OPI Comments
+Retains information needed to replace a For Placement Only (FPO) image or comment with the high-resolution image located on servers that support Open Prepress Interface (OPI) versions 1.3 and 2.0. For more information, see the OPI 2.0 specification at www.adobe.com/go/learn_acr_opi2spec_en (PDF, English only).
+Preserve Document Information From DSC
+Retains document properties, such as the title, creation date, and time, in the PDF.
+Resize Page And Center Artwork For EPS Files
+Centers an EPS image and resizes the page to fit closely around the image. If deselected, the page is sized and centered based on the upper left corner of the upper left object and lower right corner of the lower right object on the page. This option applies only to jobs that consist of a single EPS file.
+Standards panel options
+
+By using Standards options, you can check document content in the PostScript file to make sure it meets standard PDF/X1-a, PDF/X-3, or PDF/A criteria before creating the PDF. For PDF/X-compliant files, you can also require that the PostScript file meet additional criteria by selecting options in the Standards panel. The availability of options depends on the standard you select. You can also create a PDF/X file from a compliant PDF by using the Preflight feature in Acrobat.
+
+PDF/X-compliant
+Complies with the PDF/X standard for high-resolution print production.
+Note: PDFMaker, the conversion method used to convert Microsoft Word and other application files to PDF, does not create PDF/X-compliant files.  
+PDF/A-compliant
+Complies with the PDF/A standard for archival documents.
+Note: If you set up a watched folder for creating PDF/A-compliant files in Acrobat Pro, do not add security to the folder. The PDF/A standard does not allow encryption.
+Compliance Standard
+Produces a report that indicates whether the file complies with the standard you select, and if not, what problems were encountered. The .log file appears at the bottom of the dialog box.
+Note: PDFs that complied with both PDF/X-1a and PDF/X-3 standards in Acrobat 6.0 default to PDF/X-1a in Acrobat XI.
+When Not Compliant
+Specifies whether to create the PDF if the PostScript file does not comply with the requirements of the standard.
+Continue
+Creates a PDF even if the PostScript file does not meet the requirements of the standard, and notes these problems in the report.
+Cancel Job
+Creates a PDF only if the PostScript file meets the requirements of the standard, and is otherwise valid.
+Report As Error (Acrobat Pro DC)
+Flags the PostScript file as noncompliant if one of the reporting options is selected and a trim box or art box is missing from any page.
+Set TrimBox To MediaBox With Offsets (Acrobat Pro DC)
+Computes values for the trim box based on the offsets for the media box of respective pages if neither the trim box nor art box is specified. The trim box is always as small as or smaller than the enclosing media box.
+Set BleedBox To MediaBox (Acrobat Pro DC)
+Uses the media box values for the bleed box if the bleed box is not specified.
+Set BleedBox To TrimBox With Offsets (Acrobat Pro DC)
+Computes values for the bleed box based on the offsets for the trim box of respective pages if the bleed box is not specified. The bleed box is always as large as or larger than the enclosed trim box. This option uses the units specified on the General panel of the Adobe PDF Settings dialog box.
+Output Intent Profile Name (Acrobat Pro DC)
+Indicates the characterized printing condition for which the document has been prepared, and is required for PDF/X compliance. If a document doesn’t specify an output intent profile name, Distiller uses the selected value from this menu. If your workflow requires that the document specify the output intent, choose None.
+Output Condition Identifier (Acrobat Pro DC)
+Indicates the reference name that is specified by the registry of the output intent profile name. For more information, click the question mark next to the option.
+Output Condition (Acrobat Pro DC)
+Describes the intended printing condition. This entry can be useful for the intended receiver of the PDF. For more information, click the question mark next to the option.
+Registry Name (URL) (Acrobat Pro DC)
+Indicates the web address for finding more information about the output intent profile. The URL is automatically entered for ICC registry names. The registry name is optional, but recommended. For more information, click the question mark next to the option.
+Trapped (Acrobat Pro DC)
+Indicates the state of trapping in the document. PDF/X compliance requires a value of True or False. If the document does not specify the trapped state, the value provided here is used. If your workflow requires that the document specify the trapped state, choose Leave Undefined.
+PDF compatibility levels
+
+When you create PDFs, you need to decide which PDF version to use. You can change the PDF version by switching to a different preset or choosing a compatibility option when you save as PDF or edit a PDF preset.
+
+Generally speaking, unless there’s a specific need for backward compatibility, you should use the most recent version (in this case version 1.7). The latest version will include all the newest features and functionality. However, if you’re creating documents that will be distributed widely, consider choosing Acrobat 5.0 (PDF 1.4) or Acrobat 6.0 (PDF 1.5) to ensure that all users can view and print the document.
+
+The following table compares some of the functionality in PDFs created using the different compatibility settings.
+
+Note: Acrobat 8.0 and 9.0 also use PDF 1.7.
+Acrobat 4.0 (PDF 1.3)
+
+Acrobat 5.0 (PDF 1.4)
+
+Acrobat 6.0 (PDF 1.5)
+
+Acrobat 7.0 (PDF 1.6) and Acrobat X (PDF 1.7)
+
+PDFs can be opened with Acrobat 3.0 and Acrobat Reader 3.0 and later.
+
+PDFs can be opened with Acrobat 3.0 and Acrobat Reader 3.0 and later. However, features specific to later versions may be lost or not viewable.
+
+Most PDFs can be opened with Acrobat 4.0 and Acrobat Reader 4.0 and later. However, features specific to later versions may be lost or not viewable.
+
+Most PDFs can be opened with Acrobat 4.0 and Acrobat Reader 4.0 and later. However, features specific to later versions may be lost or not viewable.
+
+Cannot contain artwork that uses live transparency effects. Any transparency must be flattened prior to converting to PDF 1.3.
+
+Supports the use of live transparency in artwork. (The Acrobat Distiller feature flattens transparency.)
+
+Supports the use of live transparency in artwork. (The Acrobat Distiller feature flattens transparency.)
+
+Supports the use of live transparency in artwork. (The Acrobat Distiller feature flattens transparency.)
+
+Layers are not supported.
+
+Layers are not supported.
+
+Preserves layers when creating PDFs from applications that support the generation of layered PDF documents, such as Illustrator CS and later or InDesign CS and later.
+
+Preserves layers when creating PDFs from applications that support the generation of layered PDF documents, such as Illustrator CS and later or InDesign CS and later.
+
+DeviceN color space with 8 colorants is supported.
+
+DeviceN color space with 8 colorants is supported.
+
+DeviceN color space with up to 31 colorants is supported.
+
+DeviceN color space with up to 31 colorants is supported.
+
+Multibyte fonts can be embedded. (Distiller converts the fonts when embedding.)
+
+Multibyte fonts can be embedded.
+
+Multibyte fonts can be embedded.
+
+Multibyte fonts can be embedded.
+
+40-bit RC4 security supported.
+
+128-bit RC4 security supported.
+
+128-bit RC4 security supported.
+
+128-bit RC4 and 128-bit AES (Advanced Encryption Standard) security supported.
+
+Share custom PDF settings
+
+You can save and reuse your own Adobe PDF preset definitions. You can also share a custom preset by sending a copy of the resulting file to other users. Those users can then add it to the Distiller applications installed on their own computers.
+
+PDF settings files have the extension .joboptions. Custom preset files are stored in the following locations.
+
+(Windows XP) Documents and Settings/[username]/Application Data/Adobe/Adobe PDF/Settings
+
+(Vista/Windows 7/Windows 8) Users/User/AppData/Roaming/Adobe/Adobe PDF/Settings
+
+(Acrobat Pro DC for Mac OS) User/[username]/Library/Application Support/Adobe/Adobe PDF/Settings
+
+ 
+
+To add a custom PDF settings file to the menu, do one of the following:
+Drag the .joboptions file onto the Distiller window.
+
+In Acrobat Distiller, choose Settings > Add Adobe PDF Settings, browse to the copied .joboptions file, select it, and click Open.
+
+The settings file appears as the selected option in the Default Settings menu.	
+
+Estandares: Establece el uso de algun estandar, x-1a, x-3 y x-1b si la compatibilidad se da para Acrobat 5.
+ 
+
+</p>
+</div>
+<a class="showdown">&nbsp; PDF Optimizado </a>
+<div class="hidedown">
+<p><b>PDF Optimizado</b>: Reduce el tamaño del documento al optimizar sus elementos. La herramienta de <i>Audit Space Usage</i> permite ver cuanto espacio ocupa cada elemento. El optimizador divide los elementos del documento en seis secciones: Images, Fonts, Transparency, Objects, User Data y Clean Up. Las opciones seleccionadas del optimizado se pueden guardar en un Preset.</p>
+<p><b>Pixels Per Inch (Dots Per Inch): </b> Medida de la densidad de los pixeles en una superficie, se dice que los seres humanos no podemos distinguir resoluciones de más de 300ppi (118.11 ppcm). En base a este concepto se basan las pantallas con <i>"Retina Display"</i> de Apple que deben tener una resolucion superior a 300ppi. </p>
+<ol>
+	<li><p><b>Images:</b> Aplica Downsampling a las imagenes si sobrepasan una resolucion maxima intentando obtener la una resolucion deseada. Las resoluciones se dan en <span data-title="Pixels Per Inch" class="tooltip">PPI.</span></p></li>
+	<li><p><b> Downsampling: </b> Metodos para reducir la densidad de los pixeles de una imagen. Tambien reduce el tamaño y la calidad de la misma. Para <i>Masked Images</i> e imagenes con un tamaño menor a 16 pixeles no se les puede aplicar downsampling.</p>
+		<ol>
+			<li><p><b>Resampling (Subsampling):</b> Remplaza el color de una seccion por el color del pixel que este en el centro. </p></li>
+			<li><p><b>Avarage Downsampling:</b> Remplaza todo el color de una area por el color promedio de sus pixeles. </p></li>
+			<li><p><b>Bicubic Downsampling:</b> El valor de los nuevos pixeles esta dado por su promedio ponderado, es decir que ademas del promedio total se toma en cuenta el color individual de cada pixel.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Compression Color y Grayscale:</b> </p>
+		<ol>
+			<li><p><b>JPEG:</b> Metodo de compresion Lossy para obtener la menor cantidad de espacio. Metodo de compresion antiguo pero muy implementado. </p></li>
+			<li><p><b>JPEG2000:</b> Mejoras tecnicas con respecto a JPEG original, sin embargo todavia no es adoptado por completo. Tile Size de 256 por defecto, el minimo y maximo es de 128 a 2048.</p></li>
+			<li><p><b>ZIP:</b> Similar a PNG porque la compresion es lossless. Esto significa poca reduccion de espacio pero se mantiene la calidad original.</p></li>
+		</ol>
+	</li>
+	<li><p><b>3.- Compression Monocrome Bitmap:</b> </p>
+		<ol>
+			<li><p><b>CCITT:</b> Es el metodo de compresion estandar Lossy para imagenes monocrome. Group 4 es la versión de CCITT que tiene la mejor compresion general mientras que el Group 3 es utilizado normalmente por maquinas FAX.  </p></li>
+			<li><p><b>Run Lenght:</b> Metodo similar a ZIP, produce buenos efectos de compresion unicamente cuando se tienen amplias areas de negro o blanco.</p></li>
+			<li><p><b>JBIG2:</b> Metodo JPEG para imagenes monocrome bitmap, es mas poderoso que CCITT sin embargo todavia no se ha implementado por completo.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Fonts:</b> Permite quitar <i>(Unembed)</i> las fuentes que estan instaladas <i>(Embedded)</i>. Podemos decidir que no se quite ninguna fuente o escojer cuales fuentes quitar y cuales mantener <i>(Retain)</i> en el documento. Al activar la opcion <b>Subset</b> se intenta recortar los sets de caracteres de las fuentes instaldas para que solo tengan la informacion de los caracteres que se estan utilizando.</p></li>
+	<li><p><b>Transparency:</b> Controla la compresión (Flattening) para imagenes con transparencia. Este proceso transforma las partes transparentes en Imagenes Vector e Imagenes Rasterizadas, reduciendo el tamaño de la imagen. Notece que este proceso solo es compatible para PDF +1.4 y no se puede revertir.</p></li>
+	<li><p><b>Discard Objects:</b> Eliminar elementos y ajustes especificos del documento.</p>
+		<ol>
+			<li><p>  <b>Form Submission, Import  y Reset Actions:</b> Borra toda la informacion que se haya guardado en los campos del formulario sin eliminar los mismos. </p></li>
+			<li><p>  <b>Flatten Form Fields:</b> Elimina la parte interactiva del formulario evitando su edicion pero deja intacta su apariencia, ademas de que si un campo contenia informacion guardada se escribe en el documento. </p></li>
+			<li><p><b>JavaScript Actions:</b> Se quitan todas las acciones que el JavaScript del documento haya realizado sin embargo no se elimina el script.</p></li>
+			<li><p><b>Alternate Images:</b> Un pdf puede contener multiples imagenes <i>(Low resolution view, print image, normal screen viewing)</i>, esta opcion elimina todas las versiones dejando unicamente la destinada para <i>Normal Screen Viewing</i>. </p></li>
+			<li><p><b>Thumbnails: </b>Se quitan los thumbnails que se hayan agregado al documento. </p></li>
+			<li><p><b>Tags:</b> Se quitan los tags, esto elimina algunas opciones de accesibilidad, como la de la lectura del pdf.</p></li>
+			<li><p><b>Smooth to Curved Lines:</b> Elimina los puntos de las lineas vector generadas con AutoCAD y las convierte en lineas curvas normales.</p></li>
+			<li><p><b>Merge Image Fragments:</b> Busca <i>Masked Images</i> e intenta convertirlas en una sola capa. </p></li>
+			<li><p><b>Print Settings:</b> Elimina ajustes para impresion que se hayan añadido como <i>Page Scaling o Duplex Mode</i>. </p></li>
+			<li><p><b>Search Index:</b> Elimina el Search Index volviendo más lenta la busqueda hasta que se reconstruya. </p></li>
+			<li><p><b>Bookmarks:</b> Elimina los Bookmarks del documento.  </p></li>
+		</ol>
+	</li>
+	<li><p><b>Discard User Data:</b> Elimina Partes del archivo que haya añadido el usuario.  </p>
+		<ol>
+			<li><p><b>Discard Metadata:</b> Elimina toda informacion de las propiedades del documento (Autor, Fecha de Creacion, etc...). </p></li>
+			<li><p><b>Object Data:</b> Elimina todos los objetos del pdf, no recomendado, esta funcion es un poco ambigua. </p></li>
+			<li><p><b>File attachments:</b> Eliminar todo archivo que se haya insertado al pdf, pero que sea externo al mismo. </p></li>
+			<li><p><b>External Cross Refereces: </b>Elimina todos los links del documento exepto los anlcajes que se dirigan a alguna parte del documento. </p></li>
+			<li><p><b>Private Data of Other Apps:</b> Metadata de otras aplicaciones, se recomienda eliminar. </p></li>
+			<li><p><b>Layers: </b>Elimina las vistas (zoom y multiples ventanas) que se hayan predefinido.  </p></li>
+		</ol>
+	</li>
+	<li><p><b>Clean Up:</b> Elimina partes innecesarias del documento.  </p>
+		<ol>
+			<li><p><b>Object Compression:</b> Especifica a que partes del documento se va a realizar la eliminacion, esta puede hacerse a todo el documento, a su estructura, quitar una eliminacion anterior o dejar el documento como esta. Generalmente se aplica a todo el documento.  </p></li>
+			<li><p>  <b>Use Flate To Encode Streams:</b> Aplica compresion Flate a partes del documento que sean repetitivas. </p></li>
+			<li><p><b>In Streams That Use LZW Encoding:</b> Si las partes repetitivas se comprimieron anteriormente con LZW se intenta ahora comprimir con Flate. </p></li>
+			<li><p><b>Invalid Bookmarks:</b> Se eliminan bookmarks cuyo destino genere un error. </p></li>
+			<li><p><b>Invalid Links:</b> Se eliminan links cuyo URL genere un error. </p></li>
+			<li><p><b>Unreferenced Named Destinations:</b> Se eliminan anclajes que no lleven a ninguna parte del documento, se recomienda desactivar esta opcion ya que un anclaje puede que lleve a otro documento y esta opcion los borraria. </p></li>
+			<li><p><b>Optimize Page Content:</b> Optimiza el contenido del documento, esta funcion es un poco ambigua. </p></li>
+			<li><p><b>Optimize PDF For Fast Web View:</b> Restructura el documento para que al ser insertado en una pagina web se descarge unicamente la pagina que se esta viendo (Byte-Serving) y no todo el documento. En algunos casos esta opcion en vez de reducir aumenta el tamaño del archivo. Se debe checar la compativilidad del servidor host con esta modalidad.</p></li>
+		</ol>
+	</li>
+</ol>
+</div>
+<a class="showdown">&nbsp; PDF Compliant </a>
+<div class="hidedown">
+<p><b>PDF ISO Compliant</b>: Incluye a PDF/A, PDF/X y PDF/E. Estos tres formatos se introdujeron en 2008 como estandares de documentacion que permiten un <i>archivado, impresion y diseño de documentos tecnicos</i> en las especificaciones IDO 32000-1:2008 avaladas internacionalmente por ISO.</p>
+<p><b>PDF/X:</b> PDF Exchange (ISO 15930), dicta estandares necesarios para transferir archivos graficos entre sitios, publicaciones e impresoras.</p>
+<ol>
+	<li><p><b>PDF/X-1a:</b> Requiere que todas las fuentes esten instaladas (embedded) en el documento y que todas las imagenes utilizen un espacio de color CMYK o SpotColors. Imagenes con transparencia no son permitidas. No se permite el uso de OPI, ni de elementos que no puedan ser imprimidos (Musica, Videos). Toda anotacion debe estar fuera del Bleed Area. No puede contener JavaScript ni "Transfer Curves". Basada en PDF 1.3 </p></li>
+	<li><p><b>PDF/X-3:</b> Provee mayor flexibilidad añadiendo compatibilidad con RGB Y CIELAB con ICC, pero Masked Images y Transparencia todavia no estan permitidas.  Basada en PDF 1.5 </p></li>
+	<li><p><b>PDF/X-4:</b> Permite el uso de CMYK, Gray, RGB, Spot Color, Transparency y Layers. Su variacion PDF/X-4p se pude utilizar en el caso de que el ICC del Output Intent sea externo. Se basa en PDF 1.6.</p></li>
+	<li><p><b>PDF/X-5g:</b> Igual a X-4 pero ahora se permite el uso de graficos en archivos externos no instalados en el documento. Las variaciones PDF/X-5pg y X-5n permiten mas espacios de color como Hexachrome.  </p></li>
+</ol>
+<p><b>PDF/X:</b> PDF Archive (ISO 19005), dicta estandares necesarios para el archivamiento de documentos para su compatibilidad con futuras tecnologias. En especial se busca que el documento no necesite de ningun elemento externo para poder ser reproducirdo. El documento no debe contener imagenes, colores, informaicon o fuentes que provengan de recursos externos. Debido al desarollo de nuevas tecnologias tampoco se permite el uso de video, audio, javascript, encriptacion, XML Forms, transparencia y layers. <a href="http://pdfa.org">Mas Info.</a></p>
+<ol>
+<li><p><b>PDF/A-1:</b> Consiste de dos niveles, A-1a (Accesibilidad) y A-1b (Basico).</p></li>
+<li><p><b>PDF/A-2:</b> Este nuevo tipo de archivo fue creado para correjir algunos defectos en las especificaciones de A-1 y tomar en cuenta la creacion de PDFs con versiones +1.7. Cuenta con tres niveles, A-2a (Accesibilidad) A-2b (Basico) y A-2u (Unicode). El tercer nivel fue introducirdo para requerir que todo el texto este en Unicode.</p></li>
+<li><p><b>PDF/A-3:</b> Difiere de A-2 unicamente en que permite la instalacion de otros tipos de archivo (XML, CSV, CAD, DOC, etc.) en el documento .</p></li>
+</ol>
+<p><b>PDF/E-1:</b> PDF Engeneering (ISO 24517), dicta estandares necesarios para proveer consistencia entre documentos utilizados en ciencias geograficas, contruccion y industria e ingenierias en general. Esta diseñado para reducir los costos relacionados con la documentacion en papel. Los documentos creados bajo este estandar no pueden contener: Referencias externas, JavaScript que no sea para imagenes 3D o Dynamic Forms. </p>
+</div>
+<a class="showdown">&nbsp; Shortcuts </a>
+<div class="hidedown">
+<div class="tablesize">
+<table>
+  <tr> <th>Acción</th> <th>Shortcut</th><th>Acción</th><th>Shortcut</th> <th>Acción</th><th>Shortcut</th></tr>
+  <tr><td>Hand Cursor</td><td>H</td><td>Select Cursor</td><td>V</td><td>Zoom</td><td>Z</td></tr>
+  <tr><td>Object</td><td>R</td><td>Mover</td><td>O</td><td>Recortar</td><td>C</td></tr>
+  <tr><td>Links</td><td>L</td><td>Comentario</td><td>S</td><td>Subrayar</td><td>U</td></tr>
+  <tr><td>Estampa</td><td>K</td><td>Cuadro de Texto</td><td>X</td><td>Zoom In</td><td>Ctrl + 0</td></tr>
+  <tr><td>Zoom Out</td><td>Ctrl + 1</td><td>Fit With</td><td>Ctrl + 2</td><td>Fit Content</td><td>Ctrl + 3</td></tr>
+  <tr><td>Reader Mode</td><td>Ctrl + H</td><td>Full Screen</td><td>Ctrl + L</td><td>Editar Texto</td><td>T</td></tr>
+  <tr><td>Consola JavaScript</td><td>Ctrl + J</td><td>Siguiente Pag.</td><td>Ctrl + AvPag</td><td>Pag. Anterior</td><td>Ctrl + RePag</td></tr>
+  <tr><td>Ocultar Toolbar</td><td>Fn + F8</td><td>Ocultar Menus</td><td>Fn F9</td><td> Grid </td><td> Ctrl + U </td></tr>
+  <tr><td>Rulers</td><td>Ctrl + R</td><td>Ocultar Menus</td><td>Fn F9</td><td> </td><td> </td></tr>
+  <tr><td>Primera Pagina</td><td>Inicio</td><td>Ultima Pagina</td><td>Fin</td><td><a href="https://helpx.adobe.com/acrobat/using/keyboard-shortcuts.html" target="_blank"> More Info</a></td><td>&nbsp;</td></tr>
+</table>
+</div>
+</div>
+
+<hr />
+<h3> Menus </h3>
+<a class="showdown">&nbsp; File</a>
+<div class="hidedown">
+<ol>
+	<li><p><b>Abrir:</b> Abre un documento PDF.</p></li>
+	<li><p><b>Crear:</b> Crea un PDF a partir de un: Documento, Imagen, Pagina web, Portapapeles o Multiples PDF's. Tambien podemos crear un formulario o un portafolio.</p></li>
+	<li><p><b>Guardar:</b> Guarda el documento PDF Actual.</p></li>
+	<li><p><b>Guardar Como:</b> Guarda el documento PDF en otro formato, se recomienda utilizar en su lugar las opciones de <i>"Guardar como otro"</i> y <i>"Exportar"</i>.</p></li>
+	<li><p><b>Enviar:</b> Envia el PDF por email (Outlook o Correo Directo). Tambien se puede enviar por <i>"Send&amp;Track"</i>, el sistema de transferencia de documentos de Adobe.</p></li>
+	<li><p><b>Cerrar:</b> Cierra el documento PDF.</p></li>
+	<li><p><b>Guardar Como Otro:</b></p><ol>
+		<li><p><b>Reducido:</b> Es los mismo que guardar usando PDF Optimizado con configuración <i>Standard</i>.</p></li>
+		<li><p><b>Certifcado:</b> Agrega una firma Digital o Certificado para identificar al remitente.</p></li>
+		<li><p><b>Extendido:</b> Guarda un PDF en modo "Extendido", esto permite a usuarios de Reader salvar formularios y realizar ediciones basicas.</p></li>
+		<li><p> <b>Optimizado:</b> <a href="#PDFOptimizado">Ver PDF Optimizado</a></p></li>
+		<li><p><b>PDF/A, PDF/X, PDF/E:</b> <a href="#PDFCompliant">Ver PDF ISO Compliant</a></p></li>
+	</ol></li>
+	<li><p><b> Exportar: </b></p>
+	<ol>
+	<li><p><b>Word Document/97-2003:</b> La opción <i>Retain Flowing Text</i> mantiene el formato con espacios, esto puede conducir a errores en el orden del texto, por otro lado <i>Retain Page Layout</i> utiliza cuadros de texto para consiguir un mejor formato de pagina pero dificultando la edición del texto. </p></li>
+	<li><p><b>Exel Book/Spreadsheet:</b> Podemos generar un worksheet de Exel en base a todo el documento PDF, una sola pagina o una sola tabla.</p></li>
+	<li><p><b>PowerPoint:</b> No hay opciones adicionales. </p></li>
+	<li><p><b>JPEG, JPEG200, TIFF, PNG:</b> JPEG permite ajustar la calidad y el formato (Baseline, Optimized, Progressive). <i>Baseline</i> es un JPEG normal, <i>Optimized</i> intenta corregir el color y <i>Progressive</i> divide la imagen en subimagenes de distintas calidades para que se vayan cargando una por una progrsivamente en un sitio web. En el caso de PNG el equivalente a Progressive seria Interlacing con Adam7. </p></li>
+	<li><p><b>HTML:</b> Intenta generar un archivo HTML que mantenga el formato del documento. Genera a su vez una carpeta con los assets que necesite. </p></li>
+	<li><p><b>RichText:</b> Intenta generar un archivo de texto enriquecido (RTF) este formato habia sido desarrollado como una alternativa para (DOC). Sin embargo hoy en dia esta depreciado y se ha sustituido por el uso extendido de (DOCX) gracias en parte a su similitud con XML. </p></li>
+	<li><p><b>PostScript (PS):</b> Lenguaje de graficos vectoriales que permite la comunicacion con una impresora vectorial. Desarrollado originalmente por Adobe, el lenguaje se ha ido modificando para que ademas de dar instrucciones de impresion a la impresora tambien pueda generar en la patanalla los graficos a imprimir. Una de estas modificaciones es Portable Document Format (PDF) que ademas de graficos incorpora texto y otros elementos. </p></li>
+	<li><p><b>Encapsulated PostScript (EPS):</b> Version minima de PS diseñada para generar una unica imagen vectorial. El programa que utilice una imagen EPS no necesita tener un interpretador de PostScript para poder enviarla a la impresora, unicamente se necesita que la impresora tenga un interpretador de PostScript. Existen otros formatos basados en PostScript como Adobe Ilustrator Format (AI) y otros editores graficos que pueden trabajar con Encapsulated Poscript como Acrobat, Ilustrator, CorelDraw etc. </p></li>
+	<li><p><b>Accessible/Plain Text:</b> Plain text guarda el texto como tal, mientras que Accessible text mantiene los encabezados del documento, permitiendo un pseudo-formato necesario para aplicaciones de accesibilidad (Lectura del Texto).</p></li>
+	<li><p><b>XML: </b> Markup Language similar a HTML con la diferencia de que los TAGs de XML no tienen una funcionalidad especifica, la funcionalidad se la da el programa que renderize el documento XML. PDF genera un XML con tags que Acrobat pueda rendeizar.</p></li>
+	</ol>
+	</li>
+	<li><p><b> Propiedades: </b></p>
+	<ol>
+	<li><p><b>Detalles:</b> Metadatos Modificables: Titulo, Autor, Descripcion, Tags, Autor de la Descripcion, Copyright Status, Notice y Website. Metadatos No Modificables: Fecha creacion/modificacion, aplicacion usada, formato, versión, algoritmo usado, tamaño, numero de paginas y si esta optimizado para web. </p></li>
+	<li><p><b>Seguridad:</b> Muestra las opciones de seguridad activadas por el autor del documento activo (Contraseña, Certificado o Adobe Expirience Manager).</p></li>
+	<li><p><b>Fonts:</b> Muestra las fuentes usadas e instaladas en el documento. </p></li>
+	<li><p><b>Initial View:</b> Permite definir el layout inicial de Acrobat al abrir el documento. Estableciendo como aparecen las ventanas abiertas, modo de lectura, cantidad de zoom, pagina inicial, full screen y si debe mostrar el nombre del archivo o el titulo del documento. </p></li>
+	<li><p><b>Propiedad Personalizada:</b> Permite añadir propiedades personalizadas a los metadadatos, por defecto una propiedad personalizada no puede tener el titulo reservado de las propiedades predefinidas (Title, Author, Subject, Keywords, Creator, Producer, CreationDate, ModDate, Trapped). </p></li>
+	<li><p><b>Advanzado:</b> Base URL (URL por defecto para todo link roto), Search Index (Instala un search index en el archivo) y si el documento cuenta con una configuración <i>"Trapped"</i> (Hoy en dia la impresora lo hace automaticamente).</p></ol>
+	</li>
+	<li><p><b> Imprimir: </b> <a href="#Imprimir">Ver Imprimir</a></p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Edit</a>
+<div class="hidedown">
+<ol>
+	<li><p><b>Herramientas de Edición:</b> Undo, Redo, Copy, Paste, Cut, Delete, Select/Deselect All y Copy File to Clipboard.</p></li>
+	<li><p><b>Editar Texto e Imagenes:</b> Abre el editor del PDF.</p></li>
+	<li><p><b>Tomar un Snapshot:</b> Copia una region del documento, permitiendo copiarla o imprimirla.</p></li>
+	<li><p><b>Checar Ortografia:</b> Delinea en rojo errores que se encuentren en los comentarios o formularios. Tambien permite agregar reglas ortograficas al diccionario.</p></li>
+	<li><p><b>Encontrar:</b> Encuentra y/o Remplaza una parte del texto.</p></li>
+	<li><p><b>Busqueda Avanzada:</b> Permite buscar en multiples documentos PDF y no solo en el texto sino tambien en los objetos y propiedades de los mismos.</p></li>
+	<li><p><b>Herramientas Generales:</b> Abre el menu de herramientas. Ir a Herramientas</p></li>
+	<li><p><b>Preferencias:</b> <a href="#Preferencias">Ver Preferencias</a> </p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; View</a>
+<div class="hidedown">
+<ol>
+	<li><p><b>Rotar:</b> Gira la orientacion del Documento.</p></li>
+	<li><p><b>Navegacion por Paginas:</b> Siguiente, Previa, Primera, Ultima, Anterior, Posterior e ir a una Pagina Especifica.</p></li>
+	<li><p><b>Vista de Pagina:</b> Ver solo una pagina a la vez con <i>Single Page View</i> o ver todas de corrido <i>Enable Scrolling</i>. Ambos modos se pueden aplicar para dos paginas con <i>Two Page View</i> y <i>Two Page Scrolling</i>. Ademas se pueden activar/desactivar los saltos de pagina y activar el modo <b>Auto-Scroll</b>.</p></li>
+	<li><p><b>Zoom:</b> Ajusta todos los parametros de zoom, cuenta con una herramienta de lupa y una vista general del documento.</p></li>
+	<li><p><b>Tools:</b> <a href="#Herramientas">Ver Herramientas</a> </p></li>
+	<li><p><b>Show/Hide:</b> Esconde o muestra los distintos toolbar y paneles del programa.</p></li>
+	<li><p>	<b>Theme:</b> Tema Blanco o Negro del Programa.</p></li>
+	<li><p><b>Modo Lectura:</b> Parecido a Pantalla Completa pero permite mantener el nivel de zoom.</p></li>
+	<li><p><b>Pantalla Completa:</b> Pantalla Completa esta diseñado para ajustar cada pagina a la pantalla (Sin Zoom).</p></li>
+	<li><p><b>Lectura de Texto (Accesibilidad):</b> Esta herramienta lee los elementos del documento.</p></li>
+	<li><p><b>Tracker:</b> Herramienta Cloud que permite el intercambio y revision de los documentos, los participantes pueden agregar comentarios y editar el documento esperando la aprovación de dichas modificaciones.</p></li>
+	<li><p><b>Comparar:</b> Compara los cambios entre dos documentos. Subraya el texto y elementos que fueron modificados, eliminados o insertados y genera un reporte de dichos cambios en la primer pagina. Para comparar dos documentos se necesita especificar su tipo: Reportes (La comparación se enfoca unicamente en el texto), Presentaciones (La comparacion se enfoca en cada elemento de cada pagina), Escaneados (La comparacion se realiza pixel por pixel, util para comparar graficos).</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Window</a>
+<div class="hidedown">
+<ol>
+	<li><p><b>Nueva Ventana:</b> Crea una nueva ventana de Acrobat.</p></li>
+	<li><p><b>Cascada:</b> Muestra todas las ventanas en cascada.</p></li>
+	<li><p><b>Tile Horizontal/Vertical:</b> Muestra dos documentos dividuendo la pantalla horizontal o verticalmente. </p></li>
+	<li><p><b>Minimizar:</b> Minimiza todas las ventanas.</p></li>
+	<li><p><b>Split:</b> Permite ver un documento en dos ventanas, util para mantener fija una parte del PDF mientras te desplazas en la otra.</p></li>
+	<li><p><b>Spreadsheet Split:</b> Al observar una tabla del PDF mantiene fijos los titulos de las columnas.</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Help</a>
+<div class="hidedown">
+<ol>
+	<li><p><a href="https://helpx.adobe.com/acrobat/topics.html" target="_blank">Online Support</a>. </p></li>
+	<li><p><b>Welcome:</b> Useless</p></li>
+	<li><p><b>Getting Started:</b> Useless</p></li>
+	<li><p><b>Learn:</b> <a href="https://helpx.adobe.com/acrobat.html" target="_blank">Estos </a> Tutoriales Meh </p></li>
+	<li><p><b>About:</b> Legal Notice y las Versiones del software. Acrobat Continua 2015.017.20050. AGM 4.030.00065. CoolType 5.014.00013. Core 15.4352. JP2K 1.002 </p></li>
+	<li><p><b>PlugIns:</b> Muestra las API que utiliza Acrobat. No se pueden agregar nativamente APIs de terceros. </p></li>
+	<li><p><b>Sign In:</b> Accede a tu ID Adobe (y a sus servicios Cloud).</p></li>
+	<li><p><b>Generar Reporte:</b> Genera un reporte de la computadora para con fines de Troubleshoot. </p></li>
+	<li><p><b>Reparar:</b> Repara la instalación con el disco de instalación original (Haha). </p></li>
+	<li><p><b>Updates:</b> Actualiza el Programa.</p></li>
+</ol>
+</div>
+
+<hr />
+<h3 id="Herramientas">Herramientas</h3>
+<a class="showdown">&nbsp; Crear</a>
+<div class="hidedown">
+<p>Crea un PDF al importar uno o multiples documentos, desde un escaner, pagina web, portapapeles o docuento en blanco. Tambien podemos crear PDF's arrastrando archivos, de menus contextuales, con PDFMaker desde <span data-title="Outlook, Word, Exel, PowerPoint, AutoCAD, Lotus y Visio" class="tooltip">aplicaciones</span> de terceros, o desde la impresora <i>"Adobe PDF"</i>.</p>
+<p>Escaneres Soportados: TWAIN Scanner, Windows Image Acquisition (WIA) y Mac Image Capture (ICA). Acrobat soporta resoluciones para imagenes de entre 72 y 3000 ppi, sin embargo para imagenes escaneadas el maximo de resolucion es de 600ppi debido al reconocimiento de texto <span data-title ="Optical Character Recognition" class="tooltip">OCR</span>. De escanear un documento con una mayor calidad este sera downsampled.</p>
+<ol>
+<li><p><b>Escaner: </b> Seleccionar el driver del escaner instalado en la computadora.</p></li>
+<li><p><b>Interfaz: </b> Mostrar la interfaz que viene incluida con el escaner del driver en vez de la de Acrobat.</p></li>
+<li><p><b>Pages: </b> Elegir si se imprime una o ambas caras de cada pagina. Si la impresora no soporta escaner por ambos lados (duplex) las hojas tendran que ser volteadas manualmente. </p></li>
+<li><p><b>Color Mode (Opcional): </b> Selecciona si se escanea a color, banco y negro o en escala de grises. Solo activada si se selecciono que se utilizara el dialogogo de escaneo de acrobat en vez del de la impresora.</p></li>
+<li><p><b>Resolucion (Opcional):</b> Maximo 600dpi Solo activada si se activo el dialogo de escaneo de acrobat.</p></li>
+<li><p><b>Tamaño del Papel (Opcional):</b> Determina el tamaño del documento escaneado.</p></li>
+<li><p><b>Calidad Imagenes:</b> Metodos de compresion a utilizar con las imagenes, similares a los de la optimizacion del PDF. Se puede utilizar el slider para controlar la calidad y el tamaño del archivo.</p></li>
+<li><p><b>Output:</b> Establece si se <span data-title="Append To Existing File" class="tooltip">añade</span> el documento escaneado al docmuento activo o si se crea un nuevo documento. Tambien podemos desactivar el reconocimiento de texto OCR, metadata adicional y si queremos activar la especificacion ISO PDF/A-1b.</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Combinar</a>
+<div class="hidedown">
+<p>Combina varios PDF's en uno solo. Podemos importarlos individualmente o seleccionar carpetas enteras, importar los abiertos en Acrobat u obtenerlos del escaner, de una pagina web, del portapapeles o del correo electronico.</p>
+<p>Una vez seleccionados podemos modficiar la <span data-title="Pequeño - Mediano - Grande" class="tooltip">calidad</span> del documento final; activar o desactivar las las herramientas de accesibilidad y <span data-title="Dejar Unicamente el Texto" class="tooltip">reflow</span>; mantener los marcapaginas; continuar la union aunque contengan errores y decidir si se guarda un portafolio con los documentos iniciales antes de realizar la union.</p>
+</div>
+<a class="showdown">&nbsp; Organizar Paginas</a>
+<div class="hidedown">
+<p>Modifica las paginas: Permite rotar, cambiar el orden, exportar o insertar una pagina desde el portapapeles, escaner, pagina web o en blanco. Podemos remplazar una pagina por un una pagina de otro documento o dividir el documento en varias partes, cada parte con una cantidad de paginas determinada.
+<p>Podemos agregar <a href="http://www.ehowenespanol.com/son-numeros-bates-info_205985/" target="_blank">"Bates Numbering"</a> en caso de que el documento sea de naturaleza legal, establecer el tamaño de las cajas del documento, añadir transiciones para el modo de pantalla completa, imprimir las paginas o añadir un script de JavaScript.</p>
+</div>
+<a class="showdown">&nbsp; Editar</a>
+<div class="hidedown">
+<p>Nos permite <span data-title="Error!" class="tooltip">añadir</span> y <span data-title="Fuente, Color, Tamaño, Negritas, Cursiva, Subrayado, Subíndice, Supraíndice, Listas, Alineacion, Interlineado, Separacion de Caracteres y Palabras" class="tooltip">editar</span> texto, añadir y <span data-title="Espejo, Recortar, Girar, Alinear, Remplazar, Mover al Frente/Atras" class="tooltip">editar</span> imagenes. Podemos editar directamente a la imagen utilizando Photoshop.</p>
+<p>Podemos añadir y <b>editar links</b>. Cuando creamos un link en realidad estamos creando un boton que espera ser presionado para poder activar una accion, en este caso un hipervinculo, podemos entonces modificar el Tamaño del recuadro, su Opacidad, Estilo de <span data-title="Solido - Punteado - Subrayado" class="tooltip">Borde</span>, Color de Borde, Color al <span data-title="Invertir Color-Borde-Interno" class="tooltip">Oprimir</span>. Por ultimo podemos ejecutar la accion del boton cuando sea oprimido:</p>
+<p>Ejecutar alguna accion del menu File&frasl;Edit&frasl;View, abrir un archivo multimedia, importar datos de formulario, operacion multimadia, abrir un documento, reproducir un sonido, limpiar un formulario, mostrar/esconder un campo, enviar formulario o ejecutar un script de JavaScript. Podemos añadir el link manualmente especificando el area del boton o podemos generar automaticamente links. Al generar automaticamente links Acrobat busca y añade recuadros para todo texto que tenga la forma [http:&frasl;&frasl;..com] o [correo&#64;correo.com]. Del mismo modo podemos quitar automaticamente todos los links del texto, importar todos los links de una pagina al documento o seleccionar manualmente una una lista de links detectados e importar una unica pagina.</p>
+<p><b>Recortar la pagina</b>: Para ello seleccionamos una seccion y damos enter, esto nos envia al rediseño de los cuadrados de la pagina, en especifico estamos cambiando las dimenciones del "<i>CropBox</i>". </p>
+<p>Nos permite agregar un <b>encabezado</b> y <b>pie de pagina</b> de forma similar a como se añade el Bates Numbering. Podemos agregar una marca de agua o filigrana y editar su texto, orientacion, opacidad y posicion. Podemos elegir si se imprime o muestra la marca de agua y si queremos que mantenga o ajuste su aspecto de radio dependiendo del tamaño de las paginas.</p>
+<p>Podemos agregar un <b>fondo</b> a una o varias paginas del documento, este fondo puede ser un color solido o una imagen. Podemos agregar un <b><span data-title="MarcaPaginas-Separador" class="tooltip">Bookmark</span></b> el cual señala automaticamente la pagina activa, para cambiar su accion damos click derecho y modificamos sus propiedades. Podemos incluir un <b><span data-title="Archivo Externo" class="tooltip">Attachment</span></b> con el documento, por razones de seguridad existen varios tipos de archivos que estan <a href="https://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/attachments.html#blacklisted-extensions
+">prohibidos</a> y no se pueden incluir con el pdf.</p>
+<p> Podemos agregar un <b><span data-title="Camino de Articulo">Article Thread</span></b>. Generalmente los documentos impresos como los periodicos permiten su lectura irregular, el lector puede facilmente elegir un articulo de su interes y seguir una complicada estructura de paneles y columnas. En los documentos electronicos estas estructuras son más dificiles de reproducir pues implican que el usuario recorra manualmente el documento y haga zoom en el articulo. Un Article Thread nos permite estructurar en un documento en varias secciones que ajustan automaticamente el nivel del zoom y navegan un articulo de panel en panel.</p>
+<p>Una vez que añadimos la estructura de un articulo este se guarda en el panel de articulos. Dando doble click sobre un articulo hace zoom a la primera seccion y aparece el cursor de articulos (De no aparecer lo activamos dando click en el cursor de mano). Este cursor nos permite navegar los paneles del articulo cuando damos click. Si queremos retroceder un panel damos Shift+Click y si queremos regresar al inicio del articulo damos Ctrl+Click. Si otro articulo esta a la vista podemos dar click en el para cambiar de articulo. </p>
+</div>
+<a class="showdown">&nbsp; Optimizar Escaneado</a>
+<div class="hidedown">
+<p>
+
+</p>
+</div>
+<a class="showdown">&nbsp; Multimedia</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Comentarios</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Enviar Para Revision</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Estampar</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Send &amp; Track</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Comparar Documentos</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Medir</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Llenar y Firmar</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Crear Formulario</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Certificados</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Seguridad</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Corregir</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Imprimir</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Accesibilidad</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; Index</a>
+<div class="hidedown">
+
+</div>
+<a class="showdown">&nbsp; JavaScript</a>
+<div class="hidedown">
+
+</div>
+
+
+<hr />
+<h3>Manual</h3>
+<a class="showdown">&nbsp; Interfaz </a>
+<div class="hidedown">
+<ul>
+<li><p><b>Home: </b>Pagina inicial. Podemos ver documentos recientes, enviados (Esperando su firma si utilizas Send &amp; Track) y sus distintos espacios de almacenamiento (Local, Adobe Cloud, Dropbox, Box, SharePoint, OneDrive) en donde descansan los documentos.</p></li>
+<li><p><b>Tools: </b>En Tools se encuentran <i>Todas</i> las herramientas del programa. Con la herramienta <b>Create Custom Tool</b> podemos crear, guardar y Tool Sets personalizables. Para restaurar las preferencias de Adobe se necesita eliminar la carpeta de preferencias: "AppData\Roaming\Adobe\Acrobat\DC". Existe una herramienta para medir el PDF y para obtener las coordenadas del mouse en el menu <span class="shortcut">Menu-View-Show/Hide-Rulers and Grid</span>.</p></li>
+<li><p><b>Document: </b> Vista activada al abrir un documento, es el area de trabajo que contiene a su vez el Navegation Pane y Quick Tools Toolbar.</p></li>
+</ul>
+<p> En <a href="https://acrobatusers.com/actions-exchange"> Acrobat Exchange </a> puedes descargar "Acciones" que permiten la automaización de ciertas tareas. Si en cambio quieres descargar Shortcuts para las herramientas pudes ir a <a href="https://acrobatusers.com/tool-sets-exchange"> Tool Sets Exchange</a>, aunque es mucho más practico crear tu propio "Tool Set".</p>
+<p>Un documento PDF se compone de varias cajas: MediaBox, CropBox, BleedBox, TrimBox & ArtBox.</p>
+<a class="showdown">&nbsp; Cajas del Documento </a>
+<div class="hidedown">
+<ol>
+<li><p><b>MediaBox:</b> Tamaño neto en <i>largo</i> y <i>ancho</i> de la pagina, se busca que sea del mismo tamaño que la pagina fisica. En el caso de la impresion profesional sus valores son ligeramente mas grandes que el fisico para poder ver el Bleed del documento (Imagenes u otros elementos que tocan el borde de la pagina). Se pueden añadir pies de nota en el espacio extra para mencionar el nombre del diseño, la versión y la fecha de creación. Esta es la caja mas grande del PDF, todas las demas pueden ser del mismo tamaño pero nunca superiores.</p></li>
+<li><p><b>CropBox:</b> Define la región "Visible" del documento en la computadora, es el tamaño de la hoja que se muestra en la pantalla. Acrobat utiliza esta caja unicamente para "recortar" visualmente los elementos que se salgan y es irrelevante para la impresion profesional. Su tamaño por defecto es igual al MediaBox.</p></li>
+<li><p><b>BleedBox:</b> Determina la region "Interna" del MediaBox que se va a utilizar como margen de error del Bleed, mismo que se pretende cortar en la versión fisica. Normalmente de 3 a 4 milimetros mas grande que el TrimBox, sin embargo la mayoria de impresoras profesionales determinan el tamaño del bleed e ignoran los parametros que se especifiquen. Su tamaño por defecto es igual a CropBox.</p></li>
+<li><p><b>TrimBox:</b> Define la region "Real" de lo que se pretende utilizar, contrariamente al cropbox estos cortes no son "visuales" sino "reales", ademas de que este box es el utilizado para decirle a la impresora como estan organizados los elementos. Su tamaño por defecto es igual a CropBox.</p></li>
+<li><p><b>ArtBox:</b> Define una region "Especial" del documento, rara ves utilizada pero puede ayudar a definir areas en donde posteriormente deben de ir anuncios o elementos cruciales.</p></li>
+<li><p>El uso de estas cajas se a reduciendo en la practica, generalmente solo se definen parametros para el MediaBox y TrimBox. El Bleedbox generalmente es definido por la impresora, el CropBox se deja en default para que corresponda al TrimBox y el ArtBox no se utiliza.</p></li>
+<li><p>En un PDF tambien existe el BBox o Bounding Box que determina las dimenciones de las marcas individuales en el documento y no esta relacionado con el documento en sí. Un programa para crear PDF's que genere BBox con dimenciones incongruentes a otros BBox genera errores al intentar abrir el documento.</p></li>
+</ol>
+</div>
+<hr />
+</div>
+<a class="showdown">&nbsp; Editar</a>
+<div class="hidedown">
+
+
+<a class="showdown">&nbsp; Opciones de Enhance Scanned </a>
+<div class="hidedown">
+<ol>
+<li><p><b>Aplicar Compresion Adaptativa: </b>Analiza y divide la pagina en distintas regiones con distintos colores (Blanco y negro, escala de grises y color) para poder aplicar una compresion distinta a cada sección. Esta compresion adaptativa comprime a un maximo de 300ppi para escala de grises y RGB y 600ppi para blanco y negro.</p></li>
+<li><p><b>Tipo de Compresion: </b> Elegimos la compresion para cada color (JPEG2000, JPEG, ZIP, JBIG2, CCITT).</p></li>
+<li><p><b>Deskew: </b> Si una hoja quedo inclinada debido a que en la bandeja del escaner no fue puesta correctamente este filtro intenta girar la pagina para que quede en forma vertical.</p></li>
+<li><p><b>Quitar Fondo: </b>Vuelve blancas las regiones que esten cerca del espectro blanco, las cuales suele ser el fondo de la hoja escaneada y evita que tomen tonalidades grises.</p></li>
+<li><p><b>Descreen: </b> Quita la estructura de puntos halftone (imagenes rellenas), lo que puede reducir la compresion lograda con JPEG, causar patrones moire y reducir la calidad del texto, se recomienda desactivarlo cuando no existen imagenes o areas rellenas o cuando la resolucion supera los 600ppi.</p></li>
+<li><p><b>Delinear texto:</b>  Si se activo la opcion de reconocimiento de texto este ajuste permite controlar su calidad, por defecto esta en "Bajo" pero si el texto no es legible puede que incrementar esta opcion ayude a generar texto de mayor calidad.</p></li>
+<li><p><b>Idioma:</b> Selecciona el idioma del reconocimiento de texto.</p></li>
+</ol>
+</div>
+
+<p>
+Si no estan las fuentes del documento incluidas, Acrobat las sustituye con dos fuentes maestras (Multiple Master TypeFace): AdobeSerifMM para fuentes Serif y AdobeSansMM para fuentes SansSerif. Esto es debido a que Distiller necesita las fuentes del documento, por defecto las busca en forma de (Type 1, TrueType, y OpenType) en las siguientes carpetas: "/Resource/Font" (En Windows) y "/Program Files/CommonFiles/Adobe/Fonts".
+
+
+Herramienta Editar Texto: Permite añadir, editar, alinear, cambiar tamaño y recuadro del texto en el PDF. Sin embargo esta no es una herramienta que se deberia utilizar para una gran proporcion del texto, en tales casos se recomienda exportar a un formato Source como Word, realizar los cambios y luego volver a exportar a PDF. El editor permite la creacion y modificacion de listas con viñetas o numeros. Puedes mover, rotar, cambiar de tamaño o invertir la direccion del texto de un cuadro de texto.
+
+Herramienta Añadir Imagen: Permite añadir una imagen u objeto al documento. Pudes mover una imagen y objeto unicamente en la misma pagina, para pasarla a otras paginas es necesario cortar y pegarlo. Puedes cambiar el tamaño de la imagen u objeto, para mantener el aspect ratio se oprimer Shift antes de cambiarla de tamaño. Si se seleccionan varios objetos o imagenes se pueden mover y cambiar de tamaño al mismo tiempo. Puedes invertir, rotar, cortar, remplazar, mover al frente o atras. Si es dificil seleccionar la imagen u objeto se abre el panel de navegacion de contenidos (View - Show - Panes - Content).
+
+Herramienta Organizar Paginas: Permite rotar una o todas las paginas del documento. Extraer paginas de otro documento, dividir el documento en varios documentos. Una manera intuitiva de organizar las paginas entre dos documentos es ponerlos lado a lado (Window - Tile - Vertically) y despues abrir la vista de "Page Thumbnails" en ambos documentos para arrastrar las paginas o un conjunto de paginas entre si. Uno puede numerar un grupo de paginas en la vista de Thumbnails con numeros (1-2-3), con numeros romanos (i,ii,iii), o añadir el numero de los capitulos y reiniciar el contador en cada nuevo capitulo (1-2,1-2,1-3,2-1,2-2,2-3), esto solo es para organizar las paginas. Para añadir fisicamente la numeracion se necesita utilizar las Herramientas de encabezado y pie de pagina.
+
+</p>
+<p>
+ Combinar y Exportar
+
+
+Editar Links:
+Layers:
+Thumbnails:
+Bookmarks:
+Action Wizard:
+PDF to WebPage:
+PDF to PowerPoint
+PDF Articles:
+Geospatial PDFs:
+Aplicar Scripts:
+
+</p>
+
+</div>
+<a class="showdown">&nbsp; Formularios </a>
+<div class="hidedown">
+<p> Existen dos clases de formularios: Formularios de lectura y de escritura. En los de lectura la unica manera de manener la informaicon escrita es imprimiendo el documento. En los de escritura uno puede llenar los campos del formulario y guardar el pdf con la informacion escrita. Si obtenemos un PDF con formaulatio en modo lectura y queremos guardar la informacion tenemos que guardarlo como: <span class="shortcut"> Save As - Reader Extended - Additional Features </span></p>
+</div>
+<a class="showdown">&nbsp; Preflight </a>
+<div class="hidedown">
+<p><b>Preflight PDF: </b> Proceso que consiste en verificar que la informacipón digital que necesita una impresiora esta presente y sea valida para su impresión. Normalmente aqui se realizan los ultimos retoques a un PDF antes de enviarlo a una compañia de impresion. </p> 
+<a class="showdown">&nbsp; Perfil de Preflight</a>
+<div class="hidedown">
+<p>El nombre proviene de la larga lista de chequeos que deben hacer los pilotos antes de despegar. Uno puede utilizar <a href="https://www.enfocus.com/en/support/downloads/pitstop-preflight-profiles"></a>, <a href="https://www.enfocus.com/en/products/statuscheck" target="_blank">Certified PDF</a> (Encfocus) ó <a href="http://www.gwg.org/universal-proof-of-preflight/" target="_blank">Universal Proof of Preflight</a> (GWG) para verificar que el preflight de un documento fue exitoso. La unica norma internacional hacerca del preflight fue creada por GWG.</p>
+<ol>
+<li><p> El pdf debe mencionar su version en el metadata. Se recomienda que el pdf sea compatible con la version PDF 1.4. Sin embargo esta opción elimina la transparencia y layers. Si por otro lado se opta por tener compatibilidad con la version PDF 1.6 se espera que el documento este en una escala real 1:1 con el documento impreso. </p></li>
+<li><p>El tamaño y la orientacion de todas las paginas debera ser el mismo, desactivar CropBox. Cada proyecto debera realizarse en un archivo distinto.</p></li>
+<li><p>Nunca poner texto menor a 12 puntos o en <i>"Knockout"</i>. Todas las fuentes deberan estar incluidas y completas en el documento.</p></li>
+<li><p>Las imagenes necesitan una resolucion minima especificada para que Preflight pueda avalar que la reslolución de todas las imagenes del documento sea el correcto. GWG recomienda que nunca se utilien archivos con imagenes menores a 100ppi para periodicos y 150ppi para revistas o similares. Para imagenes de 1-bit cualquier numero por debajo de 550ppi es inaceptable. Tambien se puede especificar una resolucion maxima, tipicamente de 300 ppi para imagenes color grayscale y 1905ppi para 1-bit, aunque hoy en dia la maxima resolucion (a menos que sea una densidad extrema) ha dejado de ser un problema. Se pueden incluir imagenes de 16 bits por canal. Sin embargo estas imagenes normalmente generan errores en la impresion y son dificiles de interpretar para viejos RIPS. Preflight puede checar que no esten presentes en el documento. </p></li>
+<li><p>Se recomienda no utilizar lineas muy delgadas. En preflight se puede especificar un minimo de grosor para lineas, en el caso de periodicos y offset printing se recomienda un grosor minimo de 0.125 puntos y para screen printing 0.15 puntos es requerido. Se puede checar que el grayscale objetos no este en "Overprint" ya que esto puede generar un exeso de tinta, sin mencionar que las pasadas extra pueden volver demasiado oscuros los colores de la escala de grises. </p></li>
+<li><p><i>Ink Coverage</i> es otro parametro importante, en general se espera que ningun objeto exceda su ink coverage por 245%. Para impresiones comerciales el maximo deveria ser 305% y para sheetfed o screen printing un porcentaje de 340$. Si texto en CMYK contiene mas de 85% de tinta negra se recomienda que su ink coverage no exeda 220% o 280% para sheetfed offset o screen printing.</p></li>
+<li><p>Se recomienda no incluir objetos que utilizen el 100% de cada color, es decir objetos que necesiten 100% de cyan y 100% de magenta para producir su color ya que el papel va a abosorber un exeso de tinta, amarillo y negro son los colores que tienden a provocar este exeso de tinta. Para evitar esto se recomienda que cualquer objeto dentro del TrimBox no utilize una separacion "Total" del espacio de color..</p></li>
+<li><p>En el area de Color Managment PostScript es CIE, mientras que PDF utiliza ICC Profiles. Si utilizas PDF basados en CMYK (Al reededor del 90% de todos los PDF)entonces no hay que preocuarse por los cambios de la convercion pues el gammut es casi el mismo. Sin embargo si al PDF se le a realizado un CCM manual o automatico (Por ejemplo al pasarlo a PDF/X-3) entonces la convercion a PostScript forza que el ICC se vuelve device dependent o CSA Based.</p></li>
+</ol>
+<p>Color Managment!!!</p>
+</div>
+</div>
+
+<hr />
+<h3>Más Información</h3>
+<a class="showdown">&nbsp; Datos Adicionales </a>
+<div class="hidedown">
+<ol>
+<li><p>El sistema de Almacenamiento Cloud cuenta con 5GB gratis sin Acrobat y 20GB gratis con Acrobat. El sistema Cloud cuenta con los servicios Send &amp; Sign y Fill &amp; Sign.</p></li>
+<li><p>Las <a href="https://training.adobe.com/certification/exams.html#p=1" target="_blank">Certificaciones</a> de Adobe cuestan 180 dolares.</p></li>
+<li><p><b>Herramientas Complementarias:</b><a href="http://www.quark.com/en/Products/QuarkXPress/">QuarkXPress</a>, <a href="https://www.enfocus.com/en/products/pitstop-pro"> PitStop Pro</a>, <a href="https://www.callassoftware.com/en/products/pdftoolbox/?type=product&product=pdftoolboxdesktop">PDFToolBox.</a></p></li>
+<li><p><b>Transparencia:</b> Efecto de las imagenes que permite añadir zonas transparentes y por consecuencia efectos de sombra, espejo y gof. La transparencia divide la imagen en pequeñas areas denominadas "Zonas Atomicas", despues se calcula la opacidad para cada zona. En la practica si dos areas no estan alineadas correctamente se producen lineas blancas en la imagen, para corregir esta imperfecciones Adobe Implemento su tecnologia Adobe PDF Print Engine (APPE) en sus RIP's. Los RIP de sus competidores (Harlequin RIP) ya lo habian hecho tiempo atras. </p></li>
+<li><p><b>OPI:</b> Tecnologia que permite mostrar versiones en baja resolucion de en la imagen original y solo cuando sea neceario mostrar las versiones de alta resolución al descomprimirlas. Los PDFs que contengan OPI se denominan "thin" PDF files, pues el tamaño es reducido considerablemente, cuando se utilzan las imagenes Source o High Res. se les denomina "fat" PDF files. Debido a que esta es una tecnologia depreciada se recomienda activar (Don't preserve OPI Comments) en Distiller.</p></li>
+<li><p><b>Refrying: </b> Metodo para arreglar un archivo PDF que contiene errores. Para ello se abre el documento con errores y se exporta a PostScript (Distiller genera un archivo PostScript sin errores basadose en los elementos del documento PDF). El archivo PostScript generado se utiliza para volver a generar de regreso un nuevo PDF. Al exportar un archivo PDF a PostScript se recomienda seleccionar Language Level 3, asegurarse de que esten instaladas las fuentes en el documento, desactivar color managment, y poner el Flattener en alta resolucion. Al exportar el PostScript a PDF se recomienda desactivar el downsampling, comprimir muy poco las imagenes y activar la opcion de usar las imagenes originales en las preferencias avanzadas de destiler.</p></li>
+<li><p><b>Deployment:</b> se puede utilizar <i>Creative Cloud Packager (CCP)</i> o <i>Customization Wizard for Acrobat</i> para generar un MSI o PKG ejecutable que puede utilizar SCCM, o Apple Remote para realiar el deployment. Si la empresa utiliza muchos productos de Creative Cloud entonces CCP es la mejor opcion. Sin embargo el Wizard permite modificar las opciones de cada aplicación de manera individual incluyendo la desactivacion de Upsell Messaging ó la configuracion de la impresora predeterminada. </p></li>
+<li><p><b>Objeto Grafico:</b> Figuras, Texto, Imagenes, PostScript. En PDF existen elementos obligatorios y opcionales, el contenido opcional se puede mostrar o esconder facilmente como si fuera una capa en una imagen, por eso se dice que un pdf esta compuesto de distintos "Layers".</p></li>
+<li><p><b>Blend:</b> Transición gradual de un color a otro, tambien llamados gradiantes o fountains. Antigualemte creado a partir de cientos de rectangulos con offsts ligeramente diferentes, sin embargo el algoritmo era ineficiente. Adobe desarrollaria "smooth shading" e "idiom recognition" para solucionar este problema. Smooth Shading es el algorimo basado en Postscript 3 para poder interpretar esto, mientras que Idiom Recognition escanea el docuemnto en busca de gradiantes obsoletas y los remplaza por sus equivalentes en Smooth Shading.</p></li>
+<li><p><b>Base Fonts:</b> En versiones anteriores de Acrobat 13 fuentes no se podian incluir en el documento debido a que su uso era universal en todos los sistemas operativos de la epoca: Courier, Courier-Bold, Courier-Oblique, Courier-BoldOblique, Times-Roman , Times-Bold , Times-Italic, Times-BoldItalic,  Helvetica, Helvetica-Bold, Helvetica-Oblique, Helvetica-BoldOblique, Symbol.</p></li>
+<li><p>Uno de los defectos de PDF es que contiene <i>"Contone"</i> un sistema que pretende unir los puntos generados por una impresora laser generando la ilusion de superficies continuas, esto significa que si se hace zoom en un objeto con relleno no se podran identificar visualmente artefactos "Moire" en el documento, errores que solo apareceran en la impresion. </p></li>
+<li><p> Algunas veces es preferible convertir las fuentes en "Outlines vectoriales", la mayor desventaja es que impiden la edición del texto. Sin embargo para el trabajo de preproduccion este trabajo evita que el RIP pueda interpretar la fuente de disinta manera y realice una conversión automatica. Este procedimiento puede afectar ligeramente la calidad de la letra si el texto es pequeño.  </p></li>
+<li><p>XPS es la alternativa a PDF creada por Microsoft y avalada por el estandar internacional ECMA-388.</p></li>
+<li><p>El unico sistema operativo que adopto por completo el formato PDF hasta incorporarlo nativamente es OSX. Apple utiliza su tecnologia "Quartz" para manipular PDFs. Quartz se ejecuta por encima de Darwin, el nucleo (kernel) del sistema operativo y que es responsable de renderizar las paginas del documento, OpenGL se utiliza para visualizar los objetos 3D y QuickTime se encarga de los elementos multimedia. Anteriormente Apple utilizaba QuickDraw y el formato PICT manipulado por Quartz PICT en vez del esquema de PDF's.</p></li>
+</ol>
+<hr/>
+</div>
+
+Recursos:
+https://acrobatusers.com/tutorials
+https://forums.adobe.com/community/acrobat/places
+https://blogs.adobe.com/acrolaw/
+http://www.pdfscripting.com/
+https://www.adobe.com/devnet/pdf.html
+http://www.planetpdf.com/
+https://www.prepressure.com/
+http://creativepro.com/
+https://www.adobe.com/devnet/acrobat.html
+
+</article>
+</section></main>
+<footer><p id="LastUpdatedDate"></p></footer>
+<script src="../Plantilla/JQuery/jquery.js"></script>
+<script>$("#MySideNav").load("../NewPage/html/sidebar.html");</script>
+<script src="../NewPage/js/main.js"></script>
+<script src="../Plantilla/Prism/prism_web.js"></script>
+</body></html>

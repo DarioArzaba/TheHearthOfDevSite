@@ -1,0 +1,651 @@
+﻿<!doctype html>
+<html lang="es">
+
+    <head>
+        <title>NewPageTitle</title>
+        <meta name="author" content="Dario Arzaba"/>
+        <meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    	<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+    </head>
+
+    <body>
+
+		<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+        <main>
+	Sprite Module:
+Python viene con un modulo (python.sprite), que incluye clases para manejar los objetos del juego. Estas clases están diseñadas para obtener el mejor performance.
+En Python las variables de denominan referencias, uno puede tener varias referencias que están vinculadas a un mismo objeto.
+El termino Sprite proviene de las computadoras antiguas. Estas cajas no podían dibujar y borrar graficos lo suficientemente rápido como para servir como juegos. Pronto se crearía hardware especial que podía dibujar graficos rápidamente, estos graficos en sus distintas formas eran llados sprites por la alta velocidad con la que eran dibujados.
+Estos sprites utilizaban normalmente un special overlay buffer de video. 
+El modulo de Sprites viene con dos clases, la primera denominada Sprite es la base para los objetos del juego. La segunda clse Group ayuda a contener y organizar los objetos del juego.
+Sprite Class: Diseñada para ser la base de todo objeto del juego. Mantiene a los objetos organizados utilizando grupos. Su contructuctor utiliza el método (_init_) y el grupo al que pertenece el Sprite.
+Uno puede agregar o eliminar el sprite de dicho grupo añadiendo el método (add()) y remove(). Mientras que el método groups() regresa una lista de todos los grupos a los que pertenece el sprite.
+Cuando uses la clase de sprite considerese valido o activado cuando este sprite pertenece a un grupo. Si el sprite no pertenece a ningún grupo pygame lo limpia de la memoria. (A menos que se tengan referencias a dicho sprite en otras partes del programa).
+El método kill() elimina al sprite de todos los grupos a los que pertenece. El método Alive() regresa verdadero si el sprite pertenece a cualquier grupo.
+El class group es un contenedor simple. Similar a la clase tiene métodos add() y remove() que cambian cuales sprites pertenecen al grupo.
+Esta clase puede pasar objetos al método (_init_) para que al crear el grupo este comience con algunos sprites.
+El método empty() quita a todos los sprites del grupo y copy() regresa una copia del grupo con todos los sprites. El método has() verifica que el grupo tenga al menos un sprite y regresa true.
+El método sprites() es un objeto que puede ser usado en un ciclo para acceder a cada uno de los sprites, como un buscador.
+Update() es un método que llama al método update() de Python pero para cada sprite del grupo, pasando los mismos argumentos de update() a todos.
+Sin embargo neotece que la clase también cuenta con un update de a mentiras que no hace nada, cheque la documentación para encontrar las diferencias.
+Por ultimo la clas grupo tiene otros métodos que te permiten usarlo con la función len() para obtener el numero de sprites que contiene el grupo, y if mygroup() que regresa verdadero si el grupo tiene cualquier sprite.
+La ventaja de utilizar estas clases a una simple lista es el poder de organizar y la ventaja de eliminar los objetos fácilmente al eliminarlos de cualquier grupo. Por ejemplo si tenemos un juego de pacman podemos separar a los objetos en fantasmas, pacman y orbes. Cuando pac come un orbe podemos cambiar el estado del grupo de fantasmas en vez de cada fantasma individual lo cual necesitaría de una complicada función de búsqueda con iteraciones para saber cuales objetos del juego son fantasmas.
+Existen grupos que vienen incluidos con esta clase ya predefinidos y que les otorgan propiedades especificas a los sprites que pertenecen a ellos.
+Group: Estandar grupo, la mayoría de los siguientes son una variante de este.
+GroupSingle: Funciona igual que el grupo pero solo puede contener un strpite, cuando añades un sprite a este grupo automáticamente desecha cualquier otro sprite que pudera tener.
+RenderPlain: Grupo estándar que tiene el método draw() para dibujar los esprites que tiene en una superficie o dislay. Para que funcione todos los sprites necesitan tener una imagen o un rect como atributos.
+RendercClear: Deriva de RenderPlain group y añade el método clear(), este método borra la posición anterior de todos los sprites. Utiliza una imagen copia del background para rellenar ese espacio cuando estaban antes.
+RenderUpdates: Es una versión eredada de renderclear, sin embargo ahora el método de draw también regresa una lista con los Rects de todos los objetos que cambiaron en el display. Luego podemos pasar esta lista de rects a una sola llamade de display.update(), permitiendo el movimiento inteligente de varios objetos.
+En general se puede utilizar renderupdates para cualquier juego siempre y cuando no existan problemas de performance o portabilidad.
+El modulo sprite también viene con dos funciones para la detección de colisiones, aunque son bastante rudiemtntarias. 
+Spritecollide(sprite,group,dokill) genera una lista.
+Checa por coliciones entre un sprite y los sprites de un grupo. Requiere que todos los objetos sprite tengan el ragumento rect vinculado. Genra una lista con todos los sprites que están sobrelapados con el primer sprite. El tercer argumento dokilles un argumento booleano, si es verdadero la función llama a kill() para todos los sprites, 
+Groupcollide(group1,group2,dokill1,dokill2) genera un diccionario
+Similar a sprite collide pero ahora checa para todas las coliciones de un grupo con los de otro grupo. Y los argumentos dokill son para el primero o segundo grupo. El diccionario que regresa tiene una llave (sprite del primer grupo que esta sobrelapado con alguno del segundo) El valor de la llave es con cuales sprites del segundo grupo coliciono.
+Nota: Un problema super común es cuando uno quiere deribar una nueva clase de sprites en base a un sprite debe de inicializarlo utilizando Sprite__initi__() desde el método de tu clase. Sino el sprite tiene un error de atributo: sprite instance has no attribute _Sprite_g
+
+NumPy y Surfarray module
+
+Consigir efectos especiales por modificacion de pixels puede ser algo complicado. Simplemente dominar Numeric Python o NumPy (SciPys original package was Numeric) toma mucho conocimiento.
+Esto es lo básico:
+
+Numeric Python.
+Este paquete se descarga de la pagina de binarios para Windows no oficiales.
+Para asegurarnos que funciona:
+
+From numpy import *
+A= array((1,2,3,4,5))
+A*2
+[2,4,6,8,10]
+
+Este modulo nos da acceso a los arrays en python. El objeto array puede contnener un array de tamaño fijo y todos los valores son del mismo tipo.
+Los arrays también pueden ser multidimensionales.
+
+Len(a)
+[5]
+A[2:] #regresa elementos arriba de 2
+A[:-2] #regresa todos los elementos exepto los últimos 2
+A[2:] + A[:-2] #Regresa añade el primero y el ultimo elemento
+
+No podemos añadir arrays de distintos tamaños. Es muy importante saber que los nuevos arrayes que sean creados del original tengan los mismos valores, así que cambiar los valores del slice también cambian los valores del array original:
+
+A = [1,2,3,4,5]
+[1,2,3,4,5]
+AA = A[1:3]
+[2,3]
+AA[1] = 13
+[1,13,3,4,5]
+
+Podemos importar NumPy como una variable para no subir sus funciones al namespace y mostrar la diferencia entre las funciones de NumPy y PyGame:
+
+Import numpy as N
+Import pygame.surfarray as surfarray
+
+Surfarray modules
+ 
+Existen dos tipos de funciones en SURFARRAY.
+Los primeros crean un array que es una copia de los datos de pixeles de un objeto superficie.
+Los segundos procesan cualquier valor alpha por pixel de dichos arrays.
+
+Cuando trabajamos con arrays de superficie existen dos maneras para representar valores. 
+Primero como integrales mapeados, es decir un array 2D simple que representa el color mapeado, este es útil para mover partes de una imagen.
+El otro tipo de representar los valores es con tres valores RGB para cada color, esto facilita el uso de efectos en la imagen como cambios de color. Sin emabrgo puede a veces resultar mas dicicil de manegar ya que es un array en tercera dimencion.
+
+El modulo NumPy utiliza números naturales para representar los valores de los datos, es decir que un array que utiliza NumPy consiste de integrales de 8, 16 y 32 bits. Sebido a esta limitación debemos tener cuidado que el tipo de array que referencia a los datos de los pixeles pueda ser mapeado a su tipo de valor correcto.
+
+Las funciones que crean estos array a partir de objetos superficie son:
+Surfarray.pixels2d(Surface): Crea un array 2d (integer pixel values) que referencian a los datos originales, funciona con todos los formatos exepto con imágenes de 24-bit.
+Surfarray.array2d(Surface): Crea un array2d (integer pixel values) que copia de la superficie, no la referencia.
+Surfarray.pixels3d(Surface): Crea un array 3d (RGB pixel values) que referencian a los datos originales, funciona solo con imágenes en 24 y 32bits que tengan formato RGB o BGR
+Surfarray.array3d(Surface): Crea un array3d (RGB pixel values) que copia de la superficie, no la referencia.
+
+Pixel 2d: 32bit, 16bit, 8bit
+Array 2d: 32bit, 24bit, 16bit, 8bit
+Pixel 3d: 32bit, 24bit
+Array 3d: 32bit, 21bit, 16bit, 8bit
+
+Distintos tests de imagenes que utilzian esto se pueden encontrar en (Arraydemo.py) En este archivo se puede encontrar una función surfdemo_show(array, ‘array’), que nos permite mostrar los arrays en el display.
+
+Allblack=N.zeros((128,128))
+Surfdemo_show(Allblack,’allblack’)
+#Crea un surfarray cuadrado de 128x128 de color negro asignando a todos los lugares del array zeros con el metodo zeros.
+Rayado=N.zeros((128,128,3))
+Rayado[:]=(255,0,0)
+Rayado[:,::3]=(0,255,255)
+Surfdemo_show(Rayado,’Rayado’)
+#Crea un surfarray de 3d. Iniciamos asignando a todo un color rojo. Luego cada tercer fila ponemos un color azul, recuerda asignar en este caso valores RGB.
+Imgsurface = pygame.image.load(‘surfarray.png’)
+Rgbarray=surfarray.array3d(imgsurface)
+Surfdemo_show(rgbarray,’rgbarray’)
+#Cargamos una imagen y la convertimos a un array 3d de olores RGB. 
+
+Una copia RGB del objeto superficie siempre tiene sus colores organizados como (r,c,0) para rojo, (r,c,1) para verde y (r,c,2) para azul. 
+Esta organización se puede utiliza sin prestar atención a como esta el RGB de la imagen original, a diferencia de un array 2d en donde la copia es exactamente de los mapped (Ray) pixeles.
+
+Imgsurface = pygame.image.load(‘surfarray.png’)
+Rgbarray=surfarray.array3d(imgsurface)
+Voltear = rgbarray[:,::-1]
+Surfdemo_show(voltear,’voltear’)
+#Muestra la imagen volteada verticalmente.
+Escalaabajo = rgbarray[::2,::2]
+surfdemo_show(escalaabajo,’escalaabajo’)
+#Eliminamos todos los pixels cada dos filas verticals y horizontales para escalar la imagen a la mitad de su tamaño original
+Escalaarriba = rgbarray[::2,::2]
+surfdemo_show(escalaarriba,’escalaarriba’)
+
+(EXISTEN MAS FUNCIONES PARA CAMBIOS DE COLOR Y ETC PARA EFECTOS)
+
+Surfarray como el resto de pygame, bloquea todas las superficies originales cuando accesa los datos de sus pixels. Tomece en cuenta si varios modulos intentan acceder a la información de una imagen al mismo tiempo.
+
+Cuando se crean arrays de pixeles la superficie objeto original (referencias, no copias) también va a bloquear la imagen original por el resto del tiempo que el array este en la memoria. Recuerda que para volver a usar el objeto superficie original borres el array con (Del) o simplemente dejar que termine de estar en la memoria (Cuando la función regresa un valor).
+
+Cuando se utilicen arrays de pixeles recuerda no darles acceso a ningúna superficie del hardware HWSURFACE, esto es porque los datos de la superficie en realidad están permanentemente en la tarjeta de video y transferirlos de la tarjeta de video a al bus de PCI/AGP es un proceso ineficiente.
+
+Transparencia:
+
+El modulo de surfarray tiene varios métodos para acceder y utilizar la ifnormacion de un objeto superficie transparencia alpha y colorkey values. 
+Surfarray.pixels_alpha(Surface): Crea un array 2d (integer pixel values) que hacen referencia a los datos alpha de la imagen original. Solo funciona con imágenes 32bit que tengan datos alpha en 8bit.
+Surfarray.array_alpha(Surface): Crea un array 2d (integer pixel values) que son copiados de objeto Surface original. Si el objeto no tiene valores alpha, el array será rellenado completamente con valores (255), es decir totalmente opaco.
+Surfarray.array_colorkey(Surface): Crea un array2d (integer pixel values) con una transparencia (0) siempre que el color del pixel del objeto superficie sea igual al color del pixel del colorkey.
+
+Ve a la DOCUMENTACION para mas FUNCIONES:
+
+http://www.pygame.org/docs/ref/surfarray.html
+
+
+Pygame 1.9 viene con soporte para camaras, permitiendo capturer imagenes, ver live streams y hacer programas basicos de analisis de imagenes.
+El modulo utiliza cámaras que usen V412 en Linux. Existe soporte para otras cámaras usando VideoCapture u OpenCV, sin embargo esos modulos no vienen incluidos con Pygame.
+Como el modulo es experimental tiene que ser importado manualmente:
+Import pygame.camera
+Pygame.camera.init()
+
+Ahora que tenemos el modulo asumimos que la camara esta en /Dev/video0 en la computadora y la inicializamos con un display de 640 por 480. El display toma la información de lo que sea que la cámara regrese cuando se llama a la función get_image().
+Cam = pygame.camera.Camera(“/dev/video0”, (640,480))
+Cam.start()
+Image =cam.get_image()
+
+Si no sabes el path de tu camara lo podemos preguntar al modulo para que este busque cámaras conectadas, incluso puede inicialziar la primera que encuentre si la computadora solo tiene una.
+Camlist = pygame.camera.list_cameras()
+If camlist:
+	Cam = pygame.camera.Camera(camlist[0],(640,480))
+
+La mayoria de las camaras vienen incluidas con controles para cambiar el brillo o invertir la imagen. Podemos asignar esos controles con las funciones:
+Cam.set_controls(hflip=True,vflip = Flase)
+Print camera.get_controls()
+
+Para obtener video simplemente tenemos que hacer blit a la superficie con una serie constante de fotos, evidentemente tenemos que darle a la cámara el mismo objeto superficie. Para ello ocupamos el siguiente clase:
+Debido a que get_image() es una function que bloquea el proceso de la camara para interceptor la ifnromacion el flow de imagenes puede ser bastanto lento. Este ejemplo utiliza query_image() que verifica que la cámara este lista para regresar una nueva imagen, esto nos ayuda a separar el framerate de un hipotético juego y el de la cámara.
+Si tu cámara no soporta query_image() puedes intentar hacer el proceso del juego y el de la cámara en threads separados.
+Cuando se inicializa la cámara el espacio de color es un parámetro opcional con RGB, YUV y HSV como las opciones posibles. En general YUV y HSV son mejores opciones para realizar análisis de las imágenes que RGB.
+    self.cam = pygame.camera.Camera(self.clist[0], self.size, "RGB")
+    
+    self.cam = pygame.camera.Camera(self.clist[0], self.size, "YUV")
+    
+    self.cam = pygame.camera.Camera(self.clist[0], self.size, "HSV")
+    
+
+Thresholding
+Usar la function threshold() del modulo de transformacion nos permite hacer simples efectos de pantalla verde o separar del video partes con un color especial.
+En el ejemplo hacemos treshhold para únicamente mantener el árbol y poner el resto de la imagen en negro, pero podríamos poner otra imagen estatica.
+    self.thresholded = pygame.surface.Surface(self.size, 0, self.display)
+    self.snapshot = self.cam.get_image(self.snapshot)
+pygame.transform.threshold(self.thresholded,self.snapshot,(0,255,0),(90,170,170),(0,0,0),2)
+   
+
+Sin embargo esto solo es util si uno sabe de antemano el color del objeto en el video, algo que no es practico debido a que este va a estar en contante cambio, para ello creamos una function que obtiene el color del objeto primero y luego aplica el threshold en el cilo infinito.
+
+Para esta función nos auxiliamos de average_color() que es una función del modulo de transformación. En esta etapa de calibración que correría hasta que se apretara una letra en el teclado. Solo detectando el color en el centro de la pantalla.
+
+    def calibrate(self):
+        # capture the image
+        self.snapshot = self.cam.get_image(self.snapshot)
+        # blit it to the display surface
+        self.display.blit(self.snapshot, (0,0))
+        # make a rect in the middle of the screen
+        crect = pygame.draw.rect(self.display, (255,0,0), (145,105,30,30), 4)
+        # get the average color of the area inside the rect
+        self.ccolor = pygame.transform.average_color(self.snapshot, crect)
+        # fill the upper left corner with that color
+        self.display.fill(self.ccolor, (0,0,50,50))
+        pygame.display.flip()
+
+     
+    pygame.transform.threshold(self.thresholded,self.snapshot,self.ccolor,(30,30,30),(0,0,0),2)
+
+     
+
+Podemos utilizer la misma idea pero a la inversa para lograr una pantalla azul o verde.
+    def calibrate(self):
+        # capture a bunch of background images
+        bg = []
+        for i in range(0,5):
+          bg.append(self.cam.get_image(self.background))
+        # average them down to one to get rid of some noise
+        pygame.transform.average_surfaces(bg,self.background)
+        # blit it to the display surface
+        self.display.blit(self.background, (0,0))
+        pygame.display.flip()
+    
+    pygame.transform.threshold(self.thresholded,self.snapshot,(0,255,0),(30,30,30),(0,0,0),1,self.background)
+    
+Usando el modulo de mask tambien podemos usar la camara como un imput para un juego, Por ejemplo si quiseramos encontrar la posición de un objeto basándonos en su color como su cursor.
+    def get_and_flip(self):
+        self.snapshot = self.cam.get_image(self.snapshot)
+        # threshold against the color we got before
+        mask = pygame.mask.from_threshold(self.snapshot, self.ccolor, (30, 30, 30))
+        self.display.blit(self.snapshot,(0,0))
+        # keep only the largest blob of that color
+        connected = mask.connected_component()
+        # make sure the blob is big enough that it isn't just noise
+        if mask.count() > 100:
+            # find the center of the blob
+            coord = mask.centroid()
+            # draw a circle with size variable on the size of the blob
+            pygame.draw.circle(self.display, (0,255,0), coord, max(min(50,mask.count()/400),5))
+        pygame.display.flip()
+    
+TIPS PARA NEWBIES
+Pygame es un wrapper para SDL escrito por Pete Shinners.
+Las superficies (objetos superficies) son como hojas en blanco, podemos dibujar y manipularlas como queramos sin embargo una superficie es especial.
+La superficie display solo puede haber una (limitación de SDL) y esta es la única superficie que se muestra en la pantalla.
+Podemos crear superficies en blanco (pygame.surface()), o crearlas junto con imágenes (image.load()), texto (Font.render()) etc.
+En la manipulación de estas superficies por lo general solo ocupamos blit(), fill(), set_At() y get_at().
+Usa Surface.convert() al crear tus superficies. Incluso si todas tus superficies son del mismo formato. Esta conversión no se refiere el formato del archivo sino al formato de los pixeles es decir la manera particular de los colores de cada pixel, si el formato de los pixeles de la superficie y de la superficie del display son distintos, cuando queramos utilizar blit, blit va a tener que realizar la conversión cada vez.
+Si en cambio creamos la superficie usando convert() entonces la adaptara desde el inicio al formato de la superficie. Simplemente añade al final la función y añade convert_alpha si necesitas transparencia.
+La causa mas común de ineficiencia en un programa de Python es usar mal la función pygame.display.update(). Esta función MUESTRA los cambios que se hayan hecho al display.
+Existen tres maneras de llamae esta función:
+Pygame.display.update(): Actualiza todo el display.
+Pygame.display.flip():  Actualiza todo el display, sin emabrgo se añadió para poder usar doublebuffered hardware acceleration. Si no utilizas esa tecnología simplemente utiliza pygame.display.update().
+Pygame.display.update(recto r list of rects): Actualiza una parte o partes cuadradas del display que estén especificadas en las cordenadas del rectandulo.
+La mayoría utiliza la primer opción para actualizar todo el display, sin embargo dado que la función update() tarda 35 milisegundos en promedio significa que si actualizamos 1000 veces el juego tendría un framerate máximo de 28 frames per second (100/35)…
+Para ello utilizamos la tercer función y nadamas actualizamos los sprites que cambiaron desde la ultima actualización. Por lo tanto para  mover un grafico normalmente:
+•	Hariamos blit de una superficie al display.
+•	Luego haríamos blit de una parte del background original sobre la posición actual de la superficie que queremos mover, esencialmente borrándola, para ello utilizamos un rect en la posición actual de la superficie
+•	Blit la superficie a su nuevo lugar en el display (sin actualir)
+•	Vinculamos la nueva posición de la superficie con el rectangilo.
+•	Actualizamos el display.
+Hay dos casos en los que esta técnica no funciona. El primero es cuando el display total se esta actualizando porque el sprite o superficie ocupa toda la ventna (Por ejemplo el fondo de un side scroller) En general es en este momento en el que pygame no funciona.
+Sin embargo podríamos mover el fondo en pequeños pasos de pixeles a la vez, esto no dara un scroll fluido pero no es muy notable.
+Una nota final en este tema es que no todo juego necesita super high framerates, solo los que tienen muchas superficies en movimiento rápidamente, sin embargo si el juego esta bien con pantallas estáticas podemos utilizar el CPU para computación de AI y otras cosas en veces de dedicarlo al analicis de las superficies.
+Otro problema es intentar utilizar Hardware Surfaces para mejorar el performance, aunque pude que función en realidad también tiene sus caviats y en general no es necesaria para el tipo de juegos que quieres hacer en pygame.
+Primero que nada Hardware Acceleration solo funcióna en algunas plataformas, Windows en general si, Linux aveces (Si tiene X4 y DGA2 instaldos correctamente). Luego esto solo funciona en fullscreen.
+Complica los cálculos de acceso por pixel que tiene que hacer el modulo. En general al utiliza hardware acceleracion en una superficie esta va a tener que ser bloqueada para uso exclusivo de Python, si uno intenta escribir o leer la imagen mientras esta siendo accesada por el hardware el sistema operativo generara errores. Por lo que el bloqueo y desbloqueo tienen que ser rapidos y asegurarse de que ningúna otra entidad accesse los datos por pixel del la imagen.
+Existen problemas con el cursor, normalmente desaparecerá o se quedara en un estado de parpadeo permanente, debido a que el os al intentar usar su capacidad de hardware acceleration si se da una excepción puede ocnfundir el mouse como un grafico y bloquearlo. Esto se puede solucionar definiendo manualmente la visibilidad y una superfici para el cursor.
+Si ninguno de esto importa y solo se va a desarollar para maquinas Windows que estemos seguros que funcionen con HWSURFACE y que el juego sea en fullscript y que logremos asegurarnos que el bloquo no se confunda con nada, entonces puede que encontremos un gran performance gain de esta opción.
+Como programador esta es mi recomendación: USA TU TIEMPO ESCRIBIENDO 10 JUEGOS QUE MEDIO FUNCIONAN SIN PREOCUPARTE DE QUE ESTEN MAL ESCRITOS, LUEGO SI VALEN LA PENA PUEDES REGRESAR A MEJORARLOS…
+Usa rects mucho, son de lo mas desarollado del modulo. Tiene funciones para manipulación grafica y mas importante tiene funciones para detección de coliciones algo fundamental para el diseño de videojuegos.
+Administrar el buffer de eventos.
+Existen dos maneras de detectar el input de keybords, joysticks, mouse etc..
+El primero es simplemente pregutar el estado general del dispositivo:
+Pygame.mouse.get_pos()
+Pygame.key.get_pressed()
+La segunda manera es usando el event queue de SDL, que registra todos los eventos de una lista de eventos y podemos poner un listener para ver cuando leemos un evento en particular.
+En general el event queu es más rápido que checar el estado presente del dispositivo sin embargo tiene un tiempo de latencia menor… Pero su desventaja es que si el código la función se tarda más que la persona apretando la tecla podemos perder la oportunidad de encontrarla no detectándola.
+Experimente con ambas para decidir cual te conviene:
+Si estas seguro de que el loop no se va a tardar tanto como para perder el chequeo de la tecla entonces checa el estado del dispositivo.
+Si la latencia no importa pero quieres asegurarte que todas las teclas sean detectadas entonces utiliza la lista de eventos.
+Si utilizamos la lista de eventos podemos utilizar poll() o wait(). Poll realiza el chequeo en paralelo al loop del programa sin detenerolo mientras espera el tecleo sin embargo poll ocupa 100% del tiempo del cpu mientras este corrientdo, además de que llena la lista de eventos con eventos especiales denominados NOEVENTS. Recomiendo usar set_blocked() para seleccionar no checar toda la lista sino bloquear toda la lista de la búsqueda exepto los eventos que estamos buscando.
+COLORKEY VS ALPHA:
+ Colorkey blitting: Significa decirle a pygame que todos los pixeles de un color en especifico (blanco) son en realidad transparentes, pygame entonces simplemente si encuentra un pixel de este color no los copia al hacer el blitting Para ello simplemente llamamos a Surface.set_colorkey(color) en donde el color es un tuples RGB (0,0,0).
+Alfa es diferente, puede ser alfa de la imagen (Aplica a toda la imagen) para volver toda la imagen transparente. Esto funciona con un valor alpha de 0 a 255.
+Si el valor alpha de la imagen es 192 entonces para cada pixel ¾ provienen del color original y ¼ restante de la imagen que se encuentra detrás.
+Una imagen puede asignársele un alpha (semitransparente toda la imagen) y un colorkey (transparente por completo en algunas partes).
+Per-Pixel Alpha es un tipo de alpha que se incluye en el array de la imagen, esta nueva información le asigna un valor de opasidad del 0 a 255 para cada pixel permitiendo un control absoluto de la transparencia de todas las partes de la imagen. La parte del array que guarda esta información se denomina Canal Alfa (Alpha Channel). Sin embargo vuelve las imágenes pesadas y mucho más costosas de mover en Python
+Mi ultimo Consejo es que no te preocupes por el performance antes de tiempo, eso siempre será lo ultimo en un programa que funciona y es practo.
+--------------------------------------------
+
+import sys, os, pygame
+from pygame.locals import *
+pygame.init()
+Primero importamos Pygame y todos sus modulos (import pygame).
+Luego importamos las constantes y funciones principales al espacio global namespace del script. (pygame.locals import*)
+Finalmente iniciamos todos los modulos (pygame.init()) o cada uno manualmente (pygame.font.init()).
+Para checar que los modulos se hayan iniciado (pygame.font.get_init()) regresa True si el modulo esta iniciado.
+Al cerrar la sesion activa de python (pygame.quit()) cierra automaticamente los modulos.
+
+LargoPantalla = 640
+AnchoPantalla = 360
+Pantalla = pygame.display.set_mode((LargoPantalla,AnchoPantalla))
+Fondo = pygame.image.load(FondoImagen).convert()
+Fondo = pygame.transform.scale(Fondo, (LargoPantalla, AnchoPantalla))
+Pelota = pygame.image.load(PelotaImagen).convert_alpha()
+pygame.mouse.set_visible(0)
+Velocidad = [3,2]
+PelotaRect = Pelota.get_rect()
+La superficie grafica sobre la que pygame muestra su contenido es unica para cada sesion de python y se denomina display.
+
+Las demas superficies en el programa son los objetos de nuestro juego, para mostrarlos en la pantalla tenemos que copiarlos (Blit) al display y luego actualizar (update) para mostrarlos los cambios en la pantalla.
+
+Cuando movemos un objeto en nuestro juego lo que estamos haciendo es borrarlo del display, volverlo a copiar en una nueva posicion y actualizar el display. Es decir que nada se mueve realmente sino que, como el video, presentamos una serie de imágenes estaticas serialmente. Estas imágenes estaticas en realidad es una unica imagen (Display) a la que le borramos y redibujamos rápidamente los objetos del juego.
+
+En sistemas gráficos hacer (Blit) significa copiar la información de una imagen en forma de array, al array “Bitmapped” de otra imagen. Este array no solo contiene el color de los pixeles sino también el formato del pixel, el clipping y scanline pitches. Cuando aplicamos Blit este va a requerir las coordenadas en formato (x,y) del display cuyo origen esta en la esquina superior izquierda, ahora si quisiéramos modificar la escala, o la orientación de la imagen necesitaríamos de un contenedor con Alto y Ancho, este contenedor es un Rect.
+
+Otra ventaja de utilizar contenedores es que con un tercer contenedor podemos guardar la posición pasada de un objeto del juego antes de que se mueva. Esta posición antigua le permite al juego borrar inteligentemente solo esa porción del display en vez de todo el display.
+
+Cuando cargamos una imagen utilizando el modulo (pygame.image.load()) lo que estamos haciendo es generar un nuevo objeto superficie y sobreponer la información (colorkey, pixel format, transparency) de la imagen. Se sugiere llamar a la función (convert()) o (convert_alpha() en caso de transparencia) para que el formato de la nueva superficie sea el mismo que el del display, sino cada vez que utilicemos Blit vamos a tener que realizar la conversión. Pygame soporta los formatos de imagen jpg, gif, tga y png, por lo general se recomienda usar png ya que permiten transparencia.
+
+Cuando actualizamos el display con (update()) utilizamos un “Double Buffer”. Si queremos actualizar todo el display podemos utilizar (flip()) que en vez de update() se asegura de que el frame se haya completado antes de mostrarlo en la pantalla. Si queremos actualizar partes especificas del display utilizando Rect necesitamos utilziar forzozamente (update()).
+
+Pantalla= pygame.display.set_mode((640x480)) #Crea el display
+Jugador= pygame.Image.load(Image.png).convert() #Carga una imagen como objeto del juego
+Fondo = pygame.Image.load(Image.png).convert() #Carga el fondo del juego
+Pantalla.blit(Fondo ,(0,0)) #Ponemos el fondo en el display
+Posicion = Jugador.get_rect() #Definimos la posicion del rectangulo del objeto de juego
+Pantalla.blit(Jugador,Posicion) #Ponemos en el display el jugador en dicha posicion
+Pygame.display.update() #Actualizamos el display con el fondo y con el jugador
+For x in range (100): #Por 100 frames hacemos lo siguiente
+	Pantalla.blit(Fondo, Posicion, Posicion) #Ponemos el fondo en la posicion del objeto para borrarlo
+	Posicion = Posicion.move(2,0) #Movemos la posicion del objeto del juego
+	Pantalla.blit(Jugador, Posicion) #Volvemos a Poner en el display al objeto en su nueva posicion
+	Pygame.Display.Update() #Redibujamos todo el display
+	Pygame.Time.Delay() #Espera unos milisegundos para que se alcancen a ver los 100 frames.
+While True:
+for event in pygame.event.get():
+if event.type == pygame.QUIT: 
+PelotaRect = PelotaRect.move(Velocidad)
+if PelotaRect.left < 0 or PelotaRect.right > LargoPantalla:
+speed[0] = -speed[0]
+if PelotaRect.top < 0 or PelotaRect.bottom > AnchoPantalla:
+speed[1] = -speed[1]
+Pantalla.blit(Fondo,(0,0))
+Pantalla.blit(Pelota,PelotaRect)
+pygame.display.update()
+pygame.time.wait(7)
+Pygame.quit()
+Exit()
+
+
+
+-------------------------------------------------------------------------------------------
+EJEMPLOS:
+import os, sys, pygame
+import time
+import math
+from collections import namedtuple as ntuple
+from Bullets import Bullets,Bullet,Magnitude
+
+#pygame.mixer.pre_init(44100, -16, 2, 2048) # setup mixer to avoid sound lag
+pygame.init()
+
+# Set up some useful named tuples to hold data
+PixelPos = ntuple('PixelPos', 'x y')
+PixelSize = ntuple('PixelSize', 'w h')
+RGB = ntuple('RGB', 'r g b')
+
+# initialize some global varables with magic numbers
+SCREENSIZE = PixelSize(640, 480)
+#SCREENSIZE = PixelSize(200, 150)
+HEROSIZE = PixelSize(75,75)
+BULLETSIZE = PixelSize(20,20)
+CURSORRADIUS = BULLETSIZE.h/2
+HEROORIGIN = PixelPos(SCREENSIZE.w/2,SCREENSIZE.h)
+BULLETORIGIN = PixelPos(HEROORIGIN.x,HEROORIGIN.y-BULLETSIZE.h/2)
+BKGCOLOUR = RGB(0, 0, 0)
+LINECOLOUR = RGB(20, 200, 20)
+CURSORCOLOUR = RGB(255, 0, 0)
+MAXFPS = 100
+FONTSIZE = 16
+BULLETSPEED = 0.2
+STATS = False
+powerball = 2.5
+
+score = 0
+current_score = 0
+score_time = 0
+ball_angle_prev = 0.
+ball_angle = 0.
+mouse_pos = PixelPos(0,0)
+bullets = Bullets()
+Bullet.screen_size = SCREENSIZE
+Bullet.speed = BULLETSPEED
+Bullet.size = BULLETSIZE
+
+# Load our sprite skins and get surfaces (+rects if possible)
+ball = pygame.image.load(os.path.join("data","ball.gif"))
+
+ballHero_scaled = pygame.transform.scale( ball, HEROSIZE )
+ballHero = pygame.transform.rotate( ballHero_scaled, ball_angle )
+
+ballBullet_scaled = pygame.transform.scale( ball, BULLETSIZE )
+bullet_rect = ballBullet_scaled.get_rect()
+
+# Make the screen do a bit of screen behaviour set up.
+screen = pygame.display.set_mode(SCREENSIZE)
+pygame.display.set_caption("BallShooter!")
+pygame.mouse.set_visible(False)
+
+clock = pygame.time.Clock()
+RUNNING = True
+# game loop
+
+def CorrectPos(pos,origin):
+        relx = pos.x - origin.x
+        rely = origin.y - pos.y
+        relpos = PixelPos(relx,rely)
+        return relpos
+
+corr_pos = CorrectPos(mouse_pos,HEROORIGIN)
+
+aimbulletx = 0.
+aimbullety = 0.
+aimbullet_pos = PixelPos(0.,0.)
+
+while RUNNING:
+    # limit the frame rate and calculate the real one
+    milliseconds = clock.tick(MAXFPS)
+    seconds = milliseconds / 1000.0 # seconds passed since last frame
+    score_time+=seconds
+    fps = clock.get_fps()
+    # clear the screen
+    screen.fill(BKGCOLOUR)
+    # check for user inputs
+    for event in pygame.event.get():
+        evtType = event.type
+        if evtType == pygame.QUIT: RUNNING = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE: RUNNING = False
+            elif event.key == pygame.K_TAB: STATS = True
+            else: continue
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_TAB: STATS = False
+            else: continue
+        elif evtType == pygame.MOUSEMOTION:
+            mouse_pos = PixelPos(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
+            corr_pos = CorrectPos(mouse_pos,HEROORIGIN)
+            ball_angle_rad = math.atan2(float(corr_pos.y),float(corr_pos.x))
+            ball_angle = math.degrees(ball_angle_rad)
+            aimbulletx = 0.5 * (HEROSIZE.w+BULLETSIZE.w) * math.cos(math.radians(ball_angle))
+            aimbullety = 0.5 * (HEROSIZE.w+BULLETSIZE.w) * math.sin(math.radians(ball_angle))
+            aimbullet_pos = PixelPos( (HEROORIGIN.x+aimbulletx), (HEROORIGIN.y-aimbullety) )
+        elif evtType == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = PixelPos(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
+            bulletmouse_pos = CorrectPos(mouse_pos,BULLETORIGIN)
+            b = Bullet(ballBullet_scaled,aimbullet_pos,bulletmouse_pos)
+            bullets.add(b)
+            if len(bullets.sprites())>1:
+                score+= score_time*math.pow(len(bullets.sprites()),powerball)
+            score_time=0
+
+    bullet_rect.center = ( aimbullet_pos )
+
+    ballHero = pygame.transform.rotate( ballHero_scaled, ball_angle )
+    ballHero_rect = ballHero.get_rect()
+    ballHero_rect.center = HEROORIGIN
+    bullets.update(milliseconds)
+
+    for b in bullets.sprites():
+        sprite_pos = PixelPos(*b.pos)
+        corr_sprite_pos = CorrectPos(sprite_pos,HEROORIGIN)
+        rad_dist = Magnitude(corr_sprite_pos)
+        if rad_dist<=(HEROSIZE.w/2.):
+            RUNNING=False
+        else: continue
+
+    pygame.draw.circle(screen, CURSORCOLOUR, mouse_pos, CURSORRADIUS, 2) # red circle
+    screen.blit(ballHero, ballHero_rect)
+    screen.blit(ballBullet_scaled, bullet_rect)
+    for b in bullets.sprites(): screen.blit(b.image,b.rect)
+    myFont = pygame.font.SysFont("None", FONTSIZE)
+    current_score = score+(score_time*math.pow(len(bullets.sprites()),powerball))
+    screen.blit(myFont.render("Score: %i" %current_score, 0, LINECOLOUR), (SCREENSIZE.w-200,10))
+    if STATS:
+        screen.blit(myFont.render("FPS: %.2f    Mouse Pos: (%i,%i)" %(fps, corr_pos.x, corr_pos.y), 0, LINECOLOUR), (10,10))
+    pygame.display.flip()
+
+ENDSCREEN = True
+myFont = pygame.font.SysFont("None", FONTSIZE+30)
+while ENDSCREEN:
+    screen.fill(BKGCOLOUR)
+    for event in pygame.event.get():
+        evtType = event.type
+        if evtType == pygame.QUIT: ENDSCREEN = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE: ENDSCREEN = False
+            else: continue
+    score_surface = myFont.render("Final Score: %i" %current_score, 0, LINECOLOUR)
+    score_rect = score_surface.get_rect()
+    screen.blit(score_surface, ((SCREENSIZE.w/2)-(score_rect.width/2),(SCREENSIZE.h/2)-(score_rect.height/2)))
+    pygame.display.flip()
+
+pygame.quit()
+#sys.exit()
+
+
+
+from collections import namedtuple as ntuple
+import pygame
+import math
+
+PixelSize = ntuple('PixelSize', 'w h')
+
+class Bullets(pygame.sprite.Group):
+    def __init__(self,sprite=()):
+        pygame.sprite.Group.__init__(self,sprite)
+    def update(self,milliseconds):
+        self.CheckSpriteCollisions()
+        pygame.sprite.Group.update(self,milliseconds)
+    def CheckSpriteCollisions(self):
+        for sprite in self.sprites(): self.colliding = False
+        for sprite1 in self.sprites():
+            for sprite2 in self.sprites():
+                if sprite1!=sprite2:
+                    diff_vec = AddVector(sprite1.pos,MultiplyVector(sprite2.pos,-1.))
+                    r = Magnitude(diff_vec)
+                    if r &lt; (float(sprite1.radius)+float(sprite2.radius)):
+                        sprite1.Collision(sprite2)
+                    else: continue
+                else: continue
+
+class Bullet(pygame.sprite.Sprite):
+    screen_size = PixelSize(640,480)
+    speed = 0.5
+    size = PixelSize(10,10)
+    def __init__(self, surface, origin_pos ,mouse_pos ):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = surface
+        self.rect = self.image.get_rect()
+        self.rect.center = origin_pos
+        self.pos = [float(origin_pos[0]), float(origin_pos[1])]
+        self.radius = Bullet.size.w/2
+        scale = 1/math.sqrt( math.pow(mouse_pos.x,2) + math.pow(mouse_pos.y,2) )
+        vx = scale * mouse_pos.x * Bullet.speed
+        vy = -scale * mouse_pos.y * Bullet.speed
+        self.velocity = [vx, vy]
+        self.collision_velocity = self.velocity
+        self.colliding = False
+
+    def update(self, milliseconds):
+        if self.colliding: self.velocity = self.collision_velocity
+        if self.rect.left < 0: 
+            self.pos[0] = Bullet.size.w/2 
+            self.velocity[0] = -self.velocity[0]
+        elif self.rect.right > Bullet.screen_size.w:
+            self.pos[0] = Bullet.screen_size.w - Bullet.size.w/2
+            self.velocity[0] = -self.velocity[0]
+        if self.rect.top < 0:
+            self.pos[1] = Bullet.size.h/2
+            self.velocity[1] = -self.velocity[1]
+        elif self.rect.bottom > Bullet.screen_size.h:
+            self.pos[1] = Bullet.screen_size.h - Bullet.size.h/2
+            self.velocity[1] = -self.velocity[1]
+        dx = self.velocity[0]*milliseconds
+        dy = self.velocity[1]*milliseconds
+        self.pos[0] = self.pos[0]+dx
+        self.pos[1] = self.pos[1]+dy
+        self.rect.center = tuple(self.pos)
+
+    def Collision(self,other):
+        self.colliding = True
+        normal12 = AddVector(other.pos,MultiplyVector(self.pos,-1.))
+        n_scale = 1./Magnitude(normal12)
+        normal12 = MultiplyVector(normal12,n_scale)
+
+        v_self_dot = DotProduct(self.velocity,normal12)
+        v_other_dot = DotProduct(other.velocity,normal12)
+        v_self12 = MultiplyVector(normal12,v_self_dot)
+        v_other12 = MultiplyVector(normal12,v_other_dot)
+
+        v_self_tangent = AddVector(self.velocity, MultiplyVector(v_self12,-1.))
+        v_other_tangent = AddVector(other.velocity, MultiplyVector(v_other12,-1.))
+
+        v_newself12 = v_other12
+        self.collision_velocity = AddVector(v_newself12,v_self_tangent)
+
+def Magnitude(vec):
+    square_sum=0.
+    root = 0
+    for x in vec:
+        square_sum+=math.pow(x,2)
+        root+=1
+    return math.pow(square_sum,1./root)
+
+def DotProduct(vec1, vec2):
+    dot_prod = 0.
+    for element in zip(vec1,vec2):
+        dot_prod += element[0]*element[1]
+    return dot_prod
+
+def AddVector(vec1,vec2):
+    add_vec = []
+    for element in zip(vec1,vec2):
+        add_vec.append(element[0]+element[1])
+    return add_vec
+
+def MultiplyVector(vec,scale):
+    new_vec = []
+    for element in vec:
+        new_vec.append(element*scale)
+    return new_vec
+
+
+
+
+
+
+
+
+
+		</main>
+        <footer>
+            <div class="footer">
+                <a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+            </div>
+        </footer>
+		<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </body>
+</html>

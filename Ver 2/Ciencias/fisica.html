@@ -1,0 +1,278 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>Fisica</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ 
+				MathMenu: { showFontMenu: true },
+				TeX: { equationNumbers: {autoNumber: "AMS"} } 
+			});
+		</script>
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<h1>Física</h1>
+
+<nav>
+	<ol>
+		<li>
+			<a href="#Mecanica">Mecanica</a>
+			<ol>
+				<li><a href="#SistemaUnidades">Sistema de Unidades</a></li>
+				<li><a href="#FuerzasVectores">Fuerzas y Vectores</a></li>
+				<li><a href="#MovimientoUni">Movimiento Unidimencional</a></li>
+				<li><a href="#MovimientoBi">Movimiento Bidimencional</a></li>
+				<li><a href="#LeyesNewton">Leyes de Newton</a></li>
+				<li><a href="#Energia">Energia</a></li>
+				<li><a href="#Colosiones">Colisiones</a></li>
+				<li><a href="#MovimientoCircular">Movimiento Circular</a></li>
+				<li><a href="#Gravedad">Gravedad</a></li>
+				<li><a href="#MomentoAngular">Momento Angular</a></li>
+				<li><a href="#Fluidos">Fluidos</a></li>				
+			</ol>
+		</li>
+	</ol>
+</nav>
+
+<h2 class="HoverTitle" id="Mecanica"><a href="#Mecanica"># </a><a href="#Mecanica">Mecanica</a></h2>
+
+<h3 class="HoverTitle" id="SistemaUnidades"><a href="#SistemaUnidades"># </a><a href="#SistemaUnidades">Sistema de Unidades</a></h3>
+
+<p>En fisica utilizamos el <a href="http://thehearthofdev.x10.mx/Ciencias/fisicaAdenda.html" target="_blank">Sistema Internacional de Unidades</a>, cuya legalidad se describe en la <a href="http://www.bipm.org/en/publications/si-brochure/" target="_blank">Publicacion Oficial de BIMP</a>. En México se utiliza la <a href="http://dof.gob.mx/nota_detalle_popup.php?codigo=718870" target="_blank">NOM 008</a> de la <a href="https://www.gob.mx/se/" target="_blank">Secretaria de Comercio y Fomento Industrial</a>, mientras que en Estados Unidos se continua usando el <a href="https://es.wikipedia.org/wiki/Sistema_anglosaj%C3%B3n_de_unidades" target="_blank">Sistema Anglosajon de Unidades</a>. Para encontrar su equivalencia se puede consultar la <a href="https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8" target="_blank">Lista Oficial</a> del NIST.</p>
+
+<p>La <b>Medición</b> es una técnica que utilizamos para asignar una cantidad numerica a una propiedad fisica cuando comparamos dicha propiedad con otra similar. La otra propiedad es considerada el patrón y la unidad de medida basica. La <b>Dimension</b> de una medicion describe su naturaleza fisica y se escribe entre corchetes.</p>
+
+<table>
+	<thead><tr><th>Dimension</th><th>Definicion</th></tr></thead>
+	<tbody>
+		<tr><td>Longitud</td><td>[L] = L</td></tr>
+		<tr><td>Tiempo</td><td>[T] = T</td></tr>
+		<tr><td>Velocidad</td><td>[V] = (L / T)</td></tr>
+		<tr><td>Aceleracion</td><td>[A] = (L / T^2)</td></tr>
+		<tr><td>Area</td><td>[V] = L^2</td></tr>
+		<tr><td>Volumen</td><td>[V] = L^3</td></tr>
+	</tbody>
+</table>
+
+<p>Una ecuacion en fisica solo es equivalente cuando ambos lados tienen la misma dimension.</p>
+
+\begin{gather*}
+	D = (\frac{1}{2})(A)(T^2)\\
+	[L] = (C)(\frac{L}{T^2})(T^2) \implies L = \frac{(L)(T^2)}{T^2} \implies L = L\\
+	V_f = (V_i)+(A)(T)\\
+	[V] =  (\frac{L}{T})+(\frac{L}{T^2})(T) \implies V = \frac{L}{T}\\
+\end{gather*}
+
+<p>El <b>Margen de Error</b> de una cifra se puede asumir como ±1 del minimo digito significativo. Es decir que si algo mide 3m significa que estamos seguros de que el valor real se encuentra entre 2m y 4m. Por otro lado si medimos 3.1416m entonces el valor real se debe de encontrar entre 3.1415m y 3.1417m.</p>
+
+<p>En el caso de <b>Mediciones Ambiguas</b> como lo es 300m es mejor utilizar la notacion cientifica para expresar con claridad la precision del instrumento: 3m x 10<sup>2</sup> con ±1m, 3.0 x 10<sup>2</sup> con ±0.1m o 3.00 x 10<sup>2</sup> con ±0.01m.</p>
+
+<p>Si realizamos una operacion aritmetica con dos mediciones se recomienda utilizar en el resultado la misma cantidad de <b>Digitos Significativos</b> o lugares decimales que tenga la medida menos precisa.</p>
+
+\begin{gather*}
+	(4.5 m)(6.13 m) = 27.585 m \implies 27.6 m\\
+	(4.1 m + 10.012 m) = 14.112 m \implies 14.1 m
+\end{gather*}
+
+<p>Para obtener el <b>Porcentaje de Incertidumbre</b> de una medicion utilizamos la minima unidad medible por el instrumento y la dividimos entre el resultado obtenido.</p>
+
+\begin{gather*}
+	\text{Supongamos que tenemos una bascula que mide kg enteros.}\\[1ex]
+	\text{Pesamos 12kg de manzanas y 4kg de peras. Entonces:}\\[1ex]
+	\text{Unidad Minima Medible} = 1kg\\[1ex]
+	\text{Peso Total de Fruta} = 16kg\\
+	\text{Incertidumbre Absoluta} = \frac{1kg}{16kg} = 0.0625 \implies 6.25\%\\
+	\text{Incertidumbre Relativa Manzanas} = \frac{1kg}{12kg} = 0.0833 \implies 8.33\%\\
+	\text{Incertidumbre Relativa Peras} = \frac{1kg}{4kg} = 0.25 \implies 25\%
+\end{gather*}
+
+<p>El instrumento tiene un margen de error absoluto de ±1kg, si marca 16kg, entonces el resultado tiene que esta entre 15.5kg y 16.5kg. Por otro lado este margen de incertidumbre de ±1kg equivale a 6.25% del peso total registrado, o 8.33% del peso relativo a las manzanas y a 25% del peso relativo a las peras.</p>
+<p>Para obtener el <b>Porcentaje de Diferencia</b> entre una medicion esperada y una medicion obtenida simplemente obtenemos el valor absoluto de su diferencia y lo dividimos entre la medicion esperada.</p>
+\begin{gather*}
+	\text{Medicion Esperada} = 50kg\\[1ex]
+	\text{Medicion Obtenida} = 52.596kg\\
+	\text{Porcentaje Diferencia} = \frac{|52.596kg - 50kg|}{50kg} = 0.05192 \implies 5.192\%\\
+\end{gather*}
+
+<p>Se denomina <b>Convercion de Unidades</b> al proceso de pasar de una cantidad a otra multiplicandola por el radio de equivalencia entre ambas cantidades.</p>
+
+\begin{gather*}
+	28\frac{m}{s} \Rightarrow \frac{mi}{h} \implies (28)(\frac{m}{s})(\frac{mi}{1609m})(\frac{3600s}{h})\\
+	(28)(\frac{3600}{1609})(\frac{mi}{h}) = (\frac{100,800}{1609})(\frac{mi}{h})\\
+	\therefore 28\frac{m}{s} = 62.64\frac{mi}{h}
+\end{gather*}
+
+Obtenemos las siguientes <b>Relaciones Trigonometricas</b> al considerar un triangulo recto con un angulo theta dado.
+
+\begin{gather*}
+	sin(\theta) = (\frac{CO}{H})
+	cos(\theta) = (\frac{CA}{H})
+	tan(\theta) = (\frac{CO}{CA})
+	csc(\theta) = (\frac{H}{CO})
+	sec(\theta) = (\frac{H}{CA})
+	cot(\theta) = (\frac{CA}{CO})
+\end{gather*}
+
+El <b>Teorema de Pitagoras</b> es otra formula trigonometrica fundamental para calcular las partes de un triangulo recto.
+
+\begin{gather*}
+	\text{Teorema de Pitagoras} \implies c^2 = a^2 + b^2 \implies
+\end{gather*}
+
+En el caso de que el triangulo no sea recto, podemos utilizar las siguientes <b>Leyes Trigonometricas</b>. Note que para despejar un angulo aplicamos, al otro lado de la ecuacion, la funcion trigonometrica inverza.
+
+\begin{gather*}
+	\text{Ley de Senos} \implies \frac{sin(A)}{a} = \frac{sin(B)}{b} = \frac{sin(C)}{c} \implies \frac{a}{sin(A)} = \frac{b}{sin(B)} = \frac{c}{sin(C)} \\
+	\text{Ley de Cosenos} \implies a^2 = b^2 + c^2 -(2(b)(c))(cos(A)) \implies cos(A) = \frac{b^2 + c^2 - a^2}{2bc}
+\end{gather*}
+
+
+
+
+Here
+
+
+
+
+Componentes
+Uso de un sistema de coordenadas rectangular 
+o polar para representar objetos en el espacio.
+
+
+<h3 class="HoverTitle" id="MovimientoUni"><a href="#MovimientoUni"># </a><a href="#MovimientoUni">Movimiento Unidimencional</a></h3>
+
+<p>Una particula es un cuerpo con masa y geometria negligible con respecto al sistema de fuerzas. Un cuerpo rigido es un congunto de particulas donde cada particula permanece a una distancia fija entre si tanto antes como despues de aplicar una carga es decir que el material y la deformacion del cuerpo es negligible.</p>
+
+<p>Una fuerza concentrada es una carga que actua en un cuerpo en un punto especifico, en este caso el area de aplicacion es negligible. </p>
+
+<p>La mecanica es la rama de la fisica que estudia el estado en reposo o movimiento de los cuerpos sometidos a la accion de fuerzas y se divide en el estudio de cuerpos rigidos, cuerpos deformables y fluidos.</p>
+
+<p>La mecanica newtoniana o clasica es la mecanica en donde el espacio, tiempo, masa y fuerza son cantidades absolutas e independientes, mientras que en la mecanica relativista el tiempo depende del espacio y la masa de la velocidad.</p>
+
+<p>La mecanica de los cuerpos rigidos se divide a su vez en estatica y dinamica. La estatica estudia los cuerpos rigidos en reposo o en movimiento a velocidad constante mientras que la dinamica estudia el movimiento acelerado de los cuerpos.</p>
+
+<p>Un cuerpo esta en equilibrio cuando la fuerza resultante es nula.</p>
+
+<p>La fuerza es un fenomeno con magnitud, direccion y punto de aplicacion que representa la accion, generalmente de movimiento, que genera un cuerpo sobre otro. La fuerza se puede aplicar por contacto (friccion, tension, normal, aplicada, resorte) o a distancia (magnetica, electrica, gravitacional). La cantidad de una fuerza se representa en Newtons.</p>
+
+<p>El peso es la fuerza ejercida por la superficie en un cuerpo y que contraresta la atraccion gravitacional de la tierra, esta fuerza es proporcional a la masa del cuerpo y varia segun su elevacion.</p>
+
+<p>La fuerza de friccion inicia con el objeto en reposo al entrar en contacto con una superficie o medio, siendo paralela a dicha superficie y opuesta a la fuerza aplicada del objeto. El objeto permanecera estatico aun con la fuerza aplicada debido a que sera contrarrestada por la fuerza de friccion. Este comportamiento continuara hasta cierto punto de movimiento inminente en donde la fuerza aplicada superara a la de friccion y es entonces cuando el objeto comienzara a moverse. Una vez en movimiento la fuerza de friccion cambia de estatica a cinetica, generalmente disminuyendo en valor y variando ligeramente en cada instante del desplazamiento.</p>
+
+
+<p>Primera Ley: Un objeto en resposo o en movimiento rectilineo a rapidez constante permanecera en ese estado en ausencia de una fuerza resultante.</p>
+<p>Segunda Ley: Toda fuerza resultante producira una aceleracion en el objeto, esta aceleracion sera directamente proporcional a la fuerza e inversamente proporcional a la masa del objeto.</p>
+<p>Tercera Ley: Para cada fuerza de accion debe haber una fuerza de reaccion opuesta y colineal. </p>
+
+<p>Un cuerpo esta en equilibrio cuando se encuentra en reposo o a una velocidad constante. El equilibrio translacional necesita que todas las fuerzas aplicadas en el cuerpo resulten en una fuerza neta nula.</p>
+
+\[ \vec{F}_R = \sum_{i=1}^{n} \vec{F}_{i} = 0 \]
+
+
+<h3 class="HoverTitle" id="FuerzaGravitatoria"><a href="#FuerzaGravitatoria"># </a><a href="#FuerzaGravitatoria">Fuerza Gravitatacional</a></h3>
+
+<p>Newton observo los fenomenos de atraccion entre los objetos y supuso que existian fuerzas involucradas que obedecian su segunda ley. La misteriosa fuerza entonces debia estar determinada por la masa del primer cuerpo y por una aceleracion que producia en la masa del segundo cuerpo, asumiendo que la fuerza es a distancia entonces debia ser dividida entre la distancia de ambos objetos.</p>
+
+\[ F_g \propto \frac{(m_1)(m2)}{r^2}\]
+
+<p>Debido a que se necesita una gran masa para ver los efectos de esta fuerza, suspuso que la constante que relaciona la masa de ambos objetos era minuscula y la denomino la constante gravitacional.</p>
+
+\begin{gather*}
+F_g \propto \frac{G(m_1)(m2)}{r^2}
+\end{gather*}
+
+<h3 class="HoverTitle" id="Fuerzas"><a href="#Fuerzas"># </a><a href="#Fuerzas">Fuerzas</a></h3>
+
+<p>Un <b>Vector</b> representa cantidades con magnitud y dirección. La magnitud siempre es positiva y representa una cantidad fisica. La direccion del vector se representa con un angulo en contra de las manecillas del reloj iniciando en la parte positiva del eje X o con sus componentes rectangulares en ambos ejes.</p>
+<p>Un vector se puede descomponer en sus componentes rectangulares en alguna de las cuatro direcciones de un sistema bidimencional. Para obtener la magnitud de una componente se utilizan las siguientes formulas:</p>
+
+\begin{gather*}
+	A_x = (A)(cos \theta)\\
+	A_y = (A)(sen \theta)\\
+	A = \sqrt{(A_{x}^2 + A_{y}^2)}
+\end{gather*}
+
+<p>Para obtener el angulo de la resultante utilizamos el inverso de la tangente. El angulo theta puede ser el reducido con respecto a la parte positiva del eje x. En este caso dependiendo del sector en el plano bidimencional obtendremos el angulo absoluto. </p>
+\begin{gather*}
+	\tan(\theta) = \frac{A_y}{A_x}\\
+	\theta_r = \arctan(\frac{A_y}{A_x})\\
+	\theta_I = \theta_r\\
+	\theta_II = (180) - (\theta_r)\\
+	\theta_III = (180) + (\theta_r)\\
+	\theta_IV = (360) - (\theta_r)
+\end{gather*}
+
+<p>Cuando dos o más fuerzas actuan sobre un punto se dice que son <b>Fuerzas Concurrentes</b> y que el efecto final en el movimiento del objeto estara determinado por la fuerza resultante de todas ellas.</p>
+<p>La <b>Distancia</b> se define como la longitud total recorrida en el trayecto del movimiento de un objeto, mientras que el <b>Desplazamiento</b> es la longitud lineal entre el punto de partida y el punto de llegada de dicho movimiento.</p>
+
+
+<h3 class="HoverTitle" id="Fuerzas"><a href="#Fuerzas"># </a><a href="#Fuerzas">Fuerzas</a></h3>
+	
+<!--
+
+<p>La <b>Ley del Paralelogramo</b> establece que la suma de los cuadrados de todos los lados en un paralelogramo es igual a la suma de los cuadrados de sus dos diagonales. Supongamos que el paralelogramo tiene sus vertices en el sentido de las manecillas del reloj y su primer vertice (a) se encuentra en la esquina inferior derecha:</p>
+
+\[ 2(ab)^2+2(ad)^2 = (bd)^2+(ac)^2 \]
+
+<p>La <b>Ley del Triangulo</b> establece que si un vector A y un vector B son concurrentes en el vertice (a) de un paralelogramo, entonces solo se necesitan dos lados A y B (ab y ad) usando dos lineas paralelas a los puntos finales de A y B, interceptando en (c), para completar el resto. Dado que un paralelogramo se compone de dos triangulos podemos descomponer ambas leyes para obtener la distancia de (a) a (c). Esta ley solo se cumple si conocemos uno de los componentes o ambas lineas de accion:</p>
+
+\[ (ab)^2+(bc)^2=(ac)^2\]
+
+<p>Prueba Geometrica: Si tenemos un paralelogramo con cuatro vertices: \(A(0,0), B(x_1,0), C(x_1+x_0,y), D(x_0,y)\). En donde si \(x_0 = 0\) entonces el paralelogramo es un rectangulo y sus diagonales internas estaran dadas por \(d_1 =AC \, \land \, d_2 = BD\). Utilizando la Formula de Distancia entre dos puntos sabemos que:</p>
+	
+\begin{gather*}
+	\vec{AC} = \sqrt{(x_1+x_0)^2+(y)^2} = \sqrt{(x_1)^2+(x_0)^2+y^2+2x_1x_0}\\
+	\vec{BD} = \sqrt{(x_1+x_0)^2+(y)^2} = \sqrt{(x_1)^2+(x_0)^2+y^2+2x_1x_0}\\
+	(\vec{AC})^2+(\vec{BD})^2 = (x_1^2+x_0^2+y^2+2x_1x_0)+(x_1^2+x_0^2+y^2-2x_1x_0)\\
+	(\vec{AC})^2+(\vec{BD})^2 = 2(x_1^2+x_0^2+y^2)\\
+	\vec{AB} = x_1 \land \vec{AD} = \sqrt{x_0^2+y^2} \ni \vec{AB} = \vec{DC} \land \vec{AD} = \vec{BC}\\
+	2(\vec{AB})^2+2(\vec{AD})^2-2(x_1^2+x_0^2+y^2)\\
+	\therefore 2(\vec{AB})^2+2(\vec{AD})^2 = (\vec{AC})^2+(\vec{BD})^2
+\end{gather*}
+
+<p>Prueba Trigonometrica: Tenemos un paralelogramo (OABD), cuyos lados estan dados por (Q=OC) y (P=OA) y su diagonal interna esta dada por (R=OB). Tenemos ademas un triangulo recto formado por el lado (AB) y un punto perpendicular al Eje(x) denominado (C). Entonces por el teorema de pitagoras sabemos que:</p>
+
+\begin{gather*}
+	(\vec{BC})^2+(\vec{OC})^2 = (\vec{OB})^2\\
+	(\vec{BC})^2+(\vec{OA}+\vec{AC})^2 = (\vec{OB})^2\\
+	\cos(\theta)=(\frac{\vec{AC}}{\vec{AB}}) \implies \vec{BC} = (\vec{AB})(\sin(\theta))\\
+	\vec{BC} = (\vec{OD})(\sin(\theta))  \ni \vec{AB} = \vec{BC}\\
+	\vec{BC} = (Q)(\sin(\theta)) \land \vec{AC} = (Q)(\cos(\theta)) \ni  \vec{OD} = Q\\
+	(Q\sin(\theta))^2+(P + Q\cos(\theta))^2 = (R)^2\\
+	\therefore \sqrt{P^2+Q^2+2PQ\cos(\theta)} = R\\
+	\therefore \tan(\phi)=(Q\sin(\theta)\vec{P + Q\cos(\theta)} \implies \phi = \arctan(Q\sin(\theta)\vec{P + Q\cos(\theta)}
+\end{gather*}
+
+-->
+
+</main>
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html lang="es">
+
+<head>
+	<title>Unknown Pleasures</title>
+	<meta name="author" content="Dario Arzaba" />
+	<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" href="../favicon.ico" sizes="32x32">
+	<link rel="stylesheet" href="../post.css" />
+	<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+		main{
+			padding-right:16%;
+		}
+		svg {
+			margin: auto;
+			width: 100%;
+			height: 100%;
+		}
+		#svg-wrap {
+			border: 1px solid black;
+			margin-bottom: 3em;
+			margin-top: 3em;
+		}
+		.controles {
+			position: absolute;
+			top: 50%;
+			left: 4%;
+		}
+		.controles p {
+			font-size: 19px;
+			margin: 0;
+			padding-bottom: 5px;
+			padding-top: 5px;
+		}
+		input[type="number"] {
+			font-size: 14px;
+			height: 20px;
+			padding: 1px;
+		}
+		input[type="submit"] {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<div class="controles">
+<form action="javascript:actualizar_variables()">
+<p>Lineas </p><input type="number" id="cantidad_lineas" min="2" max="50" size="10" step="1" value="50"><br>
+<p>Ruido </p><input type="number" id="cantidad_ruido" min="0" max="1500" size="10" step="10" value="100"><br>
+<p>Fuerza Efecto</p><input type="number" id="altura_puntos" min="0" max="400" size="10" step="1" value="40"><br>
+<p>Suavizar</p><input type="number" id="aplanamiento_central" min="0" max="500" size="10" step="1" value="10"><br>
+<input name="Submit"  type="submit" value="Actualizar"/>
+</form>
+</div>
+
+<div id="svg-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000px" height="600px">
+<defs><style type="text/css">.wave {stroke: #ffffff; fill: #222; stroke-width: 2px;}</style></defs>
+<g id="hola"></g></svg>
+</div>
+
+
+<p><a href="http://dzheng.freeshell.org/unknown_pleasures/" target="_blank">Original</a></p>
+<p><a href="https://github.com/theyelllowdart/unknown-pleasures"target="_blank">By The Yellow Dart</a></p>
+<p><a href="https://codepen.io/clawtros/pen/YWgmRR"target="_blank">By Clawtros</a></p>
+
+
+<pre><code class="language-java">
+	 //Para controlar el ancho o largo del efecto modificamos la razon entre estas dos variables:
+	distancia_efecto_horizontal = 1;
+	distancia_efecto_vertical = 5;
+</code></pre>
+</main>
+
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+
+<script>
+var cantidad_lineas,cantidad_ruido,altura_puntos, apalanamiento_efecto_central = null;
+function iniciarParams() {
+	cantidad_lineas = parseInt($('#cantidad_lineas').val());
+	cantidad_ruido = parseInt($('#cantidad_ruido').val());
+	altura_puntos = parseInt($('#altura_puntos').val());
+	aplanamiento_efecto_central = parseInt($('#aplanamiento_central').val());
+}
+iniciarParams();
+
+var ancho = 1000, alto = 600, cantidad_puntos = 50, distancia_efecto_central= 0.5, distancia_efecto_horizontal = 1, distancia_efecto_vertical = 5,  altura_lineas = (ancho/cantidad_puntos), grafico = document.getElementById('hola'), puntos = Array.from(rango(0, ancho, (ancho/cantidad_puntos)));
+
+function rango(inicio, final, paso) {
+	var i = inicio, resultado = [];
+	while (i <= final) {resultado.push(i); i += paso; }
+	return resultado;
+}
+
+function joyDivision(svgElement) {
+	var array_puntos = [], ruido_fondo = [];
+	function obtener_punto(cx, cy, i, y) {
+		return function(n) {
+		  var distancia_fondo = ruido_fondo[i][n/(ancho/cantidad_puntos)],
+			distancia_x = (cx-n) * distancia_efecto_vertical,
+			distancia_y = (cy-y) * distancia_efecto_horizontal,
+			distancia_total = Math.sqrt(distancia_x*distancia_x+distancia_y*distancia_y)*distancia_efecto_central+aplanamiento_efecto_central,
+			p_alto = (distancia_fondo/distancia_total)*altura_puntos;
+			return [n, p_alto];
+		}
+	}
+	function getPath(cx, cy, i) {
+		var y=(alto/cantidad_lineas)*i, altos=puntos.map(obtener_punto(cx, cy, i, y));
+		return 'M0,'+(y-altos[0][1])+' S'+altos.slice(1).map(
+			function(ps){
+				return ps[0]+','+(y - ps[1]).toFixed(5)
+			}).join(" ")+' L'+ancho+','+alto+' 0,'+alto+' Z';
+	}
+	function init() {
+		svgElement.innerHTML = `<path class="wave" d="M0,0 L${ancho},0 Z" />`;
+		for (var i = 0; i < cantidad_lineas; i++) {
+			ruido_fondo.push(puntos.map(function(evento){return(Math.random()-0.5)*cantidad_ruido}));
+			svgElement.innerHTML += '<path id="wave_' + i + '" class="wave" d="' + getPath(500, 500, i) + '" />';
+		}
+	}
+	function draw(cx, cy) {
+		for (var i = 0; i < cantidad_lineas; i++) {
+			document.getElementById("wave_" + i).setAttribute('d', getPath(cx, cy, i));
+		}
+	}
+	init();
+	return {draw: draw}
+}
+function actualizar_variables(){
+	iniciarParams();
+	joyDivision(grafico);
+}
+var movimiento_offset = joyDivision(grafico);
+document.addEventListener("mousemove", function(evento) { cx = evento.offsetX; cy = evento.offsetY; movimiento_offset.draw(cx, cy);
+})
+
+</script>
+
+<script src="../NewPage/Prism/prism.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body></html>

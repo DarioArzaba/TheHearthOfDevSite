@@ -1,0 +1,434 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>Matematicas</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ 
+				MathMenu: { showFontMenu: true },
+				TeX: { equationNumbers: {autoNumber: "AMS"} } 
+			});
+		</script>
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.5/jsxgraphcore.js"></script>
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<h1>Matemáticas</h1>
+
+<nav>
+	<ol>
+		<li>
+			<a href="#Algebra">Álgebra</a>
+			<ol>
+				<li><a href="#Numeros">Numeros</a></li>
+				<li><a href="#Operaciones">Operaciones</a></li>
+				<li><a href="#AxiomasReales">Axiomas de los Reales</a></li>
+				<li><a href="#Expresiones">Expresiones</a></li>
+				<li><a href="#ProductosEspecial">Productos Especiales</a></li>
+			</ol>
+		</li>
+	</ol>
+</nav>
+
+<h2 class="HoverTitle" id="Algebra"><a href="#Algebra"># </a><a href="#Algebra">Álgebra</a></h2>
+
+<h3 class="HoverTitle" id="Numeros"><a href="#Numeros"># </a><a href="#Numeros">Números</a></h3>
+
+<p>El conjunto de numeros <b>Naturales</b> esta conformado por los enteros positivos.</p>
+\[
+	\mathbb{N} = \{ 1 , 2, 3 \dots \}
+\]
+<p>En donde todo natural tiene un sucesor y un antecesor natural, exeptuando al uno.</p>
+\begin{gather*}
+	\forall\ x \in \mathbb{N}\ \exists\ (x+1) \ni (x-1) \in \mathbb{N} \\
+	\forall\ x \in \mathbb{N}\ \neq 1\ \exists\ (x-1) \ni (x-1) \in \mathbb{N}
+\end{gather*}
+<p>El conjunto de numeros <b>Enteros</b> o <b>Integrales</b> esta conformado por los Enteros Positivos, Enteros Negativos y el Cero.</p>
+\[
+	\mathbb{Z} = \{\ \dots -3 , -2 , -1 , 0 , 1 , 2, 3 \dots \}
+\]
+<p>El conjunto de numeros <b>Racionales</b> esta conformado por todo numero que se pueda expresar en forma fraccionaria, tal que el divisor y el dividendo sean enteros y el dividendo sea distinto a cero.</p>
+\[
+	\mathbb{Q} = \{\ \frac{p}{q} \ni (p,q) \in \mathbb{Z} \land q \neq 0\}
+\]
+<p>Los racionales incluyen a los enteros, decimales finitos y decimales periodicos. Originalmente fueron considerados los Cocientes (<i>Quotient</i>) de los Enteros.</p>
+\begin{gather*}
+	\text{Decimales Finitos}\\
+	a = \text{Parte Entera},\, b = \text{Parte Decimal}\\
+	x = a.b_1, a.b_2, a.b_3 \dots a.b_n \implies (10^n)(x) = ab.0\\
+	(10^n)(x) = ab.0 \implies x = \frac{ab.0}{10^n} = \frac{p}{q}\\
+	\therefore x \in \mathbb{Q}\\\\
+	\text{Decimales Periodicos}\\
+	a = \text{Parte Entera},\, b = \text{Decimal Finita},\, c = \text{Decimal Periodico}\\
+	x = a.b_1, a.b_2c, a.b_3c \dots a.b_nc \implies (10^n)(x) = (ab.c_1, ab.c_2, ab.c_3 \dots ab.c_m)\\
+	y = (0.c_1, 0.c_2, 0.c_3 \dots 0.c_m) \implies (10^n)(x) = (ab)+(y)\\
+	(y)(10^m) = (c.c_1, c.c_2, c.c_3 \dots c.c_m) = (c)+(y) \implies ((y)(10^m))-(y) = c\\
+	((y)(10^m))-(y) = ((10^m)-(1))(y) \implies ((10^m)-(1))(y) = c \implies y = \frac{c}{((10^m)-(1))}\\
+	(10^n)(x) = (ab)+(y) \implies (10^n)(x) = (ab)+(\frac{c}{10^m-1})\\
+	x = (\frac{ab}{10^n})+(\frac{c}{(10^m-1)(10^n)}) \implies x = (\frac{(ab)((10^m-1)(10^n))+(10^n)(c)}{(10^n)((10^m-1)(10^n))})\\
+	\therefore x = \frac{p}{q} \land x \in \mathbb{Q}
+\end{gather*}
+<p>Por ejemplo:</p>
+\begin{gather*}
+	x = 4.1682 \implies (10^4)(x) = 41682.0\\
+	(10^4)(x) = 41682.0  \implies x = \frac{41682}{10000} = \frac{p}{q}\\
+	\therefore x \in \mathbb{Q}\\\\
+	x = 2.34\overline{567} \implies (10^2)(x) = (234.\overline{567})\\
+	y = (0.\overline{567}) \implies (100)(x) = (234)+(y)\\
+	(y)(10^3) = (567.\overline{567}) = (567)+(y) \implies ((y)(10^3))-(y) = 567\\
+	((y)(10^3))-(y) = (1000y - y) = 999y \implies 999y = 567 \implies y = \frac{567}{999}\\
+	(100)(x) = (234)+(y) \implies (100)(x) = (234)+(\frac{567}{999})\\
+	x = (\frac{234}{100})+(\frac{567}{99900}) \implies x = (\frac{117}{50})+(\frac{21}{3700})\\
+	x = (\frac{8679}{3700}) = \frac{p}{q}\\
+	\therefore x \in \mathbb{Q}
+\end{gather*}
+<p>El conjunto de los numeros <b>Irracionales</b> esta conformado por todo numero no racional e incluyen a los decimales no-periodicos.</p>
+\[
+	\mathbb{I} = \{x \in \mathbb{I} \ni x \notin \mathbb{Q}\}
+\]
+<p>Por Ejemplo:</p>
+\begin{gather*}
+	\pi \land \epsilon\\
+	\sqrt{x} \ni (x \in Primos)\\
+	\sqrt{x} + \sqrt{y} \ni (x,y \in Primos)\\
+	\sqrt{x} + y \ni (x \in Primos) \land (a \in Primos)
+\end{gather*}
+<p>En donde los numeros <b>Primos</b> son cualquiera cuyos factores es uno y si mismo.</p>
+<p>Las operaciones entre racionales e irracionales generan los siguientes resultados:</p>
+\begin{align*}
+	\quad & 1.\quad \text{Irracional} \pm \text{Racional} = \text{Irracional}\\
+	\quad & 2.\quad \text{Racional} \pm \text{Irracional} = Irracional\\
+	\quad & 3.\quad \text{Irracional} \pm \text{Irracional} = Irracional o Racional\\
+	\quad & 4.\quad \text{Racional} \pm \text{Racional} = Racional\\
+	\quad & 5.\quad \text{Irracional} */ \text{Racional} = Irracional \ni (Racional!=0)\\
+	\quad & 6.\quad \text{Racional} */ \text{Irracional} = Irracional \ni (Racional!=0)\\
+	\quad & 7.\quad \text{Racional} */ \text{Racional} = Racional\\
+	\quad & 8.\quad \text{Irracional} */ \text{Irracional} = Irracional o Racional
+\end{align*}
+<p>El conjunto de los numeros <b>Reales</b> esta conformado por la union de los Racionales y los Irracionales, es decir que todos conjuntos anteriores se encuentran incluidos dentro de los reales.</p>
+\begin{gather*}
+	\mathbb{R} = \mathbb{Q} \cup \mathbb{I}\\
+	\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \land \mathbb{I} \subset \mathbb{R}
+\end{gather*}
+
+<h3 class="HoverTitle" id="Operaciones"><a href="#Operaciones"># </a><a href="#Operaciones">Operaciones</a></h3>
+
+<p>Las cuatro operaciones fundamentales en álgebra y aritmética son la suma, la resta, la multiplicacion y la divisíon.</p>
+\begin{align*}
+	a + b = c &\qquad \text{Suma}\\
+	a - b = c &\qquad \text{Resta}\\
+	a * b = c &\qquad \text{Multiplicacion}\\
+	\frac{a}{b} = c &\qquad \text{Division}
+\end{align*}
+<p>La resta se define en terminos de la suma y la division en terminos de la multiplicacion.</p>
+\begin{gather*}
+	a - b = c \implies b + c = a\\
+	a / b = c \implies b * c = a
+\end{gather*}
+<p>Segun el <b>Orden de las Operaciones</b> se realizan primero los parentesis, luego exponentes y radicales, despues multiplicaciones y diviciones, y finalmente sumas y restas.</p>
+<p>La multiplicacion se compone de <b>Factores</b> que resultan en un <b>Producto</b>.</p>
+<p>La division se compone de un Dividendo o Numerador al que se le aplica un Divisor o Denominador para obtener su Cociente o Razon con un posible Sobrante o Resto.</p>
+<p>Propiedades Racionales:</p>
+\begin{align*}
+	\text{Probar Equivalencia} &\qquad \frac{a}{b} = \frac{c}{d} \implies (a)(d) = (b)(c)\\
+	\text{Simplificar} &\qquad \frac{a}{b} = \frac{ac}{bc} \land \frac{a}{b} = \frac{\frac{a}{c}}{\frac{b}{c}} \ni (c != 0)\\
+	\text{Signo Negativo} &\qquad -(\frac{a}{b}) = \frac{(-a)}{b} = \frac{a}{(-b)}\\
+	\text{Dos Signos Negativos} &\qquad \frac{(-a)}{(-b)} = \frac{a}{b}\\
+	\text{Suma y Resta Homogenea} &\qquad \frac{a}{b} \pm \frac{c}{b} = \frac{a \pm c}{b}\\
+	\text{Suma y Resta Heterogenea} &\qquad \frac{a}{b} \pm \frac{c}{d} = \frac{(ad) \pm (bc)}{bd}\\
+	\text{Multiplicacion} &\qquad (\frac{a}{b})(\frac{c}{b}) = \frac{ac}{bd}\\
+	\text{Division} &\qquad \frac{\frac{a}{b}}{\frac{c}{b}} = \frac{ad}{bc} \ni (c != 0) 
+\end{align*}
+<p>La división de cualquier numero entre cero es <b>Indefinida</b>. La división de cero entre cero es <b>Indeterminada</b>.</p>
+\begin{gather*}
+	\text{Division entre Cero}\\
+	\frac{a}{b} = c \land (a)(0) = (0) \land (\frac{x}{y})(y) = x\\
+	\because \frac{a}{0} = c \implies (\frac{a}{0})(0) = (c)(0) \implies (a) = (c)(0)\\
+	(a) = (c)(0) \land 0 = (c)(0) \implies (a = 0) \rightarrow \bot\\
+	\therefore \frac{a}{b} = \text{Indefinido}\\\\
+	\text{Cero entre Cero}\\
+	\because (\frac{x}{y})(y) = x \land \frac{a}{0} = c \implies (\frac{0}{0})(0) = (c)(0) \implies (0) = (c)(0)\\
+	(0) = (c)(0) \ni (c = ?)\\
+	\therefore \frac{a}{b} = \text{Indeterminado}
+\end{gather*}
+<p>Tambien sabemos que multiplicar por cero siempre es cero dado que:</p>
+\begin{gather*}
+	\text{Multiplicar por Cero}\\
+	\because 0+0=0 \land (a+b)(c) = (ac)(bc) \land a+0=a\\
+	0+0=0 \implies (0+0)a=0 \implies 0a+0a=0a\\
+	0a+0a=0a \implies 0a+0a=0a+0 \implies 0a=0\\
+	\therefore (0)(a) = 0
+\end{gather*}
+<p>Se dice que los reales son un conjunto de numeros denso debido a que <i>entre dos reales siempre existira otro real</i>. Los números reales se suelen representar graficamente sobre una <b>Recta Numerica</b>.</p>
+<div id="LineaNumerica" class="jxgbox" style="width:500px; height:100px;"></div>
+<p>Al cero se le conoce como el Origen y al uno como la Unidad. A la izquierda del cero estan los reales negativos \(\mathbb{R}^-\) y a la derecha los reales positivos \(\mathbb{R}^-\). Esta representacion permite establecer <b>Relaciones de Orden</b> entre los numeros, como la Ley de Tricotomia.</p>
+<blockquote>"Un numero Real solo puede ser menor, mayor o igual a otro." - Tricotomía de Inequidades.</blockquote>
+<p>A una seccion de la recta numerica se le denomina <b>Intervalo</b> y se clasifican en <b>Abiertos</b> o <b>Cerrados</b>. Los intervalos abiertos no incluyen a los dos numeros que marcan sus limites como parte de ellos, mientras que los intervalos cerrados si. Si la seccion no tiene uno o ambos limites decimos que su limite es el <b>Infinito</b>.</p>
+\begin{align*}
+	\text{Intervalo Abierto}  &\qquad (a,\,b) = {x \ni (a \lt x \lt b)} \\
+	\text{Intervalo Cerrado}  &\qquad [a,\,b] = {x \ni (a \le x \le b)} \\
+	\text{Intervalo Mixto}    &\qquad [a,\,b) = {x \ni (a \lt x \le b)} \\
+	&\qquad (a,\,b] = {x \ni (a \le x \lt b)} \\
+	\text{Intervalo Infinito} &\qquad (-\infty,\,b) = {x \ni (x \lt b)}\\
+	&\qquad (a,\,\infty) = {x \ni (a \lt x)}\\
+	&\qquad (-\infty,\,b] = {x \ni (x \le b)}\\
+	&\qquad [a,\,\infty) = {x \ni (a \le x)}\\
+	\text{Intervalo Reales}   &\qquad (-\infty,\,+\infty) = \mathbb{R}
+\end{align*}
+<p>Las operaciones principales con intervalos son la <b>Interseccion</b> y la <b>Union</b>. La interseccion utiliza los limites más cercanos entre si como los nuevos limites, mientras que la union utiliza los limites mas alejados.</p>
+\[
+	A \cap B = {x \ni (x \in A\, \land \in B)}\\
+	A \cup B = {x \ni (x \in A\, \lor \in B)}\\\\
+\]
+<div id="InterseccionSet" class="jxgbox" style="width:300px; height:300px; left:30%"></div>
+<p>El <b>Valor Absoluto</b> es la distancia entre el origen y un punto de la recta. El valor absoluto se define como:</p>
+\[ 
+	|x| =
+	\begin{cases}
+		+{x},  & (x) \ge 0 \\
+		-{x},  & (x) \lt 0
+	\end{cases}
+\]
+<p>Si el numero (x) es negativo el valor constante se multiplica por (-1). Si el numero (x) es positivo o cero entonces se multiplica por (+1).</p>
+<p>La <b>Distancia</b> entre dos puntos de la recta numerica es el valor absoluto de su diferencia.</p>
+\[
+	Distancia\, de\, (a)\, a\, (b) = |(b)-(a)| \leftrightarrow |(a)-(b)|
+\]
+<p>Toda multiplicacion repetida se puede expresar en forma de <b>Exponentes</b> en donde el grado (n) de \(x^n\) simboliza la cantidad de multiplicaciones que la base (x) realiza consigo misma.</p>
+<p>Propiedades de los Exponentes:</p>
+\begin{align*}
+	\text{Grado Cero} &\qquad a^0 = 1,\, \ni (a != 0)\\[1.5ex]
+	\text{Suma} &\qquad (a)^{n}(a)^{m} = (a)^{n+m}\\[1.5ex]
+	\text{Multiplicacion} &\qquad (a^{n})^{m} = (a)^{nm}\\[1.5ex]
+	\text{Distributiva} &\qquad (ab)^m = (a^m)(b^m)\\[1.5ex]
+	\text{Valor Absoluto} &\qquad |a^2| =|a|^2 = a^2\\
+	\text{Exponente Negativo} &\qquad (a)^{-n} = \frac{1}{a^n} = \left(\frac{1}{a}\right)^n\\
+	\text{Fraccion Mismo Grado} &\qquad \left(\frac{a}{b}\right)^m = \frac{a^m}{b^m}\\
+	\text{Fraccion Distinto Grado} &\qquad \left(\frac{a^n}{a^m}\right) = a^{(n-m)}\\
+	\text{Fraccion Cancelar Grado} &\qquad \left(\frac{a}{b}\right)^m \left(\frac{b}{a}\right)^{(m-1)} = \pm \frac{a}{b}\\
+\end{align*}
+<p>Notece que \((-2)^4=16\) mientras que \(-(2^4)=-16\). En el primer caso el resultado solo puede ser negativo si la base es negativa y el grado impar.</p>
+
+<h3 class="HoverTitle" id="AxiomasReales"><a href="#AxiomasReales"># </a><a href="#AxiomasReales">Axiomas de los Reales</a></h3>
+
+<p>Para todo numero Real aplican las siguientes reglas o <b>Axiomas</b>:</p>
+\begin{align*}
+	\text{Suma Conmutativa} &\qquad a + b = b + a\\
+	\text{Suma Asociativa} &\qquad a + (b + c) = (a + b) + c\\
+	\text{Neutro o Identidad Aditiva} &\qquad \exists \, (0) \ni  a + 0 = a\\
+	\text{Inverso Aditivo} &\qquad \forall \, (a) \in \mathbb{R} \, \exists \, (-a) \in \mathbb{R} \ni a+(-a)=0\\\\
+	\text{Multiplicacion Conmutativa} &\qquad ab = ba\\
+	\text{Multiplicacion Asociativa} &\qquad a(bc) = (ab)c\\
+	\text{Neutro o Identidad Aditiva} &\qquad \exists \, (1) \ni  (a)(1) = a \\
+	\text{Inverso Multiplicativo} &\qquad \forall \, (a) \in \mathbb{R} \neq 0 \, \exists \, \left(\frac{1}{a}\right) \in \mathbb{R} \ni (a)\left(\frac{1}{a}\right) = 1\\\\
+	\text{Propiedad Distributiva} &\qquad a(b+c)=ab+ac\\\\
+	\text{Ley de Tricotomia} &\qquad  (x \lt y) \lor (x=y) \lor (x \gt y)\\
+	\text{Propiedad de Transitividad} &\qquad (x \lt y) \land (y \lt z) \implies (x \lt z)															
+\end{align*}
+<p>Tambien existen los <b>Axiomas de Orden</b> debido a la distribucion de los reales en la recta numerica:</p>
+\begin{align*}
+	&\, (x \lt y) \implies (x+z) < (y+z) \\
+	&\, (x \lt y) \land z \gt 0 \implies (xz) \lt (yz) \\
+	&\, (x \lt y) \land z \lt 0 \implies (xz) \gt (yz)\\
+	&\, (x \gt 0) \land (y \gt 0) \implies (0 \lt x+y) \land (0 \lt xy)\\
+	&\, (0 \lt y \lt x) \land (0 \lt w \lt z) \implies (y+w) \lt (x+z) \land (yw) \lt (xz)
+\end{align*}
+<p>Supongamos que \((A)\) es un subconjunto real no vacio compuesto por todo elemento \((a)\) y que \((A)\) es un subconjunto real no vacio compuesto por todo elemento \((x)\).</p>
+<p>Si toda \((a)\) es menor a toda \((x)\) decimos que toda \((x)\) es una <b>Cota Superior</b> de \((A)\) y que \((A)\) esta acotada por arriba. Del mismo modo si toda \((a)\) es mayor a toda \((x)\) decimos que toda \((x)\) es una <b>Cota Inferior</b> de \((A)\) y que \((A)\) esta acotada por debajo.</p>
+
+\begin{gather*}
+	(\mathbb{A} \neq \varnothing) \subset \mathbb{R} \ni (a \in A) \land (\mathbb{X} \neq \varnothing) \subset \mathbb{R} \ni (x \in X)\\
+	\exists\, ((x \in \mathbb{X}) \land (a \lt x) \,\forall\, (a \in A)) \implies x = CotaSuperior(A) \land (x \ge \mathbb{A})\\
+	\exists\, ((x \in \mathbb{X}) \land (a \gt x) \,\forall\, (a \in A)) \implies x = CotaInferior(A) \land (x \le \mathbb{A})
+\end{gather*}
+
+<p>Supongamos que \((A)\) esta acotada por arriba, entonces existira un numero real \((y)\) denominado <b>Supremo</b> o Minima Cota Superior que sera mayor o igual a toda \((x)\) y que tambien sea una cota superior de \((A)\).</p>
+<p>Del mismo modo si \((A)\) esta acotada por debajo entonces existira un numero real \((y)\) denominado <b>Infimo</b> o Maxima Cota Inferior que sea menor o igual a toda \((x)\) y que tambien sea una cota inferior de \((A)\).</p>
+
+\begin{gather*}
+	x = CotaSuperior(A) \implies \exists\, (y \in \mathbb{R} \ge x) \land (y \ge A) \implies y = Sup(A)\\
+	x = CotaInferior(A) \implies \exists\, (y \in \mathbb{R} \le x) \land (y \le A) \implies y = Inf(A)
+\end{gather*}
+
+<p>Estas propiedades se resumen en un ultimo axioma para los reales denominado el <b>Axioma de Complitud</b>:</p>
+
+\[
+	\forall\, (A \neq \varnothing) \subset \mathbb{R} \ni \exists\, (x \gt A) \implies \exists\, Sup(A)\\
+	\forall\, (A \neq \varnothing) \subset \mathbb{R} \ni \exists\, (x \lt A) \implies \exists\, Inf(A) 
+\]
+
+<p>Los numeros reales de los que obtenemos su Valor Absoluto tambien siguen los siguientes axiomas:</p>
+\begin{align*}
+	|x| &\le 0 \\
+	|x| &= |-x| \\
+	|xy| &= (|x|)(|y|)\\
+	|\frac{x}{y}| &= \frac{|x|}{|y|}\\
+	|(x)+(y)| &= |(x)|+|(y)|\\
+	|x| \lt y &\implies (-y \lt x) \land (x \lt y)\\
+	|x| \gt y &\implies (x \gt y) \lor (x \lt -y)
+	 
+\end{align*}
+
+<h3 class="HoverTitle" id="Expresiones"><a href="#Expresiones"># </a><a href="#Expresiones">Expresiones</a></h3>
+
+<p>Una <b>Expresion Algebraica</b> es una combinacion de numeros y literales que representan numeros. Una expresion se compone de terminos definidos por sus productos y cocientes. La expresion puede estar conformada por uno o más terminos que se suman y restan entre si.</p>
+\[
+	3a^2+16ab^6-2abc
+\]
+<p>Las expresiones se pueden <b>Clasificar</b> en monomio, binomio, trinomio o multinomio dependiendo de la cantidad de terminos que la compongan.</p>
+\begin{align*}
+	\text{Monomio} &\qquad 3a^2\\
+	\text{Binomio} &\qquad 3a^2+16ab^6\\
+	\text{Trinomio} &\qquad 3a^2+16ab^6-2abc
+\end{align*}
+<p>Cada factor de un termino es el <b>Coeficiente</b> del resto. El <b>Coeficiente Numerico</b> es el factor constante de un termino y al que generalmente nos referimos.</p>
+\begin{gather*}
+	\text{En} \, 3a^2bc,\\
+	3a^2b \, \text{es coeficiente de c},\\
+	3a^2 \,\text{es coeficiente de bc}\\
+	\text{y} \, 3 \, \text{es el coeficiente numerico de} \, a^2bc
+\end{gather*}
+<p>Existen <b>Terminos Semejantes</b> cuando estos solo difieren en su coeficiente numerico. Si dos terminos son semejantes entonces se permite la suma y resta de sus coeficientes numericos.</p>
+\begin{gather*}
+	4a^2bc + 6bca^2 = 10a^2bc\\
+	4abc + 6a^2bc \neq 10a^2bc
+\end{gather*}
+<p>Se dice que un termino es <b>Entero y Racional</b> cuando sus literales no sean divisores o denominadores y que tampoco sean irreales a causa de una raiz. Un <b>Multinomio</b> en donde todos sus terminos son enteros y racionales se denomina <b>Polinomio</b>.</p>
+\begin{align*}
+	\text{Multinomio} &\qquad 3a^2+\frac{16a}{b^6}-2a\sqrt{bc}-5\\
+	\text{Polinomio} &\qquad 3a^2+16ab^6-2abc+10d-5
+\end{align*}
+<p>El <b>Grado de un Monomio</b> es la suma de todos los exponentes de los literales en su termino, si no existen literales entonces el grado sera cero. El <b>Grado de un Polinomio</b> es igual al del termino con el mayor grado.</p>
+\begin{align*}
+	\text{Grado Monomio} &\qquad \frac{16a}{b^6} \implies (6)\\
+	\text{Grado Monomio sin Literales} &\qquad 6\sqrt{3} \implies (0)\\
+	\text{Grado Polinomio} &\qquad 3a^7+16ab^6-2abc+10d-5 \implies (7)
+\end{align*}
+<p>Se suelen utilizar parentesis para <b>Agrupar Expresiones Algebraicas</b>. Se puede eliminar los parentesis de dos expresiones si lo que las une es una suma, de ser una resta es necesario modificar todos los signos de los terminos.</p>
+\begin{gather*}
+	(4a + 6b) + (3b +5c) = 4a + 6b + 3b + 5c = (4a + 9b + 5c)\\
+	(4a + 6b) - (3b +5c) = 4a + 6b - 3b - 5c = (4a + 3b - 5c)
+\end{gather*}
+<p>Para <b>Multiplicar Monomios</b> simplemente se utilizan las leyes de los exponentes. En el caso de multiplicar un monomio por un polinomio se multiplica el monomio por cada termino del polinomio y se suman los resultados.</p>
+\begin{gather*}
+	(4a^2bc)(6bc^2a^3) = 24a^5b^2c^3\\
+	(4a^2b)(4a + 3b - 5c) = (16a^3b) + (12a^2b^2) + (-20a^2bc)\\
+	\therefore (4a^2b)(4a + 3b - 5c) = 16a^3b+12a^2b^2-20a^2bc
+\end{gather*}
+<p>Para <b>Multiplicar Polinomios</b> se debe multiplicar cada termino de un polinomio por cada termino del otro polinomio y sumar los resultados.</p>
+\begin{align*}
+	(4a + 6b)(3a + 5b -2c) = &\quad 12a^2 +20ab -8ac \\
+	&\quad \underline{18ab + 30b^2 -12bc} \\
+	\quad 12a^2 + &38ab -8ac -12bc +30b^2
+\end{align*}
+<p>Para <b>Dividir Monomios</b> hay que encontrar el cociente de los coeficientes numericos y el de las literales para despues multiplicarlos.</p>
+\begin{gather*}
+	\frac{24a^4b^2}{-3a^3b^4} = \left(\frac{24}{-3}\right)\left(\frac{a^4}{a^3}\right)\left(\frac{b^2}{b^4}\right)\\
+	\left(\frac{24}{-3}\right)\left(\frac{a^4}{a^3}\right)\left(\frac{b^2}{b^4}\right) =
+	\left(-8 \right )\left(a \right )\left(\frac{1}{b^2}\right )\\
+	\left(-8 \right )\left(a \right )\left(\frac{1}{b^2}\right ) = -\frac{8a}{b^2}
+\end{gather*}
+<p>Para <b>Dividir Polinomios</b> hay que ordenar los terminos de forma descendente de acuerdo al grado del literal en comun. </p>
+<p>Despues hay que dividir el primer termino del dividendo entre el primero del divisor, obteniendo el primer cociente. </p>
+<p>Funalmente multiplicar el cociente obtenido por el divisor y dicho resultado se resta al dividendo obteniendo un nuevo dividendo. </p>
+\begin{align*}
+	&\frac{x^2+2x^4-3x^3+x-2}{x^2-3x+2}\\[4ex]
+	&2x^2+3x+6\\
+	x^2-3x+2\,\,&\overline{)2x^4-3x^3+x^2+x-2}\\
+	-&\underline{(2x^4-6x^3+4x^2)}\\
+	&\quad\ \ \,-3x^3-3x^2+x-2\\
+	&\quad\ \, -\underline{(3x^3-9x^2+6x)}\\
+	&\qquad\qquad\quad\ \ \ 6x^2-5x-2\\
+	&\qquad\qquad\ -\underline{(6x^2-18x+12)}\\
+	&\qquad\qquad\qquad\qquad \ \ 13x-14\\[4ex]
+	\therefore & \frac{x^2+2x^4-3x^3+x-2}{x^2-3x+2} = 2x^2+3x+6+\left(\frac{13x-14}{x^2-3x+2}\right)
+\end{align*}
+
+
+
+</main>
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+
+<script>
+	var Board = JXG.JSXGraph.initBoard('LineaNumerica', {showCopyright: false, showNavigation:false, boundingbox: [-5.2, 2, 5.2, -2]});
+	var EjeX = Board.create('axis', [[0, 0], [1, 0]], 
+	{
+		firstArrow: true,
+		lastArrow: true,
+		ticks: {
+			drawZero: true,
+			ticksDistance: 1,
+			majorHeight: 30,
+			tickEndings: [0, 1],
+			minorTicks: 0
+		}
+	});
+	var Point = Board.create('glider', [1, 0, EjeX], {});
+	Point.setName("Num.Real");
+
+
+	JXG.joinCurves = function (board, parents, attributes) {
+		var cu1 = parents[0],
+		cu2 = parents[1],
+		attr = JXG.copyAttributes(attributes, board.options, 'curve'),
+		c = board.create('curve', [[0], [0]], attr);
+		c.updateDataArray = function () {
+			this.dataX = cu1.dataX.slice(0, -1).concat(cu2.dataX);
+			this.dataY = cu1.dataY.slice(0, -1).concat(cu2.dataY);
+			if (this.dataX.length < 4) {
+				this.bezierDegree = 1;
+			} else {
+				this.bezierDegree = cu1.bezierDegree;
+			}
+		};
+		c.prepareUpdate().update().updateRenderer();
+		return c;
+	};
+
+	
+	var BoardTwo = JXG.JSXGraph.initBoard('InterseccionSet', { showCopyright: false, showNavigation: false, boundingbox: [0, 5, 5, 0], axis: false });
+	BoardTwo.removeGrids();
+	var p1 = BoardTwo.create('point', [2, 2], {fillColor: 'blue', strokeColor: 'gray', setName: ""});
+	var p2 = BoardTwo.create('point', [3.3, 3.3], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p3 = BoardTwo.create('point', [3.5, 3.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p4 = BoardTwo.create('point', [2.5, 2.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var a1 = BoardTwo.create('circle', [p1, p2], {strokeColor: 'lightgray'});
+	var a2 = BoardTwo.create('circle', [p3, p4], {strokeColor: 'lightgray'});
+	var i1 = BoardTwo.create('intersection', [a1, a2, 0], { visible: false });
+	var i2 = BoardTwo.create('intersection', [a1, a2, 1], { visible: false });
+	var c1 = BoardTwo.create('arc', [p1, i1, i2], { visible: false });
+	var c2 = BoardTwo.create('arc', [p3, i2, i1], { visible: false });
+	var c3 = JXG.joinCurves(BoardTwo, [c1, c2], { strokeColor: 'black', strokeWidth: 3, fillColor: 'green', fillOpacity: 0.2 });
+
+
+
+</script>
+
+
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

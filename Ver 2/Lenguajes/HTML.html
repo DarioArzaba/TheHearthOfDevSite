@@ -1,0 +1,574 @@
+﻿<!doctype html>
+<html lang="es">
+
+    <head>
+        <title>NewPageTitle</title>
+        <meta name="author" content="Dario Arzaba"/>
+        <meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    	<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+    </head>
+
+    <body>
+
+		<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+        <main>
+		<h1>MainTitle</h1>
+<p><span class="tooltip" data-title="HyperText Markup Language">HTML</span> es el lenguaje estandar para crear sitios y aplicaciones web, utilizado en conjunto <span class="tooltip" data-title="Cascading Style Sheets">CSS</span> para el diseño y JavaScript para la interactividad. Los navegadores estan diseñados para interpretar el codigo de estas tecnologias.</p>
+<p>Los elementos HTML son los bloques fundamentales que consitituyen toda pagina web, mientras que los <span class="tooltip" data-title="Videos, Audio, Imagenes, Formularios etc">archivos multimedia</span>, reglas de CSS y Scripts de JavaScript se pueden agregar como bloques alternativos. La documentacion de todas las tecnologias relacionadas al lenguaje son recomendadas por el <a href="https://www.w3.org/" target="_blank">World Wide Web Consortium (W3C)</a>.</p>
+<p>La especificacion <a href="https://www.w3.org/MarkUp/html-spec/" target="_blank">HTML 2.0</a> fue publicada en 1995, al año siguiente fue publicada <a href="https://www.w3.org/TR/REC-html32" target="_blank">HTML 3.0</a> sin ser adoptada exitosamente. La especificacion <a href="https://www.w3.org/TR/html4/" target="_blank">HTML 4.0</a> fue publicada en 1997 y pasarian 17 años hasta que el estandar <a href="https://www.w3.org/TR/html5/" target="_blank">HTML 5.0</a> fue finalmente publicado en 2014.</p>
+<hr />
+<a class="showdown">&nbsp; Historia</a>
+<div class="hidedown">
+<p>HTML fue un prototipo inventado en <b>1989</b> por <a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee" target="_blank">Tim Berners Lee</a> mientras trabajaba en el <a href="https://home.cern/" target="_blank">CERN</a> de Geneva, Suiza. Su protocolo de transferencia HTTP permitia vincular dos documentos de forma remota y sin la necesidad de descargar cada documento por separado. El prototipo es instalado en una computadora <a href="https://en.wikipedia.org/wiki/NeXT_Computer" target="_blank">NeXT</a> (1990), la cual se convertiria en el primer servidor web.</p>
+<p>La invencion del <b>Domain Name System</b> (DNS) permitio asignar un unico nombre a cada direccion IP, facilitando en gran medida la adopcion de HTML, el cual ahora podia distinguir facilmente entre los sistemas conectados a la red. HTML se baso en un inicio en los reglamentos internacionales relacionados con la transmision de documentos de texto, en especial en el <b>SGML</b>(Standard Generalized Mark-up Language). Algunos aspectos como los hypervinculos y los dominios fueron ideas de Tim.</p>
+<p><b>1992</b>: La NCSA (National Center for Supercomputer Applications) de Illinois, interesada por el protocolo de Tim, decide crear su propia aplicacion usando este lenguaje. Su navegador (Mosaic) es creado con la ayuda de Eric Bina y Marc Andreessen. Mientras tanto Tim abre una serie de discusiones publicas en Internet con el fin de crear la primer documentacion oficial de HTML.</p>
+<p><b>1993</b>: El navegador <a href="http://lynx.browser.org/" target="_blank">Lynx</a> basado en texto es desarrollado por Lou Montulli, quien años despues seria contratado por Netscape. Lou pensaba que su navegador seria util sobretodo en terminales DOS que no permitian el uso de archivos multimedia. En este año Dave Raggett de HP viendo el exito de <a href="http://lynx.browser.org/" target="_blank">Lynx</a> comienza su propio navegador titulado <b>Arena</b>.</p>
+<p><b>1993</b>: Marc Andreessen se sale de la NCSA y junto con Jim Clark fundan su empresa y su propio navegador titulado <b>Netscape</b>. La popularidad masiva del navegador fue en gran medida debido a su diseño que le permitia a personas con una coneccion a internet de baja velocidad acceder a internet.</p>
+<p><b>1994</b>: Debido a la creciente popularidad de la tecnologia las empresas lideres en el tema y las personas más interesadas en la estandarizacion del lenguaje se reunen para crear el W3C en las instalaciones del MIT. A la reunion asistieron representantes de HP, Microsoft, Digital Equipment, IBM, Netscape y Sun Microsystems.</p>
+<p>En ese mismo año Microsoft lanza al mercado su navegador <b>Internet Explorer</b>, quien en los años siguientes se volveria el principal competidor de Netscape. En esta guerra de navegadores el W3C con Dave Raggett a la cabeza lucharia arduamente para que se mantuvieran ciertos estandares generales en torno a la tecnologia, culminando en <b>1997</b> con HTML 4.0 el cual establecia la relacion fundamental entre HTML, CSS y JS que sigue siendo utilizada hasta nuestros dias, perfeccionada hasta 2014 con HTML 5.0.</p>
+<p>Despues de la creacion de HTML 5.0 y con el creciente enfoque del W3C por desarollar XML, Opera, Mozilla y Apple se unen para formar WHATWG el cual busca continuar en paralelo con la modificacion continua del HTML enfocado a nuevas tecnologias.</p>
+</div>
+<a class="showdown">&nbsp; Estructura Basica</a>
+<div class="hidedown">
+<hr />
+<p class="indice"><a href="#Doctype">&nbsp;&bull;&nbsp; Doctype</a><a href="#Mime Type">&nbsp;&bull;&nbsp; Mime Type</a><a href="#Url Code">&nbsp;&bull;&nbsp; URL Code</a><a href="#Html">&nbsp;&bull;&nbsp; Html</a><a href="Head">&nbsp;&bull;&nbsp; Head</a><a href="#Meta">&nbsp;&bull;&nbsp; Meta</a><a href="#Title">&nbsp;&bull;&nbsp; Title</a><a href="#Link">&nbsp;&bull;&nbsp; Link</a><a href="#Body">&nbsp;&bull;&nbsp; Body</a><a href="#H1">&nbsp;&bull;&nbsp; H1 - H6</a><a href="#P">&nbsp;&bull;&nbsp; P</a><a href="#A">&nbsp;&bull;&nbsp; A</a><a href="#Img">&nbsp;&bull;&nbsp; Img</a></p>
+<hr />
+<p>Los documentos HTML representan un <b>DOM</b> o arbol de <b>objetos</b> (nodos) en memoria. Los objetos estan delimitados por <b>tokens</b> y en donde cada objeto tiene una serie de <b>atributos</b> que dictan su comportamiento y contenido. El contenido de cada objeto se delimita utilizando <b>etiquetas</b> (tags), así mismo existen objetos cuyo contenido esta implicito y por tanto solo necesitan de un unico tag.</p>
+<pre><code class="Codigo">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"/&gt;
+&lt;title&gt; Pagina Hola &lt;/title&gt;
+&lt;link rel="stylesheet" href="styles.css /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Titulo&lt;/h1&gt; 
+&lt;p&gt;&lt;a href="https://www.w3.org/"&gt;Hello &lt;/a&gt; World!&lt;/p&gt;
+&lt;img src="http://www.w3schools.com/html/pic_mountain.jpg" alt="W3C" width="104" height="142" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Los atributos se introducen en el tag inicial consistiendo de un nombre y un valor. Cuando solo se introduce el nombre se asume que el valor es un string vacio. El DOM, sus objetos y sus atributos pueden ser manipulados utilizando JavaScript.</p>
+<pre><code class="Codigo">var PrimerLink = document.links[0]; //Asigna el primer link del documento
+PrimerLink.href = "sample.html"; //Cambia el destino del link
+PrimerLink.protocol= "https"; //Cambia el protocolo
+PrimerLink.setAttribute("href","http://ejemplo.com"); //Cambia el atributo completo directamente
+</code></pre>
+<hr />
+<h4 id="Doctype">Doctype</h4>
+<p>La <a href="https://hsivonen.fi/doctype/" target="_blank">Definicion del Tipo de Documento</a> (<span class="tooltip" data-title="Document Type Definition">DTD</span>) o <b>Doctype</b> consiste en una declaracion que especifica los elementos y atributos permitidos de acuerdo a una especificacion dada, modificando el metodo de renderizacion (CSS) utilizado para visualizar correctamente el sitio.</p>
+<p>Los navegadores actuales utilizan <b>Parsers</b> especializados en HTML por lo que las reglas de renderizado vienen incluidas y no es necesario especificarlas con documentos DTD. Cuando un navegador <span class="tooltip" data-title="Doctype Sniffing o Switching">detecta</span> el Doctype de HTML5, automaticamente utiliza el metodo de renderizado <b>Standard</b> mientras que versiones anteriores a esta declaracion activan el viejo metodo de renderizado <b>Quirks</b>.</p>
+<pre><code class="Codigo">//Sintaxis - URI in PUBLIC obligatoria cuando es XHTML.
+&lt;!DOCTYPE Root-Element PUBLIC "FPI" "URI"&gt; 
+&lt;!DOCTYPE Root-Element SYSTEM "URI"&gt;
+
+//HTML 5+
+&lt;!DOCTYPE html&gt;
+//HTML 5+ Alternativa
+&lt;!DOCTYPE html SYSTEM "about:legacy-compat"&gt;
+//HTML 4.01 Strict
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+//HTML 4.01 Transitional
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+//XHTML 1.0 Strict
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+//XHTML 1.0 Transitional
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+//HTML 3.2
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"&gt;
+//HTML 2.0
+&lt;!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;
+//XML Declaration (Standalone="No" -> External DTD)
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?&gt;
+</code></pre>
+<p>Las versiones <b>Strict</b> tienen reglas de renderizado que evitan que se utilice HTML para modificar el diseño del sitio, por otro lado las versiones <b>Transitional</b> contienen reglas de renderizado permisivas. La forma alternativa (No recomendada) de escribir el Doctype HTML5, fue diseñada para software y Parsers que necesiten obligatoriamente de un Indicador para funcionar correctamente. </p>
+<p>Un <b>Indicador</b> es un Keyword ideado en SGML para que el Parser del documento localice la entidad que dicta las reglas de renderizado. En SGML, despues de los identificadores, se pueden agregar declaraciones opcionales que modifiquen los valores iniciales del Doctype, esta sintaxis no se incluyo posteriormente en HTML.</p>
+<p><b>SYSTEM: </b> Indicador del Sistema usado cuando asumimos que el sistema que recibe el documento no tiene conocimiento de la ubicacion de las entidades necesarias para renderizarlo correctamente. El Identificador del Systema <span class="tooltip" data-title="Uniform Resource Identifier">URI</span>, usado por el Indicador del Sistema, utiliza entonces direcciones absolutas.</p>
+<p><b>PUBLIC: </b>El indicador publico utiliza un <span class="tooltip" data-title="Formal Public Identifier">FPI</span> y opcionalmente un URI para localizar a la entidad. El FPI consiste de la <span class="tooltip" data-title="ISO, GOV, W3C etc">institucion</span> que emite la entidad, el <span class="tooltip" data-title="ENTITY, DTD, SUBDOC, TEXT, NOTATION etc">tipo</span> de entidad, el nombre de la entidad y el lenguage en el que esta escrito el codigo source de la entidad. Podemos relacionar un FPI a un URI por medio de un archivo "Catalogo" actualizado que tradusca el FPI en su URI equivalente.</p>
+<p>Cuando queremos que un documento sea renderizado como <i>verdadero XML</i>, tenemos que usar la <b>Declaracion XML</b> antes del Doctype. En este caso dado que el Identificador no puede tener prefijos, la direccion debe ser relativa al documento XML, es decir que la entidad debe de estar en los archivos locales del sistema que recibe el documento.</p>
+<hr />
+<h4 id="Url Code">URL Code</h4>
+<p>URL o Uniform Resource Locator es un codigo estandar utilizado para encontrar un recurso en un una red interna o remota. Es usado comunmente a travez del protocolo de internet (HTTP) para vincular sistemas (dominios) y los documentos que almacenan sin tener que utilizar su Direccion de Protocolo de Internet (IP).</p>
+<p>Un URL se compone de un Esquema (Protocolo de Transferencia), Prefijo (Prefijo del Dominio), Dominio (Nombre Registrado), Puerto (El puerto estandar para internet es el 80), Path (Direccion del recurso en el dominio), Archivo (Nombre del archivo final). Por default si se omite el Archivo se intenta abrir la carpeta superior en el Path. Si se omite el Archivo y el Path entonces se busca el archivo en el dominio (index).</p>
+<p>Un URL es una direccion valida siempre y cuando se utilice ASCII sin espacios. En el caso de que el dominio, el path o el archivo utilicen caracteres fuera de la especificacion ASCII se recurre a una encoding propio de la especificacion URL.</p>
+<p>El enconding de URL remplaza todo caracter que no sea ASCII por un equivalente hexagesimal despues de el caracter de escape (%). Los espacios son remplazados normalmente con un signo (+) o con (%20).</p>
+<p>Un recurso local (src) puede estar localizado en el mismo folder (imagen.jpg), en una carpeta anexa (images/imagen.jpg), un el folder de imagenes relativo a la raiz del sitio (/images/imagen.jpg) o un nivel arriba con respecto al folder actual (.../imagen.jpg). En general se recomienda usar URLs relativos al sitio.</p>
+<p>Existen varios esquemas de trasnferencia:</p>
+<ol></ol>
+<pre><code class="Codigo">scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
+
+&lt;!--
+Scheme: Protocolo como http, https, ftp, mailto, file, data y irc.
+Las dos lineas diagonales son utilizados por algunos esquemas.
+Autentificacion opcional para accesar al servidor.
+Servidor Host compuesto del nombre registrado o su direccion IP.
+Puerto opcional por el cual transmitir la informacion (80 default).
+Path y Archivo que se esta buscando en orden jerarquico.
+Query Delimiter: Busca y encuentra recursos no jerarquicos.
+Fragmento opcional que encuentra un identificador interno en el documento.
+--&gt;
+</code></pre>
+
+<p>Para solucionar problemas de internacionalizacion se utilizan IRI (Internationalized Resource Identifier), que es un tipo de URL que incluye caracteres unicode. Todos los navegadores soportan el uso de IRIs. El nombre registrado del dominio en IRI se conoce como IDN (Internationalized Domain Name). La mayoria de los servidores web convierten automaticamente cualquier vinculo con caracteres no ASCII en codigo registrable por los DNSs, normalmente escapando los caracteres con (xn--).</p>
+<p>Si el URL no es convertido automaticamente por el servidor, entonces el navegador utiliza el encoding nativo de URLs (%) para encontrar la pagina original al decodificar la direccion escapada.</p>
+<hr />
+<h4 id="Mime Type">Mime type</h4>
+<p>Un <b>Media Type</b> o tipo de medios, tambien denominado <b>MIME Type</b> o <b>Content Type</b>, es un identificador de dos partes para determinar el formato o caracteristicas de un archivo que se transmite por internet.</p>
+<p>Parte de la especificacion <span class="tooltip" data-title="Multipurpose Internet Mail Extensions">MIME</span>, originalmente diseñada para controlar los tipos de archivos que se compartian por el protocolo de email, pronto seria adoptado por el protocolo HTTP.</p>
+<p>Se compone de un Type (tipo), Subtype (subtipo) y parametros opcionales; tambien se puede escribir como un Type, Tree, Sybtype, +Suffix y Parametros. Por ejemplo, antes de la llegada del tag Charset se acostumbraba definir el encoding con el parametro de un MIME Type (text/html; charset=UFT-8). </p>
+<p>Actualmente solo existen diez tipos primarios: Application, Audio, Example, Image, Message, Model, Multipart, Text y Video. Aunque todavia no es oficial se ha llegado a utilizar el tipo Chemical. Actualmente los Suffix registrados son: xml, json, ber, der, fastinfoset, wbxml, zip, cbor. Si no se conoce el tipo se suele utilizar de forma generica (text/plain), de igual forma en documentos binarios sin tipo especifico (application/octet-stream) es utilizado.</p>
+<p>Los navegadores solo reconocen los subtipos de imagenes: Gif, Jpeg, Png, Svg+xml, Webp, x-icon. Solo reconocen los subtipos de video: webm, ogg. Solo se reconocen de audio: wave, wav, x-wav, x-pn-wav, webm, ogg. En este sitio de IANA se encuentra la <a href="https://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank">lista completa</a>.</p>
+<hr />
+<h4 id="Html">Html</h4>
+<p>Primer elemento del DOM (Root Element), le informa al navegador que el documento es especificamente HTML. Todo elemento debe derivar de este, se recomienda que los unicos dos elementos hijos sean las etiquetas (Head) y (Body).</p>
+<p>Atributos:</p>
+<ol><li><p><b>Manifest: </b>Especifica el URI de un archivo Manifest que indique los recuros que deben ser almacenados localmente utilizando el App Cache del sitio. El atributo solo es considerado en la etapa Load, por lo que cambios dinamicos posteriores no tienen efecto. JS puede accesar al cache utilizando el IDL windo.applicationCache, sin embargo esta depreciado y se recomienda usar en su lugar Service Workers.</p></li><li><p><b>Version: </b>Especifica la version del Doctype, este atributo es redundante y no se debe de utilizar.</p></li><li><p><b>Xmlns: </b>Si se esta escribiendo un documento XML que sera renderizado por XML parsers se necesita especificar el Namespace (http://www.w3.org/1999/xhtml). Si es un documento XHTML este atributo es opcional.</p></li></ol>
+<p>Atributos Opcionales:</p>
+<ul><li><p><b>lang ó xml:lang: </b>Especifica el lenguaje primario del elemento, usado generalmente en la etiqueta (html). Podemos usar las listas <a href="https://tools.ietf.org/html/bcp47" target="_blank">BCP47</a>, <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">ISO639-1</a> o <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry" target="_blank">IANA</a> para obtener los tags de cada lenguaje. Si estamos escribiendo HTML solo usar (lang), si estamos escribiendo XML (application/xhtml+xml) solo usar (xml:lang). Si estamos escribiendo XHTML o HTMLPolygot usar ambos.</p></li></ul>
+<hr />
+<h4 id="Head">Head</h4>
+<p>Contiene la informacion general o <b>Metadata</b> del documento que no se renderiza en el navegador. La metadata puede incluir informacion general (meta), dependencias (links), scripts (script), estilos (style), entre otros. Se recomienda incluir siempre un unico titulo con la etiqueta (title) y nunca más de una etiqueta (base).</p>
+<p>Atributos:</p>
+<ol><li><p><b>Profile:</b> Especifica un URI para localizar uno o más perfiles metadata externos. El atributo esta depreciado y se recomienda usar en su lugar (rel="profile") dentro de una etiqueta (link).</p></li></ol>
+<hr />
+<h4 id="Meta">Meta</h4>
+<p>Elemento que representa la informacion general o metadata del documento que no pueda ser representada usando las <span class="tooltip" data-title="title, base, link, style, script">demas</span> etiquetas metadata.</p>
+<p>Atributos:</p>
+<ol>
+	<li>
+		<p><b>Name:</b> Nombre del dato metadata a asignar, este puede ser <b>Application-name</b>, <b>Author</b>, <b>Description</b>, <b>Generator</b>, <b>Keywords</b>, <a href="https://wiki.whatwg.org/wiki/MetaExtensions#Registered_Extensions" target="_blank"> entre otros</a>.</p>
+		<ol>
+		<li><p>Application-name: Si un sitio es una aplicacion web dinamica se puede introducir el nombre de la aplicacion con este atributo.</p></li>
+		<li><p>Author: Es un string con el nombre del autor de la pagina, si hay varios autores se puede repetir este elemento.</p></li>
+		<li><p>Description: Descripcion del sitio utilizando alrededor de 100 palabras, esta descripcion es utilizada por los buscadores.</p></li>
+		<li><p>Generator: String con el nombre del generador o software usado para crear el sitio, en el caso de que haya sido generado automaticamente.</p></li>
+		<li><p>Keywords: Tokens separados por comas que representan las palabras más relevantes del sitio, utilizado con precaucion debido a su uso indiscriminado en el pasado.</p></li>
+		<li><p>Viewport: En proceso de aceptacion, controla la escala del zoom para ajustar el ancho de los elementos en navegadores movil.</p></li>
+		</ol>
+	</li>
+	<li>
+		<p><b>Http-equiv: </b>Directiva Pragma que modifica al sitio simulando un Http-Response-Header-File, este puede ser <b>Content-type</b>, <b>Default-Style</b> o <b>Refresh</b>.</p>
+		<ol>
+		<li><p>Content-type: Usado antes de HTML5 para determinar principalmente el encoding del sitio (Content="text/html; charset="UTF-8"). Ahora se recomienda utilziar el atributo Charset.</p></li>
+		<li><p>Default-Style: Si existen varios documentos CSS, este atributo puede señalar el titulo (Title) del elemento (Link) con el documento de estilos preferido que se pretenda utilizar. Sin embargo se recomienda evitar situaciones en donde se utilicen varios documentos CSS.</p></li>
+		<li><p>Refresh: Redirige a un sitio externo despues de un tiempo establecido en segundos. Si solo se especifica el tiempo entonces se recarga el mismo sitio. Este atributo esta depreciado y se recomeinda utilizar Headers HTTP Reales.</p></li>
+		</ol>
+	</li>
+	<li><p><b>Content: </b>Asigna el valor al dato metadata o a la directiva.</p></li>
+	<li><p><b>Chartset: </b>Determina uno de los <a href="https://www.iana.org/assignments/character-sets/character-sets.xhtml" target="_blank">encoding</a> usados en los caracteres del sitio cuando esté se transmita de forma serializada. No es tomado en cuenta en XHTML pero es valido. Localmente el atributo (Lang), el (Http-Content-Type) y el (BOM Header) tienen prioridad. Se recomienda que este dentro de los primeros 1024 Bytes del sitio.</p></li>
+</ol>
+<hr />
+<h4 id="Title">Title</h4>
+<p>Contiene un string con el titulo del documento, mismo que se muestra en la barra superior de los navegadores. Es muy importante incluir esta etiqueta correctamente en el (Head) del documento ya que es requetido por los navegadores para renderizar el sitio. Solo debe de haber uno por documento.</p>
+<p>Se puede modificar su contenido con (<i>document.title="new title"</i>) u obtener su contenido con (<i>var a = title.textConent</i>).</p>
+<hr />
+<h4 id="Link">Link</h4>
+<p>Vincula el documento actual con un recurso externo, generalmente un archivo de estilos CSS.</p>
+<p>Los atributos (onload) y (onerror) pueden llamar a una funcion de JS cuando se termino de cargar el recurso y si se detecto un error de ejeucion o renderizado. </p>
+<p>Atributos:</p>
+<ol>
+	<li><p><b>Crossorigin:</b> Activa el modo <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_Enabled_Image" target="_blank">CROS</a>, generalmente para elementos canvas.</p></li>
+	<li><p><b>Href:</b> Especifica el URL del recurso externo.  </p></li>
+	<li><p><b>Hreflang:</b> Especifica el lenguaje del recurso. Su contenido es meramente informativo, pocas tecnologias lo utilizan como una declaracion.</p></li>
+	<li><p><b>Integrity:</b> Contiene el Hash utilizado por el sistema de seguridad Subresource. SRI permite comprobar que el recurso externo no haya sido manipulado al comparar este hash de 64bit que habia sido generado con el archivo externo.</p></li>
+	<li><p><b>Media:</b> Especifica los atributos media para ejecutar el documento. Los atributos media nos permiten aplicar estilos especificos dependiendo del dispositivo y son la principal herramienta para un Responsive Design. Por defecto su valor es (all).</p></li>
+	<li><p><b>Title:</b> Especifica si el archivo es persistent, preferred o alternative. Si no tiene este atributo el archivo se aplica siempre (Persistent). Si varios tienen este atributo y el mismo (rel) entonces el navegador decide cual aplicar. Por ultimo para diferenciar de un archivo persistent (Default) y uno alternativo se utiliza el atributo (rel="alternate stylesheet").</p></li>
+	<li><p><b>Type:</b> Utiliza los MIME tipes para definir que tipo de documento es, por ejemplo HTML (text/html) o CSS (text/css).</p></li>
+	<li>
+		<p><b>Rel:</b> Especifica la relacion del recurso con el documento.</p>
+		<ol>
+		<li><p>Alternate: Generalmente rel tiene el valor de (Stylesheet) sin embargo podemos asignar stylesheets opcionales con el valor de (alternate stylesheet). </p></li>
+		<li><p>Stylesheet: Su uso más comun es simplemente para establecer la relacion con documentos de diseño.</p></li>
+		<li><p>Preload: Activa una tecnologia experimental que especifica recursos de alta prioridad en el rendering de la pagina, así el sitio puede priorizar dinamicamente el contenido que renderiza de forma asincrona. Se usa en conjunto con el atributo (as="style...").</p></li>
+		<li><p>Prefetch: Cuando el navegador encuentra hiperlinks que tengan este atributo, intentara en la medida de lo posible cargar los sitios a los que se dirigen en el cache del navegador. Normalmente se usa en los links más usados para mejorar la experiencia del usuario. Tambien se puede usar para guardar en cache unicamente la resolucion DNS de dichos links, no su contenido.</p></li>
+		<li><p>Prerendering: Se pude considerar como una version extrema de prefetch en donde se guarda en el cache la version completa del recurso o sitio al que se vincula. Aunque el hipervinculo se puede volver casi instantaneo, se debe usar con cuidado por su uso intensivo del bandwidth.</p></li>
+		</ol>
+	</li>
+</ol>
+<hr />
+<h4 id="Body">Body</h4>
+<p>Todo contenido que se pretenda mostrar en el navegador se debe incluir en esta etiqueta. Junto con (html) y (head) es una etiqueta fundamental para cualquier sitio web.</p>
+<p>Atributos:</p>
+<ol>
+	<li><p><b>Onafterprint:</b> Llama una funcion cuando el usuario intenta imprimir el sitio.</p></li>
+	<li><p><b>Onbeforeprint:</b> Llama una funcion cuando el usuario termino de imprimir el sitio.</p></li>
+	<li><p><b>Onbeforeload:</b> Llama una funcion cuando el usuario intenta cerrar el sitio, normalmente es un mensaje de confimacion.</p></li>
+	<li><p><b>Onblur:</b> Llama una funcion cuando el usuario cambia de pesataña, dejando al sitio en el fondo, sin embargo su uso principal en es formas para ejecutar funciones conforme el usuario pasa al siguiente campo</p></li>
+	<li><p><b>Onfocus:</b> Llama una funcion cuando el usuario cambia a la pestaña del sitio, sin embargo su uso principal en es formas para ejecutar funciones conforme el usuario llega a un campo.</p></li>
+	<li><p><b>Onerror:</b> Llama una funcion cuando el sitio no su puede renderizar correctamente.</p></li>
+	<li><p><b>Onload:</b> Llama una funcion cuando se termino de cargar el sitio.</p></li>
+	<li><p><b>Onoffline:</b> Llama una funcion si se detecta la perdida de coneccion a internet.</p></li>
+	<li><p><b>Ononline:</b> Llama una funcion si se detecta la reconeccion a internet.</p></li>
+	<li><p><b>Onresize:</b> Llama una funcion si se detecta un cambio en el tamaño de la ventana del sitio.</p></li>
+</ol>
+<hr />
+<h4 id="H1">H1-H6</h4>
+<p>Representan los titulos de las secciones en un documento y su jerarquia o nivel. Los navegadores y buscadores los utilizan para estructurar el contenido, se recomienda cambiar de nivel unicamente cuando necesites jerarquizar el contenido, en el caso de que el contenido sea el mismo es recomendado modificar su apariencia con CSS en vez de utilizar un titulo de otro nivel.</p>
+<p>Se recomienda nunca saltarse un nivel, normalmente es posible ir bajando paulativamente de seccion en seccion. En general un sitio web utiliza un titulo (h1) general y despues divide el documento en secciones con los demas niveles. </p>
+<p>En HTML con la invencion de la etiqueta (Section), se recomienda que todo el contenido de cada seccion utilice un mismo titulo (e.j. h2) y en el caso de querer más subdivisiones se pueden utilizar titulos de menor nivel (e.j, h3); <b>Nested Sections</b> heredando el titulo de su padre (h2) o combinar ambas tecnicas utilizando titulos de menor nivel para cada nueva nested section.</p>
+<hr />
+<h4 id="P">P</h4>
+<p>Este elemento representa un parrafo de texto. Visualmente son bloques separados verticalmente por un espacio, en muchos casos existen porciones de texto en donde existen etiquetas más apropiadas para definir su estructura.</p>
+<hr />
+<h4 id="A">A</h4>
+<p>Este elemento fundamental genera un hypervinculo entre sitios y documentos en linea utilizando su URL. Un hypervinculo no esta limitado al protocolo HTTP y puede vincular documentos a travez de FTP, File y Mailto.</p>
+<p>Atributos:</p>
+<ol>
+	<li><p><b>Title:</b> Atributo generico utilizado para especificar un Tooltip de ayuda.</p></li>
+	<li><p><b>Download:</b> Instruye al navegador a descargar el documento sin importar su extension.</p></li>
+	<li><p><b>Href:</b> Atributo en donde se especifica el URL relativo o absoluto con el recurso externo o seccion interna (URL Fragment). Si no se usa este atributo se generara un Dummy Link que no funciona. Por razones historicas tanto (href="#top") como (href="#") vinculan a la parte superior de la ventana.</p></li>
+	<li><p><b>Target:</b> Inicialmente utilizado con Iframes, especifica el lugar en el que se abre el vinculo, ya sea en la misma ventana (Self), en una nueva pestaña (blank), en la ventana padre (parent), o en la ventana principal (top).</p></li>
+	<li><p><b>Type:</b> Especifica el tipo MIME del documento, sin embargo es un atributo meramente informativo.</p></li>
+	<li>
+		<p><b>Rel:</b> Especifica la relacion del recurso con el documento.</p>
+		<ol>
+		<li><p>Author:</p> El link vincula a un documento que trata del autor del sitio.</li>
+		<li><p>Help:</p> El link vincula a un documento de ayuda.</li>
+		<li><p>Licence:</p> El link vincula a un documento legal con la licencia del sitio.</li>
+		<li><p>Next:</p> El link vincula al siguiente documento cuando se esta en un sitio por partes, diapositivas o paginas de libro.</li>
+		<li><p>Prev:</p> El link vincula al anterior documento cuando se esta en un sitio por partes, diapositivas o paginas de libro.</li>
+		<li><p>Search:</p> El link vincula a un sitio de busqueda interna.</li>
+		<li><p>Pingback:</p> Ayuda a sistemas automaticos a avisarle al sitio de destino acerca de la vinculacion. En WordPress es usado para informarle a un blog que otro blog lo ha vinculado.</li>
+		</ol>
+	</li>
+
+</ol>
+<hr />
+<h4 id="Img">Img</h4>
+<p>Elemento que representa una imagen.</p>
+<p>En el caso de un error, el evento (onerror) es llamado, algunos de estos casos incluyen un src mal escrito, la imagen esta corrupta, su metadata es incorrecta o el formato no esta soportado por el navegador.</p>
+<p>Una imagen pueden ser estatica (Png, gif, jpeg), en vectores (PDFs de una pagina, XML, SVG), animadas en bitmap (APNGs, GIFs) o animadas en vectores (XML con SVG en formato SMIL). Se prohibe el uso de SVG+Script, PDFs multipagina, MNG, HTML y texto.</p>
+<p>Dependiendo de el estado de la informacion y que tanto de la imagen ha logrado renderizar un navegador, una imagen se puede encontrar como: Unavailable (El navegador no obtuvo ninguna informacion), Partially Available (El navegador obtuvo una parte de la imagen), Completely Available (Toda la informacion obtenida correctamente) y Broken (El navegador no puede decodificar la imagen).</p>
+<p>Atributos:</p>
+<ol>
+	<li><p><b>Alt:</b> Establece un texto alternatio que describe a la imagen, mismo que sera utilizado en el caso de que no se pueda renderizar la imagen. Omitir este atributo simboliza que la imagen es parte del contexto del texto, mientras que dejarlo con un valor vacio indica que la imagen no es importante.</p></li>
+	<li><p><b>Height:</b> Indica en pixeles la altura del imagen.</p></li>
+	<li><p><b>Width:</b> Indica en pixeles el ancho de la imagen.</p></li>
+	<li><p><b>Ismap:</b> Valor booleano que indica que la imagen es parte de un mapa del servidor. De ser cierto las coordenadas de un click sobre la imagen se envian al servidor. Solo valido cuando la imagen esta dentro de un vinculo (a).</p></li>
+	<li><p><b>Longdesc:</b> Especifica un URL que se dirige a un documento externo o seccion interna con la descripcion detallada de la imagen.</p></li>
+	<li><p><b>Sizes:</b> Lista separada por comas que indica una serie de tamaños para cada dispositivo. (Responsive Design).</p></li>
+	<li><p><b>Src:</b> Especifica el URL de la imagen y es obligatorio. En el caso de que se utilice Srcset, entonces Src pasa a ser la opcion primaria con una descripcion de densidad de (1x).</p></li>
+	<li><p><b>Srcset:</b> Utilizada en conjunto con Sizes, es una lista separada por comas de los URL on las imagenes que requiere Sizes para cada dispositivo. Cada imagen incluye una descripcion de densidad para obtener su tamaño relativo.</p></li>
+	<li><p><b>Usemap:</b> El URL parcial de una imagen mapa asociada con esta imagen. Las imagenes mapa utilizan la etiqueta (map).</p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; Tags Estructurales</a>
+<div class="hidedown">
+<hr />
+<p class="indice"><a href="#Main">&nbsp;&bull;&nbsp; Main</a><a href="#Section">&nbsp;&bull;&nbsp; Section</a><a href="#Article">&nbsp;&bull;&nbsp; Article</a><a href="#Nav">&nbsp;&bull;&nbsp; Nav</a><a href="#Aside">&nbsp;&bull;&nbsp; Aside</a><a href="#Footer">&nbsp;&bull;&nbsp; Footer</a><a href="#Header">&nbsp;&bull;&nbsp; Header</a><a href="#Address">&nbsp;&bull;&nbsp; Address</a></p>
+<hr />
+<h4 id="Main">Main</h4>
+<p>Representa el contenido principal del cuerpo (Body) del documento o aplicacion web. Contiene todo el contenido unico para dicha pagina, excluyendo el contenido que se repide en el sitio, los cuales suelen ser el Header y Footer.</p>
+<hr />
+<h4 id="Section">Section</h4>
+<p>Representa una seccion generica, ggeneralmente parte de una serie de secciones a modo de capitulos o partes. Cada seccion, al igual que cada capitulo de un libro, debe de contener un titulo adecuado. Si el contenido es independiente de otras secciones se recomienda utilizar un articulo.</p>
+<hr />
+<h4 id="Article">Article</h4>
+<p>Representa una parte individual y completa en la composicion del documento. Cada articulo debe de contar con su propio titulo, tambien es valido tener articulos dentro de otros articulos siempre y cuando su contenido se pueda mantener independiente de otras secciones.</p>
+<hr />
+<h4 id="Nav">Nav</h4>
+<p>Representa una seccion del documento que contiene los links a otras paginas o partes internas del sitio. Los links de esta seccion no tienen que estar forzosamente en una lista, pueden estar distribuidos en un parrafo por ejemplo.</p>
+<hr />
+<h4 id="Aside">Aside</h4>
+<p>Representa una seccion cuyo contenido esta relacionado tangentemente con el contenido principal, se utiliza para mostrar notas, anuncios, avisos, links relacionados, perfiles y otra informacion que es importante para el sitio pero que no es fundamental para el contenido principal de la pagina.</p>
+<hr />
+<h4 id="Footer">Footer</h4>
+<p>Representa el pie de pagina de una seccion o del sitio en general. Usualmente contiene informacion sobre el autor, sobre documentos relacionados, copyright, e informacion legal. Un footer puede ser utilizado como cualquier otra seccion, incluyendo titulos, imagenes, parrafos y demas contenido.</p>
+<hr />
+<h4 id="Header">Header</h4>
+<p>Representa el contenido intruductorio a una seccion, documento o sitio. Usualmente contiene un titulo y un parrafo introductorio, tambien suele contener logos y formas de busqueda.</p>
+<hr />
+<h4 id="Address">Address</h4>
+<p>Representa la informacion de contacto de una persona con respecto a una seccion, articulo o sitio en general. El elemento no debe utilizarse para otro tipo de informacion que no sea el de contacto con una persona.</p>
+<hr />
+</div>
+<a class="showdown">&nbsp; Agrupacion y Tablas</a>
+<div class="hidedown">
+<!--
+	
+
+Grouping
+<div>	Defines a section in a document (block-level)
+<span>	Defines a section in a document (inline)
+
+	Tables
+Use the HTML <table> element to define a table
+Use the HTML <tr> element to define a table row
+Use the HTML <td> element to define a table data
+Use the HTML <th> element to define a table heading
+Use the HTML <caption> element to define a table caption
+Use the CSS border property to define a border
+Use the CSS border-collapse property to collapse cell borders
+Use the CSS padding property to add padding to cells
+Use the CSS text-align property to align cell text
+Use the CSS border-spacing property to set the spacing between cells
+Use the colspan attribute to make a cell span many columns
+Use the rowspan attribute to make a cell span many rows
+Use the id attribute to uniquely define one table
+<table>	Defines a table
+<th>	Defines a header cell in a table
+<tr>	Defines a row in a table
+<td>	Defines a cell in a table
+<caption>	Defines a table caption
+<colgroup>	Specifies a group of one or more columns in a table for formatting
+<col>	Specifies column properties for each column within a <colgroup> element
+<thead>	Groups the header content in a table
+<tbody>	Groups the body content in a table
+<tfoot>	Groups the footer content in a table
+
+-->
+</div>
+<a class="showdown">&nbsp; Formas y Embedded</a>
+<div class="hidedown">
+<!--
+Images
+<img>	Defines an image
+<map>	Defines an image-map
+<area>	Defines a clickable area inside an image-map
+
+IFRAMES
+http://www.w3schools.com/html/html_iframe.asp
+
+XHTML
+http://www.w3schools.com/html/html_xhtml.asp
+
+-->
+</div>
+<a class="showdown">&nbsp; Texto</a>
+<div class="hidedown">
+<!--
+Text
+<b>	Defines bold text
+<em>	Defines emphasized text 
+<i>	Defines italic text
+<small>	Defines smaller text
+<strong>	Defines important text
+<sub>	Defines subscripted text
+<sup>	Defines superscripted text
+<ins>	Defines inserted text
+<del>	Defines deleted text
+<mark>	Defines marked/highlighted text
+http://www.w3schools.com/html/html_entities.asp
+http://www.w3schools.com/html/html_symbols.asp
+http://www.w3schools.com/html/html_charset.asp
+
+Lists
+<ul>	Defines an unordered list
+<ol>	Defines an ordered list
+<li>	Defines a list item
+<dl>	Defines a description list
+<dt>	Defines a term in a description list
+<dd>	Describes the term in a description list
+Use the HTML <ul> element to define an unordered list
+Use the CSS list-style-type property to define the list item marker
+Use the HTML <ol> element to define an ordered list
+Use the HTML type attribute to define the numbering type
+Use the HTML <li> element to define a list item
+Use the HTML <dl> element to define a description list
+Use the HTML <dt> element to define the description term
+Use the HTML <dd> element to describe the term in a description list
+Lists can be nested inside lists
+List items can contain other HTML elements
+Use the CSS property float:left or display:inline to display a list horizontally
+
+Citation
+<abbr>	Defines an abbreviation or acronym
+<address>	Defines contact information for the author/owner of a document
+<bdo>	Defines the text direction
+<blockquote>	Defines a section that is quoted from another source
+<cite>	Defines the title of a work
+<q>	Defines a short inline quotation
+
+Code
+<code>	Defines programming code
+<kbd>	Defines keyboard input 
+<samp>	Defines computer output
+<var>	Defines a variable
+<pre>	Defines preformatted text
+
+-->
+</div>
+<a class="showdown">&nbsp; Interactivo</a>
+<div class="hidedown">
+Media Audio y Video
+Medidor (meter), Progreso (progress) y Data atributes
+</div>
+<a class="showdown">&nbsp; Tags Comunes</a>
+<div class="hidedown">
+Meta, Li, Button
+Link y Img
+<p><b>Href:</b> Se utiliza para establecer un vinculo entre un elemento local y un documento externo (Por ejemplo un anchor). Cuando se utiliza el elemento <b>link</b> junto con este atributo la vinculacion se aplica a todo el documento con un parsing de la pagina en paralelo.</p>
+<p><b>Src:</b> Se utiliza para incrustar (embed) un elemento externo en en el documento. La posicion del elemento externo sera la del elemento interno que utilizo el atributo. Esta incrustacion no permite realizar un parsing de la pagina en paralelo ya que necesita traer (fetch), compilar y ejecutar el contenido (Imagenes, Audio, Video, Scripts). En HTML5 se introducen los atributos <b>async</b> y <b>defer</b> que permiten realizar el parsing de un elemento asynchronously (Paralelo) o deferred (Diferido), respectivamente.</p>
+
+role=Separator
+type=Button
+data-toggle= Collapse
+data-target= Target
+Aria-expanded=False
+
+Declaracion del documento
+Root HTML, head, title, body, h1-6, p, a, img, hr, br, b, strong, i, em, mark, small, del, ins, sub, sup, blockquote, abbr, address, bdo, cite, q, code, kbd, samp, var, pre, meta, video, ol, ul, li, link, table, tr, td, dh, caption, dl, dt, dd, iframe, script, base, heade,r nav, section, asrticle, aside, footer, noscript, details, summary, form, input, dieldset, legend.
+
+Atributos:
+Title, href, alt, src, id, disabled, class, target, type, name, value, action, method, colspan, rowspan.
+</div>
+<a class="showdown">&nbsp; Tipos de Contenido</a>
+<div class="hidedown">
+En HTML los tipos de contenido se expanden a 7, muchas veces un elemento de informacion puede pertenecer a varios de dichos tipos/modelos de contenido.
+
+1.- Flow Content (Todos exepto tipos especiales de metadata que no se puede mostrar en el buscador)
+2.- Phrasing content (Texto, hypervinculo, imagenes, videos, y todas las clases de texto)
+3.- Heading content (Todas las clases de encabezado)
+4.- Sectioning content (Todas las nuevas clases diferentes de texto y encabezado como articulo, nav etc..)
+5.- Embedded content (Todos los hyperviculos y sus clases)
+6.- Interactive content (Todo contenido del que se espera que el usuario introdusca informacion)
+7.- Metadata content (Todo contenido que relaciona los atributos de otros contenidos, muchas veces de manera externa)
+</div>
+<a class="showdown">&nbsp; Practicas Obsoletas</a>
+<div class="hidedown">
+Lista de funciones no soportadas.
+https://developers.whatwg.org/obsolete.html
+</div>
+<a class="showdown">&nbsp; Tecnologias</a>
+<div class="hidedown">
+Geolocalizacion, Web Workers para MultiThread o WebSockets, Jquery Mobile, Web SQL. Drag and Drop.
+Promises: Este es simplemente un patron que permite implementar “Asincronia” (Async) en JS. Por si solo no implementa “concurrency” solo asincronia. La asincronia permite capturar el estado de subprocesos sin tener que detener el proceso principal de la pagina web. Al capturar el desarrollo del subproceso podemos generar barras de progreso eficientes. Concurrency  por otro lado da la misma prioridad a ambos procesos, es decir que nos permite ejecutar dos procesos principales al mismo tiempo, utiliza multiples nucleos del CPU para trabajar mientras que la asincronia solo nos indica cuando un subproceso ha terminado.
+WrbStorage, WebSockets, WebWorkers, Geolocalizacion, UIAPIS, Canvas, Web GL, Audio, Video, MPEG-DASH, Pointer Events, WinJS, Underscore, backbone, knockout, jquery, angular, bootstrap, d3, app cahce, crossbrowser, WCF Websokets prototype.
+</div>
+<a class="showdown">&nbsp; Protocolo</a>
+<div class="hidedown">
+Usar INETPUB para server in localhost con WWWROOT, por parte de IIES
+DOMINIOS:
+Explicar como funcionan localhost, dominios y servidores, DNS IP y HTTP.
+URL:
+Scheme: Tipo de protocolo de transferencia, los mas comunes son http o https HyperText Transfer Protocol y Secure HyperText Transfer Protocol  File Transfer Protocol y File.
+Prefijo: Determina el dominio del documento. El dominio del internet es www.
+Dominio: Determina el servidor del documento. (Ej. google.com)
+Puerto: Implícito en el protocolo de transferencia, para http es 80. (google.com:80/…)
+Directorio: Path del archivo en el servidor. Si se omite se busca en el direcorio root del sitio.
+Filename: Nombre del archivo de un directorio en el servidor.
+
+
+Nota: Un url puede ser diferente si se le agrega un dash al final o no. Si no se agrega un dash . (http://google.com/folder) la computadora pensara que es un archivo y al encontrar una carpeta va a generar un error 301 “permanent redirect” al url con el dash al final. (http://google.com/folder/)
+Esta redirección sucede casi siempre  que el url esta mapeado al directorio del servidor (index.html por ejemplo)
+Sin embargo si el contenido es generado dinámicamente (MVC framework) Provablemente no va a poder hacer la distinción y se debe poner el dash si es un directorio.
+Al final del dia la diferencia esta en como va a manejar el servido r la información, si el host es el que va a decidir como interpretar el request y va a elegir envirar de regreso el archivo o el folder Y el estándar del slash en la carpeta va a depender de como se llegue al contenido de manera efectiva.
+
+A block-level element always starts on a new line and takes up the full width available (stretches out to the left and right as far as it can).
+
+An inline element does not start on a new line and only takes up as much width as necessary.
+This is an inline spanelement inside a paragraph.
+Examples of inline elements:
+Se denominan grouping tags:
+Div se utiliza muchas vecs para dar estilo a contenedores genrales.
+Span se utiliza para dar estilo a pedasos de texto.
+
+Bookmarks utilizan el sistema de ids para identificar al elemento y lo utilizan como una manera de linkearlo.
+Or, add a link to the bookmark ("Useful Tips Section"), from another page:
+href="html_tips.html#tips"
+
+Character Encoding:
+
+
+What is Character Encoding?
+ASCII was the first character encoding standard (also called character set). ASCII defined 127 different alphanumeric characters that could be used on the internet: numbers (0-9), English letters (A-Z), and some special characters like ! $ + - ( ) @  .
+ANSI (Windows-1252) was the original Windows character set, with support for 256 different character codes.
+ISO-8859-1 was the default character set for HTML 4. This character set also supported 256 different character codes.
+Because ANSI and ISO-8859-1 were so limited, the default character encoding was changed to UTF-8 in HTML5.
+UTF-8 (Unicode) covers almost all of the characters and symbols in the world.
+All HTML 4 processors also support UTF-8 encoding.
+
+The ASCII Character Set
+ASCII uses the values from 0 to 31 (and 127) for control characters.
+ASCII uses the values from 32 to 126 for letters, digits, and symbols.
+ASCII does not use the values from 128 to 255.
+________________________________________
+The ANSI Character Set (Windows-1252)
+ANSI is identical to ASCII for the values from 0 to 127.
+ANSI has a proprietary set of characters for the values from 128 to 159.
+ANSI is identical to UTF-8 for the values from 160 to 255.
+________________________________________
+The ISO-8859-1 Character Set
+8859-1 is identical to ASCII for the values from 0 to 127.
+8859-1 does not use the values from 128 to 159.
+8859-1 is identical to UTF-8 for the values from 160 to 255.
+________________________________________
+The UTF-8 Character Set
+UTF-8 is identical to ASCII for the values from 0 to 127.
+UTF-8 does not use the values from 128 to 159. 
+UTF-8 is identical to both ANSI and 8859-1 for the values from 160 to 255.
+UTF-8 continues from the value 256 with more than 10 000 different characters.
+For a closer look, study our Complete HTML Character Set Reference.
+Uniform Resource Locators
+
+</div>
+<a class="showdown">&nbsp; Seguridad</a>
+<div class="hidedown">
+<p>El modelo de seguridad en la web se basa en el concepto de origenes, es decir que sistema esta ejecutando, enviando y recibiendo la informacion del servidor. La mayoria de los ataques estan destinados a fingir ser el sistema de origen que deberia ejecutar, enviar o recibir la informacion denominados ataques Cross-Origin.</p>
+<p>No Validar el Input del Usuario, Cross-Site Scripts y SQL Injection son ataques Cross-Origin. Cuando un sitio espera recibir informacion del usuario tiene que tener una lista de tipos de informacion validas y escapar todo input que no se adiera a una estricta serie de reglas. Para mantener estos filtros se recomienda que los objetos que se establescan los atributos validos para cada tipo de objeto en especial si se espera que el usuario introdusca URLs.</p>
+<p>Cross-Site Request Forgery son acciones no autorizadas que un atacante obliga a un cliente a hacer a travez de paginas falsas y otros trucos. Para evitar esto podemos checar el Origin Header de todas las peticiones de informacion. Clickjaquing es tambien comun he involucra la creacion de un iframes en el sitio en la posicion del mouse para redirigir el trafico a un sitio maligno.</p>
+</div>
+<hr />
+
+<h3>Sitios</h3>
+<p>
+<b>Cursos Principales:</b><a href="https://developer.mozilla.org/en-US/docs/Web/Guide" target="_blank">&nbsp;&bull;&nbsp; Mozilla</a><a href="http://www.w3schools.com/" target="_blank">&nbsp;&bull;&nbsp; w3School</a><a href="http://htmldog.com/" target="_blank">&nbsp;&bull;&nbsp; Html Dog</a><a href="https://whatwg.org/" target="_blank">&nbsp;&bull;&nbsp; WHATWG</a><a href="https://www.google.com/webmasters/#?modal_active=none" target="_blank">&nbsp;&bull;&nbsp; Google Tips</a><a href="http://html5demos.com/" target="_blank">&nbsp;&bull;&nbsp; Html5 Demos</a><a href="http://webstyleguide.com/" target="_blank">&nbsp;&bull;&nbsp; Web Style</a><a href="http://natureofcode.com/book/introduction/" target="_blank">&nbsp;&bull;&nbsp; Nature Of Code</a><a href="http://diveinto.html5doctor.com/" target="_blank">&nbsp;&bull;&nbsp; Dive Into HHTML5</a><a href="http://practicaltypography.com/" target="_blank">&nbsp;&bull;&nbsp; Practical Typography</a><a href="https://www.webcodegeeks.com/" target="_blank">&nbsp;&bull;&nbsp; Web Code Geeks</a><a href="https://tympanus.net/codrops/" target="_blank">&nbsp;&bull;&nbsp; Codrops</a><a href="https://css-tricks.com/" target="_blank">&nbsp;&bull;&nbsp; CSS Tricks</a><a href="http://www.html5canvastutorials.com/" target="_blank">&nbsp;&bull;&nbsp; Canvas Tutorials</a><a href="http://html5labs.interoperabilitybridges.com/" target="_blank">&nbsp;&bull;&nbsp; HTML Lab</a><a href="https://www.html5rocks.com/en/" target="_blank">&nbsp;&bull;&nbsp; HTML5 Rocks</a><a href="http://html5doctor.com/" target="_blank">&nbsp;&bull;&nbsp; HTML5 Doctor</a><a href="http://html.com/" target="_blank">&nbsp;&bull;&nbsp; HTML5</a>
+</p>
+
+<p>
+<b>Blogs:</b><a href="http://www.echoecho.com/" target="_blank">&nbsp;&bull;&nbsp; Echo Echo</a><a href="https://www.sitepoint.com/" target="_blank">&nbsp;&bull;&nbsp; Site Point</a><a href="http://www.optimalworks.net/" target="_blank">&nbsp;&bull;&nbsp; Optimal Works</a><a href="http://www.webdesignerdepot.com/" target="_blank">&nbsp;&bull;&nbsp; Web Designer Depot</a><a href="https://thenextweb.com/" target="_blank">&nbsp;&bull;&nbsp; The Next Web</a><a href="http://www.derivativesinvesting.net/" target="_blank">&nbsp;&bull;&nbsp; Derivatives Investing</a><a href="http://www.useragentman.com/blog/" target="_blank">&nbsp;&bull;&nbsp; Zoltan Hawryluk </a><a href="https://benfrain.com/" target="_blank">&nbsp;&bull;&nbsp; Ben Frain</a><a href="http://tobiasahlin.com/" target="_blank">&nbsp;&bull;&nbsp; Tobias Ahlin</a><a href="http://techslides.com/" target="_blank">&nbsp;&bull;&nbsp; Tech Slides</a><a href="https://meiert.com/en/blog/2017/" target="_blank">&nbsp;&bull;&nbsp; Jens Oliver</a><a href="http://palermo4.com/" target="_blank">&nbsp;&bull;&nbsp; Michael Palermo</a>
+</p>
+
+<p>
+<b>Herramientas:</b><a href="http://jsbin.com/" target="_blank">&nbsp;&bull;&nbsp; JSBin</a><a href="https://namechk.com/" target="_blank">&nbsp;&bull;&nbsp; Username Search</a><a href="http://css3generator.com/" target="_blank">&nbsp;&bull;&nbsp; Css3 Generator</a><a href="https://morguefile.com/search/morguefile/1/pop" target="_blank">&nbsp;&bull;&nbsp; Stockphotos</a><a href="https://dummyimage.com/" target="_blank">&nbsp;&bull;&nbsp; Dummy Image</a><a href="http://www.webtoolhub.com/tn561393-html-to-text-converter.aspx" target="_blank">&nbsp;&bull;&nbsp; Html to Text</a><a href="http://editor.method.ac/" target="_blank">&nbsp;&bull;&nbsp; Vector Graphics</a><a href="http://www.amp-what.com/" target="_blank">&nbsp;&bull;&nbsp; Scape Characters</a><a href="https://fonts.google.com/" target="_blank">&nbsp;&bull;&nbsp; Google Fonts</a><a href="https://uitest.com/en/analysis/#validation" target="_blank">&nbsp;&bull;&nbsp; Validators</a><a href="http://resizeimage.net/" target="_blank">&nbsp;&bull;&nbsp; Resize Image</a><a href="http://ready.mobi/" target="_blank">&nbsp;&bull;&nbsp; Mobile Validator</a><a href="https://www.ntchosting.com/web-hosting/cloud/" target="_blank">&nbsp;&bull;&nbsp; NTCHosting</a><a href="http://www.sassmeister.com/" target="_blank">&nbsp;&bull;&nbsp; Sass Converter</a><a href="http://www.shouldiremoveit.com/index.aspx" target="_blank">&nbsp;&bull;&nbsp; Should I Remove It</a><a href="http://www.99-bottles-of-beer.net/abc.html" target="_blank">&nbsp;&bull;&nbsp; 99 Bottles of Beer</a>
+</p>
+
+<p>
+
+
+http://101besthtml5sites.com/
+http://www.css3maker.com/
+https://varvy.com/
+https://www.fontsquirrel.com/
+
+http://html5bookmarks.com/
+http://html-css.happycodings.com/
+https://html5.validator.nu/
+https://html5test.com/index.html
+http://www.html-5.com/index.html
+http://www.lipsum.com/
+https://tools.pingdom.com/
+http://caniuse.com/
+http://www.danstools.com/
+
+https://www.smashingmagazine.com/
+http://jontangerine.com/
+https://designshack.net/
+https://adactio.com/
+https://disqus.com/
+
+</p>
+		</main>
+        <footer>
+            <div class="footer">
+                <a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+            </div>
+        </footer>
+		<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </body>
+</html>

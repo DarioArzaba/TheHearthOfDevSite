@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+              http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  
+<url>
+  <loc>http://thehearthofdev.x10.mx/</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Ciencias/matematicas.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Lenguajes/HTML.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Lenguajes/JavaScript.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Lenguajes/CSS.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Lenguajes/Python.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Lenguajes/Java.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Manuales/7zip.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Manuales/Acrobat.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Manuales/GoogleEarth.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Experimentos/bubbles.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Experimentos/thimble.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Experimentos/UnknownP.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Proyectos/Ajedrez.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Proyectos/Piano.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/Proyectos/OpenSuse.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://thehearthofdev.x10.mx/index.html</loc>
+  <lastmod>2017-05-20T22:39:58+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+</urlset>

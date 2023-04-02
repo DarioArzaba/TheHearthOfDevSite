@@ -1,0 +1,455 @@
+/*
+    CSS for long and minimal text pages.
+    By @DarioArzaba
+*/
+
+@font-face {
+  font-family: 'eFont';
+  src: url('Fonts/eBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'gFont';
+  src: url('Fonts/gNormal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'gFont';
+  src: url('Fonts/gBold.woff2') format('woff2');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'gFont';
+  src: url('Fonts/gItalic.woff2') format('woff2');
+  font-style: italic;
+}
+
+/*MathJX Plugin*/
+.MJXc-display {
+    margin: 0 8% 0 0 !important;
+}
+
+/*JSXGraph Plugin*/
+.jxgbox {
+    left: 13%;
+}
+/*Initial */
+html, body {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+main {
+    padding-left: 16%;
+    padding-right: 21%;
+}
+
+/*Main Title Element*/
+.title{
+    width: 55%;
+    margin: auto;
+    margin-top: 2em;
+    font-family: monospace;
+    text-decoration:none;
+    user-select:none;
+}
+.flip-effect a{
+    line-height: 2;
+    perspective: none;
+    text-decoration:none;
+}
+.flip-effect a div {
+    color: #efefef;
+    transition: background 0.1s;
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+    font-size: 4vw;
+    margin: auto;
+    margin-top: 3em;
+    width: 65%;
+}
+.flip-effect a div::before {
+    position: absolute;
+    background: #2f2f2f;    
+    color: #ffffff;
+    content: '</thehearthofdev>';
+    transform: rotateX(270deg);
+    transition: transform 0.6s;
+    transform-origin: 0 0;
+}
+.flip-effect a:hover div::before, .flip-effect a:focus div::before { 
+    transform: rotateX(10deg); 
+}
+
+/*Nav Element*/
+
+nav {
+    border: 1px solid lightgray;
+    background: #f7f7f7;
+    margin-top: 3em;
+    font-size: 11px;
+    width: 60%;
+    line-height: 9px;
+}
+nav ol li ol li {
+    font-size: 0.7em;
+}
+nav ol{
+    margin-bottom:0;
+}
+
+/*Yellow Selection*/
+*::selection {
+    background: #fff2a8;
+    color: inherit;
+}
+
+/*Title Elements*/
+
+h1 {
+    font-family: 'eFont';
+    text-rendering: optimizeLegibility;
+    margin: 2.05em 0 0 -0.02em;
+    letter-spacing: -1px;
+    font-size: 5.5vw;
+    text-align: left;
+    color: #2f2f2f;
+}
+h2 {
+    font-family: 'eFont';
+    text-rendering: optimizeLegibility;
+    margin: 1.5em 0 0.7em -0.85em;
+    letter-spacing: -1px;
+    font-size: 4vw;
+    text-align: left;
+    color: #2f2f2f;
+}
+h3 {
+    font-family: 'eFont';
+    text-rendering: optimizeLegibility;
+    margin: 1.5em 0 0.7em -0.8em;
+    letter-spacing: -1px;
+    font-size: 2.8vw;
+    text-align: left;
+    color: #2f2f2f;
+}
+h2 a {
+    color: #2f2f2f;
+    border-bottom: none;
+}
+h3 a {
+    color: #2f2f2f;
+    border-bottom: none;
+}
+h2 a:hover {
+    box-shadow: none;
+}
+h3 a:hover {
+    box-shadow: none;
+}
+h2 a:first-child {
+    opacity: 0.1;
+}
+h3 a:first-child {
+    opacity: 0.1;
+}
+h2 a:first-child:hover {
+    opacity: 0.5;
+}
+h3 a:first-child:hover {
+    opacity: 0.5;
+}
+
+/*Text Elements*/
+
+
+time {
+    display: block;
+    margin-top: 0.3em;
+    margin-bottom: 2.3em;
+    font-style: italic;
+    font-size: 1.5em;
+    font-family: 'gFont';
+    opacity: 0.5;
+}
+p {
+    margin-bottom: 1.4em;
+    padding-right: 11%;
+    font-family: 'gFont';
+    font-size: 1.5em;
+    font-variant-numeric: oldstyle-nums;
+    line-height: 1.4;
+}
+.inline {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.7em;
+    font-family: 'gFont';
+    background-color: #f9f4ff;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px dotted black;
+}
+a:hover {
+    box-sizing: border-box;
+    border-bottom: none;
+    box-shadow: inset 0 -3px 0 rgb(255,109,91);
+}
+a:active {
+    opacity: 0.5;
+}
+blockquote {
+    width: 76%;
+    padding-left: 1em;
+    margin: 2em 0 2em 1em;
+    font-family: 'gFont';
+    font-size: 1.4em;
+    font-style: italic;
+    background: rgb(251, 255, 242);
+    border-left: 5px solid rgba(224, 224, 224, 0.71);
+}
+.canvasWidth{
+    width:100%;
+}
+
+/*Image Elements*/
+
+img {
+
+}
+.NormalImg {
+    display: block;
+    max-width: 50%;
+    padding-right: 6em;
+    margin: 3em auto;
+    margin-top: 1em;
+    height: auto;
+    border: 0;
+}
+.BigImg {
+    max-width: 85%;
+}
+.floatLeft{
+    float:left;
+    padding-right:2em;
+}
+.clearLeft{
+    padding-right:2em;
+    clear:left;
+    float:left;
+}
+.floatRight{
+    padding-right: 0;
+     padding-left: 2em;
+    float:right;
+}
+.clearRight{
+    padding-right: 0;
+    padding-left:2em;
+    clear:right;
+    float:right;
+}
+iframe{
+    border: 0;
+}
+
+/*List Elements*/
+
+
+ul {
+    list-style-type: circle;
+}
+li {
+    margin: 0.8em 0;
+}
+ol ul{
+    font-size: 1em;
+    list-style-type: disc;
+    padding-right: 0;
+}
+ol ul li {
+    margin: 0.3em 0;
+}
+ol, ul {
+    font-family: 'gFont';
+    font-size: 1em;
+    margin-bottom: 1.4em;
+    padding-left: 10%;
+    padding-right: 12%
+}
+
+
+/*Table Element*/
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    table-layout: fixed;
+    font-family: monospace;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    padding: 0px;
+}
+table tr {
+    background: rgb(248, 248, 248);
+    padding: 0.35em;
+}
+table th, table td {
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    padding: 0.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+table th {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+table td {
+    text-align: center;
+    background-color: rgb(253, 253, 252);
+    padding: 0.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+.tableOne {
+    width:10%;
+}
+.tableTwo {
+    width: 20%;
+}
+.tableThree {
+    width: 30%;
+}
+
+/*Footer Element*/
+
+.footer{
+    text-align: center;
+    background-color: #2d2d2d;
+    padding-bottom: 3vh;
+    padding-top: 3vh;
+    width: 100%;
+    margin-top: 10vw;
+}
+.footer a{
+    color: #bdbdbd;
+    text-decoration: none;
+    background-color: transparent;
+}
+.footer a:hover{
+    opacity: 0.9;
+}
+
+/*Span Tooltip Effect*/
+
+.tooltip, .tooltip2 {
+    display: inline-block;
+    position: relative;
+    text-decoration: underline;
+    text-decoration-color: lightsteelblue
+}
+.tooltip:hover:after, .tooltip2:hover:after {
+    background: #b3c9e4;
+    border-radius: 5px;
+    bottom: 33px;
+    color: #000;
+    content: attr(data-title);
+    left: -55%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 5;
+    width: 16vw;
+    font-size:0.7em;
+    line-height:1.5;
+    pointer-events:none;
+}
+.tooltip:hover:before, .tooltip2:hover:before{
+    border: solid;
+    border-color: #b3c9e4 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 27px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 4;
+}
+
+@media (max-width: 800px){
+    main {
+        padding-left: 10%;
+        padding-right: 0%;
+    }
+    .flip-effect a div{
+        font-size: 3.7vw;
+    }
+    mian, p, blockquote, ol, ul, td {
+        word-wrap:hyphenate;
+    }
+}
+
+@media (max-width: 450px) {
+    .flip-effect a div {
+        color: #2f2f2f;
+        font-size: 2em;
+        margin: auto;
+        margin-top: 3em;
+        width: 100%;
+        text-align: center;
+    }
+    h1{
+        font-size:13.5vw;
+        margin-top:1.2em;
+    }
+    h2 {
+        font-size:8vw;
+        margin-top:0.9em;
+    }
+    h3 {
+        font-size: 5.8vw;
+        margin-top: 0.5em;
+    }
+    img{
+        max-width:80%;
+        padding-right:10%;
+    }
+    p,blockquote,ol,ul{
+        font-size:1em;
+    }
+    p{
+        padding-right:6%;
+    }
+    ol,ul{
+        padding-right:8%;
+    }
+    pre[class*="language-"] {
+        margin-left: -1em !important;
+    } 
+}
+
+@media (max-width: 350px){
+    .flip-effect a div {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 250px){
+    table td{
+        font-size:0.8em;
+    }
+    .flip-effect a div {
+        font-size: 1.2em;
+    }
+    p, blockquote, ol, ul {
+        font-size: 0.9em;
+    }
+}

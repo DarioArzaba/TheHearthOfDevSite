@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dario Arzaba</title>
+    <description></description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Atom</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Atom, el editor de texto hackeable del siglo 21.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Atom es un editor de texto &lt;a href=&quot;https://github.com/atom&quot;&gt;open source&lt;/a&gt;, multiplataforma, modular y hackeable creado en HTML, CSS (&lt;a href=&quot;http://lesscss.org/&quot;&gt;Less&lt;/a&gt;) y JavaScript (&lt;a href=&quot;http://coffeescript.org/&quot;&gt;CoffeScript&lt;/a&gt;, &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node&lt;/a&gt;). Diseñado por &lt;a href=&quot;https://github.com/&quot;&gt;Github&lt;/a&gt; utilizando el &lt;a href=&quot;https://electron.atom.io/&quot;&gt;Framework Electron&lt;/a&gt; sobre el &lt;a href=&quot;https://www.chromium.org/Home&quot;&gt;Chromium Engine &lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Y7aEiVwBAdk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&quot;instalación&quot;&gt;Instalación&lt;/h3&gt;
+
+&lt;p&gt;Para instalar en &lt;strong&gt;Windows&lt;/strong&gt; primero se descarga AtomSetup.exe desde el &lt;a href=&quot;https://atom.io&quot;&gt;sitio principal&lt;/a&gt; o desde el &lt;a href=&quot;https://github.com/atom/atom/releases&quot;&gt;repositorio&lt;/a&gt; en Github. El instalador añade los comandos &lt;code class=&quot;highlighter-rouge&quot;&gt;atom&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;apm&lt;/code&gt; al &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt; del entorno. Atom es el programa principal y Apm es el administrador de paquetes (Atom Package Manager).&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Aplication Folder: %LOCALAPPDATA%\atom
+Configuration Folder: %USERPROFILE%\.atom
+Dev Source and Config: %USERPROFILE%/github/atom
+Cache Folder: %APPDATA%\Atom
+Registro: HKEY_CLASSES_ROOT\Directory\Background\shell
+Registro: HKEY_CLASSES_ROOT\Directory\shell
+Registro: HKEY_CLASSES_ROOT*\shell
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El programa se puede utilizar de forma &lt;strong&gt;portable&lt;/strong&gt; al extraer el archivo extraible (Zip o Tar) y agregar un directorio en el mismo nivel denominado &lt;code class=&quot;highlighter-rouge&quot;&gt;.atom&lt;/code&gt;. La variable que controla la ubicacion de este directorio, por defecto &lt;code class=&quot;highlighter-rouge&quot;&gt;%USERPROFILE%&lt;/code&gt;, es &lt;code class=&quot;highlighter-rouge&quot;&gt;ATOM_HOME&lt;/code&gt;. Opcionalmente se recomienda agregar el switch &lt;code class=&quot;highlighter-rouge&quot;&gt;--portable&lt;/code&gt; al ejecutable.&lt;/p&gt;
+
+&lt;p&gt;Si se desea instalar desde el &lt;strong&gt;codigo fuente&lt;/strong&gt; se necesita Node, Python y Visual Studio con Visual C++ y Windows SDK. Opcionalmente la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;GYP_MSVS_VERSION&lt;/code&gt; debe corresponder a la version de Visual Studio.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd C:\
+git clone https://github.com/atom/atom.git
+cd atom
+script\build --create-windows-installer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;La opcion del ultimo comando genera los mismos instaladores que el sitio principal. La carpeta Bin del codigo fuente debe ser agregada a &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt; para poder utilizar &lt;code class=&quot;highlighter-rouge&quot;&gt;atm&lt;/code&gt; correctamente. Comandos del script:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;–code-sign: Firma la aplicacion con el certificado de Github.&lt;/li&gt;
+  &lt;li&gt;–compress-artifacts: Genera la version portable.&lt;/li&gt;
+  &lt;li&gt;–install[=dir]: Instala la aplicacion en &lt;code class=&quot;highlighter-rouge&quot;&gt;${dir}\Atom\app-dev&lt;/code&gt; en donde Div es por defecto &lt;code class=&quot;highlighter-rouge&quot;&gt;%LOCALAPPDATA%&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;En caso de que el &lt;strong&gt;firewall&lt;/strong&gt; produzca errores de instalacion SSL, utilizar el comando &lt;code class=&quot;highlighter-rouge&quot;&gt;apm config set strict-ssl false&lt;/code&gt;. En el caso de que el proxy produzca errores de HTTPS, utilizar el comando &lt;code class=&quot;highlighter-rouge&quot;&gt;apm config set https-proxy (Proxy Adress)&lt;/code&gt;. Probar la configuracion del proxy con &lt;code class=&quot;highlighter-rouge&quot;&gt;apm config get https-proxy&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para instalar &lt;strong&gt;paquetes&lt;/strong&gt; de forma manual es necesario clonar su repositorio, extraer en &lt;code class=&quot;highlighter-rouge&quot;&gt;%USERPROFILE%\.atom&lt;/code&gt; y ejecutar el comando &lt;code class=&quot;highlighter-rouge&quot;&gt;atm install (Nombre)&lt;/code&gt; o &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt; el nombre se refiere al nombre del paquete y puede ser opcional.&lt;/p&gt;
+
+&lt;p&gt;El programa incluye varias herramientas como un &lt;strong&gt;buscador de simbolos&lt;/strong&gt;. Si se quieren buscar simbolos en el proyecto se puede instalar la utilidad &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctags Utility&lt;/code&gt; para crear un archivo &lt;em&gt;tags&lt;/em&gt; que configure la generacion de tags simbolicos dentro del editor. Para mayor configuracion editar el archivo &lt;em&gt;ctags&lt;/em&gt; dentro de &lt;code class=&quot;highlighter-rouge&quot;&gt;%USERPROILE%\.ctags&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;herramientas&quot;&gt;Herramientas&lt;/h3&gt;
+
+&lt;p&gt;Con el uso de &lt;strong&gt;Snipets&lt;/strong&gt; podemos aumentar la productividad, estos comandos son autocompletados con la tecla &lt;code class=&quot;highlighter-rouge&quot;&gt;tab&lt;/code&gt; y nos permiten escribir secciones de codigo rapidamente. Para definir Snippets personalizados primero se define el &lt;em&gt;Scope&lt;/em&gt; del paquete de cada lenguaje, los siguientes niveles definen el nombre, descripcion, abreviacion y contenido. La posicion del mouse se puede personalizar con &lt;code class=&quot;highlighter-rouge&quot;&gt;$1&lt;/code&gt;, numerando cada posicion siguiente.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;'.source.js':
+  'console.log':
+    'prefix': 'log'
+    'body': 'console.log(${1:&quot;crash&quot;});$2'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En el ejemplo anterior el cursor tendra seleccionada la informacion entre llaves. El body se puede encerrar entre triples comillas &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&quot;&quot;&lt;/code&gt; si se compone de varias lineas, mientras que para escapar caracteres se utilizan dobles diagonales &lt;code class=&quot;highlighter-rouge&quot;&gt;\\&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Cabe mencionar que desde 1.13 fueron eliminados del DOM los elementos Shadow que incluian a: ::shadow, /deep/ y :host. Esto tambien provoco que en los &lt;strong&gt;style&lt;/strong&gt; fuera necesario el prefijo .syntax para todo elemento gramatical.&lt;/p&gt;
+
+&lt;p&gt;Atom viene integrado con herramientas para trabajar en &lt;strong&gt;Git&lt;/strong&gt; y &lt;strong&gt;Github&lt;/strong&gt;. En los paneles de Git y Github podemos accesar a los repositorios locales y remotos de un proyecto. Los siguientes comandos basicos nos permiten crear un repositorio remoto o uno local.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Crear repositorio local y vincularlo a uno remoto.
+git init
+git clone https://github.com/NAME/repo.git
+(o git clone https://username:password@github.com/NAME/repo.git)
+(o git clone git clone username@host:/Name/repo.git)
+
+# Crear un repositorio remoto y vincularlo al local.
+git remote add origin https://github.com/NAME/repo.git
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;paquetes&quot;&gt;Paquetes&lt;/h3&gt;
+
+&lt;p&gt;Al ejecutar &lt;code class=&quot;highlighter-rouge&quot;&gt;atom.exe&lt;/code&gt; se carga primero el Script &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; que se encuentra dentro de &lt;code class=&quot;highlighter-rouge&quot;&gt;%USERPROFILE%\.atom&lt;/code&gt; y que nos permite ejecutar CoffeeScript o Javascript personalizado (cambiando la extension de coffee a js).&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#Ejecutar un sonido cada vez que se ejecute atom.
+atom.beep()
+#Convertir el texto seleccionado y en el clipboard a un link de Markdown.
+atom.commands.add 'atom-text-editor', 'markdown:paste-as-link', -&amp;gt;
+    return unless editor = atom.workspace.getActiveTextEditor()
+    selection = editor.getLastSelection()
+    clipboardText = atom.clipboard.read()
+    selection.insertText(&quot;[#{selection.getText()}](#{clipboardText})&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El comando &lt;strong&gt;Create Package&lt;/strong&gt; nos permite crear un nuevo paquete de Atom. Este paquete estara constituido por &lt;em&gt;keymaps&lt;/em&gt;, &lt;em&gt;lib&lt;/em&gt;, &lt;em&gt;menus&lt;/em&gt;, &lt;em&gt;spec&lt;/em&gt;, &lt;em&gt;styles&lt;/em&gt; y un archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;. El ultimo archivo contiene el metadata del paquete, es decir su nombre, modulo principal, version, descripcion, repositorio, licencias, engines, dependencias, activationCommands y activationHooks.&lt;/p&gt;
+
+&lt;p&gt;El &lt;strong&gt;modulo principal&lt;/strong&gt; controla la logica y todas las vistas o paneles del paquete. Este archivo fundamental tiene acceso por defecto a los siguientes metodos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Activate(state): Ejecutado al inicio del paquete. Si implementa serialize() puede recibir el estado de la ultima ventana. Realiza el trabajo de inicializacion como crear elementos DOM o ligar eventos con otro metodos.&lt;/li&gt;
+  &lt;li&gt;Initialize(state): Ejecutado antes de la creacion del espacio activo, es decir despues de su deserializacion. Garantiza la ejecucion de codigo antes de la creacion del DOM.&lt;/li&gt;
+  &lt;li&gt;Serialize(): Ejecutado al inicio de cerrar la ventana. Genera un codigo JSON que representa el estado de la ventana y de ser activa entrega automaticamente su informacion a Activate o Initialize cuando la ventana vuelva a ser abierta.&lt;/li&gt;
+  &lt;li&gt;Deactivate(): Ejecutado al cerrar la ventana. Desactiva todo enlace con recursos externos, todo lo del paquete que no dependa de informacion externa es desactivado automaticamente por Atom.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Los &lt;strong&gt;estilos&lt;/strong&gt; que modifique el paquete se incluyen en forma de Less dentro de la carpeta de Styles. Seran iniciados justo al terminar la carga del DOM. Los estilos de todos los componentes vienen predefinidos por Atom y por el tema actual, accesibles bajo el Styleguide. Se recomienda mantener dicho estilo.&lt;/p&gt;
+
+&lt;p&gt;La combinacion de &lt;strong&gt;teclas&lt;/strong&gt; que active algun comando del paquete se agrega dentro de la carpeta de Keymaps. Los menus incorporan la activacion de los comandos del paquete gracias a un menu contexual o a uno en la barra de herramientas.&lt;/p&gt;
+
+&lt;p&gt;Flowork de Ejecucion para un paquete:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Atom Inicia&lt;/li&gt;
+  &lt;li&gt;Abre Paquete(s)&lt;/li&gt;
+  &lt;li&gt;Ejecuta sus Package.json&lt;/li&gt;
+  &lt;li&gt;Carga Keymaps, Menus, Styles y Main Module&lt;/li&gt;
+  &lt;li&gt;Termina de Cargar Paquetes&lt;/li&gt;
+  &lt;li&gt;Usuario ejecuta comando del paquete.&lt;/li&gt;
+  &lt;li&gt;Ejecutar metodo Activate del Paquete&lt;/li&gt;
+  &lt;li&gt;Ejecutar metodo con el comando del usuario.&lt;/li&gt;
+  &lt;li&gt;Usuario ejecuta otro comando&lt;/li&gt;
+  &lt;li&gt;Ejecutar metodo con el otro comando del usuario.&lt;/li&gt;
+  &lt;li&gt;Ventana del paquete es cerrada. Ejecutar Serializacion.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Si se tienen problemas con Atom se puede empezar por iniciar el programa en modo seguro con &lt;code class=&quot;highlighter-rouge&quot;&gt;atom --safe&lt;/code&gt;. De esta manera podemos descartar que sea un problema con los paquetes oficiales. Podemos despues ir modificando el Script &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; o ir desactivando los paquetes comunitarios y los temas.&lt;/p&gt;
+
+&lt;p&gt;Si ninguno de estos pasos resuelve el problema podemos intentar borrar el cache (window state) de la aplicacion &lt;code class=&quot;highlighter-rouge&quot;&gt;atom --clear-window-state&lt;/code&gt;. Finalmente se puede intentar cambiar el nombre o borrar la carpeta de configuracion &lt;code class=&quot;highlighter-rouge&quot;&gt;.atom&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;teclas&quot;&gt;Teclas&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accion&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Teclas&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accion&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Teclas&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Palabra&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + d&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Sig. Palabra&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + d + Ctrl + d&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Palabras Iguales&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + F3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + l&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Documento&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + A&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Bloque&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + ,&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Cerrar Tag HTML&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + ,&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Colapsar Bloque Codigo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + [&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Expandir Bloque&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + ]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Colapsar Seleccion&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + f&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Final o Inicio Palabra&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Flechas Derecha Izquierda&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Inicio Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Inicio&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Final Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Fin&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Inicio Documento&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Inicio&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Final Documento&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Fin&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir Linea o Caracter&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + g + (Fila:Columna)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir a Simbolo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + r&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ir a siguiente llave o corchete&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + m&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Agregar Marcador&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + Ctrl + F2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Siguiente Marcador&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Marcador Anterior&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Shift + F2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Buscar Marcador&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + F2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Buscar Buffer Archivo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + f&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Buscar Buffer Proyecto&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + f&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Archivo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + o&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Settings&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + ,&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Buscador Archivos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + t&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Paleta Comandos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + p&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Tree View&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + k + b&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Directorio&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + a&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Dev Tools&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + i&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Styleguide Panel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + g&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Hyperlink&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alt + o&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Keybind Resolver&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + .&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Scope Actuales&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Alt + p&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Git Panel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + 9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Github Panel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + 8&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Guardar Cambios&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + s&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Guardar Como&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + s&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Cambiar Encoding&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + u&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Clonar Ventana (Direccion)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + k (soltar) Flechas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Cambiar Ventana Activa&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + k + Ctrl + Flechas&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Cerrar Ventanas Clonadas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + w&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abrir Preview Markdown&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + m&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Añadir Cursor&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Click&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Mover Linea Abajo-Arriba&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Flechas&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Indentar Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + [&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Quitar Indentado Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + ]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Insertar Linea Abajo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Enter&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Insertar Linea Arriba&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + Enter&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Duplicar Linea Abajo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + d&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Combinar con Linea Abajo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + j&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Palabra en Mayusculas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + k + u&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Palabra a Minusculas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + k + l&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Borrar Linea&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + k&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Borrar Hasta Inicio Palabra&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Backspace&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Borrar Hasta Final Palabra&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Del&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seleccionar Tipo de Archivo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ctrl + Shift + l&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Recursos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atom.io/&quot;&gt;Main&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atom.io/beta&quot;&gt;Beta&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atom.io/packages&quot;&gt;Paquetes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atom.io/themes&quot;&gt;Temas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://flight-manual.atom.io/&quot;&gt;Docs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.atom.io/&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://discuss.atom.io/&quot;&gt;Forum&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/atom/atom/releases&quot;&gt;Descargas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://electron.atom.io/&quot;&gt;Electron Framework&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/atomeditor?lang=en&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 28 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/herramientas/2017/09/28/AtomEditor.html</link>
+        <guid isPermaLink="true">http://localhost:4000/herramientas/2017/09/28/AtomEditor.html</guid>
+        
+        <category>Github</category>
+        
+        <category>Atom</category>
+        
+        <category>Editor</category>
+        
+        <category>IDE</category>
+        
+        <category>Texto</category>
+        
+        <category>CoffeeScript</category>
+        
+        
+        <category>Herramientas</category>
+        
+      </item>
+    
+      <item>
+        <title>Synaptic Stimuli</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/Images/SynapticStimuli.jpg&quot; alt=&quot;Polarizing Microscopy by R Tanaka&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://synapticstimuli.com/&quot;&gt;Synaptic Stimuli&lt;/a&gt; es un sitio web dedicado a divulgar el trabajo de artistas contemporáneos. Esta galería virtual alberga obras excepcionalmente creativas que no temen experimentar, con diseños únicos orientados a representar la dimensión abstracta de la conciencia humana.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El arte es una transmisión de la conciencia.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;El proyecto, creado en 2009, es liderado por el fotografo y artista &lt;a href=&quot;https://michael.persona.co/&quot;&gt;Michel Chichi&lt;/a&gt;. Todo el proyecto es financiado a través de &lt;a href=&quot;https://www.paypal.com/donate/?token=ofRm8zQqGWvK1NW31zwj2TznNURe0Umrc6deZnbRO8JBlea6CEzNaKIIx94mNqnNFMoNi0&amp;amp;country.x=US&amp;amp;locale.x=US&quot;&gt;Donaciones&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Un meme es una parcela de significado cultural, un valor compartido, el caballo de Troya de una cosmovisión. La transmisión de un meme ocurre a menudo a través de la iconografía. El viaje del meme visual a través del cuerpo cultural presenta un icono vectorial, el estela de una imagen a través del tiempo y de la mente colectiva. El arte es una herramienta de la conciencia evolutiva por su capacidad de transmitir memes. - Alex Grey (&lt;a href=&quot;http://www.simonandschuster.com/books/Net-of-Being/Alex-Grey/9781594773846&quot;&gt;Los Nexos del Ser&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;El proyecto forma parte de una Red de Sitios para la distribución del arte. Otros integrantes de la Red se mencionan en &lt;a href=&quot;http://www.synapticstimuli.com/selections&quot;&gt;Esta Lista&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;El sitio utiliza una plantilla diseñada por &lt;a href=&quot;https://cargocollective.com/gallery&quot;&gt;Cargo Collective&lt;/a&gt; un grupo de desarrolladores &lt;a href=&quot;http://cargocollective.com/opensource&quot;&gt;OpenSource&lt;/a&gt; que se dedican a diseñar plataformas de blogs (&lt;a href=&quot;https://persona.co/&quot;&gt;Persona&lt;/a&gt; y &lt;a href=&quot;http://cargocollective.com/designs&quot;&gt;Cargo2&lt;/a&gt;) para artistas.&lt;/p&gt;
+
+&lt;p&gt;La idea de crear las plataformas surgió cuando Cargo término de diseñar el sitio para &lt;a href=&quot;http://spacecollective.org/&quot;&gt;Space Collective&lt;/a&gt;. Space Collective es un proyecto dedicado a la preservación de la cultura humana y el debate filosófico que nace del lanzamiento Voyager y el mensaje de Carl Sagan.&lt;/p&gt;
+
+&lt;p&gt;Para finalizar incluyo los sitios de arte que Synaptic Stimuli recomienda: &lt;a href=&quot;http://50watts.com/&quot;&gt;50 Watts&lt;/a&gt; &lt;a href=&quot;https://www.artsy.net/&quot;&gt;Artsy&lt;/a&gt; &lt;a href=&quot;http://butdoesitfloat.com/&quot;&gt;BDiF&lt;/a&gt; &lt;a href=&quot;http://www.thisiscolossal.com/&quot;&gt;Colossal&lt;/a&gt; &lt;a href=&quot;http://www.creativeapplications.net/&quot;&gt;Creative Applications&lt;/a&gt; &lt;a href=&quot;http://www.dataisnature.com/&quot;&gt;Data is Nature&lt;/a&gt;
+&lt;a href=&quot;http://doorofperception.com/&quot;&gt;Door of Perception&lt;/a&gt; &lt;a href=&quot;http://www.graphicine.com/&quot;&gt;Graphicine&lt;/a&gt; &lt;a href=&quot;http://visualmelt.com/&quot;&gt;Melt&lt;/a&gt; &lt;a href=&quot;https://onbeing.org/&quot;&gt;On Being&lt;/a&gt; &lt;a href=&quot;https://patternity.org/&quot;&gt;Patternity&lt;/a&gt;
+&lt;a href=&quot;http://postmatter.com/&quot;&gt;Post Matter&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Redes Sociales:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/synapticstimuli&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/SynapticStimuli&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.instagram.com/synaptic_stimuli&quot;&gt;Instagram&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.pinterest.com/synapticstimul&quot;&gt;Pinterest&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://deliciousdimension.tumblr.com&quot;&gt;Tumblr&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ello.co/synapticstimuli&quot;&gt;Ello&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 27 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/sitios%20web/2017/09/27/SynapticStimuli.html</link>
+        <guid isPermaLink="true">http://localhost:4000/sitios%20web/2017/09/27/SynapticStimuli.html</guid>
+        
+        <category>Diseno</category>
+        
+        <category>Artistas</category>
+        
+        <category>Conciencia</category>
+        
+        <category>Colectivo</category>
+        
+        <category>Arte</category>
+        
+        <category>PersonaSite</category>
+        
+        
+        <category>Sitios Web</category>
+        
+      </item>
+    
+      <item>
+        <title>The Flood</title>
+        <description>&lt;p&gt;Halo es uno de mis juegos favoritos. Puede que a primera vista no sea mas que un simple entretenimiento, un producto comercial lleno de accion y violencia, sin embargo lo mismo se puede decir de infinidad de libros y peliculas de culto. Por ser un entusiasta es que pude identificar, apreciar y disfrutar de los revolucionarios mecanismos que marcarian una nueva etapa en la historia de los videojuegos.&lt;/p&gt;
+
+&lt;p&gt;Como todo epicentro cultural y exito comercial, el juego termino por extenderse a otros medios. El arte y la intrigante historia que se habia gestado a su alrededor conllevo la creacion de un universo ficticio lleno de detalles y vida. Las &lt;a href=&quot;https://www.halopedia.org/Halo_novels&quot;&gt;20 obras literarias&lt;/a&gt; que surgieron no fueron complementos del juego, sino que resultaron en interesantes novelas independientes de ciencia ficcion.&lt;/p&gt;
+
+&lt;p&gt;Es una lastima que la vision corporativa de Microsoft y de otras entidades hayan ido desgastando su imagen y concepto central. Cada nueva iteracion se ha ido apartando más de los valores originales que cultivaron a la gran comunidad de artistas y fanaticos. Puede que el contenido contemporaneo no sea tan disruptivo como el original, sin embargo es un testimonio del impacto que logro a travez del tiempo.&lt;/p&gt;
+
+&lt;p&gt;Este es un resumen de la segunda novela, escrita por William C Dietz. Esta novela relata los eventos del primer juego (Halo CE).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Images/HaloTheFlood.jpg&quot; alt=&quot;The Flood Portada&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;prologo&quot;&gt;Prologo&lt;/h3&gt;
+
+&lt;p&gt;El Oficial Tecnico &lt;strong&gt;Sam Marcus&lt;/strong&gt; es despertado por el Jefe Tecnico &lt;strong&gt;Thom Shephard&lt;/strong&gt; para despertar a alguien de stasis criogenica. Sam sabia que la situacion era deseperada, apenas habia podido dormir en tres dias y un tercio de los ingenieros habian muerto en la ultima batalla de Reach.&lt;/p&gt;
+
+&lt;p&gt;A pesar de su cansancio, Sam y todos en la nave trabajan sin quejarse ya que le debian su vida al capitan Keyes por haberlos sacado de Reach a tiempo. Thom le envio a Sam un archivo encriptado con los detalles de la persona que tenia que despertar, al leerlo Sam se apresuro con renovada energia al Crio 2.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Las naves alienigenas, a diferencia de las humanas, tenian sus centros de mando en el centro de la nave. La nave maestra que perseguia al Pillar of Autumn estaba comandada por &lt;strong&gt;Orna ‘Fulsamee&lt;/strong&gt;. Sin embargo un profeta menor y su asistente &lt;strong&gt;Bako ‘Ikaporamme&lt;/strong&gt; se interpusieron con sus ordenes de lanzar torpedos para destruir a los humanos ya que aquello ponia en peligro al anillo, le recomendaron que en este caso seria más seguro abordar la nave y tomar control de ella.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-1&quot;&gt;Capitulo 1&lt;/h3&gt;
+
+&lt;p&gt;El Pillar of Autumn temblo cuando un objeto no identificado impacto contra el Titanium A. El capitan &lt;strong&gt;Jacob Keyes&lt;/strong&gt; supo que no habia sido un torpedo de plasma, o la nave hubiera dejado de existir.  Lieutenant &lt;strong&gt;Hikowa&lt;/strong&gt; informo que habia sido una nave Seraph que se habia logrado infiltrar. Hikowa rapidamente dio las coordenadas del nuevo enemigo a los pilotos humanos y el Seraph fue destruido.&lt;/p&gt;
+
+&lt;p&gt;Keyes no lograba entender como es que el Covenant sabia en donde estaban, a penas habian salido de Slipspace habia 20 minutos y esos minutos los habian logrado al esconderse en la sombra del gigante de gas Threshold. Keyes no tenia opciones, sin un lugar a donde escapar lo unico que podian hacer es sobrevivir lo suficiente para dar una ultima batalla al enemigo.&lt;/p&gt;
+
+&lt;p&gt;Keyes puso un curso alrededor del planeta. Su mente militar esperaba un crusero alienigena al otro lado del planeta, esperandolos listos para destruirlos, sin embargo nunca se imagino lo que encontraria. Una gigantesca estructura en forma de anillo orbitaba entre Threshold y su luna Basis. El capitan pregunto a &lt;strong&gt;Cortana&lt;/strong&gt;, la inteligencia artificial de la nave, que era esa estructura. Si dicha estructura era una base Covenant entonces su ultima batalla seria mucho más corta.&lt;/p&gt;
+
+&lt;p&gt;Cortana le informo que la estructura tenia 10,000 kilometros de diametro y 23.3 kilometros de grosor. Tambien le informo que los materiales de construccion no pertenecian a ningun material Covenant. Al parecer tenia su propia gravedad artificial y una variedad de climas similares a los que se encontraban en la tierra. A pesar de todo Cortana no podia decifrar su proposito. Keyes contemplo la estructura y encencio su pipa.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Sam se encontraba despertando al Jefe Maestro. Con una contraseña proporcionada por Cortana iniciaron el proceso de revivir al Spartan. Sam sabia que el proyecto habia iniciado con el proyecto ORION en 2491, el nuevo grupo denominado SPARTAN II fue seleccionado en 2517. Sin embargo tambien sabia que la mayoria de los Spartan habian sido reunidos para defender Reach y Reach habia sido destruido por lo que este podria ser el ultimo Spartan vivo.&lt;/p&gt;
+
+&lt;p&gt;El programa habia sido ultra secreto, sin embargo fue desclasificado para subir la moral de las colonias humanas. La guerra habia resultado una serie de derrotas interminables y los humanos estaban al borde de la extincion. Los Spartan fueron por un breve momento la unica esperanza de la humanidad, sin embargo fueron tan pocos los Spartan que fueron entrenados que muchos creyeron que eran tan solo una leyenda.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro se encontraba soñando en las ultimas etapas antes de ser revivido. Soñaba con su planeta de origen, Eridanus II. Soñaba con la Dr. &lt;strong&gt;Chatherine Halsey&lt;/strong&gt; llamandolo John, la unica figura maternal que recordaba de aquel duro entrenamiento. Soñaba tambien con Cortana. Sin embargo la presencia de un nuevo enemigo lo acechaba entre las sombras.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro por fin se desperto y salio del tubo. Sam se apresuro a revisar su traje de combate MJOLNIR. Al parecer habia sido puesto en stasis con el traje puesto. El traje era una maravilla de la tecnologia, hecho con los materiales mas duros, escudos de energia, un gel interno inteligente y una matriz cristalina con suficiente espacio para albergar a una inteligencia artificial.&lt;/p&gt;
+
+&lt;p&gt;Cortana dio un anuncio general de tropas enemigas abordando la nave. Keyes siguio con la orden directa de enviar al jefe maestro al puente. En ese momento una explosion y el plasma de los rifles alienigenas destruyo la puerta de la sala de control en donde Sam se encontraba. Thom y el Jefe vieron todo sin poder accesar a la sala de control y lo unico que les quedaba era seguir las ordenes de Keyes.&lt;/p&gt;
+
+&lt;p&gt;Al salir una explosion destruyo por completo el cuerpo de Thom, el impacto apenas y bajo una porcion de los escudos del MJOLNIR. El jefe maestro analizo los planos de la nave clase Halcyon y siguio un camino alternativo al puente principal.  En toda la nave los humanos intentaban defender su posicion pero era inutil contra el armamento superior del enemigo. El jefe maestro no intervino en las batallas pues tenia que llegar lo mas rapido posible al puente.&lt;/p&gt;
+
+&lt;p&gt;Al parecer acababan de destruir los controles del MAC, la principal defensa de la nave. La derrota era inminente y segun el protocolo Cole toda la informacion de la nave, es decir Cortana, debia ser destruida o evacuada. El jefe maestro seria el encargado de evacuar a cortana mientras que Keyes intentaba aterrizar la nave en el anillo.&lt;/p&gt;
+
+&lt;p&gt;El Spartan 117 acepto el Chip con la AI y lo introdujo en la red neuronal de su traje, el cual tenia una interfaz directa con su sistema nervioso. Keyes tambien le otorgo una postola estandar de 12.7mm, lo suficientemente poderosa para atravezar la armadura de los Grunts. Asi fue que el jefe maestro inicio su viaje hacia un capsula de escape.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El Elite &lt;strong&gt;Isna ‘Nosolee&lt;/strong&gt; estaba al comando de uno de los grupos de abordaje. Sin embargo tenia ordenes directas de activar su camuflaje activo y no entablar combate a menos que fuera absolutamente necesario. Su mision era capturar la inteligencia artificial de la nave, humanos de alto rango y video sobre el comportamiento humano. Todo esto particularmente dificultoso desde que la guerra con los humanos habia iniciado.&lt;/p&gt;
+
+&lt;p&gt;El elite era clasificado como un Ossoona o “Ojos del Profeta” y habia entrenado para obtener informacion, algo contrario a la cultura guerrera de los Elites.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro habia obtenido un MA5B de 7.62mm y se encontraba combatiendo ferozmente a las fuerzas alienigenas. Continuando su camino se encontro con un marine herido que le recordo de la batalla en Reach. Sus heridas eran demaciado graves y no habia nada que hacer. Al subir unas escaleras de metal se encontro con un Elite a corta distancia que intento golpearlo con su arma pero los reflejos de John le dieron tiempo de evadir el golpe, y descargar todo un cartucho en el costado del alienigena.&lt;/p&gt;
+
+&lt;p&gt;Tan pronto como una bala atravezo la espina dorsal del Elite, este cayo y dos de sus compañeros fijaron su atencion en al nueva amenaza. Sin poder recargar, John decidio utilizar su pistola. Esta pausa era la que los Marines necesitaban y el contrataque con granadas de fragmentacion termino rapidamente con el par de Elites. Las capsulas habian comenzado a partir, el jefe maestro acelero el paso.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;La Oficial de Vuelo, Capitan &lt;strong&gt;Carol Rawley&lt;/strong&gt;, mejor conocida como &lt;em&gt;Foehammer&lt;/em&gt; estaba al frente de un grupo de pilotos que intentaba llegar al angar y salir del Pillar of Autumn en sus naves D77-TC “Pelican”. Preferible morir detras de los familiares controles del transporte universal a dejar su suerte en manos de los pilotos de las capsulas salvavidas.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;La batalla por el control de la nave continuaba ferozmente, un grunt llamado &lt;strong&gt;Yapyap&lt;/strong&gt; era el lider de un pequeño grupo de grunts. Al llegar a una pila de cuerpos de su raza hizo una pequeña reverencia por sus muertes, historicamente los numerosos grunts habian estado al servicio incondicional de las demas razas alienigenas y su uso en combate era principalmente para absorber el fuego enemigo.&lt;/p&gt;
+
+&lt;p&gt;Escucho que uno de los cuerpos se quejaba y penso que uno de sus camaradas, sin embargo al acercase resulto ser un Elite negro de las fuerzas especiales. Por ley los Elites debian de ser benerados como los mensajeros de los profetas, sin embargo en el campo de batalla la ley era más flexible.&lt;/p&gt;
+
+&lt;p&gt;Pensaron en dejarlo morir, sin embargo si lo cargaban de regreso a las naves de abordaje y salvavan su vida no tendrian que combatir. Vivir un dia mas era un lujo para su despreciable raza.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Las fuerzas especiales humanas consistian de ODST (Orbital Drop Shock Troopers) o “Helljumpers”. Los que iban a bordo del Pillar of Autumn estaban encargados de protejer a toda costa la planta de energia experimental que alimentaba a los motores de fusion. El jefe de la resistencia humana en esa seccion era el Mayor &lt;strong&gt;Antonio Silva&lt;/strong&gt;. Entre los heridos del ultimo asalto se encontraba la Lieutenant &lt;strong&gt;Melissa MacKay&lt;/strong&gt;, el ultimo miembro de su escuadron de combate y deseosa de vengar la muerte de sus compañeros.&lt;/p&gt;
+
+&lt;p&gt;Silva recibio las ordenes de Keyes de que todos evacuaran mientras intentaba aterrizar la nave en el anillo. Mientras los marines y la tripulacion abordaba las capsulas salvavidas, los ODST’s estaban entrenados para salir disparados en capsulas individuales y caer directamente en la tierra listos para el combate.&lt;/p&gt;
+
+&lt;p&gt;Todos los sobrevivientes se dirigieron a sus capsulas y fueron disparadoas hacia el anillo. Mientras alguien utilizaba la frecuencia de las capsulas para poner musica y aplacar la angustia de los que moririan en el impacto.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro se encontraba cerca de las capsulas salvavidas cuando un grupo de Grunts le tendio una emboscada y se subieron a su traje intentando encontrar un lugar por donde introducir una granada de plasma. Al sacudirse los alienigenas salieron disparados en todas direcciones y una serie de disparos terminaria con ellos. No habia tiempo que perder y el jefe corrio hacia la capsula antes de que se cerrara.&lt;/p&gt;
+
+&lt;p&gt;Cuando la puerta quedo sellada el piloto acelero la pequeña nave habia el anillo dejando al dañado Pillar of Autumn en su lento curso hacia otra seccion del anillo.  El jefe maestro sabia que el Pillar of Autumn era la unica nave que contaba con un motor Shaw-Fujikawa que les permitiera entrar en Slipspace y viajar más rapido que la luz. Entonces, a menos de que capturaran una nave alienigena y decifraran como utilizarla, todos los sobrevivientes estaban atrapados en el anillo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Foahammer, su copiloto &lt;strong&gt;Frye&lt;/strong&gt;, el jefe de tripulacion Chief &lt;strong&gt;Cullen&lt;/strong&gt; y el resto del grupo llegaron al hangar, al cual no habian llegado todavia los alienigenas. Subieron rapidamente a sus Pelican y despegaron. El Pillar de Autumn estaba entrando a la superficie del anillo por lo para salir del angar tuvieron que atravezar una pared de fuego debido a la friccion acomulada, con la temperatura en el maximo permitido a penas y pudieron controlar a los transportes.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Despues de que la tripulacion habia escapado el covenant concentro sus fuerzas en controlar los motores y el puente o centro de mando. Sin embargo el covenant repentinamente comenzo la retirada, posiblemente porque sabian que la nave estaba por estrellarse y no tenia sentido seguir luchando por su control. Sea la razon que fuera la tripulacion restante luchaba por lograr aterrizar el enorme crusero construido y diseñado para operar en el espacio.&lt;/p&gt;
+
+&lt;p&gt;Keyes sabia que ya fuera que se estrellara o que si alcanzara a aterrizar lo mas prudente era abandonar la nave. Dejo el control a la computadora y su grupo de fieles oficiales de puente se dirigieron a la ultima capsula salvavidas reservada para ellos.  Fue entonces que Keyes noto la pantalla de uno de los controles distorcionarse, se extraño del efecto y sospecho que no se encontraban solos.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Hasta ese momento Isna ‘Nosolee habia logrado mantenerse escondido utilizando su camuflaje activo. Habia logrado su primer objetivo al documentar las batallas y la mayoria de la nave. La IA habia sido destruida o evacuada pero todavia podia capturar a un personal de alto rango, es por ello que se habia mantenido junto a Keyes esperando en el momento en el que pudiera capturarlo. El  momento para capturarlo no se presento  y no tendria otra opcion mas que entrar a la pequeña capsula salvavidas con el resto de los humanos y continuar esperando.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Keyes habia vuelto a notar la distorcion en el aire cuando el ultimo de los oficiales entro a la capsula. Una vez que salieron disparados no podia arriesgarse e instintivamente tomo la pistola del Marine que se encontraba frente a el y disparo al lugar en el que creia se encontraba el alienigena. Keyes se estaba arriesgando a perforar la capsula pero fue recompensado con el cuerpo del Elite que a penas habia tenido tiempo para tomar su pistola.&lt;/p&gt;
+
+&lt;p&gt;Nadie pudo pronunciar una palabra al ver que un alienigena se habia materializado frente a ellos. Keyes le regreso la pistola al Marine cuya mirada estaba fija en el cuerpo del espia.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-2&quot;&gt;Capitulo 2&lt;/h3&gt;
+
+&lt;p&gt;El HEV (Human Entry Vehicle) de Silva, asi como el resto de las capsulas estaban controladas por una inteligencia artificial clase C denominada &lt;strong&gt;Wellsley&lt;/strong&gt;. Esta inteligencia artifical habia identificado una estructura sobre la sima de una montaña que serviria perfectamente como el cuartel general de los supervivientes. Silva nombro a la estructura “Alpha Base”. Los HEV ajustaron su curso hacia la estructura, la cual ya estaba controlada por el Covenant sin embargo los ODST tenian el elemento sorpresa de su lado.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro se encontraba en la capsula Lima Foxtrot Alpha 43 en un aterrizaje de emergencia. Las pequeñas capsulas a penas y estaban diseñadas para planear en la atmosfera, mucho menos para un aterrizaje en una atmosfera desconocida. De repente el piloto perdio el control de la nave y en vez de aterrizar chocaron directamente contra el suelo, el jefe maestro salio disparado hacia un lado y golpeo su cabeza dejandolo aturdido por un momento.&lt;/p&gt;
+
+&lt;p&gt;Cuando recobro la conciencia Cortana le dijo que se prepara para las tropas covenant que se apresuraban a eliminar a los desorganizados y vulnerables sobrevivientes. El jefe maestro salio de la capsula y se encontro en un extraño cañon alienigena, vio que todos los demas tripulantes habian muerto, la unica razon por la que el se encontraba con vida era por la proteccion de su traje.&lt;/p&gt;
+
+&lt;p&gt;El jefe se apresuro a reunir municion y granadas. Salio corriento para obtener un punto de ventaja cuando las tropas Covenant aterrizaran. Fue entonces que se dio cuenta que tendria que lidiar con un par de Banshees que soportaban a la infanteria. Un cartucho directo sobre el Banshee fue suficiente para hacer que explotara y chocara contra el muro de piedra que se encontraba junto a el.&lt;/p&gt;
+
+&lt;p&gt;Atravezo un puente que conectaba las planicies del cañon y empezo a disparar rafagas controladas a las tropas que desorientadas buscaban proteccion del enemigo. La pistola que Keyes le habia dado no estaba diseñada para ser precisa a largo alcance, pero el entrenamiento y la ayuda computarizada del traje le permitia acertar las balas explosivas en donde quisiera.&lt;/p&gt;
+
+&lt;p&gt;Continuo su camino siguendo el contorno del cañon y eliminando a un segundo grupo de enemigos. En este combate un elite logro esconderse y flanquearlo, los reflejos del jefe le permitieron lidiar con el segundo elite a tiempo, la razon por la que habia sido flanqueado es porque en toda su carrera siempre habia combatido en equipo y esta vez se encontraba solo. Comenzo a reconfigurar sus tacticas mientras se dirigia a toda prisa hacia el sonido de una batalla más adelante.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tal vez fue la habilidad de &lt;strong&gt;Lovell&lt;/strong&gt; o mera suerte pero el desenso a la superficie dentro de la capsula salvavidas para la tripulacion del puente transcurrio sin incidentes. Intentaron aterrizar cerca a un cañon para poder tener un poco de covertura de las patruyas aereas, sin saber que al punto de aterrizaje ya se acercaban vehiculos terrestres llamados “Ghosts” tripulados por Elites.&lt;/p&gt;
+
+&lt;p&gt;Una vez dentro del cañon le ordeno a todos que cargaran cuanto pudieran y tomaran tanta distancia como fuera posible del bote salvavidas. Tiraron el cuerpo del elite a un agujero y Keyes observo como el Pillar of Autumn aterrizaba burdamente hacia el sur. Tan pronto como la nave se detuvo en la superficie recibio un mensaje automatizado, enviado por fragmento de cortana que se quedo a aterrizar la nave, el cual informaba que solo ocho porciento de la nave se encontraba operacional, todo lo demas estaba dañado.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A pesar de todos los esfuerzos por mantener los HEVs en un area de aterrizaje reducido, terminaron por esparcirse en un area de tres kilometros de diametro. Todos los supervivientes se reorganizaron y comenzaron de inmediato a contruir el campamento provicional de reunion. McKay hizo el recuento de sus tropas ODST y encontro que de los 130 soldados solo cuatro se encontraban muertos o perdidos.&lt;/p&gt;
+
+&lt;p&gt;Cuando McKay se encontro con Silva comenzaron a realizar la planeacion para el ataque a la motaña con la estructura alienigena, un punto extremadamente defendible de todo ataque que no fuera directo. Desde que aterrizaron Silva se habia puesto en contacto con un puñado de Pelicans que tambien habian logrado aterrizar en el anillo. Ademas de todo varios de los soldados contaban con lanzacohetes M19 SSM que destrozaban a los solitarios banshees que se acababan demaciado.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Yayap se encontraba descanzando en una camara de metano puro despues de haber rescatado el cuerpo del Elite. Su dedicacion por salvar al capitan y salir de la mision suicida fue en extremo peligrosa, al grado de que tuvo que amenazar al piloto para que se desprendiera de la nave enemiga y regresara a la  covenant. Por lo pronto se encontraba enroscado, soñando con su planeta hogar, subitamente Gagaw lo desperto para informarle que el Elite al que habia salvado lo estaba llamando.&lt;/p&gt;
+
+&lt;p&gt;Yayap corrio a su encuentro para descubrir que el Elite de las fuerzas especiales covenant &lt;strong&gt;Zuka ‘Zamamee&lt;/strong&gt; queria reclutarlo como su asistente personal. Esta oferta normalmente seria considerada un honor, atraeria mejores raciones y un rango unico para un grunt el cual seria grabado en los registros sagrados. Sin embargo para Yayap esta oferta unicamente le atraeria una muerte prematura. No tenia otra opcion mas que la de aceptar.&lt;/p&gt;
+
+&lt;p&gt;Zuka ‘Zamamme le informo que recogiera sus cosas porque pronto irian con el consejo maestro a pedir la autorizacion de cazar personalmente al humano aumentado que le habia proporcionado las mortales heridas.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;McKay estaba cansada, mas de medio dia escalando los multiples niveles de la montaña y todavia nisiquiera se encontraban lo suficientemente cerca como para iniciar el ataque. Sin embargo este era el tramo final y pronto se encontrarian con algun tipo de resistencia. El plan era que reunieran a todas las defenzas por delante para realizar un ataque sorpresa aereo por detras, si el covenant intentaba emboscar a McKay, Silva tendria preparados a todos los soldados con lanzacohetes y francotiradores para darles covertura.&lt;/p&gt;
+
+&lt;p&gt;En ese instante Silva se percato de cientos de Ghosts que intentaban realizar un ataque al flanco de McKay. Silva tendria que enviar a los 200 soldados de emergencia a contrarestar a los Ghosts, de lo contrario McKay y el resto de sus tropas serian destruidas. Silva le ordeno a este cuerpo de soldados a formar un rectangulo compacto que pudiera resistir por la mayor cantidad de tiempo posible, las perdidas serian inevitables.&lt;/p&gt;
+
+&lt;p&gt;Una vez que los Ghosts se encontraban lo suficientemente cerca, las tropas abrieron fuego y resulto que la primer linea de Ghosts en caer formo una solida barricada que el resto de los Ghosts tenian que rodear. Un elite de armadura dorada coordino a las tropas para que todas comenzaran a rodear a los soldados en la misma direccion, el torbellino de Ghosts que rodeo a los ODST obligaba al cuadrado a rotar, desorientando a los soldados y dandole la oportunidad al Ghosts mas cercano separarse del grupo y matar a los soldados conforme giraban.&lt;/p&gt;
+
+&lt;p&gt;Silva le ordeno a los francotiradores a concentrar su fuego en el elite dorado y a los lanzacohetes a dirigir su fuego de forma alternada sobre el ghost mas cercano que se separara del grupo. Despues de varios minutos los Ghosts que se separaron del grupo terminaron por consolidar la barricada alrededor del grupo y organizar un efectivo contrataque. El elite dorado sucumbio a los francotiradores y un grupo de Banshees que llego tarde como soporte de los Ghosts fue derivada en poco tiempo gracias a la habilidad de los lanzacohetes.&lt;/p&gt;
+
+&lt;p&gt;Al final de la batalla 23 soldados habian muerto. Una rotunda victoria en cualquier otro momento, sin embargo en este caso se encontraban varados en una estructura alienigena y sin la posibilidad de refuerzos por lo que cada ser humano era invaluable. McKay le envio las buenas noticias a Silva, habian terminado de escalar la montaña y habian agrupado a todas las defenzas alienigenas en un solo lugar para que fueran blanco facil de los Pelicans, si es que llegaban a tiempo.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-3&quot;&gt;Capitulo 3&lt;/h3&gt;
+
+&lt;p&gt;El jefe maestro avanzo hasta una estructura alienigena que lanzaba destellos de algun tipo de plazma hacia el espacio, su proposito era un misterio. Dentro de esta estructura y a sus alrededores un grupo de sobrevivientes intentaba defenderse de las hordas de alienigenas que asaltaban la instalacion.  El jefe maestro se apresuro a ayudar la defenza de los marines al atraer el fuego de los alienigenas.  Antes de que el ultimo grupo pudiera encontrar al Jefe Mestro e intentar un contrataque el grupo de Marines presiono el ataque liderados por el &lt;strong&gt;Sargento Johnson&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Cortana le informo a Johnson que los ODST estaban por asegurar una fortaleza alienigena y establecer el cuartel general, a la vez de que un pelican ya estaba de camino para evacuar a los supervivientes. Antes de que llegara el Pelican un grupo de naves de desenso enemigas comenzaron a aterrizar infanteria alrededor de la instalacion, el jefe maestro hizo lo que pudo para eliminar sistematicamente a los atacantes.&lt;/p&gt;
+
+&lt;p&gt;Finalmente llego Echo 419, el Pelican de evacuacion y Cortana detecto otros tres grupos de supervivientes que habian aterrizado cerca y se encontraban en una situacion similar. Cortana le pidio a Foahammer que soltara el Warthog y esperara ordenes para evacuar a los demas supervivientes. Tan pronto como el jefe maestro se subio al Warthon uno de los soldados de Johnson llamado &lt;strong&gt;Fitzgerald&lt;/strong&gt; se subio y tomo el lugar de la torreta antiaerea LAAG 12.7x99mm&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A pesar de que la proteccion del cañon resulto ideal al inicio no paso mucho tiempo para que el covenant encontrara al grupo de supervivientes e iniciara una mision de captura. Era evidente de que su objetivo no era matarlos sino capturarlos, mientras tanto los constantes ataques que hasta el momento habian resultado inefectivos fisicamente habian logrado quebrar la moral y estado mental del grupo. &lt;strong&gt;Dowski&lt;/strong&gt; estaba al borde de la locura y pensaba que lo mejor seria rendirse para evitar que el coventant cambiara de opinion y los matara en un instante.&lt;/p&gt;
+
+&lt;p&gt;Keyes estaba harto de sus constantes quejas y decidio amarrarlo para dejarlo a su suerte. Si lo que queria era rendirse le concedio su deseo, mientras tanto el y su grupo intentarian escapar hasta el ultimo aliento. Dowski pronto fue encontrado por el grupo de Elites que perseguia a Keyes.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El piloto Peterson cargo a tantos ODST de Silva como pudo y los llevo al ataque aereo sorpresa que habia iniciado. McKay continuaba el asalto y con el soporte aereo ya se encontraban penetrando la instalacion. Se tomaron un momento para descanzar, recoger cuantas armas alienigenas pudieron de la barricada externa al complejo y continuaron su asalto.&lt;/p&gt;
+
+&lt;p&gt;Cuando McKay logro llegar a la cima de la instalacion se encontro con Silva que habia tomado el ultimo pelican para atacar el techo de la estructura a donde se habian retirado lo que quedaba de las fuerzas alienigenas. Silva le dio la bienvenida a la recien tomada fortaleza, denominada provicionalmente como “Base Alfa”.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro introdujo el Warthog a un antiguo tunel que le permitiria llegar rapidamente a los sobrevivientes del valle que se encontraba al otro lado de una montaña. Se sorprendio de cuan gigantesca era la instalacion que la montaña albergaba en su interior y solo podia imaginar las razones por las que requeria de dicho espacio.  De repente se encontraron con una barricada de covenant que resguardaban el tunel. Fitzgerald hacia lo que podia para repeler el fuego enemigo pero al final fue derribado con una pua del Needler enemigo.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro dejo el asiento del piloto, repelio el ataque Grunt y trato las heridas de Fitzgerald antes de ir en busca de los controles del punte que necesitaban cruzar.  Antes de llegar a ellos se encontro con un Elite color purpura que intento entablar un ataque cuerpo a cuerpo, el jefe maestro actuo rapidamente y prefirio esquivar su golpe y tomar el tiempo para tirar una granada a sus pies mientras el se lanzaba detras de una pared.&lt;/p&gt;
+
+&lt;p&gt;Sin más enemigos activo un puente hecho de luz y continuo su camino por el tunel. Una vez fuera del tunel el rescate de 63 sobrevivientes dependio de una gran maestria por parte de Fitzgerald en la torreta y de el jefe maestro en el volante. Antes de que terminara el dia el ultimo marine subio al Pelican Echo 419 y tomar su curso con direccion a la Base Alfa.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;La nave de desenso alienigena se encontraba sobre el grupo de supervivientes de Keyes. Sin embargo estaban tan cansados por combatir y correr las ultimas tres horas que no tenian fuerzas nisiquera de levantar sus armas. El grupo de elites que se acerco a Keyes, iba acompañado por Dowski quien delato a Keyes como el capitan del Pillar of Autumn. En ese instante los elites mataron sistematicamente a todos, incluyendo al traidor y se llevaron a Keyes consigo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro se encontraba revisando su traje cuando un soldado le dijo que Silva preguntaba por el y que le queria informar de la situacion inmediatamente. Tambien le dijo que le prohibia llevar su armadura a la reunion.  El jefe maestro un tanto resignado a separarse de su armadura fue corriendo a ver a Silva. Silva le dijo que consideraba el proyecto SPARTAN un intento deseperado de la humanidad por convertir a la especie humana en un experimento biologico destinado a fracasar, sin embargo necesitaria de las habilidades especiales del jefe maestro para la mision suicida que estaba a punto de proponer: rescatar a Keyes.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A pesar de que la nave maestra Truth and Reconciliation se encontraba en reparaciones urgentes debido al encuentro con el Pillar of Autumn, se habia posicionado peligrosamente cerca del anillo para servir como base de las operaciones terrestres destinadas a exterminar a los humanos. Zuka ‘Zamamee se apresuraba por llegar temprano a su reunion con el Consejo de Maestros para pedir su autorizacion y bendicion en la mision de asesinato.&lt;/p&gt;
+
+&lt;p&gt;Finalmente, despues de una eternidad de espera pudo reunirse con el Profeta de la nave y con su asistente &lt;strong&gt;Soha ‘Rolamee&lt;/strong&gt;. Ambos escucharon su caso pero el Profeta pronto determino que los reportes del exepcional humano tendrian que ser exageraciones y le prohibio entablar su mision suicida. Mientras se retiraba a su cuartel se encontro con una procesion de alienigenas que cargaban al capitan Keyes a su celda despues de su tercer interrogamiento. Su entrenamiento para la tortura habia resultado efectivo hasta el momento, pero solo seria cuestion de tiepo para que el covenant obtuvieran lo que buscaban de su corteza neuronal.&lt;/p&gt;
+
+&lt;p&gt;En un acto de deseperacion Zuka ‘Zamamee asalto de un golpe a Keyes y le pregunto la ubicacion del SPARTAN. Keyes vio la herida en el cuerpo del elite y le dijo que desconocia su hubicacion, pero que si pensaba en volver a reunirse con el que la proxima vez intentara cubrirse más rapido. Era evidente que esto era una provocacion para que el elite perdiera el control y le disparara, sin embargo Zamamee supo controlarse y dejo que la procesion continuara.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-4&quot;&gt;Capitulo 4&lt;/h3&gt;
+
+&lt;p&gt;Misiones de reconocimiento confirmaron que los sensores de Truth and Reconciliation estaban dañados y no detectaban una zona por debajo de la nave alienigena. Incluso mas importante es que Wellsley habia logrado interceptar un codigo Covenant para hacer pasar un grupo de Pelicans como naves de abordaje enemigas. El proposito de la mision era rescatar a Keyes, sin embargo tambien enviara un poderoso mensaje al covenant de que los humanos estaban organizados.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro se encontraba con un grupo de ODST’s con camuflaje y una serie de silenciadores y snipers. A pesar de todas las precauciones al llegar al elevador gravitatorio de la nave se encontrarian rodeados por fuego enemigo. Es en este momento cuando los refuerzos llegarian. El jefe maestro lidereo la excursion hasta el elevador, a traves de los pasadizos del cañon alienigena, eliminando enemigos con su rifle francotirador S2 AM, en especial las torretas de plasma conocidas como Shades.&lt;/p&gt;
+
+&lt;p&gt;Una vez que llegaron al elevador, el jefe maestro se subio a un Shade y despejo el area y los multiples refuerzos enemigos con el uso de la torreta. Una vez que todos los refuerzos provenientes de naves de desenso murieron, es cuando comenzaron a llegar refuerzos directamente del elevador, incluyendo Hunters.&lt;/p&gt;
+
+&lt;p&gt;Los marines, bajo el comando del &lt;strong&gt;Sargento Parkers&lt;/strong&gt; mantenieron su posicion pero no podian derribar a los Hunters. Usando el Shade el Jefe maestro logro matar a uno, sin embargo su compañero logro un disparo directo a la torreta del jefe maestro, lanzandolo por los aires. Al recobrar su compostura el Hunter habia corrido hacia el para aplastarlo con su escudo, sin embargo el jefe logro esquivarlo en el ultimo segundo y descargar un clip de MA5B en la unica seccion no blindada del alienigena. Llegaron los refuerzos, todos se reunieron en el elevador gravitatorio y una vez dentro de la nave Cortana localizo a Keyes mediante su CNI (Command Neural Interface).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;En Alpha Base comenzo subitamente a llover, mojando todo el equipo y uniformes de los soldados que se habian reunido en el pad de despegue con McKay para una nueva mision: recuperar el Pillar of Autumn. Por lo menos el tiempo suficiente para recuperar el equipo mas urgente de la nueva base principal. Silva dio el ultimo discurso al equipo que bien podria dirigirse a una mision suicida y el equipo partio a la ultima localizacion conocida del Pillar of Autumn.&lt;/p&gt;
+
+&lt;p&gt;Echo 419 se encontraba aterrizando una de las torretas Shade rescatadas de la mision para rescatar a Keyes. Las defensas del cuartel general continuaban mejorando al paso de los dias.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El equipo de rescate se encontraba alerta a cualquier señal alienigena sin embargo todo se encontraba en un profundo silencio. Comenzaron a avanzar a la primer puerta y un Elite confundido fue asaltado por el jefe maestro que entablo combate cuerpo a cuerpo con la esperanza de mantener el elemento sorpresa, sin embargo no fue asi.&lt;/p&gt;
+
+&lt;p&gt;Cada paso que el equipo daba, se encontraban con un incremento de fuerzas enemigas hasta que llegaron al hangar principal desde donde recibieron fuego desde todas direcciones. Un Hunter se unio a la lucha y golpeo a Parker lanzandolo contra una pared. Pronto se encontraba junto al sargento para dar el golpe de gracia cuando el jefe maestro concentro su fuego en el alienigena para distraerlo. Cuando el hunter se volteo Parker saco su pistola M6D y logro dar un tiro perfecto a las entrañas del alienigena cortando algun sistema vital y matandolo al instante.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro ayudo a Parker a levantarse y le dio un nuevo rifle. Aunque con heridas criticas, el rush de adrenalina y coctel de quimicos le permitio continuar. Los marines sobrevivientes continuaron por los confusos pasadizos, pero alentaban enormemente al jefe maestro que tenia que enfocarse en protejerlos de vez en cuando.&lt;/p&gt;
+
+&lt;p&gt;Le pidio a Parker que se quedaran dentro del puente y que el iria por Keyes. Parker accedio y el jefe maestro pudo inspeccionar las multiples salas de contencion con mayor rapidez. Al llegar a la sala de contencion correcta se encontro con un grupo de elites en camuflaje activo. El jefe maestro se esforzo por distinguir las pequeñas imperfecciones de luz en la sala y enfoco su fuego en ellas. Era evidente que el uso del camuflaje debilitaba considerablemente los escudos de energia de los Elites.&lt;/p&gt;
+
+&lt;p&gt;Finalmente llego a los controles de las celdas y Keyes salio de una de ellas junto con un grupo de Marines que habian sido prisioneros desde que aterrizaron en el anillo. Keyes le pidio que saliran lo antes posible y siguiendo el camino de cuerpos alienigenas el jefe maestro regreso sobre sus pasos.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El pelican 206 y el 136 del Lieutenant &lt;strong&gt;Cookie Peterson&lt;/strong&gt; puso al grupo de ODST’s de McKay a un klick del Pillar of Autumn. Por un momento McKay sintio duda en el exito de la mision, pero logro recordar el mejor consejo que su instructor le habia dado muchos años antes: “Cuando seas lider, mira a tu alrededor y preguntate quien es el mejor para que se logre el trabajo correctamente. No el mejor del mundo, simplemente el mejor a tu alrededor. Si esa persona existe, pideles que sean los lideres y apoyalos en la mejor manera posible. Si esa persona no existe has tu mejor esfuerzo. Eso es lo unico que todos podemos hacer.”&lt;/p&gt;
+
+&lt;p&gt;En el grupo el &lt;strong&gt;Sargento Lister&lt;/strong&gt; y &lt;strong&gt;Lieutenant Oros&lt;/strong&gt; eran los unicos que se reportaban directamente con McKay. Un pequeño grupo de reconocimiento iria hasta enfrente de ambos platones de tropas e informarian en cadena cualquier actividad enemiga. Avanzar tardaria tiempo pero les permitiria evitar una emboscada directa.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Mientras el grupo de Keyes y el jefe maestro regresaban al hangar, Cortana logro decifrar mensajes encriptados sobre el proposito del anillo como un arma de destruccion masiva a escala galactica. Keyes sabia que si el covenant lograba utilizar los supuestos poderes galacticos del anillo lo harian en primera instancia para eliminar a los humanos. La prioridad de todo humano en el anillo se habia convertido instantaneamente en impedir que el covenant controlara el arma.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro estaba de acuerdo, sin embargo tambien entendia que la prioridad era salir con vida de Truth and Reconciliation. Se apresuraron y llegarn a donde se habia quedado el grupo del sargento Parker. Todos habian muerto y sobre ellos flotaban unas espadas de plasma. El jefe entendio de inmediato que se trataba de mas Elites en camuflaje activo y decidio abrir fuego.&lt;/p&gt;
+
+&lt;p&gt;Al eliminar a los Elites y regresar por fin al hangar Cortana intento comunicarse con Foahammer, sin embargo se encontraba combatiendo a un trio de banshees y no podria recojerlos. Keyes le dijo a cortana que su unica salida seria capturar una nave de desenso enemiga e intentar pilotearla. Encontraron una nave vacia en el hangar y se subieron rapidamente, Keyes logro activar los controles y escaparon del crusero enemigo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Zuka ‘Zamamee y Yayap se sorprendieron del increiblemente reforzado perimetro que se encontraba alrededor del elevador gravitatorio. Se apresuraron a su cita con el consejo de Elites quienes le mostraron los videos de seguridad.&lt;/p&gt;
+
+&lt;p&gt;Las camaras de video y el conteo preliminar sugeria que el humano aumentado habia matado a 60 veteranos mientras que solo habian muerto 36 humanos. Debido a los recientes eventos, Zuka tenia el permiso del consejo para asesinar al humano a toda costa. Rolamee, el asistente del profeta le dijo que habia recibido reportes que en la mayor batalla desde que la guerra habia iniciado la mayoria de los humanos aumentados habian muerto. Este podria ser el ultimo de su especie.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-5&quot;&gt;Capitulo 5&lt;/h3&gt;
+
+&lt;p&gt;La lluvia se detuvo tan repentinamente como habia comenzado. Dos banshees y un conjunto de ghosts patrullaban el area donde el crusero humano se habia estrellado.&lt;/p&gt;
+
+&lt;p&gt;Estaba por amanecer y los platones de ODST’s estaban anciosos por destruir a las patruyas con una combinacion de cohetes y metralletas. Finalmente McKay dio la orden y a menos de un minuto de combate las defensas covenant cayeron. Este paso era crucial si querian atravezar la planicie que los separaba de la nave.&lt;/p&gt;
+
+&lt;p&gt;Todos corrieron tan rapido como pudieron pero una nave de desenso llena de infanteria subestimo los francotiradores de McKay e intento poner refuerzos entre ellos y el crusero. La infanteria covenant nisiquera tuvo tiempo de bajar de la nave cuando las rondas perforaron algun punto vital de la nave haciendo que se estrellara en una explosion de plasma. McKay fue la ultima en entrar a la nave pero se dio cuenta que la mision a penas comenzaba cuando escucho el sonido de los rifles automaticos en el frente del grupo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Keyes se encontraba en Alpha Base recuperandose de la interrogacion covenant y del exhaustivo escape de Truth and Reconciliation. Al despertarse admiro el captivante paisaje que la estructura proporcionaba del anillo.&lt;/p&gt;
+
+&lt;p&gt;Silva se reunio con el milagroso sobreviviente y comenzaron a discutir las implicaciones de que Halo fuera un arma de destruccion masiva. El rescate de Keyes le dio el tiempo suficiente para aprender junto con Cortana que la tecnologia Covenant no habia sido desarrollada por las distintas razas alienigenas sino que habia sido descubierta y adaptada de lo que creian eran antiguos dioses denominados los Forerunners.&lt;/p&gt;
+
+&lt;p&gt;Al parecer la construccion mas monumental de esta antigua civilizacion fueron el anillo en el que habian aterrizado. Inmediatamente de que regresaron a Alpha Base Keyes le ordeno al jefe maestro que encontrara y obtuviera control del Cuarto de Control del anillo.&lt;/p&gt;
+
+&lt;p&gt;Silva comenzo a discutir su repulsion por el programa SPARTAN pero Keyes lo convencio de que aunque no correcto o humano lo que le habian hecho pasar a estas personas los resultados justificaban los medios en estos tiempos tan deseperados en los que de que el Covenant encontrara la tierra la humanidad misma podria desaparecer.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Zuka ‘Zamamme habia analizado arduamente la red Covenant y descubierto que la Inteligencia Artificial humana se habia interesado en analizar la informacion relacionada con la busqueda del Cuarto de Control del anillo. Suponiendo que habian obtenido la localizacion era de esperarse que enviarian al humano aumentado a capturar este punto critico para el covenant.&lt;/p&gt;
+
+&lt;p&gt;Fue de inmediato a la isla que daba acceso al interior del anillo y comenzo a contruir la emboscada que esperaba mataria al humano aumentado.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;McKay habia logrado capturar las partes mas vitales de la nave. Los almacenes que contenian vehiculos, comida, armas y municion. El resto de la nave estaba fuertemente controlada por el covenant lo que significaba una continua batalla por mantener el control del perimetro mientras cargaban los vehiculos en el hangar.&lt;/p&gt;
+
+&lt;p&gt;La llegada de banshees y ghosts al lugar fue rapida, sin embargo fueron destruidos inmediatamente por el fuego combinado de cuatro tanques Scorpion M808B y las metralletas de dos Pelicans.&lt;/p&gt;
+
+&lt;p&gt;Cuando los 28 Warthogs no podian cargar mas peso es que la lenta carabana de vehiculos terrestres comenzo su regreso a Alpha Base.&lt;/p&gt;
+
+&lt;p&gt;Incluso un exoesqueleto Cyclops y dos Cañones Espaciales habian sido rescatados y eran arrastrados a la espera de que regresaran los Pelicans a cargarlos. Oros coordino la columna de vehiculos exclamando “Semper Fi”.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Dos pelicans habian aterrizado dos docenas de marines, un Warthog y al jefe maestro para tomar control del supuesto Cuarto de Control en una pequeña isla fuertemente fortificada por tropas Covenant.&lt;/p&gt;
+
+&lt;p&gt;Cortana informo que en realidad en la isla se encontraba el Cartografo Silencioso, un mapa detallado del anillo con el cual podrian encontrar el Cuarto de Control. Una vez que aseguraron la costa de la isla el jefe maestro se adentro a la misma con el Warthog.&lt;/p&gt;
+
+&lt;p&gt;Dentro de la isla se encontraban imponentes estructuras alienigenas y en su interior las puertas del cartografo silencioso. Sin embargo estas puertas estaban selladas y el jefe maestro necesitaria un equipo de demolicion para derribarlas. Salio de la estructura y busco una segunda instalacion con la esperanza de que encontrara otra forma de entrar al complejo.&lt;/p&gt;
+
+&lt;p&gt;En su busqueda se topo con un par de Hunters que intentaron emboscarlo. Una bola de plasma le dio directamente en el pecho destruyendo por completo su escudo de energia y lanzandolo entre los arbustos. Aprovechando que se encontraba en terreno alto lanzo todas sus granadas de fragmentacion a medida que rodeaba a los alienigenas. Estos al intentar bloquear las explosiones con sus escudos no pudieron darse la vuelta y protejer sus vulnerables espaldas al fuego automatico del jefe maestro.&lt;/p&gt;
+
+&lt;p&gt;Incluso para el jefe maestro las hordas de enemigos estaban extrañamente organizadas, intentando emboscarlo continuamente. Por primera vez parecia que esperaban un ataque frontal, o verdaderamente este mapa era critico para los objetivos del Covenant.&lt;/p&gt;
+
+&lt;p&gt;Al encontrar una segunda estructura se adentro y se encontro con un hangar de contenedores alienigenas extrañamente posicionados. La baja visibilidad del lugar activo su vision nocturna, sin embargo el instito de combate tambien se activo en un lugar tan claustrofobico. De repente una pareja de Hunters camuflajeados salio corriendo para destrozar al jefe maestro con sus escudos.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro intento disparar a los alienigenas pero estaba acorralado y ya no tenia granadas con las cuales detenerlos. Su unico plan era esquivar los golpes en el momento preciso y retirarse por donde habia entrado al hangar.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Zuka ‘Zamamee salio de su escondite con una gran grupo de grunts para terminar el trabajo si los Hunters eran derribados por el humano. Sin embargo antes de que los Hunters pudieran atacar al humano un grunt denominado Linglin se puso nervioso y vacio su pistola de plasma en la direccion del humano matando de un tiro a uno de los Hunters, el cual al caer tiro al otro y le dio la oportundiad al jefe maestro de dispararle a las partes vulnerables del alienigena caido.&lt;/p&gt;
+
+&lt;p&gt;Zuka ‘Zamamee anticipando que el desorganizado grupo de grunts serian eliminados en poco tiempo decidio esconderse junto con yayap en uno de los contenedores.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro estaba completamente alerta con una cantidad de hormonas sinteticas viajando a travez de su sangre. Sus reflejos se habian agudizado con el repentino ataque que el tiempo parecia correr en camara lenta.&lt;/p&gt;
+
+&lt;p&gt;Al final del hangar el jefe maestro fue recompensado con los controles de seguridad de las puertas principales que se encontraban selladas en el Cartografo Silencioso. Una vez desactivado el sistema de seguridad retomo sus pasos para regresar a las puertas de la instalacion.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-6&quot;&gt;Capitulo 6&lt;/h3&gt;
+
+&lt;p&gt;Las tres columnas de vehiculos completamente cargados avanzando lentamente por la planicie estaban siendo lentamente rodeados por refuerzos covenant, justo fuera de su linea de fuego. McKay sabia que solo era cuestion de tiempo para que el covenant lanzara un ataque masivo contra su posicion.&lt;/p&gt;
+
+&lt;p&gt;La Lieutenant Oros se encargaria de comandar a los Warthogs para destruir a los banshees. El sargento Lister comandaria el escuadron de Scorpions para destruir a vehiculos terrestres. Siendo la parte mas valiosa del cargamento se los agrupo en el centro. El tercer grupo bajo McKay estaban compuestos por 5 warthogs sin cargamento que deberian rodear al grupo y atacar rapidamente a cualquier ghost o infanteria que se acercara.&lt;/p&gt;
+
+&lt;p&gt;Cuando la planicie termino y la region montañosa que los separaba de Alpha Base inicio McKay tenia dos opciones, intentar subir las montañas y obligar al grupo de vehiculos a viajar en fila india, diluyendo considerablemente su defensa o atravezar un gran cañon con suficiente espacio para mantener su formacion pero dejandolos vulnerables a cualquier artilleria que se encontrara instaladas en los riscos aledaños.&lt;/p&gt;
+
+&lt;p&gt;Decidio atravezar el cañon y esperar que el covenant no hubiera construido defensas en la sima del risco para detener por completo al grupo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Ado ‘Mortumee&lt;/strong&gt; observaba al grupo humano que se acercaba lentamente a su posicion. Ado era uno de los mensajeros del profeta, enviado para observar y dar un informe detallado de la victoria del comandante &lt;strong&gt;Noga ‘Putumee&lt;/strong&gt;. Noga inicio el ataque.&lt;/p&gt;
+
+&lt;p&gt;Una oleada de banshees se acerco al grupo pero no podian contra el fuego concentrado de los Warthogs. Noga ordeno que se dispersaran y unicamente atacaran cuando se sintieran seguros de que no podrian ser alcanzados por el fuego humano. Mientras tanto los tanques del covenant, denominados Wraiths comenzaron a disparar sus lentos orbes de plasma hacia el enemigo.&lt;/p&gt;
+
+&lt;p&gt;Los tanques comenzaron su contrataque y los vehiculos que se encontraban libres comenzaron su contrataque contra el grupo de Ghosts que se habia acercado de forma suicida a su linea de fuego. Los tanques lanzaron su ultimo disparo debido a que no podian elevar sus cañones a tan corta distancia de los riscos, uno de los morteros exploto.&lt;/p&gt;
+
+&lt;p&gt;Noga ordeno que el segundo mortero se detuviera por la oleada de Ghosts que se acercaban a enfrenter al grupo por delante y por detras cuando entraran al cañon.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Corporal &lt;strong&gt;“Snaky” Jones&lt;/strong&gt; estaba perdido. Uno de los disparos del banshee habia volteado su warthog y el radio habia dejado de funcionar. El grupo principal de vehiculos no se podia detener y lo dieron por muerto. Ahora se encontraba solo, unicamente con su equipo individual de supervivencia, muchisima municion y su rifle francotirador.&lt;/p&gt;
+
+&lt;p&gt;Se dio cuenta de que si corria lo suficientemente rapido podria alcanzar a subir el risco del cañon al que habia entrado el grupo, encontrar una cueva y disparar al otro lado del cañon al campamento covenant de donde habia surgido la oleada frontal de ghosts.&lt;/p&gt;
+
+&lt;p&gt;Una vez en posicion disparo y logro matar a Ado Mortumee. El comandante ordeno a sus banshees que mataran al francotirador y se retiro a la relativa seguridad de su campamento. Los tanques humanos habian logrado derribar al ultimo mortero y solo era cuestion de tiempo para que el grupo de ghosts fuera destruido.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Una vez que el sistema de seguridad del Cartografo Silencioso fue desactivado el jefe maestro salio a la superficie de la isla. Un grupo de elites en camuflaje intento emboscar al jefe maestro sin embargo sus reflejos eran incomparables y al primer disparo enemigo supo a donde apuntar. Una vez en la superficie el pelican Bravo 22 fue atacado por un grupo de banshees y se estrello en la costa.&lt;/p&gt;
+
+&lt;p&gt;Una patriuya de infanteria se habia acercado al incidente para matar a cualquier sobreviviente cuando el jefe maestro se acerco corriendo a auxiliarlos. Sin embargo una vez que los grunts y jackals habian muerto descubrio que toda la tripulacion habia muerto en el siniestro. Sin embargo abrio el cargamento y encontro una serie de lanzacohetes que le serian utiles en el caso de que se volviera a encontrar con grupos de Hunters.&lt;/p&gt;
+
+&lt;p&gt;Tambien se encontraba junto a un vehiculo warthog que utilizo para rodear la isla por la costa y regresar con el grupo de marines que habia tomado la playa. Cuando llego el grupo se veia agotado, acababan de repeler el segundo contrataque y habian perdido a la mitad de sus fuerzas, sin embargo su espiritu continuaba intacto.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El hunter &lt;strong&gt;Igido Nosa Hurru&lt;/strong&gt; y &lt;strong&gt;Ogada Nosa Fasu&lt;/strong&gt; era la linea de defensa frontal contra el humano aumentado que habia matado recientemente a cuatro de sus hermanos.  Cuando el warthog que llevaba al jefe maestro aparecio&lt;/p&gt;
+
+&lt;h3 id=&quot;chapter-7&quot;&gt;Chapter 7&lt;/h3&gt;
+
+&lt;p&gt;Zuka habia entrado al Truth and Reconciliation, pasado por los mismos protocolos de seguridad y entrado al consejo del profeta en tiempo record. Esto le sento bien al Elite hasta que descubrio que en la sala del consejo se encontraba la cabeza de Rolamee sobre un pedestal.&lt;/p&gt;
+
+&lt;p&gt;Un holograma del profeta aparecio y señalo la cabeza del Elite. Luego le dijo a Zuka que la muerte de su compatriota habia sido a causa de su incompetencia para contener un arma biologica que habian creado los profetas, posiblemente como una forma de defender al anillo de los infieles. El profeta sabia del reciente fracazo de Zuka para matar al humano aumentado y le pregunto sobre su siguiente plan para matarlo de una vez por todas.&lt;/p&gt;
+
+&lt;p&gt;Si Zuka lograba convencer al profeta con su nuevo plan, este lo dejaria ir con vida. Afortunadamente Zuka iba preparado y salio rapidamente de la sala para reunirse con Yayap, por primera vez el exito no dependia del honor o la gloria si no de su supervivencia.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro a bordo del pelican de Foahammer decendio a las entrañas metalicas del anillo y bajo de la nave sobre una plataforma defendida por el covenant. Al neutralizar a los enemigos y siguiendo las direcciones de cortana continuo su decenso por los tuneles de mantenimiento del anillo.&lt;/p&gt;
+
+&lt;p&gt;El camino fue largo pero finalmente salio al &lt;em&gt;exterior&lt;/em&gt; y se encontro con un nivel del anillo de varios kilometros de altura estaba siendo asaltado por una tormenta de nieve.&lt;/p&gt;
+
+&lt;p&gt;Mientras el jefe maestro continuaba su camino a la ubicacion del centro de control un pelican iba en picada y solicitaba refuerzos inmediatamente. El pelican pertenecia al Fireteam Zulu, uno de los exploradores de Alpha Base.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro se apresuro a ayudarlos, cuando llego los sobrevivientes estaban atrapados bajo el intenso fuego enemigo de torretas de plasma, un ghost y hasta un Wraith.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro tomo posesion de un Shade e intento repeler a los enemigos pero era inutil, decidio ir por uno de los warthogs que llevaba el Pelican y confiar en la punteria de sus tripulantes.&lt;/p&gt;
+
+&lt;p&gt;Destruir al Wraith fue el principal problema, el jefe maestro razono que si lograba acercar el warthog lo suficiente, el mortero no podria disparar a menos que estubiera dispuesto a correr el riesgo de dañarse a si mismo. Sin embargo el tanque enemigo tenia un truco bajo la manga, este podia revertir la energia utilizada en la creacion de los morteros para generar un repentino impulso que chocara contra el warthog con la extremadamente blindada parte frontal.&lt;/p&gt;
+
+&lt;p&gt;Gracias a las habilidades del jefe maestro, puderon evitar el impulso del mortero y situarce en su parte trasera en donde una serie de balas pudo penetrar el blindaje y destruir una parte vital del tanque, haciendo que explotara repentinamente en una bola de fuego.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro continuo hasta donde pudo con el warthog, pero en un punto la inclinacion de una montaña lo obligo a continuar el viaje a pie.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Alpha Base habia estado demaciado calmada desde el ultimo ataque covenant. Al parecer se estaban organizando para realizar un verdadero y definitivo ataque final. Silva estaba paranoico, habia redoblado las patruyas aprovechando la pausa para obtener informaciond el terreno y de otras estructuras que pudiera fortificar, tenia que expandir su territorio y por gracia de algun milagro encontrar alguna forma de salir del anillo.&lt;/p&gt;
+
+&lt;p&gt;McKay se encontraba en una de las patruyas cuando encontraron un ghost volteado, como si hubiera chocado. El resto de las patruyas se reunieron, alertas a una emboscada. Lograron establecer un perimetro, llamar por refuerzos y McKay se acerco a pie al lugar del accidente. Alrededor del ghost habia un enorme charco de sangre alienigena y el cuerpo del conductor, un grunt.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Yayap se encontraba junto al Ghost descompuesto esperando su rapida muerta tan pronto fuera descubierto por los humanos. Zuka sabia que el humano aumentado tenia que estar en la unica base humana del anillo o por lo menos regresar a ella en algun punto.&lt;/p&gt;
+
+&lt;p&gt;El plan que habia ideado es que Yayap fuera capturado y en el momento que supiera que el humano aumentado estaba de regreso enviara una señal que le permitiera a un equipo especializado de elites veteranos infiltrarse a la instalacion, matar al humano aumentado y de paso destruir las defensas de la base para que los refuerzos pudieran exterminar al resto de los humanos.&lt;/p&gt;
+
+&lt;p&gt;El primer paso de su plan fue un exito, Yayap fue amarrado y las raciones de alimento del Ghost fueron recuperadas por la expedicion de regreso a la base alpha. El unico problema era el metano, Yayap se sofocaria en un futuro proximo si los humanos no descubrian su necesidad biologica o lo mataban antes de tiempo.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;El jefe maestro habia logrado llegar al centro de control y sus monoliticas puertas de metal. El interior de las puertas podria contener facilmente uno o varios pelicans. El jefe maestro abrio las puertas y se regreso a un Shade que habia eliminado previamente, el grupo de contrataque covenant que se habia agrupado en la puerta para repeler al enemigo fue sorprendido con una lluvia de plasma, afortunadamente para el jefe maestro detras de las puertas se encontraba un enorme tunel artificial sin covertura, la infanteria no tuvo como protejerse y murio tan pronto como salieron de la puerta.&lt;/p&gt;
+
+&lt;p&gt;El jefe maestro se adentro al tunel y la colosal puerta se cerro por detras. Continuo caminando hasta salir a una esfera de varios kilometros de diametro, el tunel se convertia en una plataforma de cristal que seguia el radio de la esfera hasta llegar a un panel en el centro junto con un holograma del planeta Threshold y del anillo.&lt;/p&gt;
+
+&lt;p&gt;Alrededor de la esfera giraba otro gigantesco holograma del anillo de cientos de metros de diametro, el hologama era extremadamente realista. El jefe maestro activo el panel y sintio como cortana dejaba su implante neuronal y era transmitida al panel. Una vez dentro de el utilizo los proyectores de la sala para generar una proyeccion holografica de si misma.&lt;/p&gt;
+
+&lt;p&gt;El jefe le pregunto si podia utilizar el anillo como un arma para eliminar al covenant. Cortana se mostro distante, desconectada de la realidad por la inmesurable cantidad de informacion a la que habia sido expuesta. Cientos de miles de años de investigacion y desarrollo cientifico habian ocurrido en el anillo, apenas y podia relegar poder de procesamiento a su conversacion con el espartan.&lt;/p&gt;
+
+&lt;p&gt;Cortana comenzo a gritarle que no habia tiempo para dar explicaciones, Keyes se encontraba en un peligro mortal y el jefe debia ir a rescatarlo de inmediato. Ella se tenia que quedar en la terminal si queria evitar que el covenant utilizara el anillo. Sabiendo de que cortana controlaba cualquiera que fuera el arma del anillo, analizo sus opciones y opto por un cambio de prioridades. Salio de inmediato de la sala de control para rescatar a Keyes de este misterioso enemigo.&lt;/p&gt;
+
+&lt;h3 id=&quot;capitulo-8&quot;&gt;Capitulo 8&lt;/h3&gt;
+
+</description>
+        <pubDate>Tue, 26 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/literatura/2017/09/26/TheFlood.html</link>
+        <guid isPermaLink="true">http://localhost:4000/literatura/2017/09/26/TheFlood.html</guid>
+        
+        <category>Halo</category>
+        
+        <category>Secuela</category>
+        
+        <category>VideoJuego</category>
+        
+        <category>William</category>
+        
+        <category>Dietz</category>
+        
+        <category>Seattle</category>
+        
+        
+        <category>Literatura</category>
+        
+      </item>
+    
+      <item>
+        <title>Space Collective</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/Images/butdoesitfloat.jpg&quot; alt=&quot;But Does It Float&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://spacecollective.org/&quot;&gt;Space Collective&lt;/a&gt; es un sitio fundado en 2007  por el director de cine &lt;a href=&quot;http://www.imdb.com/name/nm0196350/&quot;&gt;Rene Daalder&lt;/a&gt; y el diseñador interactivo &lt;a href=&quot;http://superfamous.com/&quot;&gt;Folkert Gorter&lt;/a&gt;. Dedicado a recopilar ideas relacionadas con el planeta, el universo y nuestro futuro como seres humanos. El sitio surje como un experimento originado en el posible nacimiento de una conciencia colectiva a traves del internet.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El internet ha reabierto cuestiones fundamentales sobre nuestro entendimiento del universo y nuestro deber hacia esta nueva identidad mundial, propios de la era del espacio informatico. Los seres humanos nos estamos combirtiendo en una sola entidad planetaria y tenemos que contribuir hacia esta nueva identidad a traves de las ideas que dejemos a las futuras generaciones.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;El sitio tiene un &lt;a href=&quot;http://spacecollective.org/recent&quot;&gt;blog publico&lt;/a&gt; con mas de 5700 posts. Cada usuario tiene derecho a guardar una &lt;a href=&quot;http://spacecollective.org/timecapsules/&quot;&gt;capsula del tiempo&lt;/a&gt; en donde puede publicar informacion que quiera dejar para la posteridad, actualmente se han creado 3000 capsulas.&lt;/p&gt;
+
+&lt;p&gt;Tambien se preserva una &lt;a href=&quot;http://spacecollective.org/gallery/&quot;&gt;coleccion de arte&lt;/a&gt;, ya que el arte un profundo reflejo de las sociedades que las han creado. Otras instituciones y universidades han participado solicitando ideas de los usuarios para objetivos especificos relacionados con el futuro de la humanidad, actualmente estan propuestos 16 &lt;a href=&quot;http://spacecollective.org/projects/&quot;&gt;proyectos&lt;/a&gt;, de los cuales 7 son publicos.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://spacecollective.org/&quot;&gt;Main Site&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://spacecollective.org/feed-rss.php?t=a&amp;amp;f=po&quot;&gt;RSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 25 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/sitios%20web/2017/09/25/SpaceCollective.html</link>
+        <guid isPermaLink="true">http://localhost:4000/sitios%20web/2017/09/25/SpaceCollective.html</guid>
+        
+        <category>Filosofia</category>
+        
+        <category>Espacio</category>
+        
+        <category>CapsulaTiempo</category>
+        
+        <category>Pensamientos</category>
+        
+        <category>Existencialismo</category>
+        
+        <category>Sociedad</category>
+        
+        <category>Eternidad</category>
+        
+        
+        <category>Sitios Web</category>
+        
+      </item>
+    
+      <item>
+        <title>Ventanas de Papel</title>
+        <description>&lt;p&gt;Ventanas de Papel es un compilatorio de poemas obtenidos en las reuniones literarias “Peñas Culturales” impartidas por Artemio Vigueras que tuvieron una duracion de dos años en la escuela normal de Teneria.&lt;/p&gt;
+
+&lt;p&gt;Comparto algunos de los fragmentos que me resultaron mas interesantes:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Llévate mi tristeza, si no yo mismo te la arrojare por la ventana.” - Desalojo por Artemio&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Matar rosas para que vayan a ver a un muerto es cometer otro asesinato.” - Epitafio por Luz Maria&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Lleno una cajita con tus rincones y mis sitios vacios con sorbos de niebla.” - En Otra Ocacion por Cuauhtemoc&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Hubiese preferido ser perfecto ante ti, ante todos, pero mi gran defecto es ser humano.” - Asi Soy por Omar&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Quiere el placer, que sea lo que a ciegas buscamos o acaso si no, que la humana sed se acalle por ese tiempo.” - Al Poseerte por Luiz M.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El mar y la luna estan muy ausentes, ayer me di cuenta que no, su distancia es muy corta: del mar a la luna hay dos labios, el tuyo y el mio” - Mar por Anonimo&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;De entre todos los poemas recuerdo mucho uno titulado “Mirame” sobre Juan Carlos, un joven de bajos recursos que estudio en la &lt;a href=&quot;https://www.facebook.com/Normal-de-Tener%C3%ADa-M%C3%A9x-Oficial-168320093294314/&quot;&gt;Normal de Teneria&lt;/a&gt; y su unico sueño es que algun dia alguien lo mirara y reconociera su existencia.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 24 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/literatura/2017/09/24/VentanasdePapel.html</link>
+        <guid isPermaLink="true">http://localhost:4000/literatura/2017/09/24/VentanasdePapel.html</guid>
+        
+        <category>Cuentacuentos</category>
+        
+        <category>Maestro</category>
+        
+        <category>Artemio</category>
+        
+        <category>Vigueras</category>
+        
+        <category>Poesia</category>
+        
+        
+        <category>Literatura</category>
+        
+      </item>
+    
+      <item>
+        <title>Jimi Hendrix</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;James Marshall Hendrix&lt;/li&gt;
+  &lt;li&gt;Cantautor Estadounidence del Rock Psicodelico.&lt;/li&gt;
+  &lt;li&gt;Inicia su carrera en 1966 y termina en 1970 con su muerte a los 27 años.&lt;/li&gt;
+  &lt;li&gt;Considerado como el mejor guitarrista de todos los tiempos.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.jimihendrix.com/&quot;&gt;https://www.jimihendrix.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Images/JimiHendrix.jpg&quot; alt=&quot;Jimi Hendrix by David Redfern&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Llamado al nacer &lt;strong&gt;Johnny Allen Hendrix&lt;/strong&gt; con su sobrenombre Buster. Su padre le cambiaria posteriormente el nombre a James Marshall Hendrix.&lt;/p&gt;
+
+&lt;p&gt;Siguiendo los pasos de su padre, el cual participo en la segunda guerra mundial, Jimi se enlista en el ejercito pero es dado de baja al fracturarse el tobillo en su lanzamiento de paracaidas numero 26.&lt;/p&gt;
+
+&lt;p&gt;Tocaria en varias bandas informales antes de conocer a &lt;a href=&quot;https://en.wikipedia.org/wiki/Chas_Chandler&quot;&gt;Chas Chandler&lt;/a&gt;, el bajista de la banda Animals, quien lo ayudaria a propulsar su carrera en Gran Bretaña con la formacion de la banda &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Jimi_Hendrix_Experience&quot;&gt;“Jimi Hendrix Experience”&lt;/a&gt;. La banda se conformaria por el bajista &lt;a href=&quot;https://en.wikipedia.org/wiki/Noel_Redding&quot;&gt;Noel Redding&lt;/a&gt; y el baterista &lt;a href=&quot;https://en.wikipedia.org/wiki/Mitch_Mitchell&quot;&gt;Mitch Mitchell&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;640&quot; height=&quot;365&quot; src=&quot;https://www.youtube.com/embed/_PVjcIO4MT4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;De regreso en Estados Unidos entraria a la cultura popular con su presentacion en el &lt;a href=&quot;https://en.wikipedia.org/wiki/Monterey_Pop_Festival&quot;&gt;Monterey Pop Festival&lt;/a&gt; de 1967. Para 1969 era el artista mejor pagado del mundo por presentacion, obteniendo $18,000 dolares por aparecer en el &lt;a href=&quot;https://en.wikipedia.org/wiki/Woodstock&quot;&gt;Festival Woodstock&lt;/a&gt; de 1969.&lt;/p&gt;
+
+&lt;p&gt;Una de las caracteristicas de su musica era el revolucionario uso de las distorciones provocadas por los antiguos &lt;a href=&quot;https://es.wikipedia.org/wiki/Amplificador_de_guitarra&quot;&gt;amplificadores&lt;/a&gt; de las guitarras electricas como parte integral de su musica.&lt;/p&gt;
+
+&lt;p&gt;Populariza el uso del pedal &lt;a href=&quot;https://en.wikipedia.org/wiki/Wah-wah_pedal&quot;&gt;“Wah Wah”&lt;/a&gt; y fue el primer artista en utilizar &lt;a href=&quot;https://es.wikipedia.org/wiki/Sonido_estereof%C3%B3nico&quot;&gt;Efectos Sterofonicos&lt;/a&gt; en sus albums. Al igual que &lt;a href=&quot;https://es.wikipedia.org/wiki/The_Who&quot;&gt;The Who&lt;/a&gt;, Jimi llego a &lt;a href=&quot;https://youtu.be/_-7toYWFEyk&quot;&gt;quebrar guitarras electricas&lt;/a&gt; y quemarlas en rituales dedicados a los dioses del rock.&lt;/p&gt;
+
+&lt;p&gt;Albums:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Are you expirienced: (1967)&lt;/li&gt;
+  &lt;li&gt;Bold As Love (1967)&lt;/li&gt;
+  &lt;li&gt;Electric Ladyland (1968)&lt;/li&gt;
+  &lt;li&gt;Band of Gypsys (1970)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 23 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/musicos/2017/09/23/JimiHendrix.html</link>
+        <guid isPermaLink="true">http://localhost:4000/musicos/2017/09/23/JimiHendrix.html</guid>
+        
+        <category>Cantautor</category>
+        
+        <category>Estadounidence</category>
+        
+        <category>PsychedelicRock</category>
+        
+        <category>Marshall</category>
+        
+        <category>Woodstock</category>
+        
+        
+        <category>Musicos</category>
+        
+      </item>
+    
+      <item>
+        <title>Perdido</title>
+        <description>&lt;p class=&quot;centro&quot;&gt;Llore lágrimas de arrope,&lt;br /&gt;
+derrame tiempo sin verte,&lt;br /&gt;
+y entre mis dedos los tuyos no están.&lt;/p&gt;
+
+&lt;p class=&quot;centro&quot;&gt;Toca mi pecho y siente un corazón callado.&lt;br /&gt;
+Siente el frio de un amor congelado&lt;br /&gt;
+que antes de morir aclamo tu nombre.&lt;/p&gt;
+
+&lt;p class=&quot;centro&quot;&gt;Hoy llego a dormir tranquilo,&lt;br /&gt;
+si en mis sueños has de regresar&lt;br /&gt;
+para volver a mostrar,&lt;br /&gt;
+que no lloré en vano.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 22 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/poesia/2017/09/22/Perdido.html</link>
+        <guid isPermaLink="true">http://localhost:4000/poesia/2017/09/22/Perdido.html</guid>
+        
+        <category>Tiempo</category>
+        
+        <category>Lagrimas</category>
+        
+        <category>Amor</category>
+        
+        <category>Morir</category>
+        
+        
+        <category>Poesia</category>
+        
+      </item>
+    
+      <item>
+        <title>Peter Bynum</title>
+        <description>&lt;p&gt;Pintor Estadounidence y creador de la exposicion “Iluminated Paint” compuesta de pinturas escultoricas dentro de placas de vidrio. Dentro de las placas se exponen intrincados patrones naturales que encontramos en las ramas de los arboles o en las conexiones del sistema nervioso.&lt;/p&gt;
+
+&lt;p&gt;Estudio cine y fotografia en la universidad de Cine de Nueva York y ahora se dedica a crear estas modernas obras plasticas en tres dimenciones.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Images/StripesPB.jpg&quot; alt=&quot;Peter Bynum NY Stripes&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Me parece muy interesante su manejo de la pintura como medio de creacion unico, independiente de la mano humana. La belleza de sus conexiones sinapticas y su similitud con las estructuras naturales captan la atencion de inmediato. Estas caracteristicas se acentuan con la presencia monolitica y traslucida de sus pinturas escultoricas.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.peterbynum.com/&quot;&gt;Sitio Oficial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 21 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/artistas/2017/09/21/PeterBynum.html</link>
+        <guid isPermaLink="true">http://localhost:4000/artistas/2017/09/21/PeterBynum.html</guid>
+        
+        <category>Peter</category>
+        
+        <category>Bynum</category>
+        
+        <category>Escultor</category>
+        
+        <category>Contemporaneo</category>
+        
+        <category>Abstracto</category>
+        
+        <category>Monolitos</category>
+        
+        
+        <category>Artistas</category>
+        
+      </item>
+    
+      <item>
+        <title>Manual de Escribantes</title>
+        <description>&lt;p&gt;Maria Angeles Garcia Aranda retoma algunos puntos filologicos importantes en su ensayo &lt;a href=&quot;https://revistas-filologicas.unam.mx/anuario-letras/index.php/al/article/view/99/99&quot;&gt;“Analisis de la gramatica y generos textuales del manual de escribantes de Torquemada de 1552”&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://es.wikipedia.org/wiki/Antonio_de_Torquemada&quot;&gt;Antonio de Torquemada&lt;/a&gt; es un escritor español renacentista que estudio arduamente su idioma desde una perspectiva que combina a diversas corrientes lingüisticas y filosoficas presentes en su tiempo, incluyendo al humanismo, renacentismo y &lt;a href=&quot;https://es.wikipedia.org/wiki/Dialectolog%C3%ADa&quot;&gt;fondo dialectal&lt;/a&gt; (precursor de la dialectologia).&lt;/p&gt;
+
+&lt;p&gt;Nacido en Leon, trabajaria posteriormente como escribante de &lt;a href=&quot;https://es.wikipedia.org/wiki/Antonio_Alonso_Pimentel_y_Herrera_de_Velasco&quot;&gt;Antonio Alfonso Pimentel&lt;/a&gt; (Conde de Benavente). Su obra mas famosa es el “Jardin de las Flores Curiosas” (1570). &lt;a href=&quot;http://bdh.bne.es/bnesearch/Search.do?numfields=1&amp;amp;field1=autor&amp;amp;field1val=%22Torquemada%2c+Antonio+de%22&amp;amp;field1Op=AND&amp;amp;exact=on&amp;amp;advanced=true&amp;amp;language=esEn&quot;&gt;Otras obras&lt;/a&gt; no menos importantes son “Coloquios Satiricos” (1553), “Don Olivante de Laura” (1564), “El Ingenio” (1547) y el “Manual de Escribiantes” (1547).&lt;/p&gt;
+
+&lt;p&gt;El Manual de Escribientes se puede considerar como un tratado sobre la revolución fonológica por la que pasaba España al describir el uso de fonemas labiales y sibilantes; también se puede considerar como una teoría literaria o un reglamento ortográfico.&lt;/p&gt;
+
+&lt;p&gt;Algunos creen que no es más que un tratado para la redacción judicial al describir nombramientos, mandamientos, apelaciones y sentencias. Recientemente se ha pensado que es un texto autobiográfico que explica las frustraciones lingüistas de un escritor humanista.&lt;/p&gt;
+
+&lt;p&gt;Cualesquiera fueran las intenciones del autor, es evidente la posicion privilegiada del texto como uno de los primeros en dar a conocer las fluctuaciones gramaticales y foneticas del español. Despues de la publicacion del Manual de Escribiantes en 1547 surgen otros autores a tratar temas filologicos similares:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Anónimos de Lovaina (1555 y 1559).&lt;/li&gt;
+  &lt;li&gt;Gramática de Villalón (1558).&lt;/li&gt;
+  &lt;li&gt;Reglas gramaticales de Antonio del Corro (1560).&lt;/li&gt;
+  &lt;li&gt;Minerva de Francisco Sánchez de las Brozas,&lt;/li&gt;
+  &lt;li&gt;Origen y principio de la lengua castellana de Bernardo de Aldrete (1606).&lt;/li&gt;
+  &lt;li&gt;Instituciones de la Gramática española de Bartolomé Jiménez Patón (1614).&lt;/li&gt;
+  &lt;li&gt;Gramática de la lengua española de Jerónimo de Texeda (1619).&lt;/li&gt;
+  &lt;li&gt;Arte breve de Juan de Luna (1623).&lt;/li&gt;
+  &lt;li&gt;Arte de la lengua española castellana de Gonzalo de Correas (1625).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;reglas-para-escribientes&quot;&gt;Reglas para Escribientes&lt;/h3&gt;
+
+&lt;p&gt;El manual da como primera instancia una serie de reglas y buenas costumbres para el escribiente o secretario renacentista. Un importante trabajo para redactar los documentos de cualquiera en la nobleza. Al inicio del texto torquemada resume su libro en once reglas fundamentales:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Ser discreto con la información de la persona a la que sirve, no divulgar ningún tipo de información sensible y ser en la medida de lo posible su guardián.&lt;/li&gt;
+  &lt;li&gt;Ser fieles a quienes sirven, que no importe el amor, ni ninguna pasión que se opongan a la voluntad del señor en cuanto se trate del trabajo.&lt;/li&gt;
+  &lt;li&gt;Tener un recato y refinamiento natural.&lt;/li&gt;
+  &lt;li&gt;Saber bien la lengua así como su perfecta escritura&lt;/li&gt;
+  &lt;li&gt;Que tenga un abundante vocabulario para expresarse de manera correcta.&lt;/li&gt;
+  &lt;li&gt;Entre más lenguas se sepa, mejor.&lt;/li&gt;
+  &lt;li&gt;Tener habilidad para la ortografía, y la corrección ortográfica.&lt;/li&gt;
+  &lt;li&gt;Tener buena letra.&lt;/li&gt;
+  &lt;li&gt;Que haya leído y visto muchas cosas de diversas materias, que sepa de poesía, cuentos e historias.&lt;/li&gt;
+  &lt;li&gt;Que haya visto el mundo y tener conocimiento de muchas culturas.&lt;/li&gt;
+  &lt;li&gt;Sobretodo que tenga ingenio para describir todo tipo de situaciones que necesitan ser escritas.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Cuatro de estas reglas se enfocan a temas estrictamente lingüísticos:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cuarta regla, conocimiento sobre la lengua propia.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Si es español al español, si es francés al francés, si es alemán al alemán, y así para todos los idiomas, si se quiere escribir bien se necesita saber bien la lengua en la que se escribe, y no sólo saberla sino entenderla, porque muchos hombres hacen una carta entendible pero con palabras fuera de lugar y otros más hacen una carta y se les hace fácil introducir palabras ajenas al idioma”.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Quinta regla, claridad y precisión&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Que los que escriban tengan palabras en abundancia para poder decir lo que se intenta comunicar, y que no solo que acierten a comunicar sino que tengan razones para decirlo de esa manera, porque hay muchos que usan una elocuencia vana que solo parece gastar tinta y papel, y cuando lo intentamos descifrar resulta que no dicen nada, solo es una confusión de palabras muchas veces tan inoportunas que no hace ningún bien ponerlas”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Crítica por ejemplo el uso del &lt;a href=&quot;https://es.wikipedia.org/wiki/Sujeto_objeto_verbo&quot;&gt;verbo al final de la oración&lt;/a&gt;, argumentando que su uso en la retórica latina no se logró trasladar exitosamente a las lenguas romances y salvo en contadas ocasiones es útil. Por esta epoca oraciones en latin como “Cæsar prætōribus epistulās dēdit” se traducen al español como “El Cesar a los pretores cartas dio”, en vez de “El Cesar dio cartas a los pretores”.&lt;/p&gt;
+
+&lt;p&gt;También critica duramente el intentar ponerle un sutil ritmo o rima a la escritura, provocando que se lea de forma artificial. Dice el autor que al ponerle rima a tu escrito, por sonarle bien a ti no significa que le suena bien a todos. Este estilo lo denomina como &lt;em&gt;“afectado”&lt;/em&gt; o &lt;em&gt;“aficionado”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sexta regla, conocimiento de otras lenguas&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El escribano debe saber otras lenguas a la suya, por lo menos latín y a lo mejor griego, porque en estas dos lenguas están escritos lo mejor que se ha escrito, y si sabes francés, alemán y toscano, seria todavía mejor, porque el saber diferentes lenguajes despierta el entendimiento. Aunque esto no es tan necesario como para que no se qué se pueda escribir sin saber otra lengua, aunque debo decir que el latín si es necesario.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;4.- Séptima regla, corrección ortográfica&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Se requiere para escribir bien la buena ortografía, porque de la escritura no es la menor parte.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Para Torquemada la ortografía es más valiosa que la letra, en oposición a su época, en donde una buena caligrafía era mucho más importante. Analizando de manera profunda las ideas lingüísticas de Torquemada deducimos que era un tradicionalista negado a la fluctuación de vocablos, se niega rotundamente a la introducción de nuevos vocablos salvo que no exista la palabra en el idioma propio y aun así afirma que es preferible encontrar algún sinónimo dentro del idioma para lo que se intenta decir.&lt;/p&gt;
+
+&lt;h3 id=&quot;tratamiento&quot;&gt;Tratamiento&lt;/h3&gt;
+
+&lt;p&gt;En el manual Torquemada utiliza y explica claramente la distinción entre “vos” como forma de respeto y “tu” como forma común. Esta distinción de formalidad se derivó del latín culto y vulgar, algo que sería heredado por la mayoría de las lenguas romances. Torquemada menciona formas correctas de dirigirse a la nobleza como: &lt;em&gt;“A vuestra Merced, a vuestra señoría o a vuestra alteza”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Estas formas de dirigirse a la nobleza surgen en el renacimiento debido a que el simple uso de “vos” comenzaba a ser usado de forma comun, desvalorizado. La palabra merced se agrega para extender el valor real de la palabra “vos”, su uso fue tan popular que quedo grabado en la lengua contemporánea con la forma de “Usted” (vUeSTra mercED).&lt;/p&gt;
+
+&lt;p&gt;El uso alternativo de vuestra señoría se popularizó únicamente en la documentación legal como la redacción de casos judiciales y epistolares. Finalmente vuestra alteza y vuestra magestad se utilizaron intercaladamente para dirigirse a la nobleza de alto rango hasta que en 1586 Felipe II dictaminó que el uso de Alteza será únicamente para príncipes o equivalentes y que el uso de Majestad solo puede ser utilizado al dirigirse a Reyes.&lt;/p&gt;
+
+&lt;p&gt;Otra forma lingüística que Torquemada intenta explicar es el uso de la palabra “señor” como forma de respeto común. Torquemada explica que en Roma se solía saludar escribiendo el nombre del remitente seguido de un deseo de salud al destinatario: &lt;em&gt;“Nombre Remitente, salud a Nombre Destinatario”&lt;/em&gt;. De aquí el origen etimológico del “Saludo”.&lt;/p&gt;
+
+&lt;p&gt;En españa la tradición del saludo se había heredado del latín, sin embargo el nombre se solía anteponer del título nobiliario. Con el tiempo la gente común empezó a utilizar el título imaginario de “Señor” como una forma de respeto debido a que ni el remitente ni el destinatario contaban con algún título que anteponer. Este título argumentaba que nadie podía ser el mismo Dios o Señor de todo y por tanto todo hombre podía tener el título de Señor de nada.&lt;/p&gt;
+
+&lt;p&gt;Cuando el uso de señor como título universal entre la gente común se extendió la nobleza lo adoptó de igual manera acrecentando como “Señoría o Señorismo” y anteponiendo al título del que ya se hacían acreedores. Para los tiempos en los que Torquemada publicó su manual las formas de tratamiento escritas habían quedado de la siguiente manera:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Noble Señor para personas que uno estima&lt;/li&gt;
+  &lt;li&gt;Virtuos Señor en desuso para personas que uno estima&lt;/li&gt;
+  &lt;li&gt;Señor para cualquier persona&lt;/li&gt;
+  &lt;li&gt;Señor Primo para personas inferiores&lt;/li&gt;
+  &lt;li&gt;Pariente Señor para cualquiera por encima del lacallo&lt;/li&gt;
+  &lt;li&gt;Pariente para cualquier sirviente&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;El manual recomienda el antiguo uso del Futuro Subjuntivo (Hoy en día sustituido por el Presente Indicativo o Presente Subjuntivo) en vez del Presente cuando se quiera denotar formalidad. Esta practica se extendió prácticamente para todo hispanohablante de la edad media y solo a finales del renacimiento comienza a modificarse.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Presente Indicativo: Me parece que los que quieren ser secretarios y hayan de seguir en el oficio deben acatar las reglas.&lt;/li&gt;
+  &lt;li&gt;Futuro Subjuntivo: Me parece que los que quisieren ser secretarios y hubieren de seguir en el oficio deben acatar las reglas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ya en la edad barroca se considera un arcaismo relegado a documentos oficiales y para la revolucion industrial se extingue por completo, exeptuando los refranes en donde todavia se ha conservado.&lt;/p&gt;
+
+&lt;p&gt;En la España peninsular seguimos encontrando algunas personas que dicen: “A donde fueres has lo que vieres” en vez de “A donde vayas has lo que veas”. La nobleza que quizo seguir hablando con refinamiento comenzo a utilizar la terminacion (ra) en vez de (re).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;El que yo quisiere saludarlo era importante.&lt;/li&gt;
+  &lt;li&gt;El que yo quisiera saludarlo era importante.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;generalidades&quot;&gt;Generalidades&lt;/h3&gt;
+
+&lt;p&gt;El manual menciona uno de los primeros ejemplos en el uso de “quienes”, ya que en el español clásico la palabra “quien” no tenía plural. Otra palabra que inicia su aceptación es “Cada” para denotar contabilidad. De la misma forma “cualquier”, “cualquiera”, “cualesquiera” y “bastantes” son palabras de uso reciente para el autor, que él mismo utiliza y recomienda.&lt;/p&gt;
+
+&lt;p&gt;Describe uno de los cambios más prominentes del español clásico, la eliminación del verbo auxiliar ser para quedar únicamente el verbo haber, ya sea en su forma auxiliar normal (Había llegado) o como auxiliar en perífrasis (He de llegar).&lt;/p&gt;
+
+&lt;p&gt;En la segunda parte del manual se habla de la ortografía y se cita a los grandes autores ortográficos de su tiempo: &lt;a href=&quot;https://es.wikipedia.org/wiki/Antonio_de_Nebrija&quot;&gt;Antonio de Nebrija&lt;/a&gt; y &lt;a href=&quot;https://es.wikipedia.org/wiki/Alejo_Venegas&quot;&gt;Alejo de Venegas&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Torquemada defiende el uso correcto de la ortografía argumentando:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Porque tenemos (españa) tan poco de lo que otras naciones tienen tanto, y, exceptuando al latín; la lengua toscana, el francés, el alemán, tienen ya definidas una ortografía ordenada que ni les falta, ni les sobra letra o signo, teniendo por ejemplo mucho más cuidado que nosotros con el uso de la letra muda.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;La tercer parte del manual menciona algunas costumbres que utilizaba al servicio de Benavente. La cuarta parte se enfoca en el &lt;em&gt;estilo&lt;/em&gt; de la escritura y como estos estilos pueden utilizarse para describir diversas situaciones. Clasifica a los estilos en Subido, Grave, Delicado, Elegante, Llano, Gracioso, Torpe y Grosero.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El estilo es el orden que se tiene al escribir, aumentando, disminuyendo o mediando la calidad de las palabras y oraciones que se escriben.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;El manual recomienda ampliamente el uso de Articulo + Adjetivo Posesivo + Sustantivo. Por ejemplo “Los otros mis alcaldes, el mi castillo, el mi fortaleza, el mi lugar”. Esta forma gramatical se extiende universalmente para decir “La mi villa” en el español medieval sin embargo decaerá en el siglo XVI debido a las confusiones que ocasiona en documentos legales.&lt;/p&gt;
+
+&lt;p&gt;También recomienda el uso del leísmo y laísmo, una forma lingüística que ya se encontraba en uso y que es una de las caracteristicas más importantes del español clásico, utilizando para toda persona singular masculina.&lt;/p&gt;
+
+&lt;p&gt;Antonio Salvador Plans tambien comparte en &lt;a href=&quot;http://dehesa.unex.es/bitstream/handle/10662/3279/0210-8178_11_349.pdf?sequence=5&amp;amp;isAllowed=y&quot;&gt;“Analisis de las ideas linguisticas de Torquemada”&lt;/a&gt; algunos de los siguientes comentarios relevantes a la obra.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;El manual no tiene una fecha de escritura definida, la que aparece en el manuscrito de 1547 se refiere únicamente a la posesión del primer ejemplar por Jerónimo de los Ríos.&lt;/li&gt;
+  &lt;li&gt;Torquemada se contradice en la obra cometiendo muchas de las faltas que critica. Algunos errores son tan evidentes que se vio en la necesidad de escribir una disculpa al inicio argumentando que los errores se debieron a un escribano vizcaíno que realizó mal la copia de su escrito original.&lt;/li&gt;
+  &lt;li&gt;Los arcaísmos son favorables, si bien tienen una razón por la cual dejaron de usarse, su recuperación normalmente mejora el lenguaje.&lt;/li&gt;
+  &lt;li&gt;Utiliza la clasificación gramatical de sus tiempos, un popular esquema cuatripartita que seguiría enseñando en las escuelas hasta finales del renacimiento: Ortografía, Prosodia, Etimología y Sintaxis.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“La b se pronuncia con ambos labios, poniendolos el uno sobre el otro, abriendolos para que salga el sonido de la letra. La v se pronuncia poniendo el labio inferior bajo los dientes superiores, formando asi el sonido de la letra.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Es por ello que las letras se clasifican como (b) bilabial y (v) labiodental.&lt;/li&gt;
+  &lt;li&gt;La (h) no es propiamente una letra sino &lt;em&gt;“… una aspiración, o espíritu con el que se pronuncian otras letras, haciéndolas sentir con mayor ímpetu y fuerza, animando el aliento de quien las pronuncia.”&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;La (d) se pierde en la pronunciación cuando se escribe al final de la palabra.&lt;/li&gt;
+  &lt;li&gt;Una sociedad con buena ortografía inicia por maestros que sepan escribir bien.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Deberíamos de prevenir que a ningún maestro se le permita enseñar a escribir y a leer sin tener buena ortografía, porque si los maestros son ignorantes los alumnos no pueden salir sabios, y así es como ellos cargan desde la niñez barbaridades que después no se pueden quitar cuando llegan a la adultez, ya que las cosas que se aprenden en la edad tierna son difíciles de desechar”.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Finalmente se concluye que Antonio de Torquemada no fue el primer hombre en analizar la lengua española, pero si el primer ilustre del &lt;a href=&quot;https://es.wikipedia.org/wiki/Siglo_de_Oro&quot;&gt;Siglo de Oro&lt;/a&gt; en plantear problemas lingüisticos y ortográficos relevantes para su tiempo que enriquecen nuestra perspectiva actual.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 20 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/literatura/2017/09/20/ManualEscribantesTorquemada.html</link>
+        <guid isPermaLink="true">http://localhost:4000/literatura/2017/09/20/ManualEscribantesTorquemada.html</guid>
+        
+        <category>Antonio</category>
+        
+        <category>Torquemada</category>
+        
+        <category>EdadMedia</category>
+        
+        <category>Resumen</category>
+        
+        <category>Analisis</category>
+        
+        <category>Maria</category>
+        
+        <category>Aranda</category>
+        
+        
+        <category>Literatura</category>
+        
+      </item>
+    
+      <item>
+        <title>Microcuentos Aereopuerto</title>
+        <description>&lt;p&gt;Cuatro &lt;a href=&quot;https://es.wikipedia.org/wiki/Microrrelato&quot;&gt;microcuentos&lt;/a&gt; escritos en el &lt;a href=&quot;https://es.wikipedia.org/wiki/Aeropuerto_Internacional_de_la_Ciudad_de_M%C3%A9xico&quot;&gt;Aeropuerto Internacional Benito Juarez&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Me miro incredula, puso sus manos detras y bajo la mirada. De vez en cuando volteaba para ver si nadia más la veia. Hacia muecas. La redeaban los demas que pasaban junto a ella, finalmente me sonrio. Supe que era hombre muerto.&lt;/p&gt;
+
+&lt;p&gt;Su maleta era distinta, era más grande. El joven la empujaba delicadamente, un oficial lo detuvo y le pregunto por su contenido. “Llevo dos cosas..-“ - contesto. “… un amor fallido y mi orgullo”.&lt;/p&gt;
+
+&lt;p&gt;Las ideas se le calleron al piso. El se encontraba desnudo, inerte en esa vieja silla. El sol proyectaba una larga sombra hacia la puerta de la habitacion. A lo lejos se escuchaban los ladridos del perro alrededor de la banda que tocaba los tambores. Habian llegado a fusilarlo.&lt;/p&gt;
+
+&lt;p&gt;Chac, chac, chac. Mientras te encontrabas en New York, cerre los ojos. Ella me doblo la oreja, me giro la cabeza y con las tijeras comenzamos a cortar mil ideas. El mate esperaba en la mesa, mi bombilla lista para hacerlo llorar. Entreabrí los ojos y mi pelo flotaba en el aire al compas de unas tijeras de metal. Chac, chac, chac. Y en su andar, un camino de pelo.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 19 Sep 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/cuentos/2017/09/19/MicrocuentosAereo.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cuentos/2017/09/19/MicrocuentosAereo.html</guid>
+        
+        <category>Aereopuerto</category>
+        
+        <category>Multicultural</category>
+        
+        <category>Nacionalismo</category>
+        
+        <category>Cotidiano</category>
+        
+        <category>Microcuentos</category>
+        
+        
+        <category>Cuentos</category>
+        
+      </item>
+    
+  </channel>
+</rss>

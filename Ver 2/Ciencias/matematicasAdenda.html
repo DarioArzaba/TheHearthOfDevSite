@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>Matematicas</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ 
+				MathMenu: { showFontMenu: true },
+				TeX: { equationNumbers: {autoNumber: "AMS"} } 
+			});
+		</script>
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.5/jsxgraphcore.js"></script>
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="/index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<h1>Matemáticas</h1>
+
+<nav>
+	<ol>
+		<li>
+			<a href="#Algebra">Álgebra</a>
+			<ol>
+				<li><a href="#Funciones">Funciones</a></li>
+			</ol>
+		</li>
+	</ol>
+</nav>
+
+<h2 class="HoverTitle" id="Algebra"><a href="#Algebra"># </a><a href="#Algebra">Algebra</a></h2>
+
+<h3 class="HoverTitle" id="Funciones"><a href="#Funciones"># </a><a href="#Funciones">Funciones</a></h3>
+
+<p>Una funcion (f) de valores reales definida para un conjunto (D) es una regla que asigna a cada numero (x) de (D) exactamente otro numero real (y) que se representa por el calculo de f(x).</p>
+
+<p>En este caso decimos que la variable (x) es independiente y la (y) es dependiente. Una funcion se puede representar de forma verbal, numerica, visual o algebraica.</p>
+
+<p>El <b>dominio</b> de una funcion es el conjunto (X) conformado por todos los numeros (x) y al <b>rango</b> como el conjunto (Y) conformado por todas las imagenes de cada (x). Todo conjunto en la recta numerica se puede identificar por medio de un <b>intervalo</b> de numeros abierto, cerrado, semiabierto o no acotado.</p>
+
+<p>Una funcion <b>polinomial</b> se compone de terminos con exponentes a la n grados y en donde las constantes de cada termino es el coeficiente. Cuando el grado de una funcion polinomial es igual a cero o uno entonces la ecuacion es una funcion lineal.</p>
+
+<p>La <b>pendiente</b> de una funcion lineal no vertical con respecto al eje positivo (x) se define como:</p>
+
+\[
+	m = \frac{\delta y}{\delta x} = \frac{y_2-y_1}{x_2-x_1} = x_1 \neq x_2
+\]
+
+<p>La ecuacion de la funcion lineal se puede obtener por medio de la formula punto-pendiente :</p>
+
+\[
+	y - y_1 = m(x-x_1)
+\]
+
+<p>Se considera a la pendiente de una recta como la razon o proporcion de la distancia entre las cantidades de ambos ejes. Si las unidades son distintas se considera como una tasa, ritmo o velocidad de cambio.</p>
+
+<p>En una funcion <b>cuadratica</b> se sabe que la parabola abrira hacia arriba cuando el coeficiente del termino de mayor grado sea positivo, de lo contrario abrira hacia abajo.</p>
+
+<p>Una ecuacion es una funcion <b>uniforme</b> cuando para cada (x) le corresponde unicamente un solo (y), de lo contrario es multiforme. Una funcion es <b>inyectiva</b> cuando para cada (y) le corresponda unicamente un solo (x). Una funcion es <b>Par</b> cuando es simetrica con respecto al eje (y), mientras que es <b>Impar</b> si lo es con respecto al origen.</p>
+
+<p>La funcion puede ser analitica o seccionada por diversas condicionales, tambien puede ser <b>periodica</b> o no periodica dependiendo de si cada intervalo determinado de (x) generan los mismos valores de (y).</p>
+
+<p>Puede ser Monotona Creciente, Monotona Decreciente, No-Monotona Creciente y No-Monotona Decreciente dependiendo a que sector tienda su extremo y puede ser continua o discontinua dependiendo de la existencia de asintotas.</p>
+
+<h3 class="HoverTitle" id="Demostraciones"><a href="#Demostraciones"># </a><a href="#Demostraciones">Demostraciones</a></h3>
+
+<ol>
+	<li>Pi es irracional</li>
+	<li>Sqrt de 2 es irracional </li>
+	<li>Sqrt de primo es irracional</li>
+	<li>Racional + Racional = Racional (Y otras propiedades)</li>
+	<li>Entre dos irrracionales otro irracional (O reales)</li>
+	<li>Par por par = par (Impar)</li>
+	<li>Numero al cuadrado = positivo</li>
+</ol>
+
+
+</main>
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+
+<script>
+	var Board = JXG.JSXGraph.initBoard('LineaNumerica', {showCopyright: false, showNavigation:false, boundingbox: [-5.2, 2, 5.2, -2]});
+	var EjeX = Board.create('axis', [[0, 0], [1, 0]], 
+	{
+	  	firstArrow: true,
+	  	lastArrow: true,
+	  	ticks: {
+	  		drawZero: true,
+	  		ticksDistance: 1,
+	  		majorHeight: 30,
+	  		tickEndings: [0, 1],
+	  		minorTicks: 0
+	  	}
+	});
+	var Point = Board.create('glider', [1, 0, EjeX], {});
+	Point.setName("Num.Real");
+
+
+	JXG.joinCurves = function (board, parents, attributes) {
+		var cu1 = parents[0],
+		cu2 = parents[1],
+		attr = JXG.copyAttributes(attributes, board.options, 'curve'),
+		c = board.create('curve', [[0], [0]], attr);
+		c.updateDataArray = function () {
+			this.dataX = cu1.dataX.slice(0, -1).concat(cu2.dataX);
+			this.dataY = cu1.dataY.slice(0, -1).concat(cu2.dataY);
+			if (this.dataX.length < 4) {
+				this.bezierDegree = 1;
+			} else {
+				this.bezierDegree = cu1.bezierDegree;
+			}
+		};
+		c.prepareUpdate().update().updateRenderer();
+		return c;
+	};
+
+	
+	var BoardTwo = JXG.JSXGraph.initBoard('InterseccionSet', { showCopyright: false, showNavigation: false, boundingbox: [0, 5, 5, 0], axis: false });
+	BoardTwo.removeGrids();
+	var p1 = BoardTwo.create('point', [2, 2], {fillColor: 'blue', strokeColor: 'gray', setName: ""});
+	var p2 = BoardTwo.create('point', [3.3, 3.3], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p3 = BoardTwo.create('point', [3.5, 3.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var p4 = BoardTwo.create('point', [2.5, 2.5], { fillColor: 'blue', strokeColor: 'gray', setName: "" });
+	var a1 = BoardTwo.create('circle', [p1, p2], {strokeColor: 'lightgray'});
+	var a2 = BoardTwo.create('circle', [p3, p4], {strokeColor: 'lightgray'});
+	var i1 = BoardTwo.create('intersection', [a1, a2, 0], { visible: false });
+	var i2 = BoardTwo.create('intersection', [a1, a2, 1], { visible: false });
+	var c1 = BoardTwo.create('arc', [p1, i1, i2], { visible: false });
+	var c2 = BoardTwo.create('arc', [p3, i2, i1], { visible: false });
+	var c3 = JXG.joinCurves(BoardTwo, [c1, c2], { strokeColor: 'black', strokeWidth: 3, fillColor: 'green', fillOpacity: 0.2 });
+
+
+
+</script>
+
+
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

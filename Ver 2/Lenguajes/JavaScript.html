@@ -1,0 +1,360 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>NewPageTitle</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+		<main>
+		<h1>MainTitle</h1>
+
+<h2> Origenes </h2>
+
+<p> Las computadoras son dispositivos complejos. Han adquirido tal complejidad que hemos diseñado 2 maneras de comunicarnos. <br><br> 1.- <strong>Ambiente Grafico</strong>: Aprovechando nuestra habilidad visual diseñamos ambientes o espacios (Enviroments) virtuales que podamos modificar con nuestras manos (Pantallas Teclados Mouse). El ambiente mas utilizado en el mundo es Windows. <br><br> 2.- <strong>Ambiente de Texto</strong>: El lenguaje de maquina es una creación artificial enfocada a la eficiencia, es decir que tan rápido puedo hacer que la maquina haga lo que quiero. Los lenguajes humanos tienen mayor flexibilidad porque nosotros obtenemos mucha informacion por medio del contexto y la intucion; mientras que las maquinas necesitan explicitamente toda la informacion. </p> 
+
+<h2> Programacion </h2>
+
+<p> En un inicio solo existia el ambiente de texto, rápidamente se diseñaron ambientes gráficos intuitivos con una extensa iconografia conforme las computadoras se volvían instrumentos de uso cotidiano y personal. Sin embargo hoy en dia toda esta iconografia no sigue haciendo mas que ejecutar codigo en forma de texto en una consola que trabaja escondida entre todas las imagenes. Uno de estos lenguajes maquina que se ejecuta detras las páginas web es JS.</p>
+
+<blockquote><em>"To some of us, writing computer programs is a fascinating game. A program is a building of thought. It is costless to build, it is weightless, and it grows easily under our typing hands."</em></blockquote>
+
+<p>En los primeros ambientes de texto todas las ordenes se daban en forma de unos y ceros (Lenguaje maquina). Estos métodos no solo eran complicados y muy dados a errores sino que también impedían altos grados de complejidad. <em>&quot;Por supuesto que para los primeros programadores se sentian con habilidades magicas al tener la capacidad de comunicarse y ordenarle a un montón de metal a realizar procesos abstractos como sumas y multiplicaciones,esto morivo enormemente al rapido desarrollo de este arte&quot;.</em></p>
+
+<h2>JavaScript</h2>
+
+<p> Introducido en 1995 para añadir interactividad a páginas web de Netscape. Desde entonces se popularizo en todos los navegadores siguientes. JavaScript no tiene nada que ver con Java. El nombre deriva simplemente de una consideración de publicidad pues Java ya era popular cuando JavaScript salió al mercado, y el nombre ayudo a las ventas.<br><br>
+
+Después de ser adoptado por Netscape se escribió su documentación oficial, llamada ECMAScript Standard. Desde entonces se han diseñado distintas versiones. La versión 3 fue la que lanzo el lenguaje a la popularidad mundial del 2000 al 2008. En el 2008 se intentó mejorar el programa con la versión 4 pero al igual que con HTML, esto resulto difícil por problemas de compatibilidad, por lo que para la versión 5 , que saldría en el 2009 solo se harían mejoras menores al 3. Después saldría la versión 6 en la que está basado el curso. No solo las páginas web sino servidores como MongoDB o CouchDB y ambientes como Node.js utilizan javascript.</p>
+
+<h2>Curso</h2>
+<p>Este libro se divide en tres partes. Los primeros 11 capítulos discuten la sintaxis del lenguaje, los siguientes 8 capítulos son acerca de las páginas web y finalmente 2 capítulos dedicados a Node.js que es simplemente otro tipo de ambiente en el que se puede programar JS.
+  
+  En los capítulos de sintaxis se introducen conceptos como estructuras de control, funciones, y estructuras de datos. Luego se discuten técnicas para combinar funciones y objetos y simplificar los programas. Después se discute como encontrar errores y corregirlos. En la segunda parte se ven a detalle las capacidades y herramientas de JS como sus límites gráficos y de comunicación entre datos. Por último se describe lo que es Node.js y se construye un sistema usando dicha herramienta.<br>
+<br>
+ </p>
+
+<h1>Valores</h1>
+<h2> Tipos de Valores </h2>
+<p><em>Dentro de una computadora solo existe información.</em> <br><br>Toda informacion se guarda en ceros y unos, por lo tanto se dice que toda la información es la misma y que lo único que cambia es su orden. <br><br> El <strong> Sistema Binario </strong> es útil para guardar esta informacion porque permite interpretar la dualidad de varios procesos físicos como un alto y bajo voltaje, una línea plana o rugosa de un CD etc. Sin embargo es esencial su convercion a números decimales, para ello a cada digito se le asigna una potencia de 2 y se suman las que les tocaron a los unos.  <br><br>Para indicarle a la maquina a qué tipo de información se refiere cada linea bits estos se separan en paquetes con distintas denominaciones. En JS estos paquetes son los <strong>Tipos de Valores</strong>. Cada tipo de valor tiene reglas distintas para el ordenamiento y lectura de los bits que contiene. Los 6 tipos de valores son:</p>
+<div class="listas"> 1. Númericos   2. Strings  3.- Booleanos   4.- Indefinidos  5.- Objetos   6.- Funciones </div>
+<p>Para crearlos se escribe su nombre y el programa construira el paquete indicado, a la espera de que se le asigne informacion. Cada tipo de valor solo puede guardar el tipo de información para el que esta configurado.</p>
+
+<h2> Numérico</h2>
+<p>El número que asignes al tipo de valor numerico se transforma directamente de Decimal a Binario. Las computadoras solo pueden trabajar con paquetes con un maximo 64 bits, esto significa que solo podemos asignar un numero con maximo 18 digitos. <br><br>
+ El máximo numero permitido es:  9,007,199,254,740,991 cada número que se le añada  generara incertidumbre, pues el primer bit se reiniciara como cero. Sin embargo en la realidad no se pueden utilizar los 64 bits porque algunos se ocupan para expresar el punto decimal o el simbolo negativo entre otras cosas, por tanto se toma como referencia un máximo de 15 digitos.  
+  Este problema afecta principalmente a los irracionales, como Pi. Siempre que se trabaje con fracciones asumase que son aproximaciones. </p>
+<div class="listas">1.- Integral 2.- Fraccionario  3.- Notación Científica  4.- Irracionales   5.- Infinito  6.- Not a Number</div>
+<p>A diferencia de las matematicas, trabajar con <strong>Infinity</strong> en JS generara resultados impredecibles. El numero <strong>NaN</strong> (Not a Number) se genera cuando a un tipo de valor numerico se le asigna informacion no numerica o si lainformacion numerica es indeterminada (Ej. Divicion entre cero).</p>
+
+<h2>Operadores Aritmeticos</h2>
+<p>Los operadores aritméticos son la manera basica de modificar a los valores numéricos y se representan a través símbolos. Es importante entender que NO transforman a los datos que les proporcionemos sino que crean uno nuevo en base a la informacion que detecte. Es necesario poner al operador entre los dos valores de los que se quiere generar el tercero. Los operadores siguien la jerarquia de operaciones.</p>
+<div class="listas">1.- Suma (+)  2.- Resta (-)   3.- Multiplicación (*)   4.- División (/)  5.- Sobrante (%)
+</div>
+<pre><code class="Codigo"> 
+2+3;   3-2;   2*3;   3/2;   (3%2); 
+</code> </pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="OperacionesAritmeticas"></div>
+<br>
+<h2>Strings</h2>
+<p>Utilizados para representar texto. Para construirlos se encierra la informacion entre comillas simples o dobles. Para introducir  caracteres especiales se utiliza un Backslash (\), para el caso de Enter se utiliza una (\n), para el Indentado una (\t). En el caso de que se quiera representar un Backlash simplemente se utilizan dos (\\).<br>
+  Dos o más string pueden ser unidos mediante el operador aritmetico de suma (+), generando uno solo. Esto se denomina Concatenate.(Concatenar).
+</p>
+<div class="Codigo" id="Strings"></div>
+<br>
+<h2>Operadores Adicionales</h2>
+<p>Ademas de los Operadores Aritmeticos existen los <strong>Operadores Unitarios Binarios y Trinarios</strong>. No todos los operadores se expresan con símbolos algunos se expresan con palabras y no todos necesitan de dos valores algunos utilizan uno o tres. El operador <strong>(typeof)</strong> es unitario porque utiliza de un solo dato para poder generar un (string) con el nombre del tipo de valor que es:</p>
+<pre><code class="Codigo">
+typeof (4.5);
+typeof("Hola");
+
+</code></pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="OperadorUnitario"></div>
+<p> Ademas un mismo operador puede ser Binario o Unitario dependiendo de la informacion que tenga. Por ejemplo cuando la resta no tiene nada del lado izquierdo funciona para denotar un numero negativo, si tiene informacion del lado izquiedo entonces denota una resta como tal.</p>
+
+<h2>Operadores de Comparación</h2>
+<p>El Tipo de Valor Booleano  está restringido a contener únicamente dos estados, <strong>Verdadero</strong> (True) o <strong>Falso</strong> (False). Un método para generar su valor es con operadores logicos o con comparadores. Los comparadores especifican un rango y se comparan con un valor puntual, si el valor se encuentra dentro del rango se generara "Verdadero" de lo contrario generara "Falso". Si se comparan dos String dicho rango estara dado por el orden alfabetico.
+ </p>
+<pre><code class="Codigo"> 
+var comp1 = (3&gt;2);
+var comp2 = (3&lt;2); 
+var comp3 = (&quot;Arzaba&quot; &lt; &quot;Dario&quot;);
+
+</code></pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="Comparaciones"></div>
+
+<p> El orden alfabetico esta determinado por su lugar de la en la tabla de asignación UNICODE. El "traductor" de UNICODE es UTF-8, todos los simbolos ASCII son compatibles con los de UNICODE.<br><br> Una nota importante con respecto a los operadores de comparación es que: <em>El único valor que no es igual a si mismo es NaN.</em>
+</p> 
+<h2>Operadores Lógicos</h2>
+  
+<p> Aparte de los Operadores de Comparacion estos son la segunda pricipal manera de obtener Booleanos:</p>
+<pre><code class="Codigo"> 
+var comp4 = (true&amp;&amp;true);
+var comp5 = (true&amp;&amp;false);
+var comp6 = (true||true);
+var comp7 = (true||false);
+var comp8 = (false||false);
+var comp9 = (!false);
+var comp10 = (true?"Is True":"Is False");
+
+</code></pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="OperadoresLogicos"></div>
+  
+<p> <strong>AND (&amp;&amp;):</strong> Nunca Continuar hasta que ambos sean verdaderos.<br>
+<em>Ambos Verdaderos = Verdadero.<br>
+Cualquiera Falso = Falso.</em><br>
+<br>
+<strong>OR(||):</strong> Continuar siempre que ambos no sean falsos.<br>
+<em>Ambos Falsos = Falso.<br>
+Cualquiera Verdadero = Verdadero.<br></em><br>
+<strong>NOT (!): </strong>Operador Unitario. Cambia el valor del booleano por el contrario, util para cambiar los parametros de una funcion.<br><br>
+<strong>CONDITIONAL (?:):</strong> Operador Terciario. Utiliza un booleano y dos valores adicionales, si el Booleano es Verdadero se genera el primer valor, si es falso se ocupa el segundo.<br>
+<br>
+La jerarquia de estos operadores es: OR siempre sera el ultimo en aplicarse, AND el penultimo y los demas se aplicaran primero conforme se encuentren de derecha a izquierda.</p>
+
+ <h2>Indefinido</h2>
+  <p>
+  Estos dos tipos de valores son especiales pues son los unicos que estan "vacios". Es muy común que una operación genere el resultado de <strong>Undefined</strong> porque a algunas de las variables que se ocuparon en la operacion no se les asigno ningún valor. La diferencia entre undefined y null es un accidente de diseño y se pueden usar como sinonimos.</p>
+  <div class="listas"> 1.	Null 2.	Undefined </div>
+ 
+ <h2>Conversión Automática de Valores</h2>
+  
+ <p>JS con el fin de prevenir errores al utilizar tipos de valores equivocados en una operacion viene incorporado con  reglas para cambiar automáticamente dicha informacion si es que así una operación tiene más sentido <strong>(Type Coercion)</strong>. Dichas reglas de convercion en general crean más errores de los que previenen.</p> 
+ <p>1.- Cambiar (null) por (0) en una operación aritmetica.<br>2.- Cambiar un (string) a (numero) en una operación aritmética.<br> 3.- Cambiar un (numero) a (string) en una suma para concaternar.<br> 4.- Intentar cambiar un (string) a (numero) pero no saber el valor del número.<br>5.- Cambiar el valor booleano falso por 0 y verdadero por 1.</p>
+<pre><code class="Codigo"> 
+var comp10 = (1000*Null);
+var comp11 = ("5" * 5);
+var comp12= ("5" + 1);
+var comp13= ("five" * 2);
+var comp14= (false == 0);
+
+</code></pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="Conversion"></div>
+  
+	
+  <p>   Otra conversión automatica muy común es cuando se utiliza el comparador de igualdad (x == y).Si ambas variables tienen el mismo valor la igualdad genera (Verdadero). La unica exepcion es NaN cuya igualdad genera (Falso).
+El problema es cuando cuando el tipo de valor es distinto, JS hará un gran esfuerzo por intentar transformar el tipo de valor de cualquiera de ambas variables en algo comparable generando resultados impredecibles. <br><br>
+La única excepción a esta regla es con los valores (null) y (undefined). Estos estos no seran convertidos y una comparacion de igualdad en donde una de las variables sea de tipo de valor indefinido siempre generara (Falso) obviamente que si ambas variables son (null) o (undefined) se generara (Verdadero).   En la práctica es recomendable utilizar los operadores de triple signo para evitar que JS realice estas conversiones.</p>
+  <p> Muchos programadores utilizan este ultimo comportamiento como una prueba para comprovar si un dato (como una variable) ya tiene un valor asignado o si este se encuentra vacio.<br>
+<br>
+  Cuando se utilizan comparadores de igualdad (0), (NaN) y (“ “) seran convertidos a (Falso). Todo valor restante sera convertido a (Verdadero). Esta convercion recordemos que solo sucede si ambas variables tienen un tipo de valor distinto.
+  </p>
+  
+<pre><code class="Codigo"> 
+var x = 5; var y = 5; var comp16 = (x == y);
+var comp17 = (NaN == NaN);
+var x1 = "Hello!"; var y1 = 10; var comp18 = x1 == x2;
+var comp19 = null == undefined;
+var comp20 = null == 0;
+
+</code></pre>
+<div class="RESULTADO"></div>
+<div class="Codigo" id="Conversionnula"></div> <br>
+
+  
+
+ <h2>Conversión con Operadores Logicos </h2>
+
+  <p>
+  
+  The logical operators && and || handle values of different types in a peculiar way. They will convert the value on their left side to Boolean type in order to decide what to do, but depending on the operator and the result of that conversion, they return either the original left-hand value or the right-hand value.
+
+The || operator, for example, will return the value to its left when that can be converted to true and will return the value on its right otherwise. This conversion works as you’d expect for Boolean values and should do something analogous for values of other types.
+
+
+1
+console.log(null || "user")
+2
+// → user
+3
+console.log("Karl" || "user")
+4
+// → Karl
+This functionality allows the || operator to be used as a way to fall back on a default value. If you give it an expression that might produce an empty value on the left, the value on the right will be used as a replacement in that case.
+
+The && operator works similarly, but the other way around. When the value to its left is something that converts to false, it returns that value, and otherwise it returns the value on its right.
+
+Another important property of these two operators is that the expression to their right is evaluated only when necessary. In the case of true || X, no matter what X is—even if it’s an expression that does something terrible—the result will be true, and X is never evaluated. The same goes for false && X, which is false and will ignore X. This is called short-circuit evaluation.
+
+The conditional operator works in a similar way. The first expression is always evaluated, but the second or third value, the one that is not picked, is not.
+  -------------
+  En el caso de utilizar el operador lógico OR siempre se convertirá el dato del lado izquierdo a su equivalente Booleano para ver si así la operación tiene sentido. Después dependiendo si la conversión fue (Verdadero) o (Falso), se genera como resultado una copia del dato que este del lado (Izquierdo) o (Derecho), respectivamente. Si se utiliza en cambio AND se generara el de la (Izquierda) cuando sea (Falso) y el de la (Derecha) cuando sea (Verdadero) 
+  
+  Esta funcionalidad es útil cuando se quiera tener un valor default de respaldo. Es decir que el operador OR transforma a (Verdadero) y usa el de la (Izquierda), pero si este valor es (Falso) (uno de dichos casos es cuando esta vacío (null)) entonces tiene un segundo valor (Derecha) con el cual continuar el programa. Otra propiedad es que a menos que falle la prueba la expresión de la (Derecha) nunca será invocada, algo que es necesario en todas las demás comparaciones. Esto se denomina evaluación de corto circuito (short-circuit evaluation)
+  
+  Con el operador condicional (true ? x : y ) la transformación automática funciona de manera similar al operador OR. La primer expresión es evaluada (x), si esta se puede transformar en (Verdadero) se usa ese mismo, pero si esta se transforma en (Falso) se usa el de la (Derecha).
+  
+  
+  </p>
+
+
+<hr />
+<a class="showdown">&nbsp; Contenido</a>
+<div class="hidedown">
+</div>
+
+<p>Syntax Parser: Programa diseñado para traducir el codigo de un lenguaje a un lenguaje de bajo nivel que pueda ser interpretado por la computadora. El parser es el que determina que partes son validas o invalidas cuando se ejecuta un Script.
+
+El Parser es un componente clave del Compiler o Interpreter, en general el parser detecta letra por letra del codigo y le otorga significado, es el programa que en base a reglas "gramaticales" dadas por el lenguaje va a detectar que hace cada parte del codigo.
+
+Por ejemplo si el parser detecta la palabra "function" va a esperar una syntaxis (Nombre de la funcion, parentesis y bloque de codigo. De esta manera va letra por letra y palabra por palabra detectando el significado de cada parte del codigo, si una funcion no tiene una parte que el parser espera como una llave el parser envia un error de sintaxis.
+
+Lexical Enviroment: Luegar que ocupa cada parte del codigo relativo a otros elementos. Esto es importante para todos los lenguajes pues es muchas veces en lo que se basa el parser para darle significado al codigo. El lexical enviroment esta determinado por el lenguaje, por el programa que creo el script y por el enviroment que ejecuta el script.
+
+Execution Context: Los contextos son las estructura otorgadas por el compiler para poder manejar la ejecucion del codigo en bloques (Execution Wrapper). Esto ayuda a la administracion del codigo y al compiler le permite diseñar un orden (Workflow) de ejecución.
+
+Name/Value Pair: Relacion unica entre un nombre y un valor. Un nombre solo puede ser utilizado una vez para cada contexto. El valor pueden ser otras parejas de nombres y valores.
+
+Objetos: Coleccion de Name/Value Pair. Dado que un valor de un nombre puede contener otras parejas de nombres y valores se puede guardar una colleccion de nombres y valores en un solo nombre.
+
+El contexto primario en el que se encierra a todo el codigo del programa se le denomina el "Global Execution Context". Todo lo que se encuentre dentro de este contexto puede ser accesado por todo el codigo, es el espacio "Publico" del programa.
+
+El Compiler ademas de encerrar el codigo en este contexto basico tambien crea un objeto primario denominado "Global Object" y una variable especial denominada "This".
+
+En el caso de los navegadores el Objeto Global se denomina "Window". Los navegadores al igual que todo compiler de JS tambien genera la variable "this", si utilizamos la variable en el contexto global este se referira al objeto global.
+
+Cualquier variable o funcion que ejecutemos en el contexto global seran añadidos como otro par nombre/valor a los que ya se encuentran en el objeto global.
+
+Todo contexto ademas de contener el codigo ejecutado, su objeto global y su variable "this" tambien tiene un "Outer Enviroment" que se refiere a todo el codigo fuera del contexto en cuestión. Dado que no hay codigo fuera del contexto global, el "Outer Envirmoent" genera Null.
+
+A diferencia de otros lenguajes de programacion estrictos, JS no necesita que se declaren funciones y variables primero para despues utilizarlas. JavaScript utiliza algo llamado "Hoisting" que le permite llamar funciones y variables para definirlas despues.
+--------
+Si utilizamos hoisting llamando una funcion antes de que sea declarada JavaScript va a intentar guardar un espacio en el contexto a la espera de encontrarse con esa funcion para regresarse a la llamada inicial y ejecutarla.
+
+Si utilizamos hoisting con variables tambien se intentara guardar un espacio en el contexto a la espera de encontrarse con la variable, sin embargo dado que no sabemos el tipo de variable no se lee el valor sino que si se encuentra la variable en el codigo se genera undefinded.
+
+En cualqueir caso si se llama una funcion o variable que no se define en ningun lugar del codigo al terminar el parsing se genera un Reference error.
+
+--------------
+
+Hoisting funciona debido a que la creacion del contexto de ejecucion global se da en dos fases.
+
+Primer Fase (Creation Phase): Se crea el contexto de ejecucion como tal, el objeto global, la variable "this" y se define el outer enviroment. El parser antes de comenzar la traduccion del codigo toma un poco de memoria y en ella almacena todas las variables y funciones que encuentre sin ejecutarlas.
+
+Segunda Fase (Execution Phase): Es en donde el parser ejecuta linea por linea el codigo.
+
+Una variable que utiliza hosting genera "Undefined" debido a que el parser (Cuando realiza la primer fase) no a ejecutado la linea de codigo en donde se le asigna un valor, simplemente encontro una variable y tomo su nombre (vacio) y lo puso en la memoria.
+
+Entonces al ejecutar el codigo (Segunda fase) que pretende utilizar la variable ira a la memoria en su busqueda para encontrar el nombre de la variable sin ningun valor.
+
+Undefined es un valor especial en JavaScript, dado que el interpretador define a todas las variables como "Undefined" antes de ejecutar el codigo que les asigna un valor es muy util nunca utilizar "Undefined", de esta manera si encontramos que una variable genera este valor sabremos que es porque no le hemos asignado ningun valor.
+
+---------
+
+Single Threaded: Lenguaje o programa que ejecuta codigo comando por comando. 
+
+Synchronous: Cualquier ejecucion de codigo en donde las partes a ejecutar se dan una por una y en orden.
+
+JavaScript es un lenguaje diseñado para ser Single Threaded, sin embargo en un navegador dado que no es el unico lenguaje que se utiliza esto tiende a cambiar. JavaScript normalmente ejecuta su codigo Synchronously por lo que se dice que JS es un lenguaje con "Single Threaded Synchronous Execution".
+
+Invocar (Llamar): Ejecutar una funcion, en JavaScript se invoca una funcion con su nombre y argumentos entre parentesis.
+
+Stack de Ejecucion (Execution Stack):
+
+En la primer fase se crea el contexto global  con todos sus elementos pero todavia no se ejecuta el codigo. Es en la segunda fase que el compilador empieza a ejecutar el codigo, pero ningun codigo puede ser ejecutado si no esta en el stack de ejecucion.
+
+Entonces, para ejecutar el codigo del contexto global el compilador debe tomarlo y ponerlo en el Stack de Ejecucion. Una vez que el contexto y por ende, el codigo, se encuentran en el Stack de Ejecucion el compilador puede pasar a ejecutarlo.
+
+Supongamos que en el codigo creamos e invocamos una funcion llamada (A), como el compilador esta ejecutando el contexto global tarde o temprano se va a encontrar con esta funcion y va a tener que ejecutarla.
+
+Pero para poder definir los limites de la funcion (A) y diferenciarlos del contexto global el compilador crea un contexto unico para la funcion. El compilador no puede ejecutar este nuevo contexto hasta que se encuentre en el Stack, así que lo toma y lo coloca en el stack encima del contexto global.
+
+Al igual que con el contexto global, una vez que el contexto de la funcion se encuentra en el Stack de Ejecucion el compilador puede pasar a ejecutarlo. Dado que JavaScript es Single Threaded solo se puede ejecutar un contexto a la vez, el cual siempre va a ser el ultimo que se coloco en el stack.
+
+Si dentro del contexto de la funcion (A) el compilador encuentra otra invocacion, por ejemplo de otra funcion (B) va a detener la ejecucion del contexto (A) y realizar de nuevo el proceso de creacion y colocacion del contexto (B) en el stack de ejecucion.
+
+Cuando la ejecucion de un contexto llega al final de su codigo es eliminado (Popped) del stack. El acto que realiza el compilador de poner un contexto en el Stack se denomina (Push).
+
+Cada contexto de ejecucion tiene su propio espacio de memoria para guardar variables y funciones. Un contexto de ejecucion no puede ver el espacio de memoria de otros contextos de ejecucion a menos que entre ellos exista una referncia, esta referencia se define en el elemento "Outer Environment".
+
+El Outer Enviroment esta definido por el Lexicon Enviroment, es decir en que lugar del codigo se encuentra una funcion.
+
+Si la funcion (A) se crea en el contexto global tendra una referencia a la memoria del contexto global por medio de su elemento Outer Enviroment. Si la funcion (B) se encuentra dentro de la funcion (A) tendra una referencia a la memoria de (A) porque se encuentra dentro ella y dado que (A) tiene una referencia a la memoria del contexto global entonces (B) tambien podra utilizar dicha referencia.
+
+Scope: Espacio de memoria en donde uno puede acceder a la variable invocada.
+
+Scope Chain: Cadena de referencias que sigue una funcion que se encuentra dentro de una serie de funciones en busca del valor de una variable desembocando en el espacio de memoria publico del contexto de ejecucion global.
+
+Una funcion dentro de otra funcion no va a ser definida, ni siquiera por el compilador en la creacion del contexto global inicial.
+
+Let: Introducido en la especificacion del 2015 para crear el equivalente de bloques de codigo para restringir el scope (Block Scoping).
+
+Asynchronous: Cualquier ejecucion de codigo en donde las partes a ejecutar se pueden dar al mismo tiempo.
+
+El compilador o JavaScript Engine no es el unico codigo que se esta ejecutando en paralelo. Tambien esta el Rendering Engine o el HTTP Request. La comunicacion entre el JS engine y otros engines puede ser asynchronous a pesar de que el lenguaje sea por defualt synchronous.
+
+El compilador de manera similar al stack de ejecucion tiene un stack de eventos denominado Event Queue. En el se almacenan las "acciones" que realzia el usuario en el navegador, la informacion que se poniendo en el Event Queue es administrada de manera Asynchornous por el navegador.
+
+Sin embargo en JavaScript podemos utilizar "Listeners" que son funciones que se vinculan con el Event Queue y que ejecutan su codigo cuando al Event Queue llege la notificacion de la accion que se esta esperando.
+
+Normalmente javascript no esta diseñado para ejecutarse continuamente y se espera que todo el codigo del contexto de ejecucion global sea ejecutado. Cuando esto sucede, es decir cuando el stack a quedado vacio, entonces en vez de ejecutar el codigo de un contexto se dedica a observar los eventos que se van registrando en el Event Queue y los compara con las funciones que tiene en memoria, si alguna funcion ocupa el evento como un argumento entonces vuelve a activar el stack de ejecucion y crea el contexto de ejecucion que el Listener necesita.
+
+En general un listener es tambien un handler, es decir que espera a que llegue el evento (Listens) y cuando llega al event queue ejecuta como debe ser manejado ese evento (Handler).
+
+JavaScript maneja los tipos de valores utilizando tipos de valores dinamicos (Dynamic Typing). Esto quiere decir que no es necesario especificar el tipo de valor en el documento, sino que es definido mientras se el compilador ejecuta el codigo.
+
+Gracias a esto podemos asignar distintos tipos de valor a la misma variable en distintas partes del codigo.
+
+Un tipo de valor primitivo es el que guarda un unico valor. Es decir una unica pareja de nombre/valor, por lo tanto un objeto no es un tipo de valor primitivo:
+
+Undefined: Valor otorgado automaticamente a variables que no han sido definidas.
+Null: Valor otorgado manualmente para variables que no han sido definidas.
+Boolean: Valor dual, en JavaScript es True o False.
+Numero: Floating Point Number, siempre existen decimales.
+String: Secuencia de caracteres.
+Symbolo: Utilizado en la nueva especificacion.
+
+Un operador es una funcion con una syntaxis especial. Asi la suma de dos numeros se escibe en vez de la funcion:
+
+var suma = 3+4;
+//En vez de:
++(3,4);
+
+Precedencia de Operadores (Operator Precedence): El operador con la mayor precedencia es el que es ejecutado primero. Si dos operadores tienen la misma precedencia entonces su ejecucion se determina por Associativity.
+
+Associativity: Orden en que dos funciones con la misma precedencia son ejecutadas, por lo general es de izquierda a derecha (Left Associativity) pero puede ser modificado para que lo ejecute de derecha a izquierda.
+
+Devido a que JavaScript interpreta los tipos de valores de manera dinamica muchas veces transforma un tipo de valor a otro si así lo considera conveniente para el contexto en el que se encuentra el valor. Esta convercion automatica se denomina coercion.
+
+Or se puede utilizar devido a la coercion para generar el valor por defecto en el caso de que el primer valor no esta definido.
+
+name = name || "Default";
+name;
+
+Un objeto es una coleccion de nombres y valores. En el caso de tipos de valores primitivos cada par es una propiedad, un objeto tambien puede ser una propiedad, finalmente.</p>
+
+
+		</main>
+		<footer>
+			<div class="footer">
+				<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+			</div>
+		</footer>
+		<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>

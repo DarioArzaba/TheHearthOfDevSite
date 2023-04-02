@@ -1,0 +1,508 @@
+﻿<!doctype html>
+<html lang="es">
+
+	<head>
+		<title>OpenSUSE</title>
+		<meta name="author" content="Dario Arzaba"/>
+		<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="../favicon.ico" sizes="32x32">
+		<link rel="stylesheet" href="../post.css" />
+		<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+
+<main>
+
+<h1>OpenSUSE</h1>
+
+<nav>
+	<ol>
+		<li>
+			<a href="OpenSuse.html#Instalacion">Instalacion</a>
+			<ol>
+				<li><a href="OpenSuse.html#Preparacion">Preparacion</a></li>
+			</ol>
+		</li>
+		<li>
+			<a href="#Shell">Shell</a>
+			<ol>
+				<li><a href="#ShellBasics">ShellBasics</a></li>
+			</ol>
+		</li>
+		<li>
+			<a href="#Otros">Otros</a>
+			<ol>
+				<li><a href="#GettingThingsGnome">GettingThingsGnome</a></li>
+				<li><a href="#BuildService">BuildService</a></li>
+			</ol>
+		</li>
+	</ol>
+</nav>
+	
+<h2 class="HoverTitle" id="Shell"><a href="#Shell"># </a><a href="#Shell">Shell</a></h2>
+
+<h3 class="HoverTitle" id="ShellBasics"><a href="#ShellBasics"># </a><a href="#ShellBasics">Shell Basics</a></h3>
+
+<p>En openSUSE los programas usualmente se comunican con sistemas graficos como GNOME o KDE. Los sistemas graficos interpretan las instrucciones y las comunican al Kernel. Para ejecutar instrucciones directamente utilizamos un programa especial denominado Shell. El Shell instalado por defecto es BASH o GNU Bourne Again Shell.</p>
+
+<p>El Shell es el unico programa que controla el Kernel sin necesidad de un sistema grafico. Para crear una nueva sesion del Shell utilizamos el comando <code class="inline">Ctrl-Alt-F2</code> y para regresar al sistema grafico <code class="inline">Ctrl-Alt-F7</code>. Un interprete virtual o terminal es un programa que abre un shell dentro del sistema grafico. KDE usa Konsole y GNOME usa Gnome-Terminal.</p>
+	
+<p>Cuando iniciamos una sesion Shell necesitamos acceder a una cuenta de usuario. En el caso de utilizar una terminal se accede a la cuenta del usuario que haya abierto el sistema grafico. Para cerrar una aplicacion utilizamos <code class="inline">Ctrl-Alt-F4</code></p>
+
+<pre><code class="language-bash">
+#Al iniciar sesion aparece el siguiente Promt:
+username@hostname:directory> Command
+
+#Por ejemplo:
+darioabraham@linux-x1234:~>
+
+#En donde la (~) simboliza el directorio activo (/home/)
+#Para cerrar una sesion del shell utilizamos:
+exit
+</code></pre>
+
+<p>Si queremos cambiar el Promt simplemente modificamos la variable del entorno <code class="inline">PS1</code>. Esta variable esta definida en el archivo <code class="inline">~/.bashrc</code>. Para construir visualmente el Promt podemos utilizar esta <a href="http://bashrcgenerator.com/" target="_blank">Herramienta</a>. El Hostname se modifica editando los archivos <code class="inline">/etc/hostname</code> y <code class="inline">/etc/hosts</code>. </p>
+
+<pre><code class="language-bash">
+#El siguiente codigo modifica el Promt del Shell actual:
+export PS1="\[\033[38;5;10m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\] @ \[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]\[\033[38;5;15m\] : \[$(tput sgr0)\]\[\033[38;5;11m\]\$?\[$(tput sgr0)\]\[\033[38;5;15m\]\n\\$\[$(tput sgr0)\]"
+
+#Para que los cambios sean permanentes simplemente recompilamos .bashrc 
+source ~/.bashrc
+
+</code></pre>
+
+<p>El kernel de linux incluye un usuario maestro denominado "root". Muchos comandos solo pueden ser ejecutados con los permisos administrativos de root.</p>
+
+<pre><code class="language-bash">
+#Ejecutar comando con permisos del usuario target, root por defecto.
+#Te pide la contraseña del sudoer que lo ejecute en /etc/sudoers.
+sudo	
+#Abrir shell con permisos del usuario target, root por defecto.
+#Si no eres root pide la contraseña del usuario target.
+#Se ejecuta dentro del ambiente y variables del usuario anterior.
+su
+#Abre shell con los permisos de root. Sudo evita introducir la contraseña de root.
+#Cambia el directorio activo pero mantiene el ambiente y variables anteriores.
+sudo su
+#Abre shell con los permisos de root. Utiliza tu bashrc y tus directorios.
+#Cambia el ambiente y variables a las de root.
+sudo -s
+#Abre shell al simular el inicio de root. Utiliza su bashrc y sus directorios.
+#Cambia el ambiente y variables a las de root. Similar a sudo -.
+sudo -i
+#Utilizados como sustitutos GUI de su y sudo
+gtsu, gksudo, kdesu, kdesudo
+
+</code></pre>
+	
+<p>Para ver los elementos dentro del directorio activo utilizamos el comando <code class="inline">ls</code> (Listar). Cuando utilizamos la opcion de lista detallada se ordenan los elementos por orden alfabetico y se muestran sus permisos, numero de hard links, autor, grupo del autor, tamaño en bytes, fecha del ultima modificacion y su nombre completo.</p>
+
+<table>
+	<thead><tr><th>Comando</th><th>Accion</th></tr></thead>
+	<tbody>
+		<tr><td>ls</td><td>List. Muestra el nombre de los elementos del directorio activo.</td></tr>
+		<tr><td>ls -l</td><td>Long List Format. Muestra los elementos en una lista detallada.</td></tr>
+		<tr><td>ls -a</td><td>All. Muestra tambien elementos ocultos.</td></tr>
+		<tr><td>ls -t</td><td>Time. Ordena por fecha, el más reciente primero.</td></tr>
+		<tr><td>ls -x</td><td>Extension. Ordena tipo de archivo, los archivos sin tipo primero.</td></tr>
+		<tr><td>ls -S</td><td>Space. Ordena los elementos por tamaño, el más grande primero. </td></tr>
+		<tr><td>ls -r</td><td>Revert. Revierte el orden de los elementos.</td></tr>
+		<tr><td>ls [directorio]</td><td>Muestra los elementos del directorio dado.</td></tr>
+		<tr><td>ls [directorio][usuario]</td><td>Muestra los elementos del directorio en el entorno del usuario.</td></tr>
+	</tbody>
+</table>
+
+<p>Un guion (-) especifica las distintas opciones (llaves) de un comando. Cada llave esta asociada a un literal string que puede ser accesado con un doble guion (--).</p>
+
+<pre><code class="language-bash">
+#Las opciones se pueden escribir por separado o juntas.
+ls -l -a -S
+ls -laS
+#Se puede escribir el literal completo
+ls -l -S --all
+
+#Para obtener ayuda sobre las opciones de un comando usamos "help"
+ls --help
+
+#Para ayuda usar el manual "man" o la informacion tecnica "info"
+man ls
+info ls
+
+</code></pre>
+
+<p>Para usar el manual se utilizan los botones de Inicio, RePag, AvPag, Fin y Q para salir. Para usar la informacion se utiliza la flecha izquierda y la barra espaciadora para retroceder y avanzar por los capitulos.</p>
+
+<p>El programa Shell tiene una serie de shortcuts utiles conviene aprender.</p>
+
+<table>
+	<thead><tr><th>Shortcut</th><th>Accion</th></tr></thead>
+	<tbody>
+		<tr><td>Ctrl + L</td><td>Limpia la pantalla. Similar a Clear.</td></tr>
+		<tr><td>Ctrl + C</td><td>Cierra el proceso actual. Envia un SIGINT.</td></tr>
+		<tr><td>Ctrl + U</td><td>Borra desde el cursor hasta el inicio del comando.</td></tr>
+		<tr><td>Ctrl + K</td><td>Borra desde el cursor hasta el final del comando.</td></tr>
+		<tr><td>Ctrl + D</td><td>Cierra la sesion del Shell. Evia un EOF. Similar a Exit.</td></tr>
+		<tr><td>Ctrl + Z</td><td>Detiene el proceso actual. Envia un SIGTSTP. FG Process-Name lo reinicia.</td></tr>
+		<tr><td>Ctrl + S</td><td>Detiene output pero no el proceso actual.</td></tr>
+		<tr><td>Ctrl + Q</td><td>Reinicia el output despues de haberlo detenido.</td></tr>
+		<tr><td>Ctrl + A</td><td>Ir al inicio del comando</td></tr>
+		<tr><td>Ctrl + E</td><td>Ir al final del comando</td></tr>
+		<tr><td>Ctrl + Y</td><td>Pegar desde el portapapeles del Shell.</td></tr>
+		<tr><td>Ctrl + Shift + C</td><td>Pegar desde el portapapeles Externo.</td></tr>
+		<tr><td>Ctrl + R</td><td>Buscar y autocompletar comando del historial. Comodines regex validos.</td></tr>
+		<tr><td>Ctrl + O</td><td>Ejecutar el comando encontrado con el buscador.</td></tr>
+		<tr><td>Ctrl + G</td><td>Salir del buscador sin ejecutar ningun comando.</td></tr>
+		<tr><td>Up-Down</td><td>Navegan el historial de comandos.</td></tr>
+		<tr><td>Shift + AvPag-RePag</td><td>Sube o baja el output de la pantalla.</td></tr>
+		<tr><td>Tab</td><td>Completa automaticamente un directorio </td></tr>
+	</tbody>
+</table>
+
+<p>Al igual que las terminales de otros sistemas operativos, una ubicacion puede ser descrita en base a su direccion absoluta (Iniciando con una diagonal), o desde su direccion relativa (Iniciando sin diagonal). Si el directorio contiene un espacio en blanco escapalo con una diagonal invertida enfrente.</p>
+
+<p>Para cambiar de directorio utilizamos el comando <code class="inline">cd</code>. Si el directorio es relativo se inicia la busqueda en el directorio que especifique la variable CDPATH.</p>
+
+<table>
+	<thead><tr><th>Comando</th><th>Accion</th></tr></thead>
+	<tbody>
+		<tr><td>cd</td><td>Change Dir. Cambia el directorio activo por el dado o a $HOME (~).</td></tr>
+		<tr><td>cd -P</td><td>Ignora los links simbolicos a directorios.</td></tr>
+		<tr><td>cd -F</td><td>Permite utiliza los links simbolicos. (Default)</td></tr>
+		<tr><td>cd -</td><td>Regresa al directorio activo anterior.</td></tr>
+		<tr><td>cd ..</td><td>Sube uno o mas niveles separados por diagonales.</td></tr>
+		<tr><td>cd .</td><td>Utilizado para referirnos al directorio activo.</td></tr>
+	</tbody>
+</table>
+
+<p>El siguiente ejemplo muestra el uso de varios comandos que nos permitan crear, mover, copiar y borrar archivos.</p>
+
+<pre><code class="language-bash">
+#Mostrar el directorio activo actual (Print Working Directory)
+pwd
+#Crea una carpeta o directorio "test" en el directorio /tmp/
+mkdir /tmp/test
+#Cambia el directorio activo a "test"
+cd /tmp/test
+#Crea un nuevo archivo de texto
+touch ~/Documents/myfile.txt
+#Copia el archivo al directorio activo con aviso de sobreescritura
+cp ~/Documents/myfile.txt .
+#Mueve o cambia el nombre del archivo
+mv myfile.txt tuxfile.txt
+#Cambia el autor del archivo
+chown (User) tuxfile.txt
+#Borra el archivo
+rm tuxfile.txt
+rm ~/Documents/myfile.txt
+#Borra el directorio
+cd..
+rmdir test
+
+</code></pre>
+
+<p>En linux existen tres niveles de permisos: Read, Write y Execute. Estos permisos se otorgan a usuarios (u), grupos (g) y otros (o). El comando <code class="inline">ls -l</code> muestra primero los permisos de cada elemento.</p>
+
+<p>El primer caracter es el tipo de archivo, con (d) para directorios y (-) para archivos. Las siguientes 9 letras son grupos de 3 caracteres que representan los permisos para el usuario, grupo y otros usuarios. Si una entidad tiene el permiso aparecera su letra (r,w,x), de lo contrario se utiliza un guion (-).</p>
+
+<ol>
+	<li>Abrir y leer el contenido de un archivo necesitamos el permiso de leer.</li>
+	<li>Modificar el contenido de un archivo necesitamos el permiso de escribir.</li>
+	<li>Ejecutar un archivo ejecutable o script necesitamos el permiso de ejecutar.</li>
+	<li>Abrir y ver el contenido de un directorio necesitamos el permiso de leer.</li>
+	<li>Crear o eliminar los elementos de un directorio necesitamos el permiso de escribir.</li>
+	<li>Ejecutar un archivo necesitamos permisos de ejecucion del directorio y del archivo.</li>
+</ol>
+
+<p>Para cambiar los permisos de un elemento utilizamos el comando <code class="inline">chmod</code>. </p>
+
+<pre><code class="language-bash">
+#Si se tienen los permisos, agrega al grupo activo permisos de escritura
+chmod g+w text.txt
+#Usuario activo, grupo activo y otros tengan permiso de ejecucion
+chmod ugo+x package.nmp
+#Remover el ultimo permiso para todos
+chmod -x package.nmp
+#Agregar permiso de escritura a usuario, grupo y otros.
+#Este permiso se aplica al directorio activo con "local"
+chmod ugo-w local
+#Aplicar un cambio de permisos a varios elementos
+chmod o+w text.txt text.xml
+
+</code></pre>
+
+<p>El shell viene incorporado con un editor de texto simple denominado Vi. Vi puede ser iniciado en tres modalidades: Comandos, Insertar, Extra. En el modo comandos se puede buscar, seleccionar y eliminar texto, en el modo insertar se puede introducir texto y en el modo extra se pueden ejecutar tareas complejas como remplazar texto.</p>
+
+<pre><code class="language-bash">
+#Crea y abre un archivo en el directorio activo en modo comando
+vi textfile.txt
+#Cambiar a modo insertar (I) en comando
+#Insetar nueva linea en modo comando (ESC) al apretar (0)
+#Cambiar a modo extra (:) en comando
+#Aplicar los cambios
+w
+#Guardar los cambios
+g
+#Guardar como
+w (Nombre archivo)
+#Salir sin guardar
+q!
+#Buscar un archivo
+locate (Nombre archivo)
+#Actualizar base de datos de busqueda
+updatedb
+#Buscar archivo en un directorio especifico
+find (Directorio) -name (Nombre archivo) -print
+#Buscar archivos que contengan una palabra
+grep (Palabra) (Directorio)
+#Buscar archivos que contengan un string
+grep "String" (Directorio)
+
+</code></pre>
+
+<p>Para obtener informacion sobre un archivo de texto sin tener que abrirlo se pueden aplicar los siguientes comandos: Head, Tail, Less, More, Cat. Head muestra las primeras lineas de texto, tail muestra las ultimas lineas de texto y less muestra todo el texto.</p>
+
+<p>More es similar a less pero utiliza un visor anticuado que solo acepta la barra espaciadora. Cat imprime sin interrupcion todo el texto y se cierra automaticamente, es utilizado junto con otros comandos para funciones de parseo.</p>
+
+<p>Podemos guardar una sesion o script del Shell en un archivo de texto. Para ello redirigimos la informacion output hacia un archivo en vez de la pantalla.</p>
+
+<pre><code class="language-bash">
+#Guarda el output del comando en un archivo de texto
+ls -l > lista.txt
+#Añadir texto al final de uno ya existente
+ls -l >> lista.txt
+#Redirige la informacion de un archivo al Shell
+sort < lista.txt
+#Las redirecciones se ejecutan de derecha a izquierda
+#Usa sort para organizar la lista del archivo y guarda el resultado en otro archivo.
+sort < lista.txt > lista_sorteada.txt
+#Guarda el resultado anterior en un pipe y utilizalo como input
+ls -l | less
+#Guarda el resultado en el pipe y usalo como input de grep.
+#Grep regresa una lista con los elementos que pertenescan al usuario
+ls -l | grep darioarzaba
+#Muchos programas se pueden abrir directamente con su nombre
+gedit
+#Para enviarlos al background lo suspendemos y aplicamos el comando bg
+#Ctrl-Z
+bg
+#Para enviarlos de regreso al foreground aplicamos el comando fg
+fg
+#Un ampersand (&amp;) al final envia al background automaticamente.
+evince &
+#Mostrar procesos los procesos del shell utilizamos el comando jobs
+jobs
+#Mostrar todos los procesos iniciados por el usuario
+ps
+#Mostrar todos los procesos activos
+top
+#Muestra todos los procesos iniciados
+ps aux
+#Cerrar un proceso utilizando su PID (TERM SIGNAL)
+kill (PID)
+#Cerrar un proceso utilizando su nombre
+killall evince
+#Cerrar un procesos utilizando su Job ID
+kill %(Job ID)
+#Cerrar forzosamente un proceso (KILL SIGNAL)
+kill -9 (PID)
+
+</code></pre>
+
+<p>Otros de los comandos más comunes para la adiministracion basica de archivos son:</p>
+
+<table>
+	<thead><tr><th>Comando</th><th>Accion</th></tr></thead>
+	<tbody>
+		<tr><td>gzip</td><td>Comprime un archivo con extencion GZ</td></tr>
+		<tr><td>tar</td><td>Comprime un archivo con extencion tar</td></tr>
+		<tr><td>diff</td><td>Compara las diferencias entre dos archivos.</td></tr>
+		<tr><td>free</td><td>Muestra el espacio RAM utilizado</td></tr>
+		<tr><td>date</td><td>Muestra la fecha actual.</td></tr>
+		<tr><td>ping</td><td>Comprueva la conexion a un URL enviando un paquete.</td></tr>
+		<tr><td>host</td><td>Comprueva la conexion al DNS enviando un paquete.</td></tr>
+		<tr><td>passwd</td><td>Cambia la contraseña del usuario activo.</td></tr>
+		<tr><td>halt</td><td>Apaga la computadora normalmente.</td></tr>
+		<tr><td>reboot</td><td>Reinicia la computadora normalmente.</td></tr>
+	</tbody>
+</table>
+		
+
+<p>A demas del shell login interactivo y del shell ordinario interactivo (terminal) existe una version del shell no interactiva. Esta version del shell es la encargada de ejecutar una secuencia de comandos automaticamente en forma de Scripts.</p>
+
+<p>El primer shell ejecuta <code class="inline">~/.profile</code>, mientras que los otros dos ejecutan <code class="inline">~/.bashrc</code>. Una vez que se ejecuto el perfil del usuario podemos acceder a la estructura del sistema.</p>
+
+<table>
+	<thead><tr><th>Directorio</th><th>Funcion</th></tr></thead>
+	<tbody>
+		<tr><td>/</td><td>Directorio principal de la particion del usuario.</td></tr>
+		<tr><td>/bin/</td><td>Guarda  archivos binarios, incluyendo comandos y el mismo shell.</td></tr>
+		<tr><td>/boot/</td><td>Guarda el kernel y el bootloader, asi como todo lo del boot.</td></tr>
+		<tr><td>/dev/</td><td>Archivos necesarios del hardware interno.</td></tr>
+		<tr><td>/etc/</td><td>Archivos del sistema operativo.</td></tr>
+		<tr><td>/home/username</td><td>Directorios home de todos los usuarios exeptuando a root.</td></tr>
+		<tr><td>/lib/</td><td>Librerias esenciales y modulos del kernel.</td></tr>
+		<tr><td>/media/</td><td>Puntos de montaje para hardware externo.</td></tr>
+		<tr><td>/mmt/</td><td>Puntos de montaje temporales para otros sistemas de archivo.</td></tr>
+		<tr><td>/opt/</td><td>Paquetes secundarios de las aplicaciones.</td></tr>
+		<tr><td>/root/</td><td>Directorio Home del usuario Root</td></tr>
+		<tr><td>/sbin/</td><td>Binarios fundamentales del sistema. Recuperacion, backups etc.</td></tr>
+		<tr><td>/srv/</td><td>Informacion de los servicios del sistema.</td></tr>
+		<tr><td>/usr/</td><td>Archivos estaticos como documentacion.</td></tr>
+		<tr><td>/tmp/</td><td>Archivos temporales como cache.</td></tr>
+		<tr><td>/var/</td><td>Archivos variables como logs.</td></tr>
+	</tbody>
+</table>
+
+<p>Toda accion del Shell pasa por tres canales de informacion: Input, Output y Error. Estos canales se representan por los codigos 0, 1 y 2 respectivamente. Utilizando este numero podemos redirigir todo el input, output o errores que produsca un comando.</p>
+
+<pre><code class="language-bash">
+#Shebang para definir el interprete del Script
+#El interprete puede buscar en la carpeta /home/darioarzaba/bin/
+#!/bin/sh
+#Redirige el canal de errores del Shell a la basura
+find / -name “foo*” 2 > /dev/null
+#Concatena comandos ignorando el canal de errores.
+cat test.txt ; ls -l test.txt
+#Ejecuta el segundo comando solo si el primero fue exitoso
+cat test.txt && ls -l test.txt
+#Ejecuta el segundo comando si el primero fracaso
+mkdir /tmp/foo || mkdir /tmp/bar
+#Guarda el alias de un comando predefinido
+alias lt = 'ls -ltr'
+#Ver todos los alias activos
+alias
+#Elimina el alias
+unalias lt
+#Ver el valor de una variable global
+printenv (Nombre variable)
+#Ver el valor de cualquier variable
+echo $(Nombre variable)
+#Establecer variable local
+Variable="Ejemplo"
+#Establecer variable global
+export Variable="Ejemplo"
+#Eliminar variable
+unset Variable
+#Utilizar un parametro junto con el script
+echo $1 y $2
+test.sh "hola" "adios"
+#Output: hola y adios
+#If checa expresiones booleanas.
+if test $USER="Dario"; then
+	echo "Hola Dario!"
+else
+	echo "Tu no eres Dario!"
+fi
+#Checa si el archivo "hola" existe.
+#Se pueden utilizar corchetes para omitir el keyword "test"
+if [-e /tmp/hola.txt]; then
+	echo "Archivo existe!"
+fi
+#Crea una funcion utilizando como argumentos las variables $(0-9)
+hello(){
+	echo "Hola $1!";	
+}
+hello Dario
+#Output: Hola Dario!
+
+</code></pre>
+
+<p>El ambiente define una serie de variables globales predefinidas.</p>		
+
+<table>
+	<thead><tr><th>Variable</th><th>Valor</th></tr></thead>
+	<tbody>
+		<tr><td>HOME</td><td>Directorio Home del usuario Activo.</td></tr>
+		<tr><td>HOST</td><td>Nombre del dispositivo Host</td></tr>
+		<tr><td>LANG</td><td>Lenguaje del sistema operativo.</td></tr>
+		<tr><td>PATH</td><td>Lista de directorios de busqueda del Shell.</td></tr>
+		<tr><td>PS1</td><td>Especifica como se estructura el promt de comandos.</td></tr>
+		<tr><td>PS2</td><td>Estructura del prompt despues de una serie de comandos.</td></tr>
+		<tr><td>PWD</td><td>Especifica el directorio activo.</td></tr>
+		<tr><td>USER</td><td>Nombre del usuario activo.</td></tr>
+	</tbody>
+</table>
+
+<p>Al manipular el valor de las variables del ambiente podemos utilizar algunos patrones comunes para obtener unicamente la informacion util.</p>
+		
+<pre><code class="language-bash">
+#Remover la parte mas corta desde la izquierda
+file=/home/tux/book/book.tar.bz2
+echo ${file#*/}
+home/tux/book/book.tar.bz2
+
+#Remover la parte mas larga desde la izquierda
+file=/home/tux/book/book.tar.bz2
+echo ${file##*/}
+book.tar.bz2
+
+#Remover la parte mas corta desde la derecha
+file=/home/tux/book/book.tar.bz2
+echo ${file%.*}
+/home/tux/book/book.tar
+
+#Remover la aprte mas larga desde la derecha
+file=/home/tux/book/book.tar.bz2
+echo ${file%%.*}
+/home/tux/book/book
+
+#Sustituir una parte del primer patron
+file=/home/tux/book/book.tar.bz2
+echo ${file/tux/wilber}
+/home/wilber/book/book.tar.bz2
+</code></pre>
+
+<h3 class="HoverTitle" id="GettingThingsGnome"><a href="#GettingThingsGnome"># </a><a href="#GettingThingsGnome">Getting Things Gnome</a></h3>
+	
+<p>La aplicacion <a href="http://gtgnome.net/" target="_blank">Getting Things Gnome!</a> o GTG es un organizador de tareas para GNOME basado en el metodo de gestion <a href="https://es.wikipedia.org/wiki/Getting_Things_Done" target="_blank">Getting Things Done</a> o GDT. El proyecto inicia en Python por <a href="https://ploum.net/" target="_blank">Lionel Dicot</a> y <a href="http://www.ecspec.com/" target="_blank">Bertrand Rousseau</a>.</p>
+
+<p>GTG requiere de los siguientes paquetes: <i>Py-GTK, python-configobj, python-xdg, python-liblarch y python-liblarch-gtk.</i> La aplicacion se puede sincronizar con <a href="https://wiki.gnome.org/Apps/Tomboy" target="_blank">Tomboy</a> o <a href="https://www.rememberthemilk.com/" target="_blank">Remember the Milk.</a>. Para obtener mayor informacion visitar su <a href="https://wiki.gnome.org/action/show/Apps/GTG" target="_blank">Documentacion Gnome</a>.</p>
+
+<p>Para agregar categorias utilizamos arrobas (@), para incluir tareas secundarias ponemos un (-) y para crear nuevas tareas utilizamos (Ctrl-N). El programa guarda backups en el directorio (~/.local/share/gtg) segun lo que dicte ($XDG_DATA_HOME).</p>
+
+<p>La sintaxis de <b>QuickAdd</b> es la siguiente: [&lt;titulo&gt; tags:&lt;tag1&gt,&lt;tag2&gt,&lt;tag3&gt due:&lt;fecha&gt defer:&lt;fecha&gt;]. Due y Defer pueden tomar un formado de año-mes-dia (2016-05-20), junto (20160520) o unicamente mes-dia (0520). En este ultimo se asume el año actual. Tambien se aceptan las palabras <i>today, tomorrow</i> o un dia de la semana (<i>monday, tuesday...</i>) .</p>
+
+<table>
+	<tr> <th>Acción</th> <th>Shortcut</th><th>Acción</th><th>Shortcut</th> <th>Acción</th><th>Shortcut</th></tr>
+	<tr><td>Tarea Terminada</td><td>Ctrl+D</td><td>Eliminar Tarea</td><td>Ctrl+I</td><td>QuickAdd</td><td>Ctrl+L</td></tr>
+	<tr><td>Nueva Tarea</td><td>Ctrl+N</td><td>Subtarea</td><td>Ctrl+Shift+N</td><td>Salir de GTG</td><td>Ctrl+Q</td></tr>
+	<tr><td>Añadir Tag</td><td>Ctrl+T</td><td>Sidebar</td><td>F9</td><td>Closed Tasks</td><td>Ctrl+F9</td></tr>
+	<tr><td>Borrar Tarea</td><td>Del</td><td>Salir del Editor</td><td>Esc</td><td>Zoom In</td><td>Ctrl + 0</td></tr>
+	<tr><td>Zoom Out</td><td>Ctrl + 1</td><td>Fit With</td><td>Ctrl + 2</td><td></td><td></td></tr>
+</table>
+
+<h3 class="HoverTitle" id="BuildService"><a href="#BuildService"># </a><a href="#BuildService">Build Service</a></h3>
+
+<p>El <a href="http://openbuildservice.org/" target="_blank">Open Build Service</a> es un servicio en linea utilizado por OpenSUSE para compilar sus paquetes. OpenSUSE tiene su propia <a href="https://build.opensuse.org/" target="_blank">Instancia del Servicio</a> en la que desarollan y mantienen los paquetes oficiales.</p>
+
+<p>La instancia nos permite ver la <a href="https://build.opensuse.org/project" target="_blank">Lista de Proyectos</a>, <a href="https://build.opensuse.org/search" target="_blank">Buscar un Proyecto</a>, <a href="https://build.opensuse.org/apidocs/index" target="_blank">Monitorear su Estado</a> o <a href="https://build.opensuse.org/monitor" target="_blank">Investigar el API</a>. La instancia se compone de proyectos que definen los recursos necesarios para crear conjuntos de paquetes compatibles con OpenSUSE, Debian, Ubuntu, Fedora y Mandriva.</p>
+
+<p>En el caso de crear los paquetes necesarios para una nueva distribucion con base en openSUSE se utiliza la <a href="https://build.opensuse.org/image_templates" target="_blank">Plataforma Kiwi</a>. Se recomienda la instalacion de las <a href="https://en.opensuse.org/openSUSE:OSC" target="_blank">Herramientas OSC</a> que nos permiten cominucarnos con el servicio y realizar compilaciones locales.</p>
+
+<p>OpenSUSE ofrece <a href="https://en.opensuse.org/Category:Build_Service" target="_blank">Tutoriales</a>, Guias de <a href="http://openbuildservice.org/help/manuals/obs-reference-guide/" target="_blank">Referencia</a>, Guias para <a href="http://openbuildservice.org/help/manuals/obs-admin-guide/" target="_blank">Administradores</a> y <a href="http://openbuildservice.org/help/manuals/obs-best-practices/" target="_blank">Normas de Uso</a>. Despues de compilar se utiliza el framework <a href="http://open.qa/docs/" target="_blank">openQA</a> que realiza automaticamente los tests reportando el comportamiento de maquinas virtuales.</p>
+
+</main>
+		<footer>
+			<div class="footer">
+				<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+			</div>
+		</footer>
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>

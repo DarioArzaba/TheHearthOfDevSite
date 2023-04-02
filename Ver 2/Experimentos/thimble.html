@@ -1,0 +1,263 @@
+﻿<!doctype html>
+<html lang="es">
+
+<head>
+	<title>Thimble Tutorials</title>
+	<meta name="author" content="Dario Arzaba" />
+	<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" href="../favicon.ico" sizes="32x32">
+	<link rel="stylesheet" href="../post.css" />
+	<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+	
+		/*Keep Calm Settings*/
+		.KeepCalm {
+			background-color: white;
+			color: white;
+			text-align: center;
+			padding: 20px 25% 20px 25%;
+		}
+
+		.KeepCalmWrap {
+			border: 4px double white;
+			background-color: darkslateblue;
+		}
+
+		#KeepCalmText {
+			text-align: center;
+			font-family: "Lato";
+			font-size: 54px;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+		}
+
+		.Keep1 {
+			font-size: 60px;
+			line-height: 0.1;
+		}
+
+		.Keep2 {
+			font-size: 70px;
+			line-height: 1px;
+		}
+
+		.Keep3 {
+			font-size: 33px;
+			line-height: 1.7;
+			display: block;
+		}
+
+		.Keep4 {
+			font-size: 70px;
+			line-height: 1px;
+			display: block;
+			margin: -40px;
+		}
+
+		.Keep5 {
+			font-size: 70px;
+			line-height: 1px;
+		}
+
+		#KeepCalmImg {
+			width: 125px;
+			display: inline;
+		}
+
+		/*Interactive PostCard Settings*/
+		.PostCard {
+			padding: 5% 15% 5% 15%;
+			color: black;
+			background-color: white;
+			text-align: center;
+		}
+
+		.MainCard {
+			max-width: 100%;
+			transform-style: preserve-3d;
+			transition: all .7s cubic-bezier(0.4, 0, 1, 1) 0s;
+			box-shadow: 0px 0px 10px #aaa;
+		}
+
+			.MainCard:hover {
+				transform: rotateY(180deg);
+			}
+
+		.Face {
+			backface-visibility: hidden;
+		}
+
+		.Front {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: gray;
+			background-image: url('school.jpeg');
+			background-size: cover;
+			background-position: center;
+		}
+
+		.CardTitle {
+			font-family: 'Oswald', monospace;
+			color: white;
+			text-transform: uppercase;
+			text-shadow: 6px 13px 13px #232323;
+			font-size: 40px;
+			max-width: 50%;
+			display: inline-block;
+			padding: 25% 25px;
+			text-align: center;
+		}
+
+		.Back {
+			background-color: white;
+			color: #333;
+			font-family: 'Waiting for the Sunrise', monospace;
+			font-size: 17px;
+			font-weight: bold;
+			transform: rotateY(180deg);
+		}
+
+		.BackText {
+			font-family: 'Waiting for the Sunrise', monospace;
+			font-size: 23px;
+			font-weight: bold;
+		}
+
+		.Mensaje {
+			text-align: left;
+			width: 50%;
+			padding: 30px 20px;
+			box-sizing: border-box;
+			min-height: 475px;
+			position: relative;
+		}
+
+			.Mensaje:after {
+				content: "";
+				position: absolute;
+				border-right: solid 1px rgba(37, 37, 37, 0.67);
+				height: 70%;
+				top: 15%;
+				right: 0;
+			}
+
+		.Address {
+			position: absolute;
+			top: 0;
+			right: 0;
+			text-align: left;
+			padding: 130px 20px 0 20px;
+			width: 50%;
+			box-sizing: border-box;
+		}
+
+			.Address:after {
+				content: "";
+				position: absolute;
+				height: 65px;
+				width: 65px;
+				border: solid 1px rgba(37, 37, 37, 0.67);
+				right: 20px;
+				top: 20px;
+			}
+
+		#myButton {
+			background-color: rgba(119, 199, 85, 0.73);
+			border: none;
+			font-family: 'Oswald', monospace;
+			font-size: 19px;
+			padding: 4px;
+			color: #252525;
+			cursor: pointer;
+		}
+
+			#myButton:hover {
+				border: 1px solid gray
+			}
+
+		#myAnswer {
+			font-family: 'Waiting for the Sunrise', monospace;
+			font-size: 24px;
+			font-weight: bold;
+			color: #000;
+		}
+
+		#Prediccion {
+			font-size: 20px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+	<main>
+
+	<h3>Keep Calm Poster</h3>
+	<article class="KeepCalm">
+		<div class="KeepCalmWrap">
+			<img src="crown.svg" id="KeepCalmImg">
+			<p id="KeepCalmText"><span class="Keep1">Keep</span><br /><span class="Keep2">Calm</span><br /><span class="Keep3">and</span><br /><span class="Keep4">carry</span><br /><span class="Keep5">on</span></p>
+		</div>
+	</article>
+	
+	<h3>Interactive Postcard</h3>
+	<article class="PostCard">
+		<div class="MainCard">
+			<div class="Front Face">
+				<h3 class="CardTitle">¡Bienvenido a la Escuela!</h3>
+			</div>
+			<div class="Back Face">
+				<div class="Mensaje">
+					<p class="BackText">Querido Profesor,</p>
+					<p class="BackText">Quiero que sepa tres cosas de mi:</p>
+					<ul>
+						<li>Me gustan los videojuegos.</li>
+						<li>Me gustaria tener clases con mi mejor amigo.</li>
+						<li>Trabajo mejor si hay dulces de por medio.</li>
+					</ul>
+					<p class="BackText">De tu estudiante:</p>
+				</div>
+				<div class="Address">
+					<form>
+						<p id="Prediccion" class="BackText"> Este año creo que la escuela va a ser...<br></p>
+						<p><input type="button" id="myButton" name="Answer" value="Predecir :p" onClick="document.querySelector('#myAnswer').innerHTML = fortune();"></p>
+						<p><span id="myAnswer">...</span></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</article>
+	</main>
+
+	<footer>
+		<div class="footer">
+			<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+		</div>
+	</footer>
+
+	<script src="../NewPage/Prism/prism.js"></script>
+
+	<script>
+		/*PostCard Random Answers*/
+		var answers = ["Increible.", "Divertida.", "Dificil.", "Confusa.", "Padre.", "La Mejor.", "La Peor.", "Ruidosa.", "Loca.", "Rara."];
+		function fortune() { num = Math.round((answers.length - 1) * Math.random()); return answers[num]; }
+	</script>
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-99583415-1', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+</body>
+</html>

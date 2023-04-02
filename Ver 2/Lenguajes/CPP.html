@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html lang="es">
+
+<head>
+	<title>C++</title>
+	<meta name="author" content="Dario Arzaba" />
+	<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" href="../favicon.ico" sizes="32x32">
+	<link rel="stylesheet" href="../post.css" />
+	<link href="../NewPage/Prism/prism.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+
+	<main>
+
+<h1>C++</h1>
+
+<p>La programacion es el proceso de diseñar, codificar, depurar y mantener el codigo de los programas computacionales, con el proposito de crear programas que ejecuten acciones especificas deseadas. Se divide en los siguientes pasos:</p>
+
+<ol>
+	<li>Entender el Problema</li>
+	<li>Plantear y Elegir Soluciones</li>
+	<li>Construir Algoritmo</li>
+	<li>Codificar y Probar</li>
+	<li>Mantener y Mejorar</li>
+</ol>
+
+<p>Se debe entender y resolver el problema antes de codificarlo. El problema se puede a su vez estructurar en: entradas de variables, procesamiento  de operaciones y salidas de resultados.</p>
+
+<p>Una vez resuelto el problema se establece una lista ordenada de acciones necesarias para llegar a dicha solucion, esto se denomina algoritmo. Los lenguajes de programacion son los lenguajes artificiales que nos permiten comunicar nuestros algoritmos a las computadoras.</p>
+
+<p>Cada lenguaje cuenta con sus propios simbolos y reglas que conforman su estructura y significado. Los lenguajes de programacion se dividen en interpretados y compilados. Los lenguajes interpretados pueden ser ejecutados de inmediato, mientras que los compilados necesitan pasar por una revision sintactica y semantica del codigo fuente antes de generar el codigo ejecutable.</p>
+
+<p>Todo programa en C se puede dividir en una estructura fundamental compuesta por una seccion de librerias, una seccion de variables y una seccion de instrucciones. Las librerias agregan nuevas instrucciones, las variables son simbolos con nombres unicos que representan valores y las instrucciones son las tareas ejecutadas por el programa.</p>
+
+<p>Los nombres de las variables deben comenzar con una letra y no contener espacios o caracteres especiales, a excepcion del guion bajo. Todas las instrucciones se deben incluir dentro de la funcion especial main().</p>
+
+<table>
+	<thead>
+		<tr><th>Tipo de Dato</th><th>Representacion</th><th>Rango Valores</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>bool</td><td>%d</td><td>0 - 1</td><tr>
+		<tr><td>char</td><td>%d</td><td>0 - 255</td><tr>
+		<tr><td>int</td><td>%d</td><td>-2147483648 - 2147483647</td><tr>
+		<tr><td>float</td><td>%d</td><td>3.4e 38 (7 Digitos)</td><tr>
+		<tr><td>double</td><td>%d</td><td>1.7e 308 (15 Digitos)</td><tr>
+	</tbody>
+</table>
+
+<p>Printf() es una instruccion que nos permite mostrar texto (cadena de caracteres) o el valor de las variables en la consola de comandos. Para introducir espacios con este comando utilizamos el simbolo de escape (n). Para mostrar el valor de variables utilizamos la representacion que corresponda a su tipo de dato y luego el nombre o valor de la variable separada por una coma.</p>
+
+printf("String %d", variableInt);
+
+<p>Scanf() es la instruccion que le permite al usuario definir el valor de una variable en el tiempo de ejecion. </p>
+
+scanf("%d", &variableInt);
+
+<p>Normalmente se ejecutan las instrucciones en orden, de la primera a la ultima. Este proceso se denomina Ejecucion en Cascada. Para modificar el flujo de ejecucion de las instrucciones se utilizan Estatutos de Control. Los estatutos de control de decicion son If y Else. Los estatutos de control de repeticion o ciclos son While, Do y For. Los estatutos de control necesitan que se cumpla una condicion para tomar la decicion de ejecutar una seccion de codigo o de repetirla.</p>
+
+<p>Los Conectores Logicos nos permiten establecer mas de una condicion para que los estatutos de control tomen su decision. </p>
+
+<p>
+	Menus If y Menus Ciclados
+	While E09 1-16
+	For E10 1-9
+	Funciones E11 1-7
+	Funciones E12 1-2
+	Arreglos E13 1-6
+	Arreglos E14 1
+	Arreglos E15 1-6
+	Strings E16 1-7
+	Matrices E17 1-8
+	Parcial 18 1 
+	Archivos de Texto
+
+</p>
+
+</main>
+
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+<script src="../NewPage/Prism/prism.js"></script>
+<script>
+(function (i, s, o, g, r, a, m) {
+	i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+		(i[r].q = i[r].q || []).push(arguments)
+	}, i[r].l = 1 * new Date(); a = s.createElement(o),
+		m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-99583415-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

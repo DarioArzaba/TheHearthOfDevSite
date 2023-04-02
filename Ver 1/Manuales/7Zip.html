@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Software Open Source (GNU LGPL) para crear archivos comprimidos. Desarrollado por Igor Pavlov. Genera archivos en formato 7z Format" />
+	<meta name="author" content="Dario Arzaba"/>
+	<title>The Hearth of Dev: 7zip</title>
+	<link rel="stylesheet" type="text/css" href="../NewPage/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../Plantilla/Prism/prism_web.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="language-javascript">
+<nav id="MySideNav"></nav>
+<div id="ShowSideNav">&#9776;</div>
+<main><section>
+<header>
+	<div class="flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div><hr />
+	<h1>7zip</h1><hr />
+</header>
+<article>
+<p>Software Open Source (GNU LGPL) para crear archivos comprimidos. Desarrollado por Igor Pavlov. Genera archivos en formato “7z Format” mediante algoritmos de compresión LZMA y LZMA2.</p>
+<hr />
+
+<a class="showdown">&nbsp; Caracteristicas</a>
+<div class="hidedown">
+<ul>
+	<li><p><b>Algoritmos de Compresión:</b> Deflate (LZ77) en su forma de LZMA en conjunto con LZMA2, PPMD basado en el PPMdH de Dmitry Shkarin, BCJ - BCJ2 para ejecutables y BZip2.</p></li>
+	<li><p><b>Seguridad:</b> Encriptación AES-256 para 7z.</p></li>
+	<li><p><b>Velocidad:</b> Radio de compresión 30-70 veces el de <em>“Zip Format”</em>.La velocidad de compresión es de aproximadamente 1MB/s en un CPU de 2GHz. La velocidad de descompresión es de 10 a 20 MB/s en un CPU de 2GHz. El código meta de descompresión es de alrededor de 5KB.</p></li>
+	<li><p><b>Revision: </b>El archivador puede agregar comentarios, los cuales se guardan en un archivo de texto llamado <em>“descript.ion”.</em></p></li>
+	<li><p><b>Formato:</b> 7z es un formato de arquitectura modular abierta, es decir que es compatible con compresión, conversión o encriptación. El formato soporta archivos de 16 ExbiBytes y compresión solida o por partes. </p></li>
+	<li><p><b>Tamaño:</b> Los archivos comprimidos con nuevas versiones (+15.6) son más grandes debido a que se ha sustituido el sistema de ordenamiento <em>“Por Extensión”</em>, ahora se utiliza el sistema <em>“Por Nombre”</em>. Al agregar (qs) o (–mqs) a la consola podemos activar el sistema <em>“Por Tipo de Archivo”</em>, reduciendo el tamaño, notece que este ordenamiento no es soportado por NTFS el cual utiliza el sistema <em>“Por Nombre”</em> por defecto. Si se busca reducir el tamaño del archivo se recomienda aumentar el tamaño del diccionario.</p></li>
+	<li><p><b>Errores:</b> Si 7Zip no puede descomprimir un archivo en formato Zip, generalmente es por tener <em>“Headers”</em> incorrectos, estos son insertados cuando la compresion se realizo en un programa no compatible con 7Zip.</p></li>
+	<li><p><b>Compatibilidad:</b> Puedes agregar la funcionalidad de 7zip a una aplicacion independiente incluyendo la libreria (7za.dll), de LZMA SDK. Esta libreria utiliza Interfaces COM. Con LZMA SDK incluso puedes diseñar tu propia libreria de compresión.</p></li>
+</ul>
+</div>
+<a class="showdown">&nbsp; Archivos Instalados</a>
+<div class="hidedown">
+<p>Archivos en: "C:\Program Files\7-Zip"</p>
+<ul>
+<li><p> <b>Lang:</b> Carpeta con los Lenguajes del programa. Contiene un archivo (en.ttt) que administra las ventanas y advertencias que pueda generar el programa y responsable del menu emergente.</p></li>
+<li><p> <b>7zFM.exe:</b> Ejecutable Principal con el GUI de File Manager.  </p></li>
+<li><p> <b>7zG.exe:</b> Ejecutable secundario usado por 7zFM para generar el Modulo GUI que ocupa.  </p></li>
+<li><p> <b>7z.exe:</b> Ejecutable para el modulo de comandos CMD.   </p></li>
+<li><p> <b>7-zip.chm:</b> Archivo de ayuda.   </p></li>
+<li><p> <b>descript.ion:</b> Archivo que genera, guarda y lee los comentarios generados.   </p></li>
+<li><p> <b>7z.sfx:</b> Modulo SFX (Self Extracting File) para (7zFM)  </p></li>
+<li><p> <b>7zCon.sfx:</b> Modulo SFX (Self Extracting File) para (7z) es decir para el modo CMD.   </p></li>
+<li><p> <b>7z.dll:</b> Engine Module. Codigo Principal y StandAlone PlugIn.  </p></li>
+<li><p> <b>7-zip.dll:</b> Windows Shell Extension  </p></li>
+<li><p> <b>7-zip32.dll:</b> Plugin para Windows Shell x64   </p></li>
+<li><p> <b>License.txt:</b> Open Source :D (GNU LGPL).  </p></li>
+<li><p> 
+<b>History.txt:</b> Historial de verciones hasta 16.02.  </p></li>
+<li><p><b>readme.txt:</b> Descripcion del programa.    </p></li>
+</ul>
+<p>Mas informacion en: "C:\Program Files\7-Zip\7-zip.chm" que incluye:</p>
+<ol>
+<li><p> Lista de Formatos Compatibles. </p></li>
+<li><p> Lista de Metodos de Compresion.  </p></li>
+<li><p> Performance del Programa. </p></li>
+<li><p> Herramienta Benchmark. </p></li>
+<li><p> Syntaxis, Exit Codes, Comandos y Switches de la version CMD. </p></li>
+</ol>
+</div>
+<a class="showdown">&nbsp; LZMA SDK</a>
+<div class="hidedown">
+<p><a href="http://www.7-zip.org/sdk.html" target="_blank">El LZMA </a>  Software Development Kit nos permite desarrollar librerias de compresion basadas en LZMA. Este Kit contiene: </p>
+<ul>
+<li><p>C++ Source Code de LZMA (Codificador y Decodificador) y la libreria para utilizar 7z.</p></li>
+<li><p>ANSI-C Source de LZMA / LZMA2 / XZ (Compresion y Descompresion) y librerias para descomprimir 7z.</p></li>
+<li><p>C# Source de LZMA (Compresion y Descompresion). </p></li>
+<li><p>Java Source de LZMA (Compresion y Descompresion). </p></li>
+<li><p>lzma.exe para el formato .lzma (Compresion y Descompresion). </p></li>
+<li><p>7zr.exe version minificada de 7zip por si se quiere añadir a una aplicación.</p></li>
+<li><p> Modulos SFX para la creacion de paquetes auto-extraibles.</p></li>
+</ul>
+</div>
+<hr />
+
+<h3> Compresión</h3>
+<p><b>Comprimir:</b> Las partes repetitivas de un archivo son sustituidas por variables disminuyendo su tamaño. Las variables se guardan en un <b>diccionario</b>.</p>
+<p><b>Archivo Comprimido</b> Dentro de un archivo comprimido se encuentran una serie de variables que representan a la información original.</p>
+<p><b>Descomprimir:</b> Volver a sustituir las variables del diccionario por el contenido original.</p>
+<a class="showdown">&nbsp; Compresíon Lossless</a>
+<div class="hidedown">
+<p>La compresión se denomina "Lossless" debido a que no se pierde información. El metodo (por diccionario) se originó en el sistema <b>“LZ Adaptative Dictionary Based Algorithm”</b>, en donde LZ se refiere a Lempel y Ziv, sus desarrolladores. El algoritmo es <em>Adaptativo</em> porque el programa analiza la información en busca del mejor patrón de compresión. Cada vez que encuentra un nuevo patrón lo guarda en el diccionario. Cuando no encuentra más patrones comparara los ya guardados y utiliza el que generó la mayor compresión.</p>
+</div>
+<a class="showdown">&nbsp; Compresíon Lossy</a>
+<div class="hidedown">
+<p> En esta compresión no se sustituye la informacion repetitiva sino que se elimina la innecesaria. El archivo es permanentemente<b> recortado</b>. Este metodo no funciona con archivos de texto pues el programa no sabe distinguir que informacion es necesaria, sin embargo en archivos como imagenes o audio se pueden eliminar ciertas partes promedio comprometiendo la calidad (Pixeles o Bits/Audio) pero manteniendo la coherencia general.</p>
+</div>
+<hr />
+
+<h3>Sitios</h3>
+<p>
+<b>Programación y Compresión: </b><a href="https://sourceforge.net/projects/sevenzip/" target="_blank">&nbsp;&bull;&nbsp; 7Zip Source Code </a><a href="http://portableapps.com/apps/utilities/7-zip_portable" target="_blank">&nbsp;&bull;&nbsp; 7Zip Portable</a><a href="https://sourceforge.net/p/sevenzip/discussion/45797/" target="_blank">&nbsp;&bull;&nbsp; 7Zip Forum</a><a href="https://sourceforge.net/projects/p7zip/" target="_blank">&nbsp;&bull;&nbsp; pZip (Unix Port)</a><a href="https://www.joachim-bauch.de/projects/pylzma/" target="_blank">&nbsp;&bull;&nbsp; PyZip (Phyton)</a><a href="https://github.com/adamhathcock/sharpcompress" target="_blank">&nbsp;&bull;&nbsp;SharpCompress (C# Port)</a> <a href="http://www.birtles.org.uk/programming/" target="_blank">&nbsp;&bull;&nbsp; LZMA SDK (Pascal Port)</a><a href="http://contrapunctus.net/league/haques/lzmajio/" target="_blank">&nbsp;&bull;&nbsp; LZMA SDK (Java Port)</a><a href="http://www.pharmasoft.be/7z/" target="_blank">&nbsp;&bull;&nbsp; Apache (ANT) Port</a><a href="http://www.data-compression.com/lossless.html" target="_blank">&nbsp;&bull;&nbsp; ¿Compresión? (Tecnico).</a><a href="http://corpus.canterbury.ac.nz/related.html" target="_blank">&nbsp;&bull;&nbsp; Algoritmos de Compresion.</a><a href="https://www.donationcoder.com/Reviews/Archive/ArchiveTools/index.html" target="_blank"> &nbsp;&bull;&nbsp; Comparación Archivadores</a>
+</p>
+<p>
+<b>Varios: </b><a href="http://7zip.bugaco.com/7zip/7zip_09_38/src-history.txt" target="_blank">&nbsp;&bull;&nbsp; Manual</a><a href="http://tukaani.org/xz/" target="_blank">&nbsp;&bull;&nbsp; XZUtils</a><a href="http://www.7-cpu.com/" target="_blank">&nbsp;&bull;&nbsp; BenchMark</a><a href="https://sourceforge.net/projects/sfx-maker/" target="_blank">&nbsp;&bull;&nbsp; 7zipSFX (SFX) </a><a href="http://dev.nomad-net.info/articles/sevenzipinterface" target="_blank">&nbsp;&bull;&nbsp; Librerias en C#</a><a href="http://www.files-conversion.com/archive-converter.php" target="_blank">&nbsp;&bull;&nbsp; Convertidor de Archivos</a><a href="http://showmedo.com/videotutorials/series?name=hoRsFASoE" target="_blank">&nbsp;&bull;&nbsp; Tutoriales (ShowMeDo)</a><a href="http://www.top-windows-tutorials.com/free-zip/" target="_blank">&nbsp;&bull;&nbsp; Tutoriales (TopWindowsTutorials)</a><a href="http://kikizas.net/en/apps.7z.html" target="_blank">&nbsp;&bull;&nbsp; 7Zip vs WinRAR</a> 
+</p>
+
+</article>
+</section></main>
+<footer><p id="LastUpdatedDate"></p></footer>
+<script src="../Plantilla/JQuery/jquery.js"></script>
+<script>$("#MySideNav").load("../NewPage/html/sidebar.html");</script>
+<script src="../NewPage/js/main.js"></script>
+<script src="../Plantilla/Prism/prism_web.js"></script>
+</body></html>

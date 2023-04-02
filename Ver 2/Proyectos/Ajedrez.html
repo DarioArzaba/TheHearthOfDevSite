@@ -1,0 +1,316 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<title>Ajedrez</title>
+	<meta name="author" content="Dario Arzaba"/>
+	<meta name="description" content="Random Thought Pattern. Un blog es un intimo recuento, la bitacora del internauta que se embarca a las profundidaes del desconocido oceano informatico al que llamamos Internet." />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" href="../favicon.ico" sizes="32x32">
+	<link rel="stylesheet" href="../post.css" />
+	<link href="ChessViewer/css/pgnvjs.css" rel="stylesheet" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="ChessViewer/js/min/pgnvjs.js"></script>
+</head>
+<body>
+<div class="title flip-effect"><a href="../index.html"><div>&lt;/thehearthofdev&gt;</div></a></div>
+<main>
+
+<h1>Ajedrez</h1>
+
+<nav>
+<ol>
+	<li><a href="#Historia">Historia</a></li>
+	<li><a href="#Fundamentos">Fundamentos</a>
+	<ol>
+		<li><a href="#ElTablero">El Tablero</a></li>
+		<li><a href="#PosicionInicial">Posicion Inicial</a></li>
+		<li><a href="#LasPiezas">Las piezas</a></li>
+		<li><a href="#ValorPiezas">Valor de las piezas</a></li>
+		<li><a href="#Enroque">Enroque</a></li>
+		<li><a href="#CapturaalPaso">Captura al Paso</a></li>
+		<li><a href="#Promocion">Promocion</a></li>
+		<li><a href="#Ganar">Ganar</a></li>
+		<li><a href="#Tablas">Tablas</a></li>
+	</ol>	
+	</li>
+	<li><a href="#General">General</a>
+	<ol>
+		<li><a href="#CambioPiezas">Cambio de Piezas</a></li>
+		<li><a href="#TiemposControl">Tiempos de Control</a></li>
+		<li><a href="#Torneos">Torneos</a></li>
+		<li><a href="#FIDE">FIDE</a></li>
+		<li><a href="#Notacion">Notacion</a></li>
+	</ol>
+	</li>
+	<li><a href="AjedrezUno.html#Tactica">Tactica</a>
+	<ol>
+		<li><a href="AjedrezUno.html#Tenedor">Tenedor (Fork)</a></li>
+		<li><a href="AjedrezUno.html#Pincho">Pincho (Skewer)</a></li>
+		<li><a href="AjedrezUno.html#Clavada">Clavada (Pin)</a></li>
+		<li><a href="AjedrezUno.html#EliminarDefensa">Eliminar Defensa (Undermining)</a></li>
+		<li><a href="AjedrezUno.html#AtaqueDescubierto">Ataque al Descubierto (Discovered)</a></li>
+		<li><a href="AjedrezUno.html#Bateria">Bateria (Batteries)</a></li>
+		<li><a href="AjedrezUno.html#Sobrecarga">Sobrecarga (Overloading)</a></li>
+		<li><a href="AjedrezUno.html#Desviacion">Desviacion (Deflection)</a></li>
+		<li><a href="AjedrezUno.html#Interferencia">Interferencia (Interference)</a></li>
+		<li><a href="AjedrezUno.html#RayosX">Rayos X (X-Ray)</a></li>
+		<li><a href="AjedrezUno.html#JugadaIntermedia">Jugada Intermedia (Intermediate Move)</a></li>
+	</ol>
+	</li>
+	<li><a href="#">Mates Elementales</a>
+	<ol>
+		<li><a href="#">Mate con Dama</a></li>
+		<li><a href="#">Mate con Torre</a></li>
+		<li><a href="#">Mate con Alfiles</a></li>
+		<li><a href="#">Mate con Caballos</a></li>
+		<li><a href="#">Mate con Alfil y Caballo</a></li>
+	</ol>
+	</li>
+	<li><a href="#">Patrones de Mate</a>
+	<ol>
+		<li><a href="#">Mate del Pastor</a></li>
+		<li><a href="#">Mate de la Coz</a></li>
+		<li><a href="#">Mate del Pasillo</a></li>
+		<li><a href="#">Caballo de Troya</a></li>
+		<li><a href="#">Mate de Anastacia</a></li>
+	</ol>
+	</li>
+
+	<li><a href="#">Aperturas</a>
+	<ol>
+		<li><a href="#">Ruy Lopez</a></li>
+	</ol>
+	</li>
+	<li><a href="#">Estrategia</a>
+	<ol>
+		<li><a href="#">Estructura de los peones</a></li>
+		<li><a href="#">Zugzwang</a></li>
+	</ol>
+	</li>
+</ol>
+</nav>
+
+<h2 class="HoverTitle" id="Historia"><a href="#Historia"># </a><a href="#Historia">Historia</a></h2>
+<p>El ajedrez es un antiguo juego de guerra y estrategia. Las primeras referencias del juego se originan en la India del siglo VI con el nombre de <a href="https://en.wikipedia.org/wiki/Chaturanga" target="_blank">Chaturanga</a>, cuyo significado en sánscrito es <i>"Las cuatro partes"</i>.</p>
+<p>El Chaturanga hace referencia a las <span class="tooltip" data-title="Elefantes, Carruajes, Caballeria e Infanteria">cuatro</span> partes fundamentales de todo ejército hindú, dirigidas por el Raja y su consejero. Esta referencia se menciona en la obra épica hindu del <a href="https://en.wikipedia.org/wiki/Mahabharata" target="_blank">"Majabhárata"</a> o <i>"La gran historia del <span class="tooltip" data-title="Que significa India o dinastia de los Bharata">Bharata</span>"</i>.</p>
+<p>Cuando el Chataranga llega al imperio Persa este se reinterpreta como Chatrang. El libro persa del siglo X <a href="https://en.wikipedia.org/wiki/The_Meadows_of_Gold" target="_blank">"Muraj Adh-dhahab"</a> o <i>"Los Prados de Oro"</i>, describe las seis variantes oficiales del Chatrang que la aristocracia persa practicaba .</p>
+<p>Los persas fueron quienes comenzaron a exclamar <i>Shah</i> cuando el Rey estaba en peligro y <i>Shah Mat</i> cuando el rey habia muerto. Estas expresiones han evolucionado a sus actuales Jaque y Jaque Mate hispanos.</p>
+<p>La difusión del Chataranga en otras partes del mundo como China, Japón y Corea dio origen a las variantes asiaticas <a href="https://es.wikipedia.org/wiki/Ajedrez_chino" target="_blank">Xiangqi</a>, <a href="https://es.wikipedia.org/wiki/Shōgi" target="_blank">Shogi</a> y <a href="https://es.wikipedia.org/wiki/Janggi">Janggi</a> respectivamente.</p>
+<p>Con la conquista arabe de Persia en el siglo VII, el juego se adapta al <a href="https://es.wikipedia.org/wiki/Shatranj" target="_blank">Shatranj</a>. La version Islamica prohibe apostar, blasfemar o representar a las piezas del ajedrez con idolos animales o humanoides. Es debido a esta ultima norma religiosa que las piezas del ajedrez resultan en sus actuales representaciones abstractas.</p>
+<img src="Imagenes/PrimerPinturaAjedrez.jpg" alt="Primer Pintura Ajedrez" title="Arabes Sicilianos Capilla Palatina Siglo XI" class="clearLeft"/>
+<p>Los arabes introducen el Shatranj en Africa, Sicilia y en la Peninsula Iberica. En el norte de africa los Moros adaptan el Shatranj al Shaterej y en el siglo X lo transmiten a Europa con la <a href="https://en.wikipedia.org/wiki/Umayyad_conquest_of_Hispania" target="_blank">conquista Islamica de España</a>.</p>
+<p>En españa el Shaterej es interpretado como Acedrex y finalmente Ajedrez. Sin embargo para las demas lenguas romances el juego se denomina segun la expresion persa <i>Shah</i>. Por ejemplo en Ingles se denomina Chess, en frances es Echecs y en aleman es Schach.</p>
+<p>En Europa se añade la alternacion de colores claros y oscuros gracias al desarrollo en paralelo de las <a href="https://es.wikipedia.org/wiki/Damas" target="_blank">Damas</a>. En el siglo XVI se introducen multiples reglas importantes incluyendo a la reina como la pieza mas poderoza, el enroque, las dos casillas iniciales del peon y la captura al paso.</p>
+<p>El <a href="https://es.wikipedia.org/wiki/Torneo_de_ajedrez_de_Londres_de_1851" target="_blank">primer torneo internacional</a> se celebro en Londres de 1851, en donde <a href="https://es.wikipedia.org/wiki/Howard_Staunton" target="_blank">Staunton</a> y <a href="https://es.wikipedia.org/wiki/Adolf_Anderssen" target="_blank">Anderssen</a> fueron considerados los mejores jugadores del mundo. Tambien se estandariza el set oficial de piezas utilizando el diseño favorito de Staunton (<a href="https://es.wikipedia.org/wiki/Piezas_Staunton" target="_blank">Piezas Staunton</a>).</p>
+
+
+
+<h2 class="HoverTitle" id="Fundamentos"><a href="#Fundamentos"># </a><a href="#Fundamentos">Fundamentos</a></h2>
+<h3 class="HoverTitle" id="ElTablero"><a href="#ElTablero"># </a><a href="#ElTablero">El Tablero</a></h3>
+<div id="ElTableroBoard"></div>
+<p>Compuesto por 64 casillas cuadradas que forman una cuadricula de 8x8. Todas las casillas alternan entre colores claros y oscuros. Las casillas, o escaques, tienen un nombre compuesto por la interseccion de su <span class="tooltip" data-title="File o Column">columna</span> y de su <span class="tooltip" data-title="Rank o Row">fila</span>.</p>
+<p>El tablero se divide en campos o mitades verticales y en flancos o mitades horizontales. Las cuatro casillas centrales componen el centro principal y las 16 casillas centrales componen el centro aumentado.</p>
+<p>El tablero se encuentra correctamente orientado cuando la casilla inferior derecha es de color claro.</p>
+
+
+
+<h3 class="HoverTitle" id="PosicionInicial"><a href="#PosicionInicial"># </a><a href="#PosicionInicial">Posicion Inicial</a></h3>
+<div id="PosicionInicialBoard"></div>
+<p>Ambos jugadores se colocan frente a frente con el tablero en medio y cada uno recibe un juego de 16 piezas: 8 peones, 2 torres, 2 caballos, 2 alfiles, 1 reina y 1 rey.</p>
+<p>Las piezas se colocan en las primeras dos filas frente a cada jugador. En la segunda y septima fila se colocan todos los peones, las demas piezas se colocan en la primera y octaba fila.</p>
+<p>Las torres en las columnas (a y h), los caballos en (b y g), los alfiles en (c y f), la reina en (d) y el rey en (e).</p>
+
+
+
+<h3 class="HoverTitle" id="LasPiezas"><a href="#LasPiezas"># </a><a href="#LasPiezas">Las Piezas</a></h3>
+<div id="LasPiezasBoard"></div>
+<ol>
+	<li><b>Peón (Pawn):</b> Se mueve una casilla hacia enfrente. Captura una pieza que se encuentre en alguna de sus dos casillas diagonales superiores. En su primer movimiento pueden optar por moverse dos casillas en vez de una.</li>
+	<li><b>Torre (Rook):</b> Se mueve las casillas que necesite en alguna direccion vertical u horizontal. Captura la pieza que se encuentre en su camino.</li>
+	<li><b>Alfil (Bishop):</b> Se mueve las casillas que necesite en alguna direccion diagonal. Captura la pieza que se encuentre en su camino.</li>
+	<li><b>Caballo (Knight):</b> Se mueve dos casillas en alguna direccion vertical u horizontal y una casilla hacia la derecha o izquierda con respecto al movimiento inicial. Captura la pieza que se encuentre en la casilla de destino final. Es la unica pieza que ignora a otras piezas que se encuentren en su camino.</li>
+	<li><b>Reina (Queen):</b> Se mueve las casillas que necesite en alguna direccion vertical, horizontal o diagonal. Captura la pieza que se encuentre en su camino.</li>
+	<li><b>Rey (King):</b> Se mueve una casilla en alguna direccion vertical, horizontal o diagonal. Captura la pieza que se encuentre en su camino. Es ilegar mover al rey a una casilla en donde pueda ser capturado en el siguiente turno.</li>
+</ol>
+
+
+
+<h3 class="HoverTitle" id="ValorPiezas"><a href="#ValorPiezas"># </a><a href="#ValorPiezas">Valor de las Piezas</a></h3>
+<p>Este valor relativo es una aproximacion y depende en gran medida del contexto de las piezas, por ejemplo:</p>
+<ul>
+	<li>Las torres valen más en posiciones despejadas.</li>
+	<li>Los alfiles valen más con peones en casillas del color contrario.</li>
+	<li>Los caballos valen más en posiciones cerradas.</li>
+	<li>Todas las piezas valen más conforme más cerca se encuentren del centro del tablero.</li>
+</ul>
+<table>
+	<thead>
+		<tr><th>Pieza</th><th>Valor en Peones</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Peon</td><td>1</td></tr>
+		<tr><td>Caballo</td><td>3</td></tr>
+		<tr><td>Alfil</td><td>3</td></tr>
+		<tr><td>Torre</td><td>5</td></tr>
+		<tr><td>Reina</td><td>9</td></tr>
+		<tr><td>Rey</td><td>Invaluable</td></tr>
+	</tbody>
+</table>
+
+
+
+<h3 class="HoverTitle" id="Enroque"><a href="#Enroque"># </a><a href="#Enroque">Enroque</a></h3>
+<div id="EnroqueBoard"></div>
+<p>Movimiento especial en el que la torre intercambia su lugar con el rey. Este movimiento proteje al rey al inicio de la partida y coloca a la torre en las columnas centrales.</p>
+<p>El movimiento solo es posible cuando es el primer movimiento de ambas piezas; no hay piezas que obstruyan el intercambio y ninguna casilla por las que pasa el rey esta siendo atacada.</p>
+<p>Cuando el rey se intercambia con la torre en la columna (a) decimos que es un Enroque por el Flanco de la Reina (Queenside), si lo hace con la torre en la columna (h) decimos que es un Enroque por el Flanco del Rey (Kingside).</p>
+
+
+
+<h3 class="HoverTitle" id="CapturaalPaso"><a href="#CapturaalPaso"># </a><a href="#CapturaalPaso">Captura al Paso</a></h3>
+<div id="CapturaalPasoBoard"></div>
+<p>La captura al paso es una captura especial del peon. Fue creada para evitar que un peon salte la casilla de captura de otro al utilizar su movimiento inicial de dos casillas. El peon que realiza la captura se coloca detras del peon capturado.</p>
+<p>Es necesario realizar esta captura inmediatamente o de lo contrario se pierde el derecho a realizarla.</p>
+
+
+
+<h3 class="HoverTitle" id="Promocion"><a href="#Promocion"># </a><a href="#Promocion">Promoción</a></h3>
+<div id="PromocionBoard"></div>
+<p>Cuando un peon avanza hasta la primer fila del oponente entonces se convierte, corona o promueve a una pieza distinta, con la excepcion del rey.</p>
+<p>Generalmente un peon se promueve a una reina, en el caso de que se promueva a otra pieza se le denomina subpromocion.</p>
+<p>Esta regla era rechazada en la edad media ya que cuestionaba la monogamia real, sin embargo es instituida finalmente en el <i>Codigo Internacional Revisado de Ajedrez</i> de Londres 1883.</p>
+
+
+
+<h3 class="HoverTitle" id="Ganar"><a href="#Ganar"># </a><a href="#Ganar">Ganar</a></h3>
+<p>Se denomina jaque a la posicion en la que un rey esta siendo atacado por una pieza enemiga, mientras que jaque mate es un jaque en el cual no se puede evitar la captura. En caso de realizar jaque mate el jugador que ha capturado al rey gana la partida.</p>
+<p>Para evitar jaque mate prematuros esta prohibido colocar al rey en una posicion de jaque o dejar que capturen al rey cuando existen movimientos validos para evitar la captura.</p>
+<p>Otras formas de ganar una partida incluyen ceder el juego, quedarse sin tiempo o por decision del arbitro al infringir las leyes del ajedrez.</p>
+
+
+
+<h3 class="HoverTitle" id="Tablas"><a href="#Tablas"># </a><a href="#Tablas">Tablas</a></h3>
+<p>Se dice que existe un empate o tablas cuando existe un ahogamiento, insuficiencia de material, repeticion triple de posicion, cincuenta movimientos sin mover peones o capturar o por mutuo acuerdo.</p>
+<p>El ahogamiento se produce al no poder realizar ningun movimiento valido y sin embargo el rey no se encuentra en jaque.</p>
+<p>Cuando un jugador retorna a la misma posicion tres veces utilizando su turno se declara el empate.</p>
+<p>En casos exepcionales un jugador pierde por falta de tiempo y su oponente no puede realizar jaque mate por insuficiencia material. En este caso tambien se declara el empate.</p>
+<p>La insuficiencia material se produce al no poder realizar jaque mate con las piezas restantes:</p>
+<ul>
+	<li>Rey contra Rey</li>
+	<li>Rey y Caballo contra Rey</li>
+	<li>Rey y Caballo contra Rey y Caballo</li>
+	<li>Rey y Alfil contra Rey</li>
+	<li>Rey y Alfil contra Rey y Caballo</li>
+	<li>Rey y Alfil contra Rey y Alfil</li>
+</ul>
+
+
+
+<h2 class="HoverTitle" id="General"><a href="#General"># </a><a href="#General">General</a></h2>
+<h3 class="HoverTitle" id="CambioPiezas"><a href="#CambioPiezas"># </a><a href="#CambioPiezas">Cambio de Piezas</a></h3>
+<p>Cuando un jugador logra capturar una pieza enemiga sin perder a una suya o a costa de una pieza de menor valor se dice que ha ganado material.</p>
+<p>Un cambio de piezas consiste en la captura seriada de piezas y resulta conveniente para obtener una ventaja material. Otras razones para realizar un cambio de piezas incluyen la simplificacion de la posicion, dificultando un jaque mate, o para liberar espacio en el tablero que nos permita maniobrar con facilidad.</p>
+
+
+
+<h3 class="HoverTitle" id="TiemposControl"><a href="#TiemposControl"># </a><a href="#TiemposControl">Tiempos de Control</a></h3>
+<p>Un tiempo de control define la cantidad maxima de tiempo para cada jugador. El jugador que supere el tiempo de control definido pierde la partida.</p>
+<p>Los incrementos y retrasos son tecnicas que reducen la cantidad de juegos perdidos por falta de tiempo. Los incrementos añaden una cantidad de tiempo al completar una cantidad de movimientos, mientras que los retrasos añaden una pausa antes de iniciar el reloj del oponente.</p>
+<p>En el campeonato mundial cada jugador cuenta con 100 minutos. Despues de 40 movimientos se añaden 50 minutos, despues de 60 se añaden 15 minutos y finalmente en cada movimiento se añaden 30 segundos.</p>
+<p>En caso de empate se realizan cuatro <span class="tooltip" data-title="25min y 10seg de incremento">juegos rápidos</span>, dos juegos <span class="tooltip" data-title="5min y 3seg de incremento">Blitz</span>, y un último juego de <span class="tooltip" data-title="5min para blancas, 4min para negras y 3seg de incremento despues del movimiento 60">Armageddon o Sudden death</span>. Si hay un empate en el último juego ganan automáticamente las negras. </p>
+
+
+
+<h3 class="HoverTitle" id="Torneos"><a href="#Torneos"># </a><a href="#Torneos">Torneos</a></h3>
+<p>Los torneos más reconocidos son los organizados por la <a href="https://new.uschess.org/home/" target="_blank">USCF</a> y la <a href="https://www.fide.com/" target="_blank">FIDE</a>. Para realizar la clasificatoria se puede aplicar alguna de las siguientes modalidades: <span class="tooltip" data-title="1vs1 Eliminatoria Directa">Match Competition</span>, <spam class="tooltip" data-title="Todos juegan una vez contra todos.">Round Robin</spam> o <span class="tooltip" data-title="Eliminatoria Preeliminar despues Mejor vs Mejor y Peor vs Peor">Swiss System</span>.</p>
+<p>Cada jugador mantiene un puntaje personal basandose en el sistema de puntuacion <a href="https://en.wikipedia.org/wiki/Elo_rating_system" target="_blank">Elo</a>. <a href="https://en.wikipedia.org/wiki/Manuel_Le%C3%B3n_Hoyos" target="_blank">Manuel Léon Hoyos</a> es el mejor jugador mexicano (2016) con 2602 puntos en (2012). El mejor jugador del mundo (2016) es <a href="https://en.wikipedia.org/wiki/Magnus_Carlsen" target="_blank">Magnus Carlsen</a> quien logro 2882 puntos en (2014).</p>
+<img src="Imagenes/EloSystem.svg" alt="Formula" class="BigImg" />
+<p>A partir del puntaje Elo existen las siguientes categorías:</p>
+<table>
+	<thead>
+		<tr><th>Categoria</th><th>Puntaje Elo</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Principiante</td><td> &lt; 1200</td></tr>
+		<tr><td>Clase D</td><td>1200 - 1400</td></tr>
+		<tr><td>Clase C</td><td>1400 - 1600</td></tr>
+		<tr><td>Clase B</td><td>1600 - 1800</td></tr>
+		<tr><td>Clase A</td><td>1800 - 2000</td></tr>
+		<tr><td>Candidate Master</td><td>2000 - 2200</td></tr>
+		<tr><td>Nacional Master</td><td>2200 - 2300</td></tr>
+		<tr><td>FIDE Master</td><td>2300 - 2450</td></tr>
+		<tr><td>International Master</td><td>2450 - 2600</td></tr>
+		<tr><td>Grand Master</td><td> &gt; 2600</td></tr>
+	</tbody>
+</table>
+
+
+
+<h3 class="HoverTitle" id="FIDE"><a href="#FIDE"># </a><a href="#FIDE">FIDE</a></h3>
+<p>La <a href="https://www.fide.com/" target="_blank">FIDE</a> es la autoridad que regula el ajedrez a nivel internacional. El <a href="https://www.fide.com/fide/handbook.html" target="_blank">Handbook</a> es el manual oficial que publican, en donde se especifica:</p>
+<ul><li>Misión, visión, membresía, instituciones, mesa ejecutiva, asociaciones, organigrama, drogas, elecciones, tesorería, premios, competencias, congreso, ética, títulos, puntuaciones, jugadores, árbitros, entrenadores, regulación del <span class="tooltip" data-title="FIDE Online Arena">FOA</span>, permisos, herramientas, sistema de clasificación, tiempos de control y calendario de competencias.</li></ul>
+<p>Adicionalmente FIDE publica las leyes de ajedrez, las reglas de accesibilidad, la regulación contra computadoras y la resolución de problemas. Algunas de las normas que ejercen las <a href="https://www.fide.com/fide/handbook.html?id=207&view=article">Leyes del Ajedrez</a>:</p>
+<ul>
+	<li>3.9.2 Esta prohibido colocar o dejar al rey en jaque.</li>
+	<li>4.1 Solo se debe usar una mano para mover y parar el reloj.</li>
+	<li>4.3 Pieza tocada, pieza movida (o capturada).</li>
+	<li>6.9 Al quedarte sin tiempo pierdes. Si el oponente no puede hacer jaque mate entonces es tablas.</li>
+	<li>8.1.1 Obligacion de registrar la partida en notacion algebraica.</li>
+	<li>8.4 Concesion de la regla anterior en los ultimos 5 minutos, si no hay incrementos de mas de 30 segundos.</li>
+	<li>8.7 Al firmar el registro es resultado oficial aunque este incorrecto. Unico cambio es derecho del arbitro por 11.10.</li>
+	<li>11.10 Derecho a debatir las deciciones del arbitro, en especial sobre los resultados finales.</li>
+</ul>
+<p>Las reglas anti-drogas prohiben el uso de: Anfetaminas (Adderall, Metilfenidato), Efedrina (Ephedrine), Pseudoefedrina (Pseudoephedrine), Modafinilo (Modafinil), Cafeina (13 μg por mm) y Codeina.</p>
+
+
+
+<h3 class="HoverTitle" id="Notacion"><a href="#Notacion"># </a><a href="#Notacion">Notacion</a></h3>
+<p>Para describir los movimientos de las piezas utilizamos la Notación Algebraica Estándar (<a href="https://en.wikipedia.org/wiki/Algebraic_notation_(chess)" target="_blank">SAN</a>). Las piezas se abrevian usando su letra inicial. En ingles y en español son: Rey (K-R), Reina (Q-D), Torre (R-T), Alfil (B-A) y Caballo (N-C), mientras que la ausencia de un nombre simboliza al Peón.</p>
+<p>La Notación Algebraica Estándar asume que las piezas se encuentran en su posición inicial. La Notación Algebraica con Figuras (FAN) es utilizada ampliamente por no depender del idioma.</p>
+<table>
+	<tr><th>Descripción</th><th>Contrucción</th><th>Ejemplo</th></tr>
+	<tr><td>Mover</td><td>Nombre-Casilla Destino</td><td>Rh5</td></tr>
+	<tr><td>Mover Peon</td><td>Casilla Destino</td><td>b3</td></tr>
+	<tr><td>Promoción</td><td>Casilla Destino-Nombre</td><td>d8Q</td></tr>
+	<tr><td>Captura</td><td>Nombre-x&#47;:-Casilla Destino</td><td>Bxc6</td></tr>
+	<tr><td>Captura Peon</td><td>Fila Inicial-x&#47;:-Casilla Destino</td><td>cxd5</td></tr>
+	<tr><td>Captura al Paso</td><td>Fila Inicial-x&#47;:-Casilla Destino-e.p.</td><td>exd6 e.p.</td></tr>
+	<tr><td>Enroque Flanco Rey</td><td>Dos Ceros</td><td>0-0</td></tr>
+	<tr><td>Enroque Flanco Reina</td><td>Tres Ceros</td><td>0-0-0</td></tr>
+	<tr><td>Piezas Iguales</td><td>Nombre-Fila-Casilla Destino</td><td>R1a3</td></tr>
+	<tr><td>Piezas Iguales 2</td><td>Nombre-Columna-Casilla Destino</td><td>Rfc1</td></tr>
+	<tr><td>Piezas Iguales 3</td><td>Nombre-Columna-Fila-Casilla Destino</td><td>Ra1c1</td></tr>
+	<tr><td>Oferta de Empate</td><td>Signo de Igual entre Paréntesis</td><td>Rh5 (=)</td></tr>
+	<tr><td>Jaque</td><td>Nombre-Casilla Destino-+</td><td>Rh5+</td></tr>
+	<tr><td>Jaque Mate</td><td>Nombre-Casilla Destino-#&#47;++</td><td>Ra8++</td></tr>
+	<tr><td>Puntaje</td><td>Ganaron Blancas</td><td>1-0</td></tr>
+	<tr><td>Puntaje</td><td>Ganaron Negras</td><td>0-1</td></tr>
+	<tr><td>Puntaje</td><td>Empate</td><td>1/2-1/2</td></tr>
+	<tr><td>Comentario</td><td>Pésimo o Blunder</td><td>??</td></tr>
+	<tr><td>Comentario</td><td>Malo o Mistake</td><td>?</td></tr>
+	<tr><td>Comentario</td><td>Dudoso o Dubious</td><td>?!</td></tr>
+	<tr><td>Comentario</td><td>Interesante o Interesting</td><td>!?</td></tr>
+	<tr><td>Comentario</td><td>Bueno o Good</td><td>!</td></tr>
+	<tr><td>Comentario</td><td>Increíble o Excelent</td><td>!!</td></tr>
+</table>
+
+
+
+</main>
+<footer>
+	<div class="footer">
+		<a href="https://darioarzaba.github.io/" target="_blank" title="Go To Dario Arzaba Blog">Dario Arzaba</a>
+	</div>
+</footer>
+<script src="ChessViewer/js/pgnGames.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99583415-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
